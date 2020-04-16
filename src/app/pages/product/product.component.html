@@ -1,0 +1,43 @@
+<div class="product-header">
+  <div class="container">
+    <uniswap-enchainte
+      title="Viniswap"
+      providerUrl="https://rinkeby.infura.io/v3/6d7880a8f4b347ca8953d2715e164241"
+      networkId="4"
+      crowdsaleaddress="0x0249BC35631B0c99e1c6C44d8ae8005Ef362ADFa"
+      tokenAddress="0x220E13b1EB9822924d5aF6b8443EE5a62CA5535F"
+      redeemMessage="You can redeem your MTB19 tokens for bottles of wine, starting on May 6, 2022."
+      tokenYear="2019"
+      tokenName="MTB19"
+      image="assets/images/mtb.png"
+      tokenIcon="assets/images/tokenIcon.svg"
+    ></uniswap-enchainte>
+  </div>
+</div>
+
+<div class="product-content">
+  <app-tabs [tabs]="tabs"></app-tabs>
+  <div class="container">
+    <div class="product-content-title">
+      {{ 'product.subsoil_humidity.title' | translate }}
+    </div>
+    <app-heatmap-chart [data]="heatmapData"></app-heatmap-chart>
+
+    <div class="product-content-title">
+      {{ 'product.temperature' | translate }}
+    </div>
+    <app-linear-chart [data]="linearChartData"></app-linear-chart>
+
+    <div class="product-content-title">
+      {{ 'product.wind' | translate }}
+    </div>
+    <app-linear-chart [data]="linearChartData"></app-linear-chart>
+
+    <div class="product-content-title">
+      {{ 'product.solar' | translate }}
+    </div>
+    <app-linear-chart [data]="linearChartData"></app-linear-chart>
+  </div>
+</div>
+
+<app-verifier></app-verifier>

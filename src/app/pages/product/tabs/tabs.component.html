@@ -1,0 +1,5 @@
+<div class="tabs">
+    <div class="container">
+        <div class="tabs-item" *ngFor="let tab of tabs" [ngClass]="{'tabs-item-active': active == tab.id}" (click)="onTabChange(tab)"> {{ tab.name | translate }} </div>
+    </div>
+</div>

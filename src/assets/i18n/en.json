@@ -1,0 +1,31 @@
+{
+    "labels": {
+        "day": "Día",
+        "months": "Enero,Febrero,Marzo,Abril,Mayo,Junio,Julio,Agosto,Septiembre,Octubre,Noviembre,Diciembre"
+    },
+    "selection": {
+        "title": "COMPRA YA TUS MTB",
+        "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
+        "know-more": "Saber más"
+    },
+    "product": {
+        "tabs": {
+            "sensoric": "Sensoric",
+            "business": "Business",
+            "test1": "Test 1",
+            "test2": "Test 2"
+        },
+        "subsoil_humidity": {
+            "title": "Humedad del subsuelo",
+            "zones": {
+                "petit_verdot": "Petit Verdot",
+                "cabernet_sauvignon": "Cabernet Sauvignon",
+                "malbec_oeste": "Malbec Oeste",
+                "malbec_este": "Malbec Este"
+            }
+        },
+        "temperature": "Temperatura",
+        "wind": "Velocidad del viento",
+        "solar": "Irradiación solar"
+    }
+}

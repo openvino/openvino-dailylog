@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+
+:root{
+    --primary-color: #d5841b;
+    --secondary-color: #9a999e;
+
+    --primary-text-color: #fff;
+
+    --background-color: #141414;
+}
+
+* {
+    @font-face {
+        font-family: 'Futura';
+        src: url('assets/fonts/Futura-Light.ttf');
+        font-weight: 300;
+    }
+
+    @font-face {
+        font-family: 'Futura';
+        src: url('assets/fonts/Futura-Medium.ttf');
+        font-weight: 500;
+    }
+
+    @font-face {
+        font-family: 'Futura';
+        src: url('assets/fonts/Futura-Bold.ttf');
+        font-weight: 700;
+    }
+
+    font-family: 'Futura', Helvetica, Arial, sans-serif;
+}

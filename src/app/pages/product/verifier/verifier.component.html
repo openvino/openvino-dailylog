@@ -1,0 +1,14 @@
+<div class="verifier" *ngIf="open" [ngStyle]="{ top: yCoord + 'px', left: xCoord + 'px' }">
+    <div class="verifier-date">
+        <div class="verifier-date-day">
+            {{ 'labels.day' | translate }} {{ date.getDate() }}
+        </div>
+        <div class="verifier-date-month">
+            {{ monthLabels[date.getMonth()] }} {{ date.getFullYear() }}
+        </div>
+    </div>
+    <div class="verifier-divider"></div>
+    <div class="verifier-content">
+        {{ value }}
+    </div>
+</div>
