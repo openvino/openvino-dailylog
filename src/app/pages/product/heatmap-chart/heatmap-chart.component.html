@@ -1,6 +1,6 @@
 <div class="heatmap">
   <div class="heatmap-tabs">
-    <div class="heatmap-tabs-item" *ngFor="let tab of tabs" [ngClass]="{'heatmap-tabs-item-active': activeTab == tab.id}" (click)="activeTab = tab.id"> {{ tab.name | translate }} </div>
+    <div class="heatmap-tabs-item" *ngFor="let tab of tabs" [ngClass]="{'heatmap-tabs-item-active': activeTab == tab.id}" (click)="onZoneChange(tab)"> {{ tab.name | translate }} </div>
   </div>
 
   <div class="heatmap-chart">
@@ -10,16 +10,16 @@
         <div class="heatmap-chart-row-label" style="margin-top: 21px; height: auto;"> {{ 'labels.day' | translate }} </div>
       </div>
       <div class="heatmap-chart-data">
-        <div class="heatmap-chart-row" *ngFor="let zone of zones; let i = index;" [ngStyle]="{'width': (getDayCount().length - 1) * 32 + 40 + 'px'}">
-          <div class="heatmap-chart-row-data" (click)="onDataClick($event, day, i)" [ngStyle]="{'background-color': getColor(getValueForDayAndZone(day, i))}" [ngClass]="{'heatmap-chart-row-data-active': isActive(day, i)}" *ngFor="let day of getDayCount()">
+        <div class="heatmap-chart-row" *ngFor="let zone of zones; let i = index;" [ngStyle]="{'width': (getDayCount().length - 1) * getElementWith() + 'px'}">
+          <div class="heatmap-chart-row-data" (click)="onDataClick($event, day, i)" [ngStyle]="{'width': getElementWith() + 'px', 'background-color': getColor(getValueForDayAndZone(day, i))}" [ngClass]="{'heatmap-chart-row-data-active': isActive(day, i)}" *ngFor="let day of getDayCount()">
             {{ getValueForDayAndZone(day, i) }}
           </div>
         </div>
 
-        <div class="heatmap-chart-divider" [ngStyle]="{'width': (getDayCount().length - 1) * 32 + 40 + 'px'}"></div>
+        <div class="heatmap-chart-divider" [ngStyle]="{'width': (getDayCount().length - 1) * getElementWith() + 'px'}"></div>
   
-        <div class="heatmap-chart-row" [ngStyle]="{'width': (getDayCount().length - 1) * 32 + 40 + 'px'}"> 
-          <div class="heatmap-chart-row-label-x" *ngFor="let day of getDayCount()"> {{ day + 1 }} </div>
+        <div class="heatmap-chart-row" [ngStyle]="{'width': (getDayCount().length - 1) * getElementWith() + 'px'}"> 
+          <div class="heatmap-chart-row-label-x" [ngStyle]="{'width': getElementWith() + 'px'}" *ngFor="let day of getDayCount()"> {{ zoneData[day].label | translate }} </div>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { FormsModule } from '@angular/forms';
 
 import { ProductComponent } from './product.component';
 import { HeatmapComponent } from './heatmap-chart/heatmap-chart.component';
@@ -13,6 +14,7 @@ import { VerifierService } from './verifier/verifier.service';
 import { TranslateModule } from '@ngx-translate/core';
 
 import '@enchainte/uniswap-component/build/uniswap-enchainte';
+import { DateSelectorComponent } from './date-selector/date-selector.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -21,10 +23,12 @@ import '@enchainte/uniswap-component/build/uniswap-enchainte';
     HeatmapComponent,
     LinearChartComponent,
     TabsComponent,
-    VerifierComponent
+    VerifierComponent,
+    DateSelectorComponent
   ],
   imports: [
     CommonModule,
+    FormsModule,
     BrowserAnimationsModule,
     NgxChartsModule,
     TranslateModule

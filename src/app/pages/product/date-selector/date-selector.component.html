@@ -1,0 +1,10 @@
+<div>
+    <select [(ngModel)]="selectedMonth" (change)="onSelectChange()" [value]="selectedMonth">
+        <option value="-1"> {{'labels.none' | translate}} </option>
+        <option [value]="month" *ngFor="let month of months">{{ 'months.' + month | translate }}</option>
+    </select>
+
+    <select [(ngModel)]="selectedYear" (change)="onSelectChange()" [value]="selectedYear">
+        <option [value]="year" *ngFor="let year of years">{{ year }}</option>
+    </select>
+</div>

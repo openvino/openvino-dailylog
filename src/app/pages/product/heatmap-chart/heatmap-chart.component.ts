@@ -11,7 +11,11 @@ import HeatmapData from './heatmap-data.entity';
   styleUrls: ['./heatmap-chart.component.scss']
 })
 export class HeatmapComponent {
-  @Input() public data: HeatmapData[] = [];
+  @Input() public data: {};
+  @Input() public filterType: 'day' | 'month' | 'year';
+
+
+  public zoneData: HeatmapData[] = [];
 
   public tabs = HEATMAP_TABS;
   public activeTab = null;
@@ -23,20 +27,36 @@ export class HeatmapComponent {
 
   constructor(
     public verifierService: VerifierService
-  ) {
-    this.activeTab = this.tabs[0].id
-  }
+  ) {}
 
   ngOnInit() {
-    console.log(this.data)
+    this.onZoneChange(this.tabs[0]);
+  }
+
+  ngOnChanges(changes) {
+    if (changes.data) {
+      this.data = changes.data.currentValue || {};
+      this.zoneData = changes.data.currentValue[this.activeTab] || [];
+    }
+  }
+
+  getElementWith() {
+    switch (this.filterType) {
+      case 'year':
+        return 70;
+      case 'month':
+        return 40;
+      case 'day':
+        return 40;
+    }
   }
 
   getValueForDayAndZone(day, zone) {
-    return this.data[day].data[zone];
+    return this.zoneData[day].data[zone] || '-';
   }
 
   getDayCount() {
-    return Array.from(Array(this.data.length).keys())
+    return Array.from(Array(this.zoneData.length).keys())
   }
 
   public isActive(day, zone) {
@@ -44,6 +64,8 @@ export class HeatmapComponent {
   }
 
   public getColor(value) {
+    if (!value) return 'transparent';
+    
     let color1 = [ 2, 179, 190 ];
     let color2 = [ 213, 132, 27 ];
     let valuePercent = value / 254;
@@ -60,47 +82,16 @@ export class HeatmapComponent {
     return `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
   }
 
-  public getColorBck(value) {
-    if (value > 238) {
-      return '#f073f7'
-    } else if (value > 222) {
-      return '#b511bf'
-    } else if (value > 206) {
-      return '#8b00b3'
-    } else if (value > 190) {
-      return '#eb2935'
-    } else if (value > 174) {
-      return '#ab131c'
-    } else if (value > 158) {
-      return '#ff862b'
-    } else if (value > 143) {
-      return '#edac02'
-    } else if (value > 127) {
-      return '#efc818'
-    } else if (value > 111) {
-      return '#fade5f'
-    } else if (value > 95) {
-      return '#8fd903'
-    } else if (value > 79) {
-      return '#00b23c'
-    } else if (value > 63) {
-      return '#03812d'
-    } else if (value > 47) {
-      return '#53cbff'
-    } else if (value > 31) {
-      return '#0ba9de'
-    } else if (value > 15) {
-      return '#2d6bcb'
-    } else {
-      return '#053f9c';
-    }
-  }
-
   public onDataClick($event, day, zone) {
     this.activeDay = day;
     this.activeZone = zone;
 
-    this.verifierService.openVerifier($event.pageX, $event.pageY, this.data[day].date, `${this.data[day].data[zone]} ${this.data[day].units}` , {});
+    this.verifierService.openVerifier($event.pageX, $event.pageY, this.zoneData[day].date, `${this.zoneData[day].data[zone]} ${this.zoneData[day].units}` , {});
     $event.stopPropagation();
+  }
+
+  public onZoneChange(tab) {
+    this.activeTab = tab.id;
+    this.zoneData = this.data[this.activeTab] || [];
   }
 }

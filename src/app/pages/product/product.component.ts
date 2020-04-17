@@ -10,8 +10,9 @@ import { TABS } from './product.config';
 })
 export class ProductComponent {
 
-  public heatmapData = [];
+  public heatmapData = {};
   public linearChartData = [];
+  public filterType = 'month';
 
   public tabs = [];
 
@@ -21,8 +22,19 @@ export class ProductComponent {
   ) { }
 
   ngOnInit() {
-    this.heatmapData = this.productService.getHeatmapData();
-    this.linearChartData = this.productService.getLinearChartData();
     this.tabs = TABS;
+  }
+
+  public fetchData(year, month, date) {
+    this.productService.getSensorsData(year, month, date)
+      .subscribe(data => {
+        this.filterType = date ? 'day' : month ? 'month' : 'year';
+        this.heatmapData = data.humidity;
+        this.linearChartData = data.temperature;
+      })
+  }
+
+  public onDateChange($event) {
+    this.fetchData($event.year, $event.month, null);
   }
 }

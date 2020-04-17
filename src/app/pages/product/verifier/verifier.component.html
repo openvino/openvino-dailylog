@@ -4,7 +4,7 @@
             {{ 'labels.day' | translate }} {{ date.getDate() }}
         </div>
         <div class="verifier-date-month">
-            {{ monthLabels[date.getMonth()] }} {{ date.getFullYear() }}
+            {{ 'months.' + date.getMonth() | translate }} {{ date.getFullYear() }}
         </div>
     </div>
     <div class="verifier-divider"></div>

@@ -1,18 +1,18 @@
 export const HEATMAP_TABS = [
   {
-    id: 'PETIT_VERDOT',
+    id: 'petit_verdot',
     name: "product.subsoil_humidity.zones.petit_verdot"
   },
   {
-    id: 'CABERNET_SAUVIGNON',
+    id: 'cabernet_sauvignon',
     name: "product.subsoil_humidity.zones.cabernet_sauvignon"
   },
   {
-    id: 'MALBEC_OESTE',
+    id: 'malbec-oeste',
     name: "product.subsoil_humidity.zones.malbec_oeste"
   },
   {
-    id: 'MALBEC_ESTE',
+    id: 'malbec-este',
     name: "product.subsoil_humidity.zones.malbec_este"
   },
 ]

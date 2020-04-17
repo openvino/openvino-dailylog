@@ -17,8 +17,6 @@ export class VerifierComponent implements OnInit {
   public value: string;
   public data = null;
 
-  public monthLabels = [];
-
   private clickInside = false;
 
   @HostListener('click')
@@ -36,17 +34,11 @@ export class VerifierComponent implements OnInit {
   constructor(
     public verifierService: VerifierService,
     public translate: TranslateService
-  ) {
-    this.translate.get('labels.months')
-      .subscribe(months => {
-        this.monthLabels = months.split(',');
-      })
-  }
+  ) {}
   
   ngOnInit(): void {
     this.verifierService.getOpenedObservable()
       .subscribe(({open, x, y, date, value, data}) => {
-        console.log(open, x, y, date, value, data)
         this.open = open;
         this.xCoord = x;
         this.yCoord = y;
@@ -54,7 +46,6 @@ export class VerifierComponent implements OnInit {
         this.date = date;
         this.value = value;
         this.data = data;
-        console.log(open, x, y, data)
       })
   }
 

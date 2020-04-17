@@ -17,11 +17,12 @@
 
 <div class="product-content">
   <app-tabs [tabs]="tabs"></app-tabs>
+  <app-date-selector (onDateChange)="onDateChange($event)"></app-date-selector>
   <div class="container">
     <div class="product-content-title">
       {{ 'product.subsoil_humidity.title' | translate }}
     </div>
-    <app-heatmap-chart [data]="heatmapData"></app-heatmap-chart>
+    <app-heatmap-chart [data]="heatmapData" [filterType]="filterType"></app-heatmap-chart>
 
     <div class="product-content-title">
       {{ 'product.temperature' | translate }}

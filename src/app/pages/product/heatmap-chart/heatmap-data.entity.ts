@@ -1,18 +1,15 @@
-export default class HeatmapData {
-    public date: Date;
+import ChartItemEntity from '../chart-item.entity';
 
+export default class HeatmapData extends ChartItemEntity {
     public data: [4];
-    public units: string;
 
     constructor({
-        year,
-        month,
-        day,
+        date,
         data,
-        units
+        units,
+        label
     }) {
-        this.date = new Date(year, month, day);
+        super({date, units, label})
         this.data = data;
-        this.units = units;
     }
 }
