@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import * as Chart from 'chart.js';
+import LinearChartData from './heatmap-data.entity';
+import { TranslateService } from '@ngx-translate/core';
+import { VerifierService } from '../verifier/verifier.service';
 
 @Component({
   selector: 'app-linear-chart',
@@ -10,11 +13,25 @@ export class LinearChartComponent implements OnInit {
 
   @ViewChild('matrix') public canvas: ElementRef<HTMLCanvasElement>;
 
-  @Input() public data = [];
+  @Input() public data: LinearChartData[] = [];
 
-  constructor() { }
+  public chart: Chart;
+
+  constructor(
+    public translate: TranslateService,
+    public verifierService: VerifierService
+  ) { }
 
   ngOnInit() { }
+
+  ngOnChanges(changes) {
+    if (this.chart && changes && changes.data) {
+      this.chart.data.datasets[0].data = this.data.map(item => item.data);
+      this.chart.data.labels = this.data.map(item => this.translate.instant(item.label));
+
+      this.chart.update();
+    }
+  }
 
   ngAfterViewInit(): void {
     let ctx = this.canvas.nativeElement.getContext('2d');
@@ -23,13 +40,15 @@ export class LinearChartComponent implements OnInit {
     gradient.addColorStop(0, 'rgba(213, 132, 27, .61)');   
     gradient.addColorStop(1, 'rgba(33, 33, 33, .61)');
     
-    new Chart(ctx, {
+    this.chart = new Chart(ctx, {
       type: 'line',
       data: {
         datasets: [{
           label: 'First dataset',
           data: this.data,
-          backgroundColor: gradient
+          backgroundColor: gradient,
+          borderColor: 'rgba(213, 132, 27, .61)',
+          pointBackgroundColor: 'rgb(213, 132, 27)'
         }],
         labels: [ ...Array(this.data.length).keys() ]
       },
@@ -41,9 +60,13 @@ export class LinearChartComponent implements OnInit {
         legend: {
           display: false,
         },
+        tooltips: {
+          enabled: false
+        },
         scales: {
           yAxes: [{
             ticks: {
+              suggestedMin: 0,
               fontFamily: 'Futura',
               fontColor: "white",
               fontSize: 12,
@@ -62,8 +85,16 @@ export class LinearChartComponent implements OnInit {
               autoSkipPadding: 12,
             }
           }]
-        }
+        },
+        onClick: (evt, item) => this.onItemClick(evt, item)
       }
     });
+  }
+
+  public onItemClick(evt, item: any[]) {
+    if (item && item.length > 0) {
+      let selectedItem = this.data[item[0]._index];
+      this.verifierService.openVerifier(evt.pageX, evt.pageY, selectedItem.date, `${selectedItem.data} ${selectedItem.units}`, selectedItem.data);
+    }
   }
 }

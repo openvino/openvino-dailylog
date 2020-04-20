@@ -12,16 +12,18 @@ export class VerifierService {
   constructor() { }
 
   public openVerifier(x: number, y: number, date: Date, value: string, data: any) {
-    this.openedVerifier.next({
-      open: true,
-      x,
-      y,
-      date,
-      value,
-      data
-    })
+    setTimeout(() => {
+      this.openedVerifier.next({
+        open: true,
+        x,
+        y,
+        date,
+        value,
+        data
+      })
+    }, 200)
   }
-
+  
   public closeVerifier() {
     this.openedVerifier.next({
       open: false,

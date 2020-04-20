@@ -43,6 +43,18 @@
     &-data {
       overflow-x: scroll;
       overflow-y: hidden;
+
+      flex: 1;
+
+      display: flex;
+
+      &-container {
+        display: flex;
+        flex-direction: column;
+        min-width: fit-content;
+
+        flex: 1;
+      }
     }
 
     &-label-y {
@@ -54,6 +66,9 @@
       display: flex;
       flex-direction: row;
       align-items: center;
+
+      min-width: fit-content;
+      flex: 1;
 
       &-label {
         display: flex;
@@ -79,8 +94,11 @@
         color: white;
         margin: 1px;
 
+        flex: 1;
+
         &-active {
           border: 1px solid white;
+          margin: 0;
         }
       }
 
@@ -93,6 +111,8 @@
 
         font-size: 0.6rem;
         color: white;
+
+        flex: 1;
       }
 
     }

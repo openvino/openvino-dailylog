@@ -1,7 +1,7 @@
 import ChartItemEntity from '../chart-item.entity';
 
-export default class HeatmapData extends ChartItemEntity {
-    public data: any[];
+export default class LinearChartData extends ChartItemEntity {
+    public data: number;
 
     constructor({
         date,

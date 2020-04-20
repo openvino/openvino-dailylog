@@ -1,7 +1,7 @@
 <div class="verifier" *ngIf="open" [ngStyle]="{ top: yCoord + 'px', left: xCoord + 'px' }">
     <div class="verifier-date">
         <div class="verifier-date-day">
-            {{ 'labels.day' | translate }} {{ date.getDate() }}
+            {{ 'labels.day' | translate }} {{ date.getDate() + 1 }}
         </div>
         <div class="verifier-date-month">
             {{ 'months.' + date.getMonth() | translate }} {{ date.getFullYear() }}

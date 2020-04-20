@@ -28,6 +28,8 @@ export class VerifierComponent implements OnInit {
   clickOut() {
     if (!this.clickInside && this.open) {
       this.verifierService.closeVerifier()
+    } else {
+      this.clickInside = false;
     }
   }
 

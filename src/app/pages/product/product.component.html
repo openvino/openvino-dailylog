@@ -27,17 +27,12 @@
     <div class="product-content-title">
       {{ 'product.temperature' | translate }}
     </div>
-    <app-linear-chart [data]="linearChartData"></app-linear-chart>
+    <app-linear-chart [data]="temperatureData"></app-linear-chart>
 
     <div class="product-content-title">
       {{ 'product.wind' | translate }}
     </div>
-    <app-linear-chart [data]="linearChartData"></app-linear-chart>
-
-    <div class="product-content-title">
-      {{ 'product.solar' | translate }}
-    </div>
-    <app-linear-chart [data]="linearChartData"></app-linear-chart>
+    <app-linear-chart [data]="windData"></app-linear-chart>
   </div>
 </div>
 

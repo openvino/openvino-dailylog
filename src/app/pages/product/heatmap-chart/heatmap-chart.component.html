@@ -10,16 +10,18 @@
         <div class="heatmap-chart-row-label" style="margin-top: 21px; height: auto;"> {{ 'labels.day' | translate }} </div>
       </div>
       <div class="heatmap-chart-data">
-        <div class="heatmap-chart-row" *ngFor="let zone of zones; let i = index;" [ngStyle]="{'width': (getDayCount().length - 1) * getElementWith() + 'px'}">
-          <div class="heatmap-chart-row-data" (click)="onDataClick($event, day, i)" [ngStyle]="{'width': getElementWith() + 'px', 'background-color': getColor(getValueForDayAndZone(day, i))}" [ngClass]="{'heatmap-chart-row-data-active': isActive(day, i)}" *ngFor="let day of getDayCount()">
-            {{ getValueForDayAndZone(day, i) }}
+        <div class="heatmap-chart-data-container">
+          <div class="heatmap-chart-row" *ngFor="let zone of zones; let i = index;">
+            <div class="heatmap-chart-row-data" (click)="onDataClick($event, day, i)" [ngStyle]="{'min-width': getElementWith() + 'px', 'background-color': getColor(getValueForDayAndZone(day, i)), 'cursor': getValueForDayAndZone(day, i) === '-' ? 'default': 'pointer'}" [ngClass]="{'heatmap-chart-row-data-active': isActive(day, i)}" *ngFor="let day of getDayCount()">
+              {{ getValueForDayAndZone(day, i) }}
+            </div>
           </div>
-        </div>
-
-        <div class="heatmap-chart-divider" [ngStyle]="{'width': (getDayCount().length - 1) * getElementWith() + 'px'}"></div>
   
-        <div class="heatmap-chart-row" [ngStyle]="{'width': (getDayCount().length - 1) * getElementWith() + 'px'}"> 
-          <div class="heatmap-chart-row-label-x" [ngStyle]="{'width': getElementWith() + 'px'}" *ngFor="let day of getDayCount()"> {{ zoneData[day].label | translate }} </div>
+          <div class="heatmap-chart-divider" [ngStyle]="{'min-width': (getDayCount().length - 1) * getElementWith() + 'px'}"></div>
+    
+          <div class="heatmap-chart-row" [ngStyle]="{'min-width': (getDayCount().length - 1) * getElementWith() + 'px'}"> 
+            <div class="heatmap-chart-row-label-x" [ngStyle]="{'min-width': getElementWith() + 'px'}" *ngFor="let day of getDayCount()"> {{ zoneData[day].label | translate }} </div>
+          </div>
         </div>
       </div>
     </div>

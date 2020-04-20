@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { VerifierService } from '../verifier/verifier.service';
 
 @Component({
   selector: 'app-tabs',
@@ -13,7 +14,9 @@ export class TabsComponent implements OnInit {
 
   public active;
 
-  constructor() { }
+  constructor(
+    public verifierService: VerifierService
+  ) { }
 
   ngOnInit(): void {
     if (this.tabs[0]) {
@@ -22,6 +25,7 @@ export class TabsComponent implements OnInit {
   }
 
   onTabChange(tab) {
+    this.verifierService.closeVerifier();
     this.active = tab.id;
     this.onChange.emit(tab);
   }

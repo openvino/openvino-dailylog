@@ -11,7 +11,8 @@ import { TABS } from './product.config';
 export class ProductComponent {
 
   public heatmapData = {};
-  public linearChartData = [];
+  public temperatureData = [];
+  public windData = [];
   public filterType = 'month';
 
   public tabs = [];
@@ -30,7 +31,8 @@ export class ProductComponent {
       .subscribe(data => {
         this.filterType = date ? 'day' : month ? 'month' : 'year';
         this.heatmapData = data.humidity;
-        this.linearChartData = data.temperature;
+        this.temperatureData = data.temperature;
+        this.windData = data.wind;
       })
   }
 

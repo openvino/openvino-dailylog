@@ -45,14 +45,14 @@ export class HeatmapComponent {
       case 'year':
         return 70;
       case 'month':
-        return 40;
+        return 30;
       case 'day':
-        return 40;
+        return 30;
     }
   }
 
   getValueForDayAndZone(day, zone) {
-    return this.zoneData[day].data[zone] || '-';
+    return this.zoneData[day].data[zone] === null ? '-' : this.zoneData[day].data[zone];
   }
 
   getDayCount() {
@@ -64,7 +64,7 @@ export class HeatmapComponent {
   }
 
   public getColor(value) {
-    if (!value) return 'transparent';
+    if (value === null || value === '-') return 'transparent';
     
     let color1 = [ 2, 179, 190 ];
     let color2 = [ 213, 132, 27 ];
@@ -83,14 +83,17 @@ export class HeatmapComponent {
   }
 
   public onDataClick($event, day, zone) {
-    this.activeDay = day;
-    this.activeZone = zone;
+    if (this.zoneData[day].data[zone] !== null) {
+      this.activeDay = day;
+      this.activeZone = zone;
 
-    this.verifierService.openVerifier($event.pageX, $event.pageY, this.zoneData[day].date, `${this.zoneData[day].data[zone]} ${this.zoneData[day].units}` , {});
+      this.verifierService.openVerifier($event.pageX, $event.pageY, this.zoneData[day].date, `${this.zoneData[day].data[zone]} ${this.zoneData[day].units}` , {});
+    }
     $event.stopPropagation();
   }
 
   public onZoneChange(tab) {
+    this.verifierService.closeVerifier();
     this.activeTab = tab.id;
     this.zoneData = this.data[this.activeTab] || [];
   }
