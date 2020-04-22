@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { HEATMAP_TABS } from './heatmap-chart/heatmap-chart.config';
 import { YEARS, MONTHS } from './product.config';
-import LinearChartData from './linear-chart/heatmap-data.entity';
+import LinearChartData from './linear-chart/linear-data.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class ProductService {
 
     let params = '?';
     if (year) params += `year=${year}`;
-    if (month) params += `&month=${month + 1}`;
+    if (month) params += `&month=${month}`;
     if (day) params += `&day=${day}`;
 
     return this.http.get(`${environment.apiUrl}/sensor_data${params}`)
@@ -94,7 +94,7 @@ export class ProductService {
           break;
         case 'month':
           let daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-          for (let day = 0; day < daysInMonth; ++day) {
+          for (let day = 1; day <= daysInMonth; ++day) {
             let itemData = [];
             sensorData.forEach((item: HeatmapData) => {
               if (item.date.getDate() == day) {
@@ -104,7 +104,7 @@ export class ProductService {
 
             if (itemData.length === 0) {
               filled.push(new HeatmapData({
-                date: new Date(date.getFullYear(), date.getMonth()),
+                date: new Date(date.getFullYear(), date.getMonth(), day),
                 data: [
                   null,
                   null,
@@ -112,14 +112,14 @@ export class ProductService {
                   null
                 ],
                 units: '%',
-                label: (day + 1).toString()
+                label: day.toString()
               }))
             } else {
               filled.push(new HeatmapData({
                 date: itemData[0].date,
                 data: this.getHeatmapArrayAverage(itemData),
                 units: itemData[0].units,
-                label: (day + 1).toString()
+                label: day.toString()
               }))
             }
           }
@@ -207,7 +207,7 @@ export class ProductService {
           break;
         case 'month':
           let daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-          for (let day = 0; day < daysInMonth; ++day) {
+          for (let day = 1; day <= daysInMonth; ++day) {
             let itemData = [];
             result.forEach((item: LinearChartData) => {
               if (item.date.getDate() == day) {
@@ -217,17 +217,17 @@ export class ProductService {
 
             if (itemData.length === 0) {
               filled.push(new LinearChartData({
-                date: new Date(date.getFullYear(), date.getMonth()),
+                date: new Date(date.getFullYear(), date.getMonth(), day),
                 data: null,
                 units: units,
-                label: (day + 1).toString()
+                label: day.toString()
               }))
             } else {
               filled.push(new LinearChartData({
                 date: itemData[0].date,
                 data: this.getLinearChartArrayAverage(itemData),
                 units: itemData[0].units,
-                label: (day + 1).toString()
+                label: day.toString()
               }))
             }
           }
@@ -267,10 +267,10 @@ export class ProductService {
   private getHeatmapArrayAverage(array: HeatmapData[]) {
     if (array.length > 1) {
       return [
-        array.reduce((a: HeatmapData, b: HeatmapData) => a.data[0] + b.data[0], 0) / array.length,
-        array.reduce((a: HeatmapData, b: HeatmapData) => a.data[1] + b.data[1], 0) / array.length,
-        array.reduce((a: HeatmapData, b: HeatmapData) => a.data[2] + b.data[2], 0) / array.length,
-        array.reduce((a: HeatmapData, b: HeatmapData) => a.data[3] + b.data[3], 0) / array.length
+        array.reduce((a: number, b: HeatmapData) => a + b.data[0], 0) / array.length,
+        array.reduce((a: number, b: HeatmapData) => a + b.data[1], 0) / array.length,
+        array.reduce((a: number, b: HeatmapData) => a + b.data[2], 0) / array.length,
+        array.reduce((a: number, b: HeatmapData) => a + b.data[3], 0) / array.length
       ]
     } else {
       return [

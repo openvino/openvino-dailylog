@@ -1,10 +1,19 @@
-<div>
-    <select [(ngModel)]="selectedMonth" (change)="onSelectChange()" [value]="selectedMonth">
-        <option value="-1"> {{'labels.none' | translate}} </option>
-        <option [value]="month" *ngFor="let month of months">{{ 'months.' + month | translate }}</option>
-    </select>
+<div class="date-selector-container">
+    <div class="date-selector">
+        <select [(ngModel)]="selectedYear" (change)="onSelectChange()" [value]="selectedYear">
+            <option [value]="year" *ngFor="let year of years">{{ year }}</option>
+        </select>
+    </div>
 
-    <select [(ngModel)]="selectedYear" (change)="onSelectChange()" [value]="selectedYear">
-        <option [value]="year" *ngFor="let year of years">{{ year }}</option>
-    </select>
+    <div *ngIf="selectedYear" class="date-selector">
+        <select [(ngModel)]="selectedMonth" (change)="onSelectChange(true)" [value]="selectedMonth">
+            <option [value]="month" *ngFor="let month of months">{{ 'months.' + month | translate }}</option>
+        </select>
+    </div>
+
+    <div *ngIf="selectedYear && selectedMonth" class="date-selector">
+        <select [(ngModel)]="selectedDay" (change)="onSelectChange()" [value]="selectedDay">
+            <option [value]="day" *ngFor="let day of days">{{ day }}</option>
+        </select>
+    </div>
 </div>

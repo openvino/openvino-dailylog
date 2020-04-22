@@ -1,7 +1,23 @@
 import ChartItemEntity from '../chart-item.entity';
 
 export default class HeatmapData extends ChartItemEntity {
-    public data: any[];
+    private _data: any[];
+
+    get data(): any[] {
+        return this._data;
+    }
+
+    set data(value: any[]) {
+        if (value) {
+            this._data = value.map(item => {
+                if (item) {
+                    return Math.round(item)
+                }
+                return null;
+            });
+        }
+    }
+
 
     constructor({
         date,

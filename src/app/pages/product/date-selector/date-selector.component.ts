@@ -15,9 +15,11 @@ export class DateSelectorComponent implements OnInit {
 
   public years = [];
   public months = [];
+  public days = [];
 
-  public selectedYear = '0';
-  public selectedMonth = '0';
+  public selectedYear: number = null;
+  public selectedMonth: number = null;
+  public selectedDay: number = null;
 
   constructor(
     public verifierService: VerifierService
@@ -27,18 +29,26 @@ export class DateSelectorComponent implements OnInit {
     this.years = YEARS;
     this.months = Array.from(Array(12).keys());
 
-    this.selectedMonth = new Date().getMonth().toString();
-    this.selectedYear = new Date().getFullYear().toString();
+    this.selectedMonth = new Date().getMonth();
+    this.selectedYear = new Date().getFullYear();
 
     this.onSelectChange();
   }
 
-  public onSelectChange() {
+  public onSelectChange(clearDay = false) {
+    if (clearDay) {
+      this.selectedDay = null
+    }
+    
+    if (this.selectedYear && this.selectedMonth) {
+      this.days = Array.from(Array(new Date(this.selectedYear, this.selectedMonth + 1, 0).getDate()).keys()).map(i => ++i);
+    }
     this.verifierService.closeVerifier();
 
     this.onDateChange.emit({
       year: this.selectedYear,
-      month: this.selectedMonth == '-1' ? null : parseInt(this.selectedMonth)
+      month: this.selectedMonth ? Number(this.selectedMonth) + 1: null,
+      day: this.selectedDay,
     })
   }
 }

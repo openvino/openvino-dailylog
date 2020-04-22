@@ -29,6 +29,7 @@ export class ProductComponent {
   public fetchData(year, month, date) {
     this.productService.getSensorsData(year, month, date)
       .subscribe(data => {
+        console.log(data)
         this.filterType = date ? 'day' : month ? 'month' : 'year';
         this.heatmapData = data.humidity;
         this.temperatureData = data.temperature;
@@ -37,6 +38,6 @@ export class ProductComponent {
   }
 
   public onDateChange($event) {
-    this.fetchData($event.year, $event.month, null);
+    this.fetchData($event.year, $event.month, $event.day);
   }
 }
