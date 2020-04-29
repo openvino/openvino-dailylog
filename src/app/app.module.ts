@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { CoreService } from './services/core.service';
 import { SelectorModule } from './pages/selector/selector.module';
 import { ProductModule } from './pages/product/product.module';
+import { EnchainteService } from './services/enchainte.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -33,7 +34,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProductModule
   ],
   providers: [
-    CoreService
+    CoreService,
+    EnchainteService
   ],
   bootstrap: [AppComponent]
 })

@@ -23,9 +23,10 @@ export default class HeatmapData extends ChartItemEntity {
         date,
         data,
         units,
-        label
+        label,
+        hash
     }) {
-        super({date, units, label})
+        super({date, units, label, hash})
         this.data = data;
     }
 }

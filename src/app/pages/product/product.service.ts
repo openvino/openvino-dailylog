@@ -49,13 +49,14 @@ export class ProductService {
         return new HeatmapData({
           date: date,
           data: [
-            item.humidity005,
-            item.humidity05,
-            item.humidity1,
-            item.humidity2
+            item.humidity005 * 100 / 254,
+            item.humidity05 * 100 / 254,
+            item.humidity1 * 100 / 254,
+            item.humidity2 * 100 / 254
           ],
           units: '%',
-          label: null
+          label: null,
+          hash: [item.hash]
         })
       })
 
@@ -63,7 +64,7 @@ export class ProductService {
       switch (filterType) {
         case 'year':
           MONTHS.forEach(month => {
-            let itemData = [];
+            let itemData: HeatmapData[] = [];
             sensorData.forEach((item: HeatmapData) => {
               if (item.date.getMonth() == month) {
                 itemData.push(item);
@@ -80,14 +81,16 @@ export class ProductService {
                   null
                 ],
                 units: '%',
-                label: `months.${month}`
+                label: `months.${month}`,
+                hash: null
               }))
             } else {
               filled.push(new HeatmapData({
                 date: itemData[0].date,
                 data: this.getHeatmapArrayAverage(itemData),
                 units: itemData[0].units,
-                label: `months.${month}`
+                label: `months.${month}`,
+                hash: itemData.reduce((prev, curr) => prev.concat(curr.getHashes()), [])
               }))
             }
           })
@@ -95,7 +98,7 @@ export class ProductService {
         case 'month':
           let daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
           for (let day = 1; day <= daysInMonth; ++day) {
-            let itemData = [];
+            let itemData: HeatmapData[] = [];
             sensorData.forEach((item: HeatmapData) => {
               if (item.date.getDate() == day) {
                 itemData.push(item);
@@ -112,14 +115,16 @@ export class ProductService {
                   null
                 ],
                 units: '%',
-                label: day.toString()
+                label: day.toString(),
+                hash: null
               }))
             } else {
               filled.push(new HeatmapData({
                 date: itemData[0].date,
                 data: this.getHeatmapArrayAverage(itemData),
                 units: itemData[0].units,
-                label: day.toString()
+                label: day.toString(),
+                hash: itemData.reduce((prev, curr) => prev.concat(curr.getHashes()), [])
               }))
             }
           }
@@ -127,9 +132,9 @@ export class ProductService {
 
           case 'day':
             for (let hour = 0; hour < 24; ++hour) {
-              let itemData = [];
+              let itemData: HeatmapData[] = [];
               sensorData.forEach((item: HeatmapData) => {
-                if (item.date.getHours() == hour) {
+                if (item.date.getUTCHours() == hour) {
                   itemData.push(item);
                 }
               })
@@ -144,14 +149,16 @@ export class ProductService {
                     null
                   ],
                   units: '%',
-                  label: `${hour}:00`
+                  label: `${hour}:00`,
+                  hash: null
                 }))
               } else {
                 filled.push(new HeatmapData({
                   date: itemData[0].date,
                   data: this.getHeatmapArrayAverage(itemData),
                   units: itemData[0].units,
-                  label: `${hour}:00`
+                  label: `${hour}:00`,
+                  hash: itemData.reduce((prev, curr) => prev.concat(curr.getHashes()), [])
                 }))
               }
             }
@@ -173,7 +180,8 @@ export class ProductService {
         date: itemDate,
         data: item[param],
         units: units,
-        label: null
+        label: null,
+        hash: [item.hash]
       }))
     })
 
@@ -181,7 +189,7 @@ export class ProductService {
       switch (filterType) {
         case 'year':
           MONTHS.forEach(month => {
-            let itemData = [];
+            let itemData: LinearChartData[] = [];
             result.forEach((item: LinearChartData) => {
               if (item.date.getMonth() == month) {
                 itemData.push(item);
@@ -193,14 +201,16 @@ export class ProductService {
                 date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
                 data: null,
                 units: units,
-                label: `months.${month}`
+                label: `months.${month}`,
+                hash: null
               }))
             } else {
               filled.push(new LinearChartData({
                 date: itemData[0].date,
                 data: this.getLinearChartArrayAverage(itemData),
                 units: itemData[0].units,
-                label: `months.${month}`
+                label: `months.${month}`,
+                hash: itemData.reduce((prev, curr) => prev.concat(curr.getHashes()), [])
               }))
             }
           })
@@ -208,7 +218,7 @@ export class ProductService {
         case 'month':
           let daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
           for (let day = 1; day <= daysInMonth; ++day) {
-            let itemData = [];
+            let itemData: LinearChartData[] = [];
             result.forEach((item: LinearChartData) => {
               if (item.date.getDate() == day) {
                 itemData.push(item);
@@ -220,14 +230,16 @@ export class ProductService {
                 date: new Date(date.getFullYear(), date.getMonth(), day),
                 data: null,
                 units: units,
-                label: day.toString()
+                label: day.toString(),
+                hash: null
               }))
             } else {
               filled.push(new LinearChartData({
                 date: itemData[0].date,
                 data: this.getLinearChartArrayAverage(itemData),
                 units: itemData[0].units,
-                label: day.toString()
+                label: day.toString(),
+                hash: itemData.reduce((prev, curr) => prev.concat(curr.getHashes()), [])
               }))
             }
           }
@@ -235,9 +247,9 @@ export class ProductService {
 
           case 'day':
             for (let hour = 0; hour < 24; ++hour) {
-              let itemData = [];
+              let itemData: LinearChartData[] = [];
               result.forEach((item: LinearChartData) => {
-                if (item.date.getHours() == hour) {
+                if (item.date.getUTCHours() == hour) {
                   itemData.push(item);
                 }
               })
@@ -247,14 +259,16 @@ export class ProductService {
                   date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
                   data: null,
                   units: units,
-                  label: `${hour}:00`
+                  label: `${hour}:00`,
+                  hash: null
                 }))
               } else {
                 filled.push(new LinearChartData({
                   date: itemData[0].date,
                   data: this.getLinearChartArrayAverage(itemData),
                   units: itemData[0].units,
-                  label: `${hour}:00`
+                  label: `${hour}:00`,
+                  hash: itemData.reduce((prev, curr) => prev.concat(curr.getHashes()), [])
                 }))
               }
             }

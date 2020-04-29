@@ -1,16 +1,17 @@
 <div class="product-header">
   <div class="container">
     <uniswap-enchainte
+      *ngIf="item"
       title="Viniswap"
-      providerUrl="https://rinkeby.infura.io/v3/6d7880a8f4b347ca8953d2715e164241"
-      networkId="4"
-      crowdsaleaddress="0x0249BC35631B0c99e1c6C44d8ae8005Ef362ADFa"
-      tokenAddress="0x220E13b1EB9822924d5aF6b8443EE5a62CA5535F"
-      redeemMessage="You can redeem your MTB19 tokens for bottles of wine, starting on May 6, 2022."
-      tokenYear="2019"
-      tokenName="MTB19"
-      image="assets/images/mtb.png"
-      tokenIcon="assets/images/tokenIcon.svg"
+      [attr.providerUrl]="providerUrl"
+      networkid="3"
+      [attr.crowdsaleaddress]="item.crowdsaleAddress"
+      [attr.tokenAddress]="item.tokenAddress"
+      redeemDate="May 6, 2022"
+      [attr.tokenYear]="item.year"
+      [attr.tokenName]="item.id"
+      [attr.image]="item.bottleImage"
+      [attr.tokenIcon]="item.tokenIcon"
     ></uniswap-enchainte>
   </div>
 </div>

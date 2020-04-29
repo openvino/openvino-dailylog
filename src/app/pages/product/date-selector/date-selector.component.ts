@@ -17,7 +17,6 @@ export class DateSelectorComponent implements OnInit {
   public months = [];
   public days = [];
 
-  public selectedYear: number = null;
   public selectedMonth: number = null;
   public selectedDay: number = null;
 
@@ -30,7 +29,6 @@ export class DateSelectorComponent implements OnInit {
     this.months = Array.from(Array(12).keys());
 
     this.selectedMonth = new Date().getMonth();
-    this.selectedYear = new Date().getFullYear();
 
     this.onSelectChange();
   }
@@ -40,13 +38,12 @@ export class DateSelectorComponent implements OnInit {
       this.selectedDay = null
     }
     
-    if (this.selectedYear && this.selectedMonth) {
-      this.days = Array.from(Array(new Date(this.selectedYear, this.selectedMonth + 1, 0).getDate()).keys()).map(i => ++i);
+    if (this.selectedMonth) {
+      this.days = Array.from(Array(new Date(new Date().getFullYear(), this.selectedMonth + 1, 0).getDate()).keys()).map(i => ++i);
     }
     this.verifierService.closeVerifier();
 
     this.onDateChange.emit({
-      year: this.selectedYear,
       month: this.selectedMonth ? Number(this.selectedMonth) + 1: null,
       day: this.selectedDay,
     })

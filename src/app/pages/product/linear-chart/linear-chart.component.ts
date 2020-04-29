@@ -94,7 +94,7 @@ export class LinearChartComponent implements OnInit {
   public onItemClick(evt, item: any[]) {
     if (item && item.length > 0) {
       let selectedItem = this.data[item[0]._index];
-      this.verifierService.openVerifier(evt.pageX, evt.pageY, selectedItem.date, `${selectedItem.data} ${selectedItem.units}`, selectedItem.data);
+      this.verifierService.openVerifier(evt.pageX, evt.pageY, selectedItem.date, `${selectedItem.data} ${selectedItem.units}`, selectedItem.data, selectedItem.hash);
     }
   }
 }

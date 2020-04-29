@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Hash } from '@enchainte/sdk';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VerifierService {
 
-  public openedVerifier = new Subject<{open: boolean, x: number, y: number, date: Date, value: string, data: any}>();
+  public openedVerifier = new Subject<{open: boolean, x: number, y: number, date: Date, value: string, data: any, hash: Hash[]}>();
   public openedVerifierObserver = this.openedVerifier.asObservable();
 
   constructor() { }
 
-  public openVerifier(x: number, y: number, date: Date, value: string, data: any) {
+  public openVerifier(x: number, y: number, date: Date, value: string, data: any, hash: Hash[]) {
     setTimeout(() => {
       this.openedVerifier.next({
         open: true,
@@ -19,7 +20,8 @@ export class VerifierService {
         y,
         date,
         value,
-        data
+        data,
+        hash
       })
     }, 200)
   }
@@ -31,7 +33,8 @@ export class VerifierService {
       y: null,
       date: null,
       value: null,
-      data: null
+      data: null,
+      hash: null
     })
   }
 

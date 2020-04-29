@@ -68,10 +68,10 @@ export class HeatmapComponent {
     
     let color1 = [ 2, 179, 190 ];
     let color2 = [ 213, 132, 27 ];
-    let valuePercent = value / 254;
+    let valuePercent = value / 100;
 
     if (value < 0) valuePercent = 0;
-    if (value > 254) valuePercent = 1;
+    if (value > 100) valuePercent = 1;
 
     var w1 = valuePercent;
     var w2 = 1 - w1;
@@ -87,7 +87,7 @@ export class HeatmapComponent {
       this.activeDay = day;
       this.activeZone = zone;
 
-      this.verifierService.openVerifier($event.pageX, $event.pageY, this.zoneData[day].date, `${this.zoneData[day].data[zone]} ${this.zoneData[day].units}` , {});
+      this.verifierService.openVerifier($event.pageX, $event.pageY, this.zoneData[day].date, `${this.zoneData[day].data[zone]} ${this.zoneData[day].units}` , {}, this.zoneData[day].hash);
     }
     $event.stopPropagation();
   }
