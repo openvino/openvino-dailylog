@@ -21,7 +21,7 @@
     "@angular/platform-browser-dynamic": "~9.0.6",
     "@angular/router": "~9.0.6",
     "@enchainte/sdk": "^0.2.2",
-    "@enchainte/uniswap-component": "^0.2.9",
+    "@enchainte/uniswap-component": "^1.0.0",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
     "@swimlane/ngx-charts": "^13.0.2",
