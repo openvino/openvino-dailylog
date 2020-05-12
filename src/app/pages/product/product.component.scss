@@ -12,6 +12,39 @@
 
         padding: 8px 0;
 
+        &-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 8px 16px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            height: 70px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+            z-index: 2;
+
+            & > picture {
+                cursor: pointer;
+            }
+        }
+
+        &-change {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 8px;
+            padding: 8px 16px;
+            margin-right: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
         uniswap-enchainte {
             --uniswap-primary: #840c4a;
             --uniswap-secondary: rgb(200,124,57);

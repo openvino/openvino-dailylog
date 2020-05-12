@@ -23,4 +23,12 @@ export class SelectorComponent implements OnInit {
   onProductClick(product) {
     this.router.navigate([`${product.id}`])
   }
+
+  onLogoClick() {
+    window.open('https://costaflores.com')
+  }
+
+  onKnowMoreClick() {
+    window.open('https://ico.costaflores.com')
+  }
 }

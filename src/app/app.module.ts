@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -10,6 +9,8 @@ import { CoreService } from './services/core.service';
 import { SelectorModule } from './pages/selector/selector.module';
 import { ProductModule } from './pages/product/product.module';
 import { EnchainteService } from './services/enchainte.service';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -21,6 +22,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({

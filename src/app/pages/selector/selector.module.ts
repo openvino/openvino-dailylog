@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SelectorComponent } from './selector.component';
 import { ProductSelectorComponent } from './product-selector/product-selector.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { SelectorRoutingModule } from './selector-routing.module';
 
 
 
@@ -13,7 +14,8 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   imports: [
     CommonModule,
-    TranslateModule
+    TranslateModule,
+    SelectorRoutingModule
   ]
 })
 export class SelectorModule { }

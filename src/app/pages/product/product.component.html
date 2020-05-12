@@ -1,4 +1,13 @@
 <div class="product-header">
+  <div class="product-header-logo">
+    <picture (click)="onLogoClick()">
+        <source media="(min-width: 576px)" srcset="assets/images/logo-costaflores.png">
+        <img src="assets/images/logo-costaflores-reduced.png" alt="Costaflores" style="width:auto;">
+    </picture>
+    <div class="product-header-change" (click)="back()">
+      {{ 'labels.change' | translate }}
+    </div>
+  </div>
   <div class="container">
     <uniswap-enchainte
       *ngIf="item"
@@ -7,7 +16,7 @@
       networkid="1"
       [attr.crowdsaleaddress]="item.crowdsaleAddress"
       [attr.tokenAddress]="item.tokenAddress"
-      redeemDate="May 6, 2022"
+      [attr.redeemDate]="item.redeemDate | translate"
       [attr.tokenYear]="item.year"
       [attr.tokenName]="item.id"
       [attr.image]="item.bottleImage"

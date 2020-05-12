@@ -66,8 +66,8 @@ export class HeatmapComponent {
   public getColor(value) {
     if (value === null || value === '-') return 'transparent';
     
-    let color1 = [ 2, 179, 190 ];
-    let color2 = [ 213, 132, 27 ];
+    let color1 = [ 213, 132, 27 ];
+    let color2 = [ 2, 179, 190 ];
     let valuePercent = value / 100;
 
     if (value < 0) valuePercent = 0;

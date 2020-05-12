@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SelectorComponent } from './pages/selector/selector.component';
-import { ProductComponent } from './pages/product/product.component';
 
 
 const routes: Routes = [
-  { path: '', component: SelectorComponent },
-  { path: ':id', component: ProductComponent },
+  { 
+    path: '', 
+    loadChildren: () => import('./pages/selector/selector.module').then(m => m.SelectorModule)
+  },
+  { 
+    path: ':id',
+    loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule)
+  },
 ];
 
 @NgModule({

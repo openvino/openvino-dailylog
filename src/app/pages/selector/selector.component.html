@@ -1,7 +1,7 @@
 <div class="selector">
     <div class="container">
         <div class="selector-header">
-            <picture>
+            <picture (click)="onLogoClick()">
                 <source media="(min-width: 576px)" srcset="assets/images/logo-costaflores.png">
                 <img src="assets/images/logo-costaflores-reduced.png" alt="Costaflores" style="width:auto;">
             </picture>
@@ -15,7 +15,7 @@
                 <product-selector class="col-6 col-sm-6 col-md-4 col-lg-3" *ngFor="let product of productList" [product]="product" (onProductClick)="onProductClick($event)">
                 </product-selector>
             </div>
-            <div class="selector-content-button my-5">
+            <div class="selector-content-button my-5" (click)="onKnowMoreClick()">
                 {{ 'selection.know-more' | translate }}
             </div>
         </div>

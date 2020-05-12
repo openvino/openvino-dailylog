@@ -1,7 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FormsModule } from '@angular/forms';
 
 import { ProductComponent } from './product.component';
@@ -15,6 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import '@enchainte/uniswap-component/build/uniswap-enchainte';
 import { DateSelectorComponent } from './date-selector/date-selector.component';
+import { ProductRoutingModule } from './product-routing.module';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -29,9 +28,8 @@ import { DateSelectorComponent } from './date-selector/date-selector.component';
   imports: [
     CommonModule,
     FormsModule,
-    BrowserAnimationsModule,
-    NgxChartsModule,
-    TranslateModule
+    TranslateModule,
+    ProductRoutingModule
   ],
   providers: [
     ProductService,

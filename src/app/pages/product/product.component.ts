@@ -64,4 +64,12 @@ export class ProductComponent {
   public onDateChange($event) {
     this.fetchData($event.month, $event.day);
   }
+
+  public onLogoClick() {
+    window.open('https://costaflores.com')
+  }
+
+  public back() {
+    this.router.navigate(['/']);
+  }
 }

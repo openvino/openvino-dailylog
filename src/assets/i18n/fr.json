@@ -15,7 +15,10 @@
     },
     "labels": {
         "none": "Aucun",
-        "day": "Jour"
+        "day": "Jour",
+        "change": "Changer",
+        "dry": "Sec",
+        "wet": "Humide"
     },
     "selection": {
         "title": "Achetez, vendez et échangez votre MTB*",
@@ -23,6 +26,11 @@
         "know-more": "Plus d'informations"
     },
     "product": {
+        "redeem": {
+            "18": "6 Mai 2021",
+            "19": "6 Mai 2022",
+            "20": "6 Mai 2023"
+        },
         "tabs": {
             "sensoric": "Capteurs",
             "business": "Entreprise",

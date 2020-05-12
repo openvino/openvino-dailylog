@@ -15,7 +15,10 @@
     },
     "labels": {
         "none": "Ninguno",
-        "day": "Día"
+        "day": "Día",
+        "change": "Cambiar",
+        "dry": "Seco",
+        "wet": "Mojado"
     },
     "selection": {
         "title": "Comprar, Vender y Cambiar sus MTB*",
@@ -23,6 +26,11 @@
         "know-more": "Saber más"
     },
     "product": {
+        "redeem": {
+            "18": "6 Mayo 2021",
+            "19": "6 Mayo 2022",
+            "20": "6 Mayo 2023"
+        },
         "tabs": {
             "sensoric": "Sensores",
             "business": "Negocio",

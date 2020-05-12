@@ -15,7 +15,10 @@
     },
     "labels": {
         "none": "None",
-        "day": "Day"
+        "day": "Day",
+        "change": "Change",
+        "dry": "Dry",
+        "wet": "Wet"
     },
     "selection": {
         "title": "Buy, Sell, and Exchange your MTB*",
@@ -23,6 +26,11 @@
         "know-more": "Learn more"
     },
     "product": {
+        "redeem": {
+            "18": "May 6, 2021",
+            "19": "May 6, 2022",
+            "20": "May 6, 2023"
+        },
         "tabs": {
             "sensoric": "Sensors",
             "business": "Business",
