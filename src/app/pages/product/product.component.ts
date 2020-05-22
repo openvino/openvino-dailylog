@@ -22,6 +22,8 @@ export class ProductComponent {
 
   public tabs = [];
 
+  public apiUrl;
+
   constructor(
     public coreService: CoreService,
     public productService: ProductService,
@@ -31,6 +33,8 @@ export class ProductComponent {
 
   ngOnInit() {
     this.tabs = TABS;
+
+    this.apiUrl = environment.apiUrl;
 
     this.providerUrl = environment.providerUrl;
 

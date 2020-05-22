@@ -30,11 +30,7 @@ export class ProductService {
           return {
             humidity: this.getHeatmapData(response, filterType, new Date(year, month || 0, day || 1)),
             temperature: this.generateLinearChartData(response, 'temperature', 'ºC', filterType, new Date(year, month || 0, day || 1)),
-            wind: this.generateLinearChartData(response.map(item => {
-              // m/s to knots
-              item.wind_velocity = item.wind_velocity * 1.944;
-              return item;
-            }), 'wind_velocity', 'knots', filterType, new Date(year, month || 0, day || 1)),
+            wind: this.generateLinearChartData(response, 'wind_velocity', 'knots', filterType, new Date(year, month || 0, day || 1)),
           }
         })
       )
