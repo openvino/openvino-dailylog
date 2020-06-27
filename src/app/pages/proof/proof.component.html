@@ -1,0 +1,44 @@
+<div class="proof">
+    <div class="container" *ngIf="proof">
+        <div class="proof-header">
+            <picture (click)="onLogoClick()">
+                <source media="(min-width: 576px)" srcset="assets/images/logo-costaflores.png">
+                <img src="assets/images/logo-costaflores-reduced.png" alt="Costaflores" style="width:auto;">
+            </picture>
+            <div class="proof-action" (click)="verifyProof()">
+                {{ (proofVerified === null ? 'verifier.label' : proofVerified === true ? 'verifier.success' : 'verifier.error')  | translate}} 
+                <i class="eva eva-loader-outline proof-action-icon" *ngIf="proofLoading"></i>
+                <i class="eva eva-checkmark-circle-outline proof-action-icon" *ngIf="proofVerified === true"></i>
+                <i class="eva eva-close-circle-outline proof-action-icon" *ngIf="proofVerified === false"></i>
+             </div>
+        </div>
+        <div class="proof-content">
+            <div class="proof-item">
+                <div class="proof-item-title">
+                    Bitmap
+                </div>
+                <div class="proof-item-content">
+                    {{ proof.bitmap }}
+                </div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-item-title">
+                    Depth
+                </div>
+                <div class="proof-item-content">
+                    {{ proof.depth }}
+                </div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-item-title">
+                    Nodes
+                </div>
+                <ul class="proof-item-content">
+                    <li *ngFor="let node of proof.nodes">
+                        {{ node }}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3,6 +3,8 @@ import { VerifierService } from './verifier.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Hash } from '@enchainte/sdk';
 import { EnchainteService } from 'src/app/services/enchainte.service';
+import Proof from '@enchainte/sdk/dist/types/verify/proof';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-verifier',
@@ -18,9 +20,9 @@ export class VerifierComponent implements OnInit {
   public date: Date;
   public value: string;
   public data = null;
-  public hash: Hash;
+  public hashes: Hash[];
 
-  public proof: string[];
+  public proof: Proof;
   public proofVerified: boolean;
   public proofLoading: boolean;
 
@@ -47,7 +49,8 @@ export class VerifierComponent implements OnInit {
   constructor(
     public verifierService: VerifierService,
     public enchainteService: EnchainteService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    public router: Router
   ) {}
   
   ngOnInit(): void {
@@ -62,13 +65,9 @@ export class VerifierComponent implements OnInit {
         this.value = value;
         this.data = data;
 
-        if (hash && hash.length > 0) {
-          this.hash = hash[Math.floor(Math.random() * (hash.length - 1))];
-        } else {
-          this.hash = null;
-        }
+        this.hashes = hash;
 
-        this.proof = [];
+        this.proof = null;
         this.proofVerified = null;
         this.proofLoading = false;
 
@@ -88,37 +87,20 @@ export class VerifierComponent implements OnInit {
       })
   }
 
-  onCopyItem() {
-    if (this.proof[0]) {
-      const selBox = document.createElement('textarea');
-      selBox.style.position = 'fixed';
-      selBox.style.left = '0';
-      selBox.style.top = '0';
-      selBox.style.opacity = '0';
-      selBox.value = JSON.stringify(this.proof[0]);
-      document.body.appendChild(selBox);
-      selBox.focus();
-      selBox.select();
-      document.execCommand('copy');
-      document.body.removeChild(selBox);
-    }
-  }
-
   public openLink() {
-    if (this.transactionHash) {
-      window.open(`https://rinkeby.etherscan.io/tx/${this.transactionHash}`, '_blank');
-    }
+    this.router.navigate(['/proof'], { queryParams: { hash: this.hashes, date: this.date.toISOString() } })
   }
 
   getProof() {
-    if (this.hash) {
-      this.enchainteService.getProof(this.hash)
+    if (this.hashes) {
+      this.enchainteService.getProof(this.hashes, this.date)
         .subscribe(res => {
           this.proof = res.proof;
-          this.transactionHash = res.txhash;
+          this.transactionHash = res.txHash;
         }, err => {
           this.proof = null;
           this.transactionHash = null;
+          this.proofVerified = false;
         })
     }
   }
@@ -126,15 +108,15 @@ export class VerifierComponent implements OnInit {
   verifyProof() {
     if (this.proof) {
       this.proofLoading = true;
-      this.enchainteService.verify(this.proof)
-        .then(res => {
-          this.proofLoading = false;
-          this.proofVerified = res;
-        })
-        .catch(() => {
-          this.proofLoading = false;
-          this.proofVerified = false;
-        })
+      setTimeout(() => {
+        try {
+          this.proofVerified = this.enchainteService.verify(this.proof)
+        } catch (err) {
+          console.error(err)
+          this.proofVerified = false
+        }
+        this.proofLoading = false;
+      }, 100)
     }
   }
 

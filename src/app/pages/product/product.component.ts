@@ -18,6 +18,9 @@ export class ProductComponent {
   public heatmapData = {};
   public temperatureData = [];
   public windData = [];
+  public humidityData = [];
+  public pressureData = [];
+  public rainData = [];
   public filterType = 'month';
 
   public tabs = [];
@@ -59,9 +62,12 @@ export class ProductComponent {
     this.productService.getSensorsData(this.item.year, month, date)
       .subscribe(data => {
         this.filterType = date ? 'day' : month ? 'month' : 'year';
-        this.heatmapData = data.humidity;
+        this.heatmapData = data.soilHumidity;
         this.temperatureData = data.temperature;
         this.windData = data.wind;
+        this.humidityData = data.humidity;
+        this.pressureData = data.pressure;
+        this.rainData = data.rain;
       })
   }
 

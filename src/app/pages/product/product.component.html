@@ -46,6 +46,21 @@
       {{ 'product.wind' | translate }}
     </div>
     <app-linear-chart [data]="windData"></app-linear-chart>
+
+    <div class="product-content-title">
+      {{ 'product.humidity' | translate }}
+    </div>
+    <app-linear-chart [data]="humidityData"></app-linear-chart>
+
+    <div class="product-content-title">
+      {{ 'product.pressure' | translate }}
+    </div>
+    <app-linear-chart [data]="pressureData"></app-linear-chart>
+
+    <div class="product-content-title">
+      {{ 'product.rain' | translate }}
+    </div>
+    <app-linear-chart [data]="rainData"></app-linear-chart>
   </div>
 </div>
 

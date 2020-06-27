@@ -6,7 +6,6 @@ import { Hash } from '@enchainte/sdk';
   providedIn: 'root'
 })
 export class VerifierService {
-
   public openedVerifier = new Subject<{open: boolean, x: number, y: number, date: Date, value: string, data: any, hash: Hash[]}>();
   public openedVerifierObserver = this.openedVerifier.asObservable();
 

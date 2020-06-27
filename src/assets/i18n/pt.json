@@ -48,7 +48,10 @@
         },
         "temperature": "Temperatura",
         "wind": "Velocidade do vento",
-        "solar": "Radiação solar"
+        "solar": "Radiação solar",
+        "humidity": "Umidade",
+        "pressure": "Pressão",
+        "rain": "Chuva"
     },
     "verifier": {
         "label": "Verificar",
