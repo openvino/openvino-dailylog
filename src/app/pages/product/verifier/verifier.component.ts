@@ -18,6 +18,7 @@ export class VerifierComponent implements OnInit {
   public yCoord = null;
 
   public date: Date;
+  public isDay: boolean;
   public value: string;
   public data = null;
   public hashes: Hash[];
@@ -55,13 +56,14 @@ export class VerifierComponent implements OnInit {
   
   ngOnInit(): void {
     this.verifierService.getOpenedObservable()
-      .subscribe(({open, x, y, date, value, data, hash}) => {
+      .subscribe(({open, x, y, date, isDay, value, data, hash}) => {
         this.open = open;
 
         this.xCoord = -500;
         this.yCoord = -500;
 
         this.date = date;
+        this.isDay = isDay;
         this.value = value;
         this.data = data;
 
@@ -99,7 +101,7 @@ export class VerifierComponent implements OnInit {
 
   getProof() {
     if (this.hashes) {
-      this.enchainteService.getProof(this.hashes, this.date)
+      this.enchainteService.getProof(this.hashes, this.date, this.isDay)
         .subscribe(res => {
           this.proof = res.proof;
           this.transactionHash = res.txHash;

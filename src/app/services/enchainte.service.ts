@@ -25,7 +25,6 @@ export class EnchainteService {
       return from(this.sdk.getProof(hash))
         .pipe(
           flatMap(res => {
-            console.log(hash)
             return from(this.sdk.getMessage(firstHash))
               .pipe(
                 map(message => {

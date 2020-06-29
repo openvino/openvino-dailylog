@@ -86,8 +86,7 @@ export class HeatmapComponent {
     if (this.zoneData[day].data[zone] !== null) {
       this.activeDay = day;
       this.activeZone = zone;
-
-      this.verifierService.openVerifier($event.pageX, $event.pageY, this.zoneData[day].date, `${this.zoneData[day].data[zone]} ${this.zoneData[day].units}` , {}, this.zoneData[day].hash);
+      this.verifierService.openVerifier($event.pageX, $event.pageY, this.zoneData[day].date, this.filterType === 'month', `${this.zoneData[day].data[zone]} ${this.zoneData[day].units}` , {}, this.zoneData[day].hash);
     }
     $event.stopPropagation();
   }

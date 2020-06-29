@@ -6,18 +6,19 @@ import { Hash } from '@enchainte/sdk';
   providedIn: 'root'
 })
 export class VerifierService {
-  public openedVerifier = new Subject<{open: boolean, x: number, y: number, date: Date, value: string, data: any, hash: Hash[]}>();
+  public openedVerifier = new Subject<{open: boolean, x: number, y: number, date: Date, isDay: boolean, value: string, data: any, hash: Hash[]}>();
   public openedVerifierObserver = this.openedVerifier.asObservable();
 
   constructor() { }
 
-  public openVerifier(x: number, y: number, date: Date, value: string, data: any, hash: Hash[]) {
+  public openVerifier(x: number, y: number, date: Date, isDay: boolean, value: string, data: any, hash: Hash[]) {
     setTimeout(() => {
       this.openedVerifier.next({
         open: true,
         x,
         y,
         date,
+        isDay,
         value,
         data,
         hash
@@ -31,6 +32,7 @@ export class VerifierService {
       x: null,
       y: null,
       date: null,
+      isDay: false,
       value: null,
       data: null,
       hash: null
