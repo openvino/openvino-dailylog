@@ -87,8 +87,14 @@ export class VerifierComponent implements OnInit {
       })
   }
 
+  public openEtherscan() {
+    if (this.transactionHash) {
+      window.open(`https://ropsten.etherscan.io/tx/${this.transactionHash}`, '_blank');
+    }
+  }
+
   public openLink() {
-    this.router.navigate(['/proof'], { queryParams: { hash: this.hashes, date: this.date.toISOString() } })
+    this.router.navigate(['/proof'], { queryParams: { date: this.date.toISOString() } })
   }
 
   getProof() {

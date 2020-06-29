@@ -5,12 +5,15 @@
                 <source media="(min-width: 576px)" srcset="assets/images/logo-costaflores.png">
                 <img src="assets/images/logo-costaflores-reduced.png" alt="Costaflores" style="width:auto;">
             </picture>
-            <div class="proof-action" (click)="verifyProof()">
-                {{ (proofVerified === null ? 'verifier.label' : proofVerified === true ? 'verifier.success' : 'verifier.error')  | translate}} 
-                <i class="eva eva-loader-outline proof-action-icon" *ngIf="proofLoading"></i>
-                <i class="eva eva-checkmark-circle-outline proof-action-icon" *ngIf="proofVerified === true"></i>
-                <i class="eva eva-close-circle-outline proof-action-icon" *ngIf="proofVerified === false"></i>
-             </div>
+            <div class="proof-header-actions">
+                <i class="eva eva-link-outline verifier-icon" (click)="openLink()"></i>
+                <div class="proof-action" (click)="verifyProof()">
+                    {{ (proofVerified === null ? 'verifier.label' : proofVerified === true ? 'verifier.success' : 'verifier.error')  | translate}} 
+                    <i class="eva eva-loader-outline proof-action-icon" *ngIf="proofLoading"></i>
+                    <i class="eva eva-checkmark-circle-outline proof-action-icon" *ngIf="proofVerified === true"></i>
+                    <i class="eva eva-close-circle-outline proof-action-icon" *ngIf="proofVerified === false"></i>
+                </div>
+            </div>
         </div>
         <div class="proof-content">
             <div class="proof-item">
@@ -31,13 +34,11 @@
             </div>
             <div class="proof-item">
                 <div class="proof-item-title">
-                    Nodes
+                    Proof
                 </div>
-                <ul class="proof-item-content">
-                    <li *ngFor="let node of proof.nodes">
-                        {{ node }}
-                    </li>
-                </ul>
+                <div class="proof-item-content">
+                    {{ data }}
+                </div>
             </div>
         </div>
     </div>

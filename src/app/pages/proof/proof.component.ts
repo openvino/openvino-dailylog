@@ -11,10 +11,9 @@ import Proof from '@enchainte/sdk/dist/types/verify/proof';
   styleUrls: ['./proof.component.scss']
 })
 export class ProofComponent implements OnInit {
-
-  public hashes: Hash[];
   public date: Date;
   public proof: Proof;
+  public data: string;
 
   public root: string;
   public transactionHash: string;
@@ -31,19 +30,19 @@ export class ProofComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams
       .subscribe(params => {
-        console.log(params);
-        if (params.hash) {
-          this.hashes = params.hash;
-        }
         if (params.date) {
           this.date = new Date(params.date)
         } else {
           this.router.navigate(['/'])
         }
 
-        this.enchainteService.getProof(this.hashes, this.date)
+        this.enchainteService.getProof(null, this.date, true)
           .subscribe(res => {
-            this.proof = res.proof;
+            if (res.proof) {
+              this.proof = res.proof;
+
+              this.data = res.proof.nodes.reduce((acc, value) => acc += value)
+            }
             this.transactionHash = res.txHash;
             this.root = res.root;
           })

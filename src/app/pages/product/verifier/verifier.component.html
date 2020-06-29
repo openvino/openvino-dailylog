@@ -11,8 +11,9 @@
     <div class="verifier-content">
         {{ value }}
     </div>
+    <i class="eva eva-link-outline verifier-icon" (click)="openEtherscan()"></i>
     <i class="eva eva-external-link-outline verifier-icon" (click)="openLink()"></i>
-
+    
     <div class="verifier-action" *ngIf="hashes" (click)="verifyProof()">
        {{ (proofVerified === null ? 'verifier.label' : proofVerified === true ? 'verifier.success' : 'verifier.error')  | translate}} 
        <i class="eva eva-loader-outline verifier-action-icon" *ngIf="proofLoading"></i>

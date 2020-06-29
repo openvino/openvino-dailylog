@@ -19,12 +19,14 @@ export class EnchainteService {
     this.sdk = new EnchainteClient(environment.apiKey);
   }
 
-  public getProof(hash: Hash[], date: Date) {
+  public getProof(hash: Hash[], date: Date, day = false) {
     if (hash && hash.length > 0) {
+      let firstHash = hash[0]
       return from(this.sdk.getProof(hash))
         .pipe(
           flatMap(res => {
-            return from(this.sdk.getMessage(hash[0]))
+            console.log(hash)
+            return from(this.sdk.getMessage(firstHash))
               .pipe(
                 map(message => {
                   return {
@@ -37,7 +39,8 @@ export class EnchainteService {
           })
         );
     } else {
-      return this.http.get(`${environment.apiUrl}/hashes?year=${date.getFullYear()}&month=${date.getMonth()}`)
+      let dateQuery = day ? `&day=${date.getDate()}` : ''
+      return this.http.get(`${environment.apiUrl}/hashes?year=${date.getFullYear()}&month=${date.getMonth() + 1}${dateQuery}`)
         .pipe(
           map((hashes: any[]) => {
             return hashes.map(hash => {
