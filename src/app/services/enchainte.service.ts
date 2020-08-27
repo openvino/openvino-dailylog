@@ -4,7 +4,7 @@ import { from } from 'rxjs';
 import { flatMap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import Proof from '@enchainte/sdk/dist/types/verify/proof';
+import Proof from '@enchainte/sdk/dist/types/entity/proof';
 
 @Injectable({
   providedIn: 'root'
@@ -25,13 +25,15 @@ export class EnchainteService {
       return from(this.sdk.getProof(hash))
         .pipe(
           flatMap(res => {
-            return from(this.sdk.getMessage(firstHash))
+            return from(this.sdk.getMessages([firstHash]))
               .pipe(
-                map(message => {
-                  return {
-                    proof: res,
-                    root: message.root,
-                    txHash: message.txHash
+                map(messages => {
+                  if (messages && messages[0]) {
+                    return {
+                      proof: res,
+                      root: messages[0].root,
+                      txHash: messages[0].txHash
+                    }
                   }
                 })
               )

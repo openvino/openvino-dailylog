@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { VerifierService } from '../product/verifier/verifier.service';
-import { Hash } from '@enchainte/sdk';
 import { EnchainteService } from 'src/app/services/enchainte.service';
-import Proof from '@enchainte/sdk/dist/types/verify/proof';
+import Proof from '@enchainte/sdk/dist/types/entity/proof';
 
 @Component({
   selector: 'app-proof',
@@ -62,8 +60,8 @@ export class ProofComponent implements OnInit {
   public verifyProof() {
     this.proofLoading = true;
 
-    setTimeout(() => {
-      this.proofVerified = this.enchainteService.verify(this.proof);
+    setTimeout(async () => {
+      this.proofVerified = await this.enchainteService.verify(this.proof);
       this.proofLoading = false;
     }, 100)
     

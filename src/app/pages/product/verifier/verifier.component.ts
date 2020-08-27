@@ -3,8 +3,8 @@ import { VerifierService } from './verifier.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Hash } from '@enchainte/sdk';
 import { EnchainteService } from 'src/app/services/enchainte.service';
-import Proof from '@enchainte/sdk/dist/types/verify/proof';
 import { Router } from '@angular/router';
+import Proof from '@enchainte/sdk/dist/types/entity/proof';
 
 @Component({
   selector: 'app-verifier',
@@ -116,9 +116,9 @@ export class VerifierComponent implements OnInit {
   verifyProof() {
     if (this.proof) {
       this.proofLoading = true;
-      setTimeout(() => {
+      setTimeout(async () => {
         try {
-          this.proofVerified = this.enchainteService.verify(this.proof)
+          this.proofVerified = await this.enchainteService.verify(this.proof)
         } catch (err) {
           console.error(err)
           this.proofVerified = false
