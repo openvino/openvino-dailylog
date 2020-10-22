@@ -11,7 +11,7 @@ import { VerifierComponent } from './verifier/verifier.component';
 import { VerifierService } from './verifier/verifier.service';
 import { TranslateModule } from '@ngx-translate/core';
 
-import '@enchainte/uniswap-component/build/uniswap-enchainte';
+import '@enchainte-projects/enchainte-uniswap-component';
 import { DateSelectorComponent } from './date-selector/date-selector.component';
 import { ProductRoutingModule } from './product-routing.module';
 

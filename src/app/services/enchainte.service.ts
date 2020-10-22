@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EnchainteClient, Hash } from '@enchainte/sdk';
+import { EnchainteClient, Message } from '@enchainte/sdk';
 import { from } from 'rxjs';
 import { flatMap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -19,7 +19,7 @@ export class EnchainteService {
     this.sdk = new EnchainteClient(environment.apiKey);
   }
 
-  public getProof(hash: Hash[], date: Date, day = false) {
+  public getProof(hash: Message[], date: Date, day = false) {
     if (hash && hash.length > 0) {
       let firstHash = hash[0]
       return from(this.sdk.getProof(hash))
@@ -45,7 +45,7 @@ export class EnchainteService {
         .pipe(
           map((hashes: any[]) => {
             return hashes.map(hash => {
-              return Hash.fromHash(hash)
+              return Message.fromHash(hash)
             })
           }),
           flatMap(hashes => {
@@ -56,6 +56,6 @@ export class EnchainteService {
   }
 
   public verify(proof: Proof) {
-    return this.sdk.verify(proof)
+    return this.sdk.verifyProof(proof)
   }
 }

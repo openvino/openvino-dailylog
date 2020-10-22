@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { VerifierService } from './verifier.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Hash } from '@enchainte/sdk';
+import { Message } from '@enchainte/sdk';
 import { EnchainteService } from 'src/app/services/enchainte.service';
 import { Router } from '@angular/router';
 import Proof from '@enchainte/sdk/dist/types/entity/proof';
@@ -21,7 +21,7 @@ export class VerifierComponent implements OnInit {
   public isDay: boolean;
   public value: string;
   public data = null;
-  public hashes: Hash[];
+  public hashes: Message[];
 
   public proof: Proof;
   public proofVerified: boolean;
@@ -91,7 +91,7 @@ export class VerifierComponent implements OnInit {
 
   public openEtherscan() {
     if (this.transactionHash) {
-      window.open(`https://ropsten.etherscan.io/tx/${this.transactionHash}`, '_blank');
+      window.open(`https://rinkeby.etherscan.io/tx/${this.transactionHash}`, '_blank');
     }
   }
 

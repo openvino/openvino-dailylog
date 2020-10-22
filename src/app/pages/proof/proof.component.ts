@@ -49,7 +49,7 @@ export class ProofComponent implements OnInit {
 
   public openLink() {
     if (this.transactionHash) {
-      window.open(`https://ropsten.etherscan.io/tx/${this.transactionHash}`, '_blank');
+      window.open(`https://rinkeby.etherscan.io/tx/${this.transactionHash}`, '_blank');
     }
   }
 
