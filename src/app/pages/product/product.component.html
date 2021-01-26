@@ -66,6 +66,21 @@
       {{ 'product.rain' | translate }}
     </div>
     <app-linear-chart [data]="rainData" [min]="0" [max]="400"></app-linear-chart>
+
+    <div class="product-content-title">
+      {{ 'product.irradiance-uv' | translate }}
+    </div>
+    <app-linear-chart [data]="irradianceUVData"></app-linear-chart>
+
+    <div class="product-content-title">
+      {{ 'product.irradiance-vi' | translate }}
+    </div>
+    <app-linear-chart [data]="irradianceVIData"></app-linear-chart>
+
+    <div class="product-content-title">
+      {{ 'product.irradiance-ir' | translate }}
+    </div>
+    <app-linear-chart [data]="irradianceIRData"></app-linear-chart>
   </div>
 </div>
 

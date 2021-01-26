@@ -52,7 +52,10 @@
         "solar": "Radiation solaire",
         "humidity": "Humidité",
         "pressure": "Pression",
-        "rain": "Pluie"
+        "rain": "Pluie",
+        "irradiance-uv": "Irradiation solaire (UV)",
+        "irradiance-vi": "Irradiation solaire (VI)",
+        "irradiance-ir": "Irradiation solaire (IR)"
     },
     "verifier": {
         "label": "Vérifier",

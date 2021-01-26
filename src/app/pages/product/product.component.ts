@@ -22,6 +22,9 @@ export class ProductComponent {
   public humidityData = [];
   public pressureData = [];
   public rainData = [];
+  public irradianceUVData = [];
+  public irradianceIRData = [];
+  public irradianceVIData = [];
   public filterType = 'month';
 
   public tabs = [];
@@ -70,6 +73,9 @@ export class ProductComponent {
         this.humidityData = data.humidity;
         this.pressureData = data.pressure;
         this.rainData = data.rain;
+        this.irradianceUVData = data.irradianceUV;
+        this.irradianceIRData = data.irradianceIR;
+        this.irradianceVIData = data.irradianceVI;
       })
   }
 

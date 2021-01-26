@@ -35,6 +35,9 @@ export class ProductService {
             pressure: this.generateLinearChartData(response, 'pressure', '', filterType, new Date(year, month || 0, day || 1)),
             rain: this.generateLinearChartData(response, 'rain', 'mm', filterType, new Date(year, month || 0, day || 1)),
             windDirection: this.generateLinearChartData(response, 'wind_direction', 'º', filterType, new Date(year, month || 0, day || 1)),
+            irradianceUV: this.generateLinearChartData(response, 'irradiance_uv', '', filterType, new Date(year, month || 0, day || 1)),
+            irradianceIR: this.generateLinearChartData(response, 'irradiance_ir', '', filterType, new Date(year, month || 0, day || 1)),
+            irradianceVI: this.generateLinearChartData(response, 'irradiance_vi', '', filterType, new Date(year, month || 0, day || 1)),
           }
         })
       )
