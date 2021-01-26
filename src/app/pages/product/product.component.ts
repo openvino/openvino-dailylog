@@ -59,8 +59,8 @@ export class ProductComponent {
     });
   }
 
-  public fetchData(month, date) {
-    this.productService.getSensorsData(this.item.year, month, date)
+  public fetchData(year, month, date) {
+    this.productService.getSensorsData(year, month, date)
       .subscribe(data => {
         this.filterType = date ? 'day' : month ? 'month' : 'year';
         this.heatmapData = data.soilHumidity;
@@ -74,7 +74,7 @@ export class ProductComponent {
   }
 
   public onDateChange($event) {
-    this.fetchData($event.month, $event.day);
+    this.fetchData($event.year, $event.month, $event.day);
   }
 
   public onLogoClick() {

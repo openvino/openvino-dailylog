@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, Output, EventEmitter, Input } from '@angular/core';
 import { YEARS } from '../product.config';
 import { VerifierService } from '../verifier/verifier.service';
 
@@ -9,6 +9,7 @@ import { VerifierService } from '../verifier/verifier.service';
 })
 export class DateSelectorComponent implements OnInit {
 
+  @Input() public year: number = new Date().getFullYear();
   @Output() public onDateChange: EventEmitter<any> = new EventEmitter<any>();
 
   public active = false;
@@ -26,7 +27,7 @@ export class DateSelectorComponent implements OnInit {
 
   ngOnInit() {
     this.years = YEARS;
-    this.months = Array.from(Array(12).keys());
+    this.months = [4, 5, 6, 7, 8, 9, 10, 11, 0, 1, 2, 3]
 
     this.selectedMonth = new Date().getMonth();
 
@@ -46,8 +47,13 @@ export class DateSelectorComponent implements OnInit {
     this.verifierService.closeVerifier();
 
     this.onDateChange.emit({
+      year: this.getYearByMonth(this.selectedMonth),
       month: this.selectedMonth != null ? Number(this.selectedMonth) + 1: null,
       day: this.selectedDay,
     })
+  }
+
+  public getYearByMonth(month: number) {
+    return month < 4 ? this.year : this.year - 1
   }
 }

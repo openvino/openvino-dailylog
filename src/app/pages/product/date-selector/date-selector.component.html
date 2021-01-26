@@ -1,7 +1,7 @@
 <div class="date-selector-container">
     <div class="date-selector">
         <select [(ngModel)]="selectedMonth" (change)="onSelectChange(true)" [value]="selectedMonth">
-            <option [value]="month" *ngFor="let month of months">{{ 'months.' + month | translate }}</option>
+            <option [value]="month" *ngFor="let month of months">{{ 'months.' + month | translate }} {{ getYearByMonth(month) }}</option>
         </select>
     </div>
 

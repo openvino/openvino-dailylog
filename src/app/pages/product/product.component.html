@@ -30,7 +30,7 @@
   <app-tabs [tabs]="tabs"></app-tabs>
   <div class="container">
     <div class="product-date">
-      <app-date-selector (onDateChange)="onDateChange($event)"></app-date-selector>
+      <app-date-selector [year]="item.year" (onDateChange)="onDateChange($event)"></app-date-selector>
     </div>
     <div class="product-content-title">
       {{ 'product.subsoil_humidity.title' | translate }}
