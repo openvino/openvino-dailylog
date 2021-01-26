@@ -30,10 +30,11 @@ export class ProductService {
           return {
             soilHumidity: this.getHeatmapData(response, filterType, new Date(year, month || 0, day || 1)),
             temperature: this.generateLinearChartData(response, 'temperature', 'ºC', filterType, new Date(year, month || 0, day || 1)),
-            wind: this.generateLinearChartData(response, 'wind_velocity', 'knots', filterType, new Date(year, month || 0, day || 1)),
+            windSpeed: this.generateLinearChartData(response, 'wind_velocity', 'knots', filterType, new Date(year, month || 0, day || 1)),
             humidity: this.generateLinearChartData(response, 'humidity', '%', filterType, new Date(year, month || 0, day || 1)),
             pressure: this.generateLinearChartData(response, 'pressure', '', filterType, new Date(year, month || 0, day || 1)),
             rain: this.generateLinearChartData(response, 'rain', 'mm', filterType, new Date(year, month || 0, day || 1)),
+            windDirection: this.generateLinearChartData(response, 'wind_direction', 'º', filterType, new Date(year, month || 0, day || 1)),
           }
         })
       )

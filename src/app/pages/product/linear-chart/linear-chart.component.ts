@@ -14,6 +14,8 @@ export class LinearChartComponent implements OnInit {
   @ViewChild('matrix') public canvas: ElementRef<HTMLCanvasElement>;
 
   @Input() public data: LinearChartData[] = [];
+  @Input() public min: number;
+  @Input() public max: number;
 
   public chart: Chart;
 
@@ -66,13 +68,14 @@ export class LinearChartComponent implements OnInit {
         scales: {
           yAxes: [{
             ticks: {
-              suggestedMin: 0,
               fontFamily: 'Futura',
               fontColor: "white",
               fontSize: 12,
               padding: 15,
               autoSkip: true,
               autoSkipPadding: 12,
+              suggestedMin: this.min,
+              suggestedMax: this.max
             }
           }],
           xAxes: [{

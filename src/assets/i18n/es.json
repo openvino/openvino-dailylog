@@ -47,7 +47,8 @@
             }
         },
         "temperature": "Temperatura",
-        "wind": "Velocidad del viento",
+        "wind-speed": "Velocidad del viento",
+        "wind-direction": "Dirección del viento",
         "solar": "Irradiación solar",
         "humidity": "Humedad",
         "pressure": "Presión",

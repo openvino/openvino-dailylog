@@ -17,7 +17,8 @@ export class ProductComponent {
 
   public heatmapData = {};
   public temperatureData = [];
-  public windData = [];
+  public windSpeedData = [];
+  public windDirectionData = [];
   public humidityData = [];
   public pressureData = [];
   public rainData = [];
@@ -64,7 +65,8 @@ export class ProductComponent {
         this.filterType = date ? 'day' : month ? 'month' : 'year';
         this.heatmapData = data.soilHumidity;
         this.temperatureData = data.temperature;
-        this.windData = data.wind;
+        this.windSpeedData = data.windSpeed;
+        this.windDirectionData = data.windDirection;
         this.humidityData = data.humidity;
         this.pressureData = data.pressure;
         this.rainData = data.rain;
