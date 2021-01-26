@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "node build/patch.js"
   },
   "private": true,
   "dependencies": {
@@ -20,8 +21,8 @@
     "@angular/platform-browser": "^9.1.11",
     "@angular/platform-browser-dynamic": "~9.0.6",
     "@angular/router": "~9.0.6",
-    "@enchainte/sdk": "0.6.3",
     "@enchainte-projects/enchainte-uniswap-component": "^1.0.12",
+    "@enchainte/sdk": "0.6.3",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
     "bootstrap": "^4.5.0",
