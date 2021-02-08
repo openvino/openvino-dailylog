@@ -11,10 +11,9 @@ import { ProductModule } from './pages/product/product.module';
 import { EnchainteService } from './services/enchainte.service';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { ProofComponent } from './pages/proof/proof.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, 'https://costaflores.openvino.exchange/language/', '');
 }
 
 @NgModule({
