@@ -41,7 +41,7 @@ export class EnchainteService {
         );
     } else {
       let dateQuery = day ? `&day=${date.getDate()}` : ''
-      return this.http.get(`${environment.apiUrl}/hashes?year=${date.getFullYear()}&month=${date.getMonth() + 1}${dateQuery}`)
+      return this.http.get(`${environment.apiUrl}/sensor_data/hashes?year=${date.getFullYear()}&month=${date.getMonth() + 1}${dateQuery}`)
         .pipe(
           map((hashes: any[]) => {
             return hashes.map(hash => {
