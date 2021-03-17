@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import * as Chart from 'chart.js';
 import LinearChartData from './linear-data.entity';
 import { TranslateService } from '@ngx-translate/core';
-import { VerifierService } from '../verifier/verifier.service';
+import { VerifierService } from '../../verifier/verifier.service';
 
 @Component({
   selector: 'app-linear-chart',

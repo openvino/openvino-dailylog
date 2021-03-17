@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { ProductComponent } from './product.component';
-import { HeatmapComponent } from './heatmap-chart/heatmap-chart.component';
+import { HeatmapComponent } from './sensors/heatmap-chart/heatmap-chart.component';
 import { ProductService } from './product.service';
-import { LinearChartComponent } from './linear-chart/linear-chart.component';
+import { LinearChartComponent } from './sensors/linear-chart/linear-chart.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { VerifierComponent } from './verifier/verifier.component';
 import { VerifierService } from './verifier/verifier.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { TasksListComponent} from "./work/tasks-list/tasks-list.component"
+import { SensorsComponent } from './sensors/sensors.component';
 
 import '@enchainte-projects/enchainte-uniswap-component';
 import { DateSelectorComponent } from './date-selector/date-selector.component';
@@ -23,7 +25,9 @@ import { ProductRoutingModule } from './product-routing.module';
     LinearChartComponent,
     TabsComponent,
     VerifierComponent,
-    DateSelectorComponent
+    DateSelectorComponent,
+    TasksListComponent,
+    SensorsComponent
   ],
   imports: [
     CommonModule,

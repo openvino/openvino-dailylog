@@ -1,4 +1,4 @@
-import ChartItemEntity from '../chart-item.entity';
+import ChartItemEntity from '../../chart-item.entity';
 
 export default class LinearChartData extends ChartItemEntity {
     private _data: number;

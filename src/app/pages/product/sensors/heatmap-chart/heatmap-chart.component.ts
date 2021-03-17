@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Input, ViewEncapsulation } from '@angular/core';
 
 import { HEATMAP_TABS, HEATMAP_ZONES } from './heatmap-chart.config';
-import { VerifierService } from '../verifier/verifier.service';
+import { VerifierService } from '../../verifier/verifier.service';
 import HeatmapData from './heatmap-data.entity';
 
 @Component({

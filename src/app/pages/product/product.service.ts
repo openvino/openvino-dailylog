@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import HeatmapData from './heatmap-chart/heatmap-data.entity';
+import HeatmapData from './sensors/heatmap-chart/heatmap-data.entity';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { HEATMAP_TABS } from './heatmap-chart/heatmap-chart.config';
+import { HEATMAP_TABS } from './sensors/heatmap-chart/heatmap-chart.config';
 import { YEARS, MONTHS } from './product.config';
-import LinearChartData from './linear-chart/linear-data.entity';
+import LinearChartData from './sensors/linear-chart/linear-data.entity';
 
 @Injectable({
   providedIn: 'root'
@@ -312,3 +312,24 @@ export class ProductService {
     return sum / array.length;
   }
 }
+
+public getTasks(year: number, month?: number, day?: number) {
+
+  let filterType = day ? 'day' : month ? 'month' : 'year';
+
+  let params = '?';
+  if (year) params += `year=${year}`;
+  if (month) params += `&month=${month}`;
+  if (day) params += `&day=${day}`;
+
+  return this.http.get(`${environment.apiUrl}/tasks`)
+  .pipe(
+    map((response: any[]) => {
+      return {
+        task: this.getTaskData(response, filterType, new Date(year, month || 0, day || 1)),
+      }
+    })
+  )
+}
+
+public getTaskData (){}

@@ -1,0 +1,7 @@
+<h2>Tasks list</h2>
+<p *ngIf="loadedTasks.length < 1">No loaded tasks</p>
+<ul *ngIf="loadedTasks.length >= 1">
+    <li *ngFor="let task of loadedTasks">
+        <p>{{task.notes}}</p>
+    </li>
+</ul>

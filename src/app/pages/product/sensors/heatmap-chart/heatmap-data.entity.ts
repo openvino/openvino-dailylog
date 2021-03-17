@@ -1,4 +1,4 @@
-import ChartItemEntity from '../chart-item.entity';
+import ChartItemEntity from '../../chart-item.entity';
 
 export default class HeatmapData extends ChartItemEntity {
     private _data: any[];
