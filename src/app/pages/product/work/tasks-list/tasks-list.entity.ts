@@ -1,3 +1,4 @@
+
 export class TasksList {
     public name: String;
     public tools:string[];
@@ -10,8 +11,8 @@ export class TasksList {
 
 constructor ( data?: {
     task_id: number;
-    tools_used: string[];
-    chemicals: string;
+    tools_used:  {name: string, amount: number}[];
+    chemicals:  {name: string, amount: number}[];
     ini_timestamp: string;
     end_timestamp: string;
     ini_claro: string;
@@ -21,6 +22,8 @@ constructor ( data?: {
         this.name = data.task_id.toString();
         this.startDate = new Date(data.ini_timestamp);
         this.endDate = new Date(data.ini_timestamp);
+        this.tools =[];
+        this.chemicals=[]
     }
 }
 }

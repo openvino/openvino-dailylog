@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   providerUrl: 'https://mainnet.infura.io/v3/6d7880a8f4b347ca8953d2715e164241',
-  apiUrl: 'http://localhost:3000',
+  apiUrl: 'https://costaflores.openvino.exchange',
   apiKey: "JB1lKPZIdUKXhrpBVTGwsXSEFs2JT2jmp2dlmYS0nvBBsGBQ2g4hRFYOUNmneBdN"
 };
 

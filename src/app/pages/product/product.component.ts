@@ -28,7 +28,7 @@ export class ProductComponent {
   public filterType = 'month';
 
   public tabs = [];
-
+  public tabActive;
   public apiUrl;
 
   constructor(
@@ -40,6 +40,7 @@ export class ProductComponent {
 
   ngOnInit() {
     this.tabs = TABS;
+    this.tabActive=this.tabs[0]
 
     this.apiUrl = environment.apiUrl;
 
@@ -89,5 +90,10 @@ export class ProductComponent {
 
   public back() {
     this.router.navigate(['/']);
+  }
+
+  public onTabChange(event){
+    this.tabActive=event
+    console.log(event)
   }
 }

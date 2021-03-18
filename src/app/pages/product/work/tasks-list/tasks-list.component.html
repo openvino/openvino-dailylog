@@ -2,6 +2,14 @@
 <p *ngIf="loadedTasks.length < 1">No loaded tasks</p>
 <ul *ngIf="loadedTasks.length >= 1">
     <li *ngFor="let task of loadedTasks">
-        <p>{{task.notes}}</p>
+        <h3>{{task.name}}</h3>
+        <p>View tasks details</p>
+        <hr>
+        <p>Tools: {{task.tools}}</p>
+        <p>Chemicals: {{task.chemicals}}</p>
+        <p>Start Date: {{task.startDate}}</p>
+        <p>End Date: {{task.endDate}}</p>
+        <p>Notes:{{task.notes}}</p>
+        <p>Inicio loc{{task.claro}}</p>
     </li>
 </ul>

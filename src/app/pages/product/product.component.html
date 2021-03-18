@@ -27,62 +27,13 @@
 </div>
 
 <div class="product-content">
-  <app-tabs [tabs]="tabs"></app-tabs>
-  <div class="container">
-    <div class="product-date">
-      <app-date-selector [year]="item.year" (onDateChange)="onDateChange($event)"></app-date-selector>
-    </div>
-    <div class="product-content-title">
-      {{ 'product.subsoil_humidity.title' | translate }}
-    </div>
-    <app-heatmap-chart [data]="heatmapData" [filterType]="filterType"></app-heatmap-chart>
-
-    <div class="product-content-title">
-      {{ 'product.temperature' | translate }}
-    </div>
-    <app-linear-chart [data]="temperatureData"></app-linear-chart>
-
-    <div class="product-content-title">
-      {{ 'product.wind-speed' | translate }}
-    </div>
-    <app-linear-chart [data]="windSpeedData"></app-linear-chart>
-
-    <div class="product-content-title">
-      {{ 'product.wind-direction' | translate }}
-    </div>
-    <app-linear-chart [data]="windDirectionData" [min]="0" [max]="360"></app-linear-chart>
-
-    <div class="product-content-title">
-      {{ 'product.humidity' | translate }}
-    </div>
-    <app-linear-chart [data]="humidityData" [min]="0" [max]="100"></app-linear-chart>
-
-    <div class="product-content-title">
-      {{ 'product.pressure' | translate }}
-    </div>
-    <app-linear-chart [data]="pressureData" [min]="950" [max]="1020"></app-linear-chart>
-
-    <div class="product-content-title">
-      {{ 'product.rain' | translate }}
-    </div>
-    <app-linear-chart [data]="rainData" [min]="0" [max]="400"></app-linear-chart>
-
-    <div class="product-content-title">
-      {{ 'product.irradiance-uv' | translate }}
-    </div>
-    <app-linear-chart [data]="irradianceUVData"></app-linear-chart>
-
-    <div class="product-content-title">
-      {{ 'product.irradiance-vi' | translate }}
-    </div>
-    <app-linear-chart [data]="irradianceVIData"></app-linear-chart>
-
-    <div class="product-content-title">
-      {{ 'product.irradiance-ir' | translate }}
-    </div>
-    <app-linear-chart [data]="irradianceIRData"></app-linear-chart>
+  <app-tabs [tabs]="tabs" (onChange)="onTabChange($event)"></app-tabs>
+  <div *ngIf="tabActive.id == tabs[0].id">
+    <app-sensors></app-sensors>
+  </div>
+  <div *ngIf="tabActive.id == tabs[1].id">
+    <app-tasks-list></app-tasks-list>
+  </div>
 </div>
-</div>
-<app-tasks-list></app-tasks-list>
 
 <app-verifier></app-verifier>
