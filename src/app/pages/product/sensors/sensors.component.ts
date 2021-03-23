@@ -97,6 +97,5 @@ export class SensorsComponent {
 
   public onTabChange(event){
     this.tabActive=event
-    console.log(event)
   }
 }

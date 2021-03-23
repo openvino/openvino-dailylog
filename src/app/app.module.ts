@@ -33,7 +33,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     SelectorModule,
-    ProductModule
+    ProductModule,
+  
   ],
   providers: [
     CoreService,

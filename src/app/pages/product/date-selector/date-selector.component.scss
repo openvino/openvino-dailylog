@@ -1,7 +1,7 @@
 .date-selector {
     border: none;
-    margin: 0 32px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    margin: 30px 32px;
+    border-bottom:1px solid rgba(0, 0, 0, 0.4);
     height: 30px;
     overflow: hidden;
     width: 160px;
@@ -20,7 +20,7 @@
         text-align:center;
         width:30px;
         height:30px;
-        color: white;
+        color: rgb(0, 0, 0);
         position:absolute;
         top:0;
         right:0px;	
@@ -32,9 +32,9 @@
         border: none;
         font-size: 1rem;
         height: 30px;
-        padding: 5px;
+        padding: 2px;
         width: 180px;
-        color: white;
+        color: rgb(0, 0, 0);
      }
     
     & select:focus{ outline: none;}

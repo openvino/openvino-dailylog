@@ -15,3 +15,4 @@ export class AppComponent {
     translate.use(translate.getBrowserLang() || 'en');
   }
 }
+

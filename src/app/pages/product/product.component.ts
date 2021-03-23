@@ -94,6 +94,5 @@ export class ProductComponent {
 
   public onTabChange(event){
     this.tabActive=event
-    console.log(event)
   }
 }

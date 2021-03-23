@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { VerifierService } from '../../verifier/verifier.service';
-import { HttpClient } from '@angular/common/http';
 import { ProductService } from '../../product.service';
+
 
 @Component({
   selector: 'app-tasks-list',
@@ -11,7 +11,10 @@ import { ProductService } from '../../product.service';
 
 export class TasksListComponent implements OnInit {
 
-    loadedTasks=[];
+    public loadedTasks=[];
+    public filterType = 'month';
+    public item;
+    public taskActive;
 
     constructor(
         public verifierService: VerifierService,
@@ -19,17 +22,30 @@ export class TasksListComponent implements OnInit {
     ){}
 
     ngOnInit(){
-      this.fetchTasks()
+      
     }
-    
-    private fetchTasks () {
-      this.productService.getTasks().subscribe(
-        response => {
-          console.log(response, "resposta")
-          this.loadedTasks=response;
-        }
-      )
-    
+  
+    public onDateChange($event) {
+      this.fetchTasks($event.year, $event.month, $event.day);
     }
 
+    public onTaskChange(event) {
+      this.taskActive = event;
+      console.log(event)
+
+    }
+
+    public fetchTasks (year, month, date) {
+      this.productService.getTasks(year, month, date)
+      .subscribe(
+       data => {
+          this.filterType = date ? 'day' : month ? 'month' : 'year';
+          console.log(data, "resposta")
+          this.loadedTasks=data;
+        })
+    }
+
+    
+
   }
+

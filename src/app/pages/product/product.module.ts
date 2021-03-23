@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+
 import { ProductComponent } from './product.component';
 import { HeatmapComponent } from './sensors/heatmap-chart/heatmap-chart.component';
 import { ProductService } from './product.service';
@@ -33,7 +34,7 @@ import { ProductRoutingModule } from './product-routing.module';
     CommonModule,
     FormsModule,
     TranslateModule,
-    ProductRoutingModule
+    ProductRoutingModule,
   ],
   providers: [
     ProductService,

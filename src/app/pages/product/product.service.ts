@@ -7,7 +7,8 @@ import { environment } from 'src/environments/environment';
 import { HEATMAP_TABS } from './sensors/heatmap-chart/heatmap-chart.config';
 import { YEARS, MONTHS } from './product.config';
 import LinearChartData from './sensors/linear-chart/linear-data.entity';
-import { TasksList } from './work/tasks-list/tasks-list.entity';
+import { TaskEntity } from './work/tasks-list/tasks-list.entity';
+
 
 @Injectable({
   providedIn: 'root'
@@ -314,15 +315,25 @@ export class ProductService {
     return sum / array.length;
   }
 
-  public getTasks(): Observable<TasksList[]> {
-  
-    return this.http.get(`${environment.apiUrl}/tasks`).pipe(
-      map((response: any) => {
-        console.log(response, "response")
-        return response.map(task => {
-          return new TasksList(task)
+
+  public getTasks(year: number, month?: number, day?: number) {
+
+    let params = '?';
+    if (year) params += `year=${year}`;
+    if (month) params += `&month=${month}`;
+    if (day) params += `&day=${day}`;
+
+    return this.http.get(`${environment.apiUrl}/tasks${params}` )
+      .pipe(
+        map((response: any) => {
+          return response.map(item=>{
+            console.log(response, "respostaa")
+            return new TaskEntity(item)
+          })
         })
-      })
       )
-    }
+  }
+
+ 
+
 }

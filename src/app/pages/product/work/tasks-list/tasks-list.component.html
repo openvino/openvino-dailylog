@@ -1,15 +1,49 @@
-<h2>Tasks list</h2>
-<p *ngIf="loadedTasks.length < 1">No loaded tasks</p>
-<ul *ngIf="loadedTasks.length >= 1">
-    <li *ngFor="let task of loadedTasks">
-        <h3>{{task.name}}</h3>
-        <p>View tasks details</p>
-        <hr>
-        <p>Tools: {{task.tools}}</p>
-        <p>Chemicals: {{task.chemicals}}</p>
-        <p>Start Date: {{task.startDate}}</p>
-        <p>End Date: {{task.endDate}}</p>
-        <p>Notes:{{task.notes}}</p>
-        <p>Inicio loc{{task.claro}}</p>
-    </li>
-</ul>
+<div class="container">
+    <h2>Tasks</h2>
+    <div class="bottle-img"></div>
+    <div class="product-content-subtitle">
+        <h4>Tasks list</h4>
+    </div>
+
+    <div class="product-date">
+        <app-date-selector (onDateChange)="onDateChange($event)"></app-date-selector>
+    </div>
+    <div class="tasks-container">
+        <div class="task-date">15th May 2020</div>
+        <div *ngIf="!loadedTasks || loadedTasks.length < 1">
+            No loaded tasks
+        </div>
+        <div *ngIf="loadedTasks && loadedTasks.length > 0">
+            <div *ngFor="let task of loadedTasks">
+                <div class="task-container">
+                    <div class="task-description">
+                        <h3>{{task.name}}</h3>
+                        <button type="button" class="task-details-btn" data-bs-toggle="collapse"
+                            data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+                            (onChange)="onTaskChange($event)">
+                            View task details <span>></span>
+                        </button>
+                        <!--   <button type="button" class="task-details-btn" data-bs-container="body" data-bs-toggle="popover"
+                            data-bs-placement="bottom" data-bs-content="Bottom popover">
+                            View task details
+                        </button> -->
+                    </div>
+                    <div class="task-verification-btn">
+                        <button class="product-change" type="button">Verificar</button>
+                    </div>
+                </div>
+                <div class="collapse" id="collapseExample">
+                    <ul class="details-info-ul card card-body">
+                        <li *ngFor="let tool of task.tools">Tools: {{tool.name}}</li>
+                        <li *ngFor="let chemical of task.chemicals">Chemicals: {{chemical.name}},{{chemical.amount}}</li>
+                        <li>Start Date: {{task.startDate | date:"short"}}</li>
+                        <li>End Date: {{task.endDate | date:"short"}}</li>
+                        <li>Notes: {{task.notes}}</li>
+                        <li>Inicio loc: {{task.iniClaro}}</li>
+                    </ul>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

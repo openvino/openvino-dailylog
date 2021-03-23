@@ -1,6 +1,5 @@
 .tabs {
     height: 80px;
-    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.18);
     margin: 8px 0;
     padding: 0 8px;
 
@@ -13,21 +12,21 @@
     }
 
     &-item {
-        max-width: 250px;
+        max-width: 180px;
         flex: 1;
         border-radius: 2px;
-        
+        border: 2px solid #000000;
         font-size: 1rem;
-        color: #ffffff;
+        color: #000000;
         text-align: center;
-
-        margin: 0 4px;
-        padding: 4px;
-
+        margin: 0 6px;
+        padding: 4px 1px;
         cursor: pointer;
 
         &-active {
-            border: solid 1px #979797;
+            border: solid 2px #000000;  
+            background-color: var(--primary-text-color);
+            color: #ffffff;
         }
     }
 }
