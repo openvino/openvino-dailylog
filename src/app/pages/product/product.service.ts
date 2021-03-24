@@ -333,7 +333,4 @@ export class ProductService {
         })
       )
   }
-
- 
-
 }

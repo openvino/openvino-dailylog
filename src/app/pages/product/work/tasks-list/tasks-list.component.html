@@ -1,4 +1,4 @@
-<div class="container">
+<div class="tasks-list-container">
     <h2>Tasks</h2>
     <div class="bottle-img"></div>
     <div class="product-content-subtitle">
@@ -8,34 +8,32 @@
     <div class="product-date">
         <app-date-selector (onDateChange)="onDateChange($event)"></app-date-selector>
     </div>
-    <div class="tasks-container">
-        <div class="task-date">15th May 2020</div>
+    <div class="tasks-list">
         <div *ngIf="!loadedTasks || loadedTasks.length < 1">
             No loaded tasks
         </div>
         <div *ngIf="loadedTasks && loadedTasks.length > 0">
-            <div *ngFor="let task of loadedTasks">
-                <div class="task-container">
+            <div *ngFor="let task of loadedTasks; let i = index">
+                <div *ngIf="task.startDate[i] == task.startDate[i+1]" class="task-date">{{task.startDate | date}}</div>
+                <div class="task">
                     <div class="task-description">
                         <h3>{{task.name}}</h3>
+
                         <button type="button" class="task-details-btn" data-bs-toggle="collapse"
-                            data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
-                            (onChange)="onTaskChange($event)">
-                            View task details <span>></span>
+                            [attr.data-bs-target]="'#task-' + task.id" aria-expanded="false"
+                            [attr.aria-controls]="'#task-' + task.id">
+                            View task details 
                         </button>
-                        <!--   <button type="button" class="task-details-btn" data-bs-container="body" data-bs-toggle="popover"
-                            data-bs-placement="bottom" data-bs-content="Bottom popover">
-                            View task details
-                        </button> -->
                     </div>
                     <div class="task-verification-btn">
                         <button class="product-change" type="button">Verificar</button>
                     </div>
                 </div>
-                <div class="collapse" id="collapseExample">
+                <div class="collapse" [id]="'#task-' + task.id">
                     <ul class="details-info-ul card card-body">
                         <li *ngFor="let tool of task.tools">Tools: {{tool.name}}</li>
-                        <li *ngFor="let chemical of task.chemicals">Chemicals: {{chemical.name}},{{chemical.amount}}</li>
+                        <li *ngFor="let chemical of task.chemicals">Chemicals: {{chemical.name}},{{chemical.amount}}
+                        </li>
                         <li>Start Date: {{task.startDate | date:"short"}}</li>
                         <li>End Date: {{task.endDate | date:"short"}}</li>
                         <li>Notes: {{task.notes}}</li>

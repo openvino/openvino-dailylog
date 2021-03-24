@@ -1,6 +1,7 @@
 
 export class TaskEntity {
     public name: String;
+    public id: Number;
     public tools: {name: string}[];
     public chemicals: {name: number, amount: number}[];
     public startDate: Date;
@@ -15,6 +16,7 @@ export class TaskEntity {
 
 constructor ( data?: {
     public_key: String;
+    task_id: Number;
     tools_used: {Id: string}[];
     chemicals:  {Id: number, amount: number}[];
     ini_timestamp:Date;
@@ -25,6 +27,7 @@ constructor ( data?: {
 }) {
     if (data) {
         this.name = data.public_key;
+        this.id = data.task_id;
         this.startDate = new Date(data.ini_timestamp);
         this.endDate = new Date(data.ini_timestamp);
         this.tools= data.tools_used.map(tool => {

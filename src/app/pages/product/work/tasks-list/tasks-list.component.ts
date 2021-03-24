@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { VerifierService } from '../../verifier/verifier.service';
 import { ProductService } from '../../product.service';
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class TasksListComponent implements OnInit {
     public loadedTasks=[];
     public filterType = 'month';
     public item;
-    public taskActive;
+ 
 
     constructor(
         public verifierService: VerifierService,
@@ -29,12 +30,6 @@ export class TasksListComponent implements OnInit {
       this.fetchTasks($event.year, $event.month, $event.day);
     }
 
-    public onTaskChange(event) {
-      this.taskActive = event;
-      console.log(event)
-
-    }
-
     public fetchTasks (year, month, date) {
       this.productService.getTasks(year, month, date)
       .subscribe(
@@ -43,6 +38,7 @@ export class TasksListComponent implements OnInit {
           console.log(data, "resposta")
           this.loadedTasks=data;
         })
+       
     }
 
     
