@@ -12,9 +12,11 @@ import { filter } from 'rxjs/operators';
 
 export class TasksListComponent implements OnInit {
 
-    public loadedTasks=[];
+    public loadedTasks=<any>[];
     public filterType = 'month';
     public item;
+    public loadedTasksKeys=<any>[];
+    public groupedKeys =<any>[]
  
 
     constructor(
@@ -35,13 +37,11 @@ export class TasksListComponent implements OnInit {
       .subscribe(
        data => {
           this.filterType = date ? 'day' : month ? 'month' : 'year';
-          console.log(data, "resposta")
-          this.loadedTasks=data;
+          console.log(data, "resposta task entity")
+          this.loadedTasks=Object.keys(data);
+          this.loadedTasksKeys=Object.keys(data)
+          console.log(this.loadedTasksKeys,"sorpresa")
         })
-       
     }
-
-    
-
   }
 

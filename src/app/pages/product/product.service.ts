@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, reduce } from 'rxjs/operators';
 import HeatmapData from './sensors/heatmap-chart/heatmap-data.entity';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -18,7 +18,7 @@ export class ProductService {
   constructor(
     public http: HttpClient
   ) { }
-  
+
   public getSensorsData(year: number, month?: number, day?: number) {
     let filterType = day ? 'day' : month ? 'month' : 'year';
 
@@ -140,39 +140,39 @@ export class ProductService {
           }
           break;
 
-          case 'day':
-            for (let hour = 0; hour < 24; ++hour) {
-              let itemData: HeatmapData[] = [];
-              sensorData.forEach((item: HeatmapData) => {
-                if (item.date.getUTCHours() == hour) {
-                  itemData.push(item);
-                }
-              })
-
-              if (itemData.length === 0) {
-                filled.push(new HeatmapData({
-                  date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
-                  data: [
-                    null,
-                    null,
-                    null,
-                    null
-                  ],
-                  units: '%',
-                  label: `${hour}:00`,
-                  hash: null
-                }))
-              } else {
-                filled.push(new HeatmapData({
-                  date: itemData[0].date,
-                  data: this.getHeatmapArrayAverage(itemData),
-                  units: itemData[0].units,
-                  label: `${hour}:00`,
-                  hash: itemData.reduce((prev, curr) => prev.concat(curr.getHashes()), [])
-                }))
+        case 'day':
+          for (let hour = 0; hour < 24; ++hour) {
+            let itemData: HeatmapData[] = [];
+            sensorData.forEach((item: HeatmapData) => {
+              if (item.date.getUTCHours() == hour) {
+                itemData.push(item);
               }
+            })
+
+            if (itemData.length === 0) {
+              filled.push(new HeatmapData({
+                date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+                data: [
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                units: '%',
+                label: `${hour}:00`,
+                hash: null
+              }))
+            } else {
+              filled.push(new HeatmapData({
+                date: itemData[0].date,
+                data: this.getHeatmapArrayAverage(itemData),
+                units: itemData[0].units,
+                label: `${hour}:00`,
+                hash: itemData.reduce((prev, curr) => prev.concat(curr.getHashes()), [])
+              }))
             }
-            break;
+          }
+          break;
       }
 
       result[sensor.id] = filled;
@@ -196,94 +196,94 @@ export class ProductService {
     })
 
     let filled: LinearChartData[] = [];
-      switch (filterType) {
-        case 'year':
-          MONTHS.forEach(month => {
-            let itemData: LinearChartData[] = [];
-            result.forEach((item: LinearChartData) => {
-              if (item.date.getMonth() == month) {
-                itemData.push(item);
-              }
-            })
-
-            if (itemData.length === 0) {
-              filled.push(new LinearChartData({
-                date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
-                data: null,
-                units: units,
-                label: `months.${month}`,
-                hash: null
-              }))
-            } else {
-              filled.push(new LinearChartData({
-                date: itemData[0].date,
-                data: this.getLinearChartArrayAverage(itemData),
-                units: itemData[0].units,
-                label: `months.${month}`,
-                hash: itemData.reduce((prev, curr) => prev.concat(curr.getHashes()), [])
-              }))
+    switch (filterType) {
+      case 'year':
+        MONTHS.forEach(month => {
+          let itemData: LinearChartData[] = [];
+          result.forEach((item: LinearChartData) => {
+            if (item.date.getMonth() == month) {
+              itemData.push(item);
             }
           })
-          break;
-        case 'month':
-          let daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-          for (let day = 1; day <= daysInMonth; ++day) {
-            let itemData: LinearChartData[] = [];
-            result.forEach((item: LinearChartData) => {
-              if (item.date.getDate() == day) {
-                itemData.push(item);
-              }
-            })
 
-            if (itemData.length === 0) {
-              filled.push(new LinearChartData({
-                date: new Date(date.getFullYear(), date.getMonth(), day),
-                data: null,
-                units: units,
-                label: day.toString(),
-                hash: null
-              }))
-            } else {
-              filled.push(new LinearChartData({
-                date: itemData[0].date,
-                data: this.getLinearChartArrayAverage(itemData),
-                units: itemData[0].units,
-                label: day.toString(),
-                hash: itemData.reduce((prev, curr) => prev.concat(curr.getHashes()), [])
-              }))
-            }
+          if (itemData.length === 0) {
+            filled.push(new LinearChartData({
+              date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+              data: null,
+              units: units,
+              label: `months.${month}`,
+              hash: null
+            }))
+          } else {
+            filled.push(new LinearChartData({
+              date: itemData[0].date,
+              data: this.getLinearChartArrayAverage(itemData),
+              units: itemData[0].units,
+              label: `months.${month}`,
+              hash: itemData.reduce((prev, curr) => prev.concat(curr.getHashes()), [])
+            }))
           }
-          break;
-
-          case 'day':
-            for (let hour = 0; hour < 24; ++hour) {
-              let itemData: LinearChartData[] = [];
-              result.forEach((item: LinearChartData) => {
-                if (item.date.getUTCHours() == hour) {
-                  itemData.push(item);
-                }
-              })
-
-              if (itemData.length === 0) {
-                filled.push(new LinearChartData({
-                  date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
-                  data: null,
-                  units: units,
-                  label: `${hour}:00`,
-                  hash: null
-                }))
-              } else {
-                filled.push(new LinearChartData({
-                  date: itemData[0].date,
-                  data: this.getLinearChartArrayAverage(itemData),
-                  units: itemData[0].units,
-                  label: `${hour}:00`,
-                  hash: itemData.reduce((prev, curr) => prev.concat(curr.getHashes()), [])
-                }))
-              }
+        })
+        break;
+      case 'month':
+        let daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+        for (let day = 1; day <= daysInMonth; ++day) {
+          let itemData: LinearChartData[] = [];
+          result.forEach((item: LinearChartData) => {
+            if (item.date.getDate() == day) {
+              itemData.push(item);
             }
-            break;
-      }
+          })
+
+          if (itemData.length === 0) {
+            filled.push(new LinearChartData({
+              date: new Date(date.getFullYear(), date.getMonth(), day),
+              data: null,
+              units: units,
+              label: day.toString(),
+              hash: null
+            }))
+          } else {
+            filled.push(new LinearChartData({
+              date: itemData[0].date,
+              data: this.getLinearChartArrayAverage(itemData),
+              units: itemData[0].units,
+              label: day.toString(),
+              hash: itemData.reduce((prev, curr) => prev.concat(curr.getHashes()), [])
+            }))
+          }
+        }
+        break;
+
+      case 'day':
+        for (let hour = 0; hour < 24; ++hour) {
+          let itemData: LinearChartData[] = [];
+          result.forEach((item: LinearChartData) => {
+            if (item.date.getUTCHours() == hour) {
+              itemData.push(item);
+            }
+          })
+
+          if (itemData.length === 0) {
+            filled.push(new LinearChartData({
+              date: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+              data: null,
+              units: units,
+              label: `${hour}:00`,
+              hash: null
+            }))
+          } else {
+            filled.push(new LinearChartData({
+              date: itemData[0].date,
+              data: this.getLinearChartArrayAverage(itemData),
+              units: itemData[0].units,
+              label: `${hour}:00`,
+              hash: itemData.reduce((prev, curr) => prev.concat(curr.getHashes()), [])
+            }))
+          }
+        }
+        break;
+    }
 
     return filled;
   }
@@ -323,13 +323,23 @@ export class ProductService {
     if (month) params += `&month=${month}`;
     if (day) params += `&day=${day}`;
 
-    return this.http.get(`${environment.apiUrl}/tasks${params}` )
+    return this.http.get(`${environment.apiUrl}/tasks${params}`)
       .pipe(
         map((response: any) => {
-          return response.map(item=>{
-            console.log(response, "respostaa")
+          return response.map(item => {
+            console.log(response, "resposta api")
             return new TaskEntity(item)
           })
+        }),
+        map((response: TaskEntity[]) => {
+          let result = {};
+          response.forEach(item => {
+            let timestamp = Math.floor(item.startDate.getTime() / (1000 * 60 * 60 * 24)) * 1000 * 60 * 60 * 24;
+            result[timestamp] = result[timestamp] || [];
+            result[timestamp].push(item);
+          });
+          console.log(result)
+          return result;
         })
       )
   }

@@ -1,6 +1,71 @@
 <div class="tasks-list-container">
     <h2>Tasks</h2>
-    <div class="bottle-img"></div>
+    <div class="tasks-bottle-chart">
+        <div class="tasks-bottle-chart-names">
+            <div class="tasks-bottle-chart-names-right">
+                <div class="task-bottle-chart-name" id="chart-task-one">
+                    <div>
+                        <div class="chart-name-percentage">20%</div>
+                    </div>
+                    <div>
+                        <div class="chart-name-title">Trabajo campo</div>
+                        <div class="chart-name-description">Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem
+                            ipsum</div>
+                    </div>
+                </div>
+                <div class="task-bottle-chart-name" id="chart-task-two">
+                    <div>
+                        <div class="chart-name-percentage">20%</div>
+                    </div>
+                    <div class>
+                        <div class="chart-name-title">Trabajo campo</div>
+                        <div class="chart-name-description">Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem
+                            ipsum</div>
+                    </div>
+                </div>
+                <div class="task-bottle-chart-name" id="chart-task-three">
+                    <div>
+                        <div class="chart-name-percentage">20%</div>
+                    </div>
+                    <div>
+                        <div class="chart-name-title">Trabajo campo</div>
+                        <div class="chart-name-description">Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem
+                            ipsum</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tasks-bottle-chart-names-left">
+                <div class="task-bottle-chart-name" id="chart-task-four">
+                    <div style="text-align: right;">
+                        <div class="chart-name-title">Trabajo campo</div>
+                        <div class="chart-name-description">Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem
+                            ipsum</div>
+                    </div>
+                    <div>
+                        <div class="chart-name-percentage">20%</div>
+                    </div>
+                </div>
+                <div class="task-bottle-chart-name" id="chart-task-five">
+                    <div style="text-align: right;">
+                        <div class="chart-name-title">Trabajo campo</div>
+                        <div class="chart-name-description">Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum
+                            Lorem
+                            ipsum</div>
+                    </div>
+                    <div>
+                        <div class="chart-name-percentage">20%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tasks-bottle-chart-img">
+            <img src="/assets/images/bottle-img.png" alt="Wine bottle with percentatges of amount of work">
+        </div>
+    </div>
     <div class="product-content-subtitle">
         <h4>Tasks list</h4>
     </div>
@@ -13,34 +78,37 @@
             No loaded tasks
         </div>
         <div *ngIf="loadedTasks && loadedTasks.length > 0">
-            <div *ngFor="let task of loadedTasks; let i = index">
-                <div *ngIf="task.startDate[i] == task.startDate[i+1]" class="task-date">{{task.startDate | date}}</div>
-                <div class="task">
-                    <div class="task-description">
-                        <h3>{{task.name}}</h3>
+            <div *ngFor="let date of loadedTasks; let i = index">
+                <div *ngFor="let task of date.loadedTasks; let j = index">
+                    <div class="task-date">{{task.startDate | date}}</div>
+                    <div class="task">
+                        <div class="task-description">
+                            <h3>{{date.name}}</h3>
+                            <h3>{{task}}</h3>
 
-                        <button type="button" class="task-details-btn" data-bs-toggle="collapse"
-                            [attr.data-bs-target]="'#task-' + task.id" aria-expanded="false"
-                            [attr.aria-controls]="'#task-' + task.id">
-                            View task details 
-                        </button>
+                            <button type="button" class="task-details-btn" data-bs-toggle="collapse"
+                                [attr.data-bs-target]="'#task-' + task.id" aria-expanded="false"
+                                [attr.aria-controls]="'#task-' + task.id">
+                                View task details
+                            </button>
+                        </div>
+                        <div class="task-verification-btn">
+                            <button class="product-change" type="button">Verificar</button>
+                        </div>
                     </div>
-                    <div class="task-verification-btn">
-                        <button class="product-change" type="button">Verificar</button>
+                    <div class="collapse" [id]="'#task-' + task.id">
+                        <ul class="details-info-ul card card-body">
+                            <li *ngFor="let tool of task.tools">Tools: {{tool.name}}</li>
+                            <li *ngFor="let chemical of task.chemicals">Chemicals: {{chemical.name}},{{chemical.amount}}
+                            </li>
+                            <li>Start Date: {{task.startDate | date:"short"}}</li>
+                            <li>End Date: {{task.endDate | date:"short"}}</li>
+                            <li>Notes: {{task.notes}}</li>
+                            <li>Inicio loc: {{task.iniClaro}}</li>
+                        </ul>
                     </div>
+                    <hr>
                 </div>
-                <div class="collapse" [id]="'#task-' + task.id">
-                    <ul class="details-info-ul card card-body">
-                        <li *ngFor="let tool of task.tools">Tools: {{tool.name}}</li>
-                        <li *ngFor="let chemical of task.chemicals">Chemicals: {{chemical.name}},{{chemical.amount}}
-                        </li>
-                        <li>Start Date: {{task.startDate | date:"short"}}</li>
-                        <li>End Date: {{task.endDate | date:"short"}}</li>
-                        <li>Notes: {{task.notes}}</li>
-                        <li>Inicio loc: {{task.iniClaro}}</li>
-                    </ul>
-                </div>
-                <hr>
             </div>
         </div>
     </div>

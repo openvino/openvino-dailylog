@@ -16,11 +16,76 @@
     }
 }
 
-.tasks-list {
+.tasks-list-container {
     width: 80%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+        
+     .tasks-bottle-chart {
+         align-items: center;
+            .task-bottle-chart-name{
+                display: flex;
+                flex-direction: row;
+                width: 35%;
+            }
+             &-img{
+                text-align: center;
+                position: relative;
+                img{
+                    width: 600px; 
+                    margin:10px auto;  
+                }
+            }
+             &-names{
+                 position: absolute;
+                 width: 78%;
+                 height: 700px;
+                 display: flex;
+                 flex-direction: column;
+                 justify-content: space-around;
+                 align-items: flex-end;
+                 padding-top:170px;
+
+                &-right{
+                    position: absolute;
+                    width: 95%;
+                    height: 765px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: flex-end;
+                    padding-top:120px;
+                }
+
+                &-left{
+                    position: absolute;
+                    width: 95%;
+                    height: 840px;
+                    display: flex;
+                    flex-direction: column-reverse;
+                    justify-content: space-evenly;
+                    align-items: flex-start;
+                    padding-top:140px;
+                }
+                
+                 
+                .chart-name-percentage{
+                    color:var(--primary-text-color);  
+                    font-size: 2rem; 
+                    padding: 0 20px;
+                }
+                .chart-name-title{
+                    font-size: 1.5rem; 
+                    color:var(--primary-color);  
+                    line-height: 1.1;
+                    padding-bottom: 10px;
+                }
+                .chart-name-description{
+                    font-size: 1rem; 
+                }
+            }
+        }   
 
      .task-date{
         margin: 10px 0 10px 0;
@@ -32,12 +97,10 @@
         justify-content: space-between;
         align-items:center;
         width: 100%;
-    }
-
-         .task-description {
+        
+        &-description {
             width: 80%;
-        }
-
+            
             & h3{
                 color: var(--primary-color);
                 font-size:1.2em; 
@@ -45,21 +108,23 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
-
-        .task-details-btn {
+        }
+        
+        &-details-btn {
             color: var(--primary-text-color);
             background-color: transparent;
             border: none;
             padding:0px;    
-        }
-           
-            .task-details-btn::after{
+            
+            &::after{
                 content: "▾";
             }    
-        
-        .task-verification {
-             width: 20%;
         }
+        
+        &-verification {
+            width: 20%;
+        }
+    }
 }
 
 .collapse {
@@ -85,12 +150,5 @@
 h2,h4 {
     text-align: center;
     color: var(--primary-text-color);
-    margin-top: 30px;
-}
-
-.bottle-img{
-    background-color: rgb(224, 223, 223);
-    width: 400px;
-    height: 700px;
-    margin:30px auto;
+    margin-top: 20px;
 }
