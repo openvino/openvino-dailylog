@@ -66,6 +66,8 @@
             <img src="/assets/images/bottle-img.png" alt="Wine bottle with percentatges of amount of work">
         </div>
     </div>
+
+
     <div class="product-content-subtitle">
         <h4>Tasks list</h4>
     </div>
@@ -73,22 +75,21 @@
     <div class="product-date">
         <app-date-selector (onDateChange)="onDateChange($event)"></app-date-selector>
     </div>
+
     <div class="tasks-list">
         <div *ngIf="!loadedTasks || loadedTasks.length < 1">
             No loaded tasks
         </div>
-        <div *ngIf="loadedTasks && loadedTasks.length > 0">
-            <div *ngFor="let date of loadedTasks; let i = index">
-                <div *ngFor="let task of date.loadedTasks; let j = index">
-                    <div class="task-date">{{task.startDate | date}}</div>
+        <div *ngIf="loadedTasks || loadedTasks.length > 0">
+            <div *ngFor="let date of loadedTasks | keyvalue">
+                <div class="task-date">{{date.key | date}}</div>
+                <div *ngFor="let value of date.value">
                     <div class="task">
                         <div class="task-description">
-                            <h3>{{date.name}}</h3>
-                            <h3>{{task}}</h3>
-
+                            <h3>{{value.name}}</h3>
                             <button type="button" class="task-details-btn" data-bs-toggle="collapse"
-                                [attr.data-bs-target]="'#task-' + task.id" aria-expanded="false"
-                                [attr.aria-controls]="'#task-' + task.id">
+                                [attr.data-bs-target]="'#task-' + value.id" aria-expanded="false"
+                                [attr.aria-controls]="'#task-' + value.id">
                                 View task details
                             </button>
                         </div>
@@ -96,20 +97,22 @@
                             <button class="product-change" type="button">Verificar</button>
                         </div>
                     </div>
-                    <div class="collapse" [id]="'#task-' + task.id">
+                    <div class="collapse" [id]="'task-' + value.id">
                         <ul class="details-info-ul card card-body">
-                            <li *ngFor="let tool of task.tools">Tools: {{tool.name}}</li>
-                            <li *ngFor="let chemical of task.chemicals">Chemicals: {{chemical.name}},{{chemical.amount}}
+                            <li *ngFor="let tool of value.tools">Tools: {{tool.name}}</li>
+                            <li *ngFor="let chemical of value.chemicals">Chemicals:
+                                {{chemical.name}},{{chemical.amount}}
                             </li>
-                            <li>Start Date: {{task.startDate | date:"short"}}</li>
-                            <li>End Date: {{task.endDate | date:"short"}}</li>
-                            <li>Notes: {{task.notes}}</li>
-                            <li>Inicio loc: {{task.iniClaro}}</li>
+                            <li>Start Date: {{value.startDate | date:"short"}}</li>
+                            <li>End Date: {{value.endDate | date:"short"}}</li>
+                            <li>Notes: {{value.notes}}</li>
+                            <li>Inicio loc: {{value.iniClaro}}</li>
                         </ul>
                     </div>
                     <hr>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

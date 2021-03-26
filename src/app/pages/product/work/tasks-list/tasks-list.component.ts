@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { VerifierService } from '../../verifier/verifier.service';
 import { ProductService } from '../../product.service';
-import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -16,17 +15,14 @@ export class TasksListComponent implements OnInit {
     public filterType = 'month';
     public item;
     public loadedTasksKeys=<any>[];
-    public groupedKeys =<any>[]
- 
+    public taskKeyToDate;
 
     constructor(
         public verifierService: VerifierService,
         private productService: ProductService,
     ){}
 
-    ngOnInit(){
-      
-    }
+    ngOnInit(){}
   
     public onDateChange($event) {
       this.fetchTasks($event.year, $event.month, $event.day);
@@ -38,9 +34,7 @@ export class TasksListComponent implements OnInit {
        data => {
           this.filterType = date ? 'day' : month ? 'month' : 'year';
           console.log(data, "resposta task entity")
-          this.loadedTasks=Object.keys(data);
-          this.loadedTasksKeys=Object.keys(data)
-          console.log(this.loadedTasksKeys,"sorpresa")
+          this.loadedTasks=data;
         })
     }
   }
