@@ -3,6 +3,7 @@ import * as Chart from 'chart.js';
 import LinearChartData from './linear-data.entity';
 import { TranslateService } from '@ngx-translate/core';
 import { VerifierService } from '../../verifier/verifier.service';
+import { NONE_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-linear-chart',
@@ -40,9 +41,9 @@ export class LinearChartComponent implements OnInit {
 
     let gradient = ctx.createLinearGradient(0, 0, 0, 220);
     gradient.addColorStop(0, 'rgba(213, 132, 27, .61)');   
-    gradient.addColorStop(1, 'rgba(33, 33, 33, .61)');
+    gradient.addColorStop(1, 'rgba(213, 132, 27, .11)');
     
-    this.chart = new Chart(ctx, {
+    this.chart = new Chart(ctx, { 
       type: 'line',
       data: {
         datasets: [{
@@ -69,23 +70,26 @@ export class LinearChartComponent implements OnInit {
           yAxes: [{
             ticks: {
               fontFamily: 'Futura',
-              fontColor: "white",
-              fontSize: 12,
+              fontColor: "#9a999e",
+              fontSize: 10,
               padding: 15,
               autoSkip: true,
               autoSkipPadding: 12,
               suggestedMin: this.min,
-              suggestedMax: this.max
+              suggestedMax: this.max,
             }
           }],
           xAxes: [{
             ticks: {
               fontFamily: 'Futura',
-              fontColor: "white",
-              fontSize: 12,
+              fontColor: "#9a999e",
+              fontSize: 10,
               padding: 15,
               autoSkip: true,
               autoSkipPadding: 12,
+            },
+            gridLines: {
+              display: false
             }
           }]
         },

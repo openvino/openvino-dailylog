@@ -4,9 +4,11 @@
     position: relative;
     border-radius: 50%;
     cursor: pointer;
+    transition: transform .2s; 
+    box-shadow: 35px 35px 35px 35px white inset;
 
     &:hover {
-        background-color: rgba(109, 114, 120, 0.22);
+        transform: scale(1.1); 
     }
 
     &:active {

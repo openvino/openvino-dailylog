@@ -16,7 +16,7 @@
       border-radius: 2px;
       
       font-size: 0.8rem;
-      color: #ffffff;
+      color: #d5841b;
       text-align: center;
 
       margin: 0 4px;
@@ -26,6 +26,8 @@
 
       &-active {
           background-color: #d5841b;
+          color:white;
+          
       }
     }
   }
@@ -66,7 +68,6 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-
       min-width: fit-content;
       flex: 1;
 
@@ -77,23 +78,20 @@
         height: 30px;
         margin: 1px;
         font-size: 0.7rem;
-        color: white;
+        color:#9a999e;
         text-align: left;
         padding: 0 6px;
       }
 
       &-data {
         cursor: pointer;
-        
         display: flex;
         align-items: center;
         justify-content: center;
-
         height: 30px;
         font-size: 0.7rem;
-        color: white;
+        color:white;
         margin: 1px;
-
         flex: 1;
 
         &-active {
@@ -104,17 +102,13 @@
 
       &-label-x {
         margin: 1px;
-        
         display: flex;
         align-items: center;
         justify-content: center;
-
         font-size: 0.6rem;
-        color: white;
-
+        color:#9a999e;
         flex: 1;
       }
-
     }
     
     &-divider {
@@ -134,7 +128,7 @@
       margin: 1px;
       width: 40px;
       font-size: 0.8rem;
-      color: white;
+      color: #9a999e;
       padding: 0 8px;
       text-align: center;
     }

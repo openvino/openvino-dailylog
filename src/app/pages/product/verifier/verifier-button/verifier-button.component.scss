@@ -1,0 +1,21 @@
+.verifier {
+    &-action {
+        border-radius: 5px;
+        background-color: #d5841b;
+        font-size: 0.8rem;
+        color: white;
+        padding: 8px 16px;
+        margin-left: 20px;
+        cursor: pointer;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        &-icon {
+            padding-left: 8px;
+            font-size: 1rem;
+        }
+    }
+}
