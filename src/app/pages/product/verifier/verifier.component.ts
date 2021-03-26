@@ -3,6 +3,7 @@ import { VerifierService } from './verifier.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Message } from '@enchainte/sdk';
 import { EnchainteService } from 'src/app/services/enchainte.service';
+import {VerifierButtonComponent} from "./verifier-button/verifier-button.component"
 import { Router } from '@angular/router';
 import Proof from '@enchainte/sdk/dist/types/entity/proof';
 
@@ -68,7 +69,7 @@ export class VerifierComponent implements OnInit {
         this.data = data;
 
         this.hashes = hash;
-
+        console.log(this.hashes)
         this.proof = null;
         this.proofVerified = null;
         this.proofLoading = false;

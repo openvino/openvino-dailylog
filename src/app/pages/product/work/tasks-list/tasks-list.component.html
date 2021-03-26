@@ -93,9 +93,11 @@
                                 View task details
                             </button>
                         </div>
-                        <div class="task-verification-btn">
-                            <button class="product-change" type="button">Verificar</button>
-                        </div>
+                        <app-verifier-button [hashes]="[value.hash]"></app-verifier-button>
+                           <!--  <div class="task-verification-btn">
+                                <button class="product-change" type="button">Verificar</button>
+                            </div> -->
+                        
                     </div>
                     <div class="collapse" [id]="'task-' + value.id">
                         <ul class="details-info-ul card card-body">

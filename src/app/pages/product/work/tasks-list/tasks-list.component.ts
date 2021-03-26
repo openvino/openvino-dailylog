@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { VerifierService } from '../../verifier/verifier.service';
 import { ProductService } from '../../product.service';
+import {VerifierButtonComponent} from "../../verifier//verifier-button/verifier-button.component"
 
 
 @Component({

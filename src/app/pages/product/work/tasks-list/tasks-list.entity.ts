@@ -1,3 +1,4 @@
+import { Message } from "@enchainte/sdk";
 
 export class TaskEntity {
     public name: String;
@@ -13,6 +14,7 @@ export class TaskEntity {
     public iniPlant: String;
     public endPlant: String;
     public notes: String;
+    public hash: Message;
 
 constructor ( data?: {
     public_key: String;
@@ -24,6 +26,7 @@ constructor ( data?: {
     ini_claro: String;
     end_claro: String;
     notes: String;
+    hash: string;
 }) {
     if (data) {
         this.name = data.public_key;
@@ -38,6 +41,7 @@ constructor ( data?: {
         });
         this.notes= data.notes;
         this.iniClaro= data.ini_claro;  
+        this.hash= Message.fromHash(data.hash)
     }
 }
 }

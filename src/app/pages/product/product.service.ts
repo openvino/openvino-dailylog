@@ -327,7 +327,6 @@ export class ProductService {
       .pipe(
         map((response: any) => {
           return response.map(item => {
-            console.log(response, "resposta api")
             return new TaskEntity(item)
           })
         }),
@@ -338,7 +337,6 @@ export class ProductService {
             result[timestamp] = result[timestamp] || [];
             result[timestamp].push(item);
           });
-          console.log(result)
           return result;
         })
       )

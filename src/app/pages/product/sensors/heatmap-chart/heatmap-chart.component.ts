@@ -95,5 +95,6 @@ export class HeatmapComponent {
     this.verifierService.closeVerifier();
     this.activeTab = tab.id;
     this.zoneData = this.data[this.activeTab] || [];
+    console.log(this.zoneData)
   }
 }
