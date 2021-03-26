@@ -43,7 +43,6 @@ export class DateSelectorComponent implements OnInit {
       this.days = Array.from(Array(new Date(new Date().getFullYear(), this.selectedMonth + 1, 0).getDate()).keys()).map(i => ++i);
     }
 
-    console.log(this.selectedMonth, this.days)
     this.verifierService.closeVerifier();
 
     this.onDateChange.emit({

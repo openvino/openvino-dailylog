@@ -14,8 +14,8 @@ import Proof from '@enchainte/sdk/dist/types/entity/proof';
 export class VerifierButtonComponent implements OnInit {
 
   @Input() public hashes: Message[];
+  @Input() public proof: Proof;
 
-  public proof: Proof;
   public proofVerified: boolean;
   public proofLoading: boolean;
 
@@ -25,10 +25,15 @@ export class VerifierButtonComponent implements OnInit {
   ) {}
   
   ngOnInit(): void {
-      console.log(this.hashes)
-        this.proof = null;
-        this.proofVerified = null;
-        this.proofLoading = false;
+    this.proofVerified = null;
+    this.proofLoading = false;
+
+    if (!this.proof) {
+      this.enchainteService.getProof(this.hashes)
+        .subscribe(res => {
+          this.proof = res.proof;
+        })
+    }
   }
 
   verifyProof() {

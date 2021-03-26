@@ -69,7 +69,6 @@ export class VerifierComponent implements OnInit {
         this.data = data;
 
         this.hashes = hash;
-        console.log(this.hashes)
         this.proof = null;
         this.proofVerified = null;
         this.proofLoading = false;
@@ -106,10 +105,12 @@ export class VerifierComponent implements OnInit {
         .subscribe(res => {
           this.proof = res.proof;
           this.transactionHash = res.txHash;
+          this.hashes = res.hashes
         }, err => {
           this.proof = null;
           this.transactionHash = null;
           this.proofVerified = false;
+          this.hashes = null;
         })
     }
   }
