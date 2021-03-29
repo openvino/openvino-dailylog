@@ -1,54 +1,237 @@
 <div class="container">
   <h2>Costaflores Organic Vineyard</h2>
-    <div class="product-date">
-      <app-date-selector [year]="item.year" (onDateChange)="onDateChange($event)"></app-date-selector>
-    </div>
-    <div class="product-content-title">
-      {{ 'product.subsoil_humidity.title' | translate }}
-    </div>
-    <app-heatmap-chart [data]="heatmapData" [filterType]="filterType"></app-heatmap-chart>
 
-    <div class="product-content-title">
-      {{ 'product.temperature' | translate }}
-    </div>
-    <app-linear-chart [data]="temperatureData"></app-linear-chart>
+  <div class="dashboard">
 
-    <div class="product-content-title">
-      {{ 'product.wind-speed' | translate }}
-    </div>
-    <app-linear-chart [data]="windSpeedData"></app-linear-chart>
+    <div class="dashboard-header">
+      <div class="dashboard-header-state">
+        <h4>Pruning (I)</h4>
+        <div>
+          <ul>
+            <a href="/">
+              <li>Location |</li>
+            </a>
+            <a href="/">
+              <li>Last image |</li>
+            </a>
+            <a href="/">
+              <li>Season time-lapse</li>
+            </a>
+          </ul>
+        </div>
+      </div>
 
-    <div class="product-content-title">
-      {{ 'product.wind-direction' | translate }}
+      <div class="dashboard-header-stream">
+        <button>Live Stream</button>
+        <div>
+          <span>Última actualización: 01/09/20 a las 14:30:01</span>
+        </div>
+      </div>
     </div>
-    <app-linear-chart [data]="windDirectionData" [min]="0" [max]="360"></app-linear-chart>
 
-    <div class="product-content-title">
-      {{ 'product.humidity' | translate }}
-    </div>
-    <app-linear-chart [data]="humidityData" [min]="0" [max]="100"></app-linear-chart>
+    <div class="dashboard-data-hz">
+      <div class="dashboard-data-hz-group" style="margin-right: 10px;">
+        <div class="dashboard-data-hz-unit">
+          <span>Temp</span>
+          <p>12<span> ºc</span></p>
+        </div>
+        <div class="dashboard-data-group-hz-unit">
+          <span>RH</span>
+          <p>23,00<span> %</span></p>
+        </div>
+        <div class="dashboard-data-group-hz-unit">
+          <span>Wind</span>
+          <p>12<span> km</span></p>
+        </div>
+        <div class="dashboard-data-group-hz-unit">
+          <span>Wind Direction</span>
+          <p>120<span> º</span></p>
+        </div>
+      </div>
 
-    <div class="product-content-title">
-      {{ 'product.pressure' | translate }}
+      <div class="dashboard-data-hz-group">
+        <div class="dashboard-data-hz-unit">
+          <span>Solar IR</span>
+          <p>14</p>
+        </div>
+        <div class="dashboard-data-group-hz-unit">
+          <span>VI</span>
+          <p>22</p>
+        </div>
+        <div class="dashboard-data-group-hz-unit">
+          <span>UV</span>
+          <p>32</p>
+        </div>
+        <div class="dashboard-data-group-hz-unit">
+          <span>Pressure</span>
+          <p>1010</p>
+        </div>
+      </div>
     </div>
-    <app-linear-chart [data]="pressureData" [min]="950" [max]="1020"></app-linear-chart>
 
-    <div class="product-content-title">
-      {{ 'product.rain' | translate }}
-    </div>
-    <app-linear-chart [data]="rainData" [min]="0" [max]="400"></app-linear-chart>
+    <div class="dashboard-data-vr">
+      <div class="dashboard-data-vr-group" style="width: 25%; margin-right: 10px;">
+        <h5>Input molecules</h5>
+        <div class="dashboard-data-vr-group-unit">
+          <span>Co</span>
+          <p>2,7 <span> kg/ha</span></p>
+        </div>
+        <hr>
+        <div class="dashboard-data-vr-group-unit">
+          <span>S</span>
+          <p>1,34<span> kg/ha</span></p>
+        </div>
+        <hr>
+        <div class="dashboard-data-vr-group-unit">
+          <span>Guano</span>
+          <p>17<span> kg/ha</span></p>
+        </div>
+        <hr>
+        <div class="dashboard-data-vr-group-unit">
+          <span>H2O</span>
+          <p>125<span> l/ha</span></p>
+        </div>
+      </div>
 
-    <div class="product-content-title">
-      {{ 'product.irradiance-uv' | translate }}
-    </div>
-    <app-linear-chart [data]="irradianceUVData"></app-linear-chart>
 
-    <div class="product-content-title">
-      {{ 'product.irradiance-vi' | translate }}
+      <div class="dashboard-data-vrandhz" style="width: 75%;">
+        <div class="dashboard-data-vrandhz-group">
+          <h5>Input molecules</h5>
+          <div class="dashboard-data-vrandhz-subgroup">
+            <span>MBO</span>
+            <div class="dashboard-data-hz-group-unit">
+              <span>pH</span>
+              <p>4,3</p>
+            </div>
+            <div class="dashboard-data-hz-group-unit">
+              <span>Bx</span>
+              <p>22</p>
+            </div>
+            <div class="dashboard-data-hz-group-unit">
+              <span>TA</span>
+              <p>0,90<span> %</span></p>
+            </div>
+            <div class="dashboard-data-hz-group-unit">
+              <span>Kg</span>
+              <p>10000</p>
+            </div>
+          </div>
+          <hr>
+          <div class="dashboard-data-vrandhz-subgroup">
+            <span>MBE</span>
+            <div class="dashboard-data-hz-group-unit">
+              <span>pH</span>
+              <p>4,3</p>
+            </div>
+            <div class="dashboard-data-hz-group-unit">
+              <span>Bx</span>
+              <p>22</p>
+            </div>
+            <div class="dashboard-data-hz-group-unit">
+              <span>TA</span>
+              <p>0,90<span> %</span></p>
+            </div>
+            <div class="dashboard-data-hz-group-unit">
+              <span>Kg</span>
+              <p>10000</p>
+            </div>
+          </div>
+          <hr>
+          <div class="dashboard-data-vrandhz-subgroup">
+            <span>PV</span>
+            <div class="dashboard-data-hz-group-unit">
+              <span>pH</span>
+              <p>4,4</p>
+            </div>
+            <div class="dashboard-data-hz-group-unit">
+              <span>Bx</span>
+              <p>21</p>
+            </div>
+            <div class="dashboard-data-hz-group-unit">
+              <span>TA</span>
+              <p>1,20<span> %</span></p>
+            </div>
+            <div class="dashboard-data-hz-group-unit">
+              <span>Kg</span>
+              <p>4000</p>
+            </div>
+          </div>
+          <hr>
+          <div class="dashboard-data-vrandhz-subgroup">
+            <span>CS</span>
+            <div class="dashboard-data-hz-group-unit">
+              <span>pH</span>
+              <p>3,9</p>
+            </div>
+            <div class="dashboard-data-hz-group-unit">
+              <span>Bx</span>
+              <p>19</p>
+            </div>
+            <div class="dashboard-data-hz-group-unit">
+              <span>TA</span>
+              <p>0,80<span> %</span></p>
+            </div>
+            <div class="dashboard-data-hz-group-unit">
+              <span>Kg</span>
+              <p>3510</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <app-linear-chart [data]="irradianceVIData"></app-linear-chart>
+    
+  </div>
 
-    <div class="product-content-title">
-      {{ 'product.irradiance-ir' | translate }}
-    </div>
-    <app-linear-chart [data]="irradianceIRData"></app-linear-chart>
+  <div class="product-date">
+    <app-date-selector [year]="item.year" (onDateChange)="onDateChange($event)"></app-date-selector>
+  </div>
+
+  <div class="product-content-title">
+    {{ 'product.subsoil_humidity.title' | translate }}
+  </div>
+  <app-heatmap-chart [data]="heatmapData" [filterType]="filterType"></app-heatmap-chart>
+
+  <div class="product-content-title">
+    {{ 'product.temperature' | translate }}
+  </div>
+  <app-linear-chart [data]="temperatureData"></app-linear-chart>
+
+  <div class="product-content-title">
+    {{ 'product.wind-speed' | translate }}
+  </div>
+  <app-linear-chart [data]="windSpeedData"></app-linear-chart>
+
+  <div class="product-content-title">
+    {{ 'product.wind-direction' | translate }}
+  </div>
+  <app-linear-chart [data]="windDirectionData" [min]="0" [max]="360"></app-linear-chart>
+
+  <div class="product-content-title">
+    {{ 'product.humidity' | translate }}
+  </div>
+  <app-linear-chart [data]="humidityData" [min]="0" [max]="100"></app-linear-chart>
+
+  <div class="product-content-title">
+    {{ 'product.pressure' | translate }}
+  </div>
+  <app-linear-chart [data]="pressureData" [min]="950" [max]="1020"></app-linear-chart>
+
+  <div class="product-content-title">
+    {{ 'product.rain' | translate }}
+  </div>
+  <app-linear-chart [data]="rainData" [min]="0" [max]="400"></app-linear-chart>
+
+  <div class="product-content-title">
+    {{ 'product.irradiance-uv' | translate }}
+  </div>
+  <app-linear-chart [data]="irradianceUVData"></app-linear-chart>
+
+  <div class="product-content-title">
+    {{ 'product.irradiance-vi' | translate }}
+  </div>
+  <app-linear-chart [data]="irradianceVIData"></app-linear-chart>
+
+  <div class="product-content-title">
+    {{ 'product.irradiance-ir' | translate }}
+  </div>
+  <app-linear-chart [data]="irradianceIRData"></app-linear-chart>
