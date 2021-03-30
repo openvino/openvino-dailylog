@@ -75,7 +75,7 @@
     }
     &-data-hz{
         display: flex;
-        @media (max-width: 800px) {
+        @media (max-width: 1000px) {
             flex-direction: column;
         }
         &-group{
@@ -87,7 +87,7 @@
             height: 130px;
             border-radius: 1em;
             justify-content: space-around;
-            @media (max-width: 800px) {
+            @media (max-width: 1000px) {
                 width: 100%;
                 margin-bottom: 10px;
             }
@@ -101,11 +101,7 @@
                     font-size: 0.8rem;
                 }
 
-                &-unit{
-                    display: flex;
-                    flex-direction: column;
-                    display: flex;
-                }
+               
         }
     }
 
@@ -190,3 +186,4 @@
         text-align: center;
         padding-top: 20px;
     }
+

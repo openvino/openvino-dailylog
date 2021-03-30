@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, reduce } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import HeatmapData from './sensors/heatmap-chart/heatmap-data.entity';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
