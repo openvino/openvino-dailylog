@@ -69,7 +69,7 @@
             {{'tasks.emptyList' | translate}}
         </div>
         <div *ngIf="loadedTasks || loadedTasks.length > 0">
-            <div *ngFor="let date of loadedTasks | keyvalue">
+            <div *ngFor="let date of loadedTasks | keyvalue : sortByDate">
                 <div class="task-date">{{getDate(date.key).getDate()}} {{'months.'+ getDate(date.key).getMonth() |
                     translate}} {{getDate(date.key).getFullYear()}}</div>
                 <div *ngFor="let value of date.value">

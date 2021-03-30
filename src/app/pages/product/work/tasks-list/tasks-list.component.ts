@@ -30,21 +30,22 @@ export class TasksListComponent implements OnInit {
     }
 
     public getDate(key){
-      return new Date(parseInt(key))
+      return (new Date(parseInt(key)))
     }
 
     public sortByDate(a, b){
-      if ( a < b ){
-        return -1;
-      }
-      if ( a > b ){
+      if ( a.key < b.key ){
         return 1;
+      }
+      if ( a.key > b.key ){
+        return -1;
       }
       return 0;
     }
 
     public fetchTasks (year, month, date) {
       this.productService.getTasks(year, month, date)
+
       .subscribe(
        data => {
           this.filterType = date ? 'day' : month ? 'month' : 'year';
