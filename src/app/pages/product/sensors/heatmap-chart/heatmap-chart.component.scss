@@ -43,7 +43,7 @@
     }
 
     &-data {
-      overflow-x: scroll;
+      overflow-x: hidden;
       overflow-y: hidden;
 
       flex: 1;
@@ -126,7 +126,6 @@
 
     &-label {
       margin: 1px;
-      width: 40px;
       font-size: 0.8rem;
       color: #9a999e;
       padding: 0 8px;

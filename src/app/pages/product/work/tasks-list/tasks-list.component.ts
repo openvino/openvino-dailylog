@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { VerifierService } from '../../verifier/verifier.service';
 import { ProductService } from '../../product.service';
 import {VerifierButtonComponent} from "../../verifier//verifier-button/verifier-button.component"
+import { data } from 'jquery';
 
 
 @Component({
@@ -27,6 +28,15 @@ export class TasksListComponent implements OnInit {
   
     public onDateChange($event) {
       this.fetchTasks($event.year, $event.month, $event.day);
+    }
+
+    public getDate(key){
+      return new Date(parseInt(key))
+    }
+
+    public getSortedDate(){
+      this.loadedTasks.sort((a,b) => new Date(b.date1).getTime() - new Date(a.date1).getTime());
+  
     }
 
     public fetchTasks (year, month, date) {

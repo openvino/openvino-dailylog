@@ -2,7 +2,7 @@ import { Message } from "@enchainte/sdk";
 
 export class TaskEntity {
     public name: String;
-    public id: Number;
+    public typeId: Number;
     public tools: {name: string}[];
     public chemicals: {name: number, amount: number}[];
     public startDate: Date;
@@ -30,7 +30,7 @@ constructor ( data?: {
 }) {
     if (data) {
         this.name = data.public_key;
-        this.id = data.task_id;
+        this.typeId = data.task_id;
         this.startDate = new Date(data.ini_timestamp);
         this.endDate = new Date(data.ini_timestamp);
         this.tools= data.tools_used.map(tool => {
