@@ -1,10 +1,10 @@
 import { Component, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { VerifierService } from './verifier.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Message } from '@enchainte/sdk';
+import { Message, Proof } from '@enchainte/sdk';
 import { EnchainteService } from 'src/app/services/enchainte.service';
 import { Router } from '@angular/router';
-import Proof from '@enchainte/sdk/dist/types/entity/proof';
+
 
 @Component({
   selector: 'app-verifier',
@@ -118,7 +118,7 @@ export class VerifierComponent implements OnInit {
       this.proofLoading = true;
       setTimeout(async () => {
         try {
-          this.proofVerified = await this.enchainteService.verify(this.proof)
+          this.proofVerified = (await this.enchainteService.verify(this.proof)!=0)
         } catch (err) {
           console.error(err)
           this.proofVerified = false
