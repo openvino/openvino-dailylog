@@ -14,6 +14,8 @@ export class ProductComponent {
 
   public item;
   public providerUrl: string;
+  public mapsApiKey: string = environment.mapsApiKey;
+  public shippingAccount: string = environment.shippingAccount;
 
   public heatmapData = {};
   public temperatureData = [];
