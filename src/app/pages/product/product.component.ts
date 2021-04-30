@@ -56,6 +56,7 @@ export class ProductComponent {
         
         if (item && item[0]) {
           this.item = item[0];
+          console.log(this.item)
           return;
         }
       }
