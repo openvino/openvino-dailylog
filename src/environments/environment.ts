@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   providerUrl: 'https://rinkeby.infura.io/v3/6d7880a8f4b347ca8953d2715e164241',
   mapsApiKey:"AIzaSyC6t7EuOhDJf_B8gpafWNUnqNqoLvZy0jI",
-  shippingAccount:"0xCe3759171B37D1B78280fD9472eB1aB9972A8205",
+  shippingAccount:"0xe613FAF5fA44f019E3A3AF5927bAA6B13643BA53",
   apiUrl: 'https://costaflores.openvino.exchange',
   apiKey: "lK8KoFYW6ln0fUB8VoMqQkPyyOQVOWOnPN51vCGimzWACXFUy02uuRS7pLM91HoM"
 };
