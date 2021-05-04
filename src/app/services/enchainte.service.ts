@@ -24,20 +24,29 @@ export class EnchainteService {
       let firstHash = hash[0]
       return from(this.sdk.getProof(hash))
         .pipe(
-          flatMap(res => {
+          flatMap(proof => {
             return from(this.sdk.getMessages([firstHash]))
               .pipe(
                 map(messages => {
-                  if (messages && messages[0]) {
                     return {
-                      proof: res,
-                      root: messages[0].root,
-                      txHash: messages[0].txHash,
-                      hashes: hash
+                     messages,
+                     proof
                     }
-                  }
                 })
               )
+          }), flatMap(res => {
+            return from(this.sdk.getAnchor(res.messages[0].anchor))
+            .pipe(
+              map(anchor => {
+                if (res.messages && res.messages[0]) {
+                  return {
+                    proof: res.proof,
+                    root: anchor.root,
+                    txHash: anchor.networks.filter(network => network.name === "ethereum_rinkeby")[0].txHash
+                  }
+                }
+              })
+            )
           })
         );
     } else {

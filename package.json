@@ -22,7 +22,7 @@
     "@angular/platform-browser-dynamic": "~11.1.0",
     "@angular/router": "~11.1.0",
     "@enchainte-projects/enchainte-uniswap-component": "^1.0.14",
-    "@enchainte/sdk": "0.6.3",
+    "@enchainte/sdk": "1.1.2",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
     "bootstrap": "^4.5.0",
