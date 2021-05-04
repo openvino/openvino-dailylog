@@ -41,7 +41,7 @@ export class VerifierButtonComponent implements OnInit {
       this.proofLoading = true;
       setTimeout(async () => {
         try {
-          this.proofVerified = await this.enchainteService.verify(this.proof)
+          this.proofVerified = (await this.enchainteService.verify(this.proof)!=0)
         } catch (err) {
           console.error(err)
           this.proofVerified = false
@@ -52,3 +52,5 @@ export class VerifierButtonComponent implements OnInit {
   }
 
 }
+
+

@@ -1,11 +1,10 @@
 import { Component, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { VerifierService } from './verifier.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Message } from '@enchainte/sdk';
+import { Message, Proof } from '@enchainte/sdk';
 import { EnchainteService } from 'src/app/services/enchainte.service';
-import {VerifierButtonComponent} from "./verifier-button/verifier-button.component"
 import { Router } from '@angular/router';
-import { Proof } from '@enchainte/sdk/dist/types/proof/entity/proof.entity';
+
 
 @Component({
   selector: 'app-verifier',
@@ -69,6 +68,7 @@ export class VerifierComponent implements OnInit {
         this.data = data;
 
         this.hashes = hash;
+
         this.proof = null;
         this.proofVerified = null;
         this.proofLoading = false;
@@ -105,12 +105,10 @@ export class VerifierComponent implements OnInit {
         .subscribe(res => {
           this.proof = res.proof;
           this.transactionHash = res.txHash;
-          this.hashes = res.hashes
         }, err => {
           this.proof = null;
           this.transactionHash = null;
           this.proofVerified = false;
-          this.hashes = null;
         })
     }
   }
@@ -120,7 +118,7 @@ export class VerifierComponent implements OnInit {
       this.proofLoading = true;
       setTimeout(async () => {
         try {
-          this.proofVerified = await this.enchainteService.verify(this.proof)
+          this.proofVerified = (await this.enchainteService.verify(this.proof)!=0)
         } catch (err) {
           console.error(err)
           this.proofVerified = false
