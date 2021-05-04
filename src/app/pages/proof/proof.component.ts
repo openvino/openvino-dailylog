@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EnchainteService } from 'src/app/services/enchainte.service';
-import Proof from '@enchainte/sdk/dist/types/entity/proof';
+import { Proof } from '@enchainte/sdk/dist/types/proof/entity/proof.entity';
 
 @Component({
   selector: 'app-proof',

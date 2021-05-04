@@ -4,7 +4,7 @@ import { from, Observable } from 'rxjs';
 import { flatMap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import Proof from '@enchainte/sdk/dist/types/entity/proof';
+import { Proof } from '@enchainte/sdk/dist/types/proof/entity/proof.entity';
 
 @Injectable({
   providedIn: 'root'
