@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { filter, map, reduce } from 'rxjs/operators';
 import HeatmapData from './sensors/heatmap-chart/heatmap-data.entity';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -341,4 +341,29 @@ export class ProductService {
         })
       )
   }
-}
+  
+  public getDashboardData() {
+    return this.http.get(`${environment.apiUrl}/dashboard`)
+    .pipe(
+      map((response: any) => {
+        let analysisData = response.analysis
+        let sensorData = response.analysis
+        let taskData = response.analysis
+        console.log(analysisData)
+        return response
+      }, 
+      filter(data => {
+        
+       return data == "UpdatedAt"
+     })
+    )
+    
+    )
+     
+
+  }
+
+  }
+
+
+  

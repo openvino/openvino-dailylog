@@ -29,6 +29,9 @@ export class SensorsComponent {
   public irradianceIRData = [];
   public irradianceVIData = [];
   public filterType = 'month';
+  public dashboardTaskData=<any>[];
+public dashboardAnalysisData=<any>[];
+public dashboardSensorData=<any>[];
 
   public tabs = [];
   public tabActive;
@@ -48,6 +51,7 @@ export class SensorsComponent {
     this.apiUrl = environment.apiUrl;
 
     this.providerUrl = environment.providerUrl;
+    this.fetchDashboardData()
 
     this.route.paramMap.subscribe(params => {
       let id = params.get('id');
@@ -97,5 +101,18 @@ export class SensorsComponent {
 
   public onTabChange(event){
     this.tabActive=event
+  }
+      
+  public fetchDashboardData () {
+    this.productService.getDashboardData()
+    .subscribe(
+      data => {
+        this.dashboardAnalysisData=data.analysis;
+        this.dashboardSensorData=data.sensor;
+        this.dashboardTaskData=data.task;
+        console.log(this.dashboardAnalysisData , "resposta analysis dahsboard")
+        console.log(this.dashboardSensorData , "resposta sensors dahsboard")
+        console.log(this.dashboardTaskData , "resposta last task dahsboard")
+      })
   }
 }

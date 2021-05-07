@@ -53,5 +53,6 @@ export class TasksListComponent implements OnInit {
           this.loadedTasks=data;
         })
     }
-  }
 
+
+  }

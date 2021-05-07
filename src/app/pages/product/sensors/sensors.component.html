@@ -24,7 +24,7 @@
       <div class="dashboard-header-stream"> 
         <button>{{'sensors.dashboard.livestream' | translate}}</button>
         <div>
-          <p>{{'sensors.dashboard.lastUpdate' | translate}}: 01/09/20 14:30:01</p>
+          <p>{{'sensors.dashboard.lastUpdate' | translate}}: {{dashboardAnalysisData[0].UpdatedAt}}</p>
         </div>
       </div>
     </div>
@@ -33,8 +33,9 @@
       <div class="dashboard-data-hz-group" style="margin-right: 10px;">
         <div class="dashboard-data-hz-unit">
           <span>{{'sensors.dashboard.temperature' | translate}}</span>
-          <p>12<span> ºc</span></p>
+          <p>{{dashboardSensorData[0].temperature}}<span> ºc</span></p>
         </div>
+    
         <div class="dashboard-data-group-hz-unit">
           <span>{{'sensors.dashboard.relativeHumidity' | translate}}</span>
           <p>23,00<span> %</span></p>
