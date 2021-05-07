@@ -46,9 +46,9 @@ export class CoreService {
         id: 'MTB21',
         image: 'assets/images/mtb21/image.png',
         bottleImage: 'assets/images/mtb21/bottle.png',
-        tokenIcon: 'assets/images/mtb21/token.png',
-        crowdsaleAddress: '0x0F7904B9187b3aD379BbbC0c3a095C62dB60817b',
-        tokenAddress: '0xDd82bB87D5Eb62a1E1b9De3E67D510Dcb40b1661',
+        tokenIcon: 'assets/images/mtb21/token.svg',
+        crowdsaleAddress: '0xF785d2652a95F41e5999aF960237bCcaBd291D3e',
+        tokenAddress: '0x69d3Af30c63F5bd916bBcD79b58dBc8BD16D0308',
         redeemDate: "product.redeem.21",
         year: 2021,
         open: true
