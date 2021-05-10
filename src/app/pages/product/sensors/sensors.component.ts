@@ -30,8 +30,9 @@ export class SensorsComponent {
   public irradianceVIData = [];
   public filterType = 'month';
   public dashboardTaskData=<any>[];
-public dashboardAnalysisData=<any>[];
-public dashboardSensorData=<any>[];
+  public dashboardAnalysisData=<any>[];
+  public dashboardSensorData=<any>[];
+  public dashboardData=<any>[];
 
   public tabs = [];
   public tabActive;
@@ -104,15 +105,25 @@ public dashboardSensorData=<any>[];
   }
       
   public fetchDashboardData () {
-    this.productService.getDashboardData()
+    this.productService.getDashboardSensorData()
     .subscribe(
       data => {
-        this.dashboardAnalysisData=data.analysis;
-        this.dashboardSensorData=data.sensor;
-        this.dashboardTaskData=data.task;
-        console.log(this.dashboardAnalysisData , "resposta analysis dahsboard")
-        console.log(this.dashboardSensorData , "resposta sensors dahsboard")
-        console.log(this.dashboardTaskData , "resposta last task dahsboard")
-      })
-  }
-}
+        this.dashboardSensorData=data
+        console.log( this.dashboardSensorData, "sensor data" )
+
+      }),
+      this.productService.getDashboardAnalysisData()
+      .subscribe(
+        data => {
+          this.dashboardAnalysisData=data
+          console.log( this.dashboardAnalysisData, "analysis data" )
+  
+        }),
+      this.productService.getDashboardData()
+      .subscribe(
+        data => {
+          this.dashboardData=data
+          console.log( this.dashboardData, "all data" )
+
+  })
+}}
