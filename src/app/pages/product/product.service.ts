@@ -8,6 +8,7 @@ import { HEATMAP_TABS } from "./sensors/heatmap-chart/heatmap-chart.config";
 import { YEARS, MONTHS } from "./product.config";
 import LinearChartData from "./sensors/linear-chart/linear-data.entity";
 import { TaskEntity } from "./work/tasks-list/tasks-list.entity";
+import { Moment } from 'moment';
 
 @Injectable({
   providedIn: "root",
@@ -433,8 +434,12 @@ export class ProductService {
     if (month) params += `&month=${month}`;
     if (day) params += `&day=${day}`;
 
-    return this.http.get(`${environment.apiUrl}/tasks${params}`).pipe(
+    return this.http.get(`${environment.apiUrl}/tasks`).pipe(
+/*       return this.http.get(`${environment.apiUrl}/tasks${params}`).pipe(
+ */
       map((response: any) => {
+        console.log(response, "tasks list response")
+
         return response.map((item) => {
           return new TaskEntity(item);
         });
@@ -536,4 +541,27 @@ export class ProductService {
       })
     );
   }
-}
+
+  public getLastUpdate () {
+    return this.http.get(`${environment.apiUrl}/dashboard`).pipe(
+      map((response: any) => {
+        const updates = response.analysis.sort((a,b)=> {
+          return a.UpdatedAt - b.UpdatedAt
+        })
+       
+       return updates[0].UpdatedAt
+      }));
+    }
+  
+   public getRandomCycle () {
+      const growingCycles = [
+        "Bud burst","Flowering", "Setting", "Thinning and ulling", "Veraison", "Harvest", "Pruning"
+      ]
+
+      const randomCycle = Math.floor(Math.random()*growingCycles.length);
+      const randomCycleString = growingCycles[randomCycle]
+      return randomCycleString
+    } 
+  }
+
+

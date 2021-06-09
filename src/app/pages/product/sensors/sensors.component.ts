@@ -33,6 +33,9 @@ export class SensorsComponent {
   public dashboardAnalysisData=<any>[];
   public dashboardSensorData=<any>[];
   public dashboardData=<any>[];
+  public randomCycle = <any>[];
+public lastUpdatedDate = <any>[];
+public loading = true;
 
   public tabs = [];
   public tabActive;
@@ -53,6 +56,8 @@ export class SensorsComponent {
 
     this.providerUrl = environment.providerUrl;
     this.fetchDashboardData()
+    this.fetchLastUpdated()
+    this.randomCycle() 
 
     this.route.paramMap.subscribe(params => {
       let id = params.get('id');
@@ -105,25 +110,42 @@ export class SensorsComponent {
   }
       
   public fetchDashboardData () {
+    this.loading = true;
     this.productService.getDashboardSensorData()
+  
     .subscribe(
       data => {
-        this.dashboardSensorData=data
-        console.log( this.dashboardSensorData, "sensor data" )
-
+          this.loading = false
+          this.dashboardSensorData=data
+          console.log( this.dashboardSensorData, "sensor data averages" )
+        
       }),
       this.productService.getDashboardAnalysisData()
       .subscribe(
         data => {
+         
           this.dashboardAnalysisData=data
-          console.log( this.dashboardAnalysisData, "analysis data" )
-  
+          console.log( this.dashboardAnalysisData, "analysis data averages" )
+          
         }),
       this.productService.getDashboardData()
       .subscribe(
         data => {
           this.dashboardData=data
-          console.log( this.dashboardData, "all data" )
-
   })
-}}
+}
+public fetchRandomCycle () {
+ return this.productService.getRandomCycle()
+}
+
+public fetchLastUpdated () {
+  this.productService.getLastUpdate()
+  .subscribe(
+    data => {
+      this.lastUpdatedDate=data
+      console.log( this.lastUpdatedDate, "last updated date" )
+
+    })
+}
+}
+

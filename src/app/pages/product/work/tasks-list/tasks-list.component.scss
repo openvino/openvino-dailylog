@@ -63,11 +63,11 @@
              &-names{
                  position: absolute;
                  width: 100%;
-                 height: 100%;
+                 height: 75%;
                  display: flex;
                  flex-direction: column;
                  justify-content: space-between;
-                 padding-top:10%;
+                 padding-top:8%;
                  @media (max-width: 1024px) {
                       height: 43%;
                       padding-top: 1%;    

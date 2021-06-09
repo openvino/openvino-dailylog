@@ -5,27 +5,28 @@
 
     <div class="dashboard-header">
       <div class="dashboard-header-state">
-        <h4>Pruning (I)</h4>
+        <h4>{{fetchRandomCycle()}}</h4>
+        <h4></h4>
         <div>
           <ul>
             <a href="https://what3words.com/multimedia.sonorous.puppies" target="_blank">
-              <li>{{'sensors.dashboard.location' | translate}} |</li>
+              <li>{{'sensors.dashboard.location' | translate}} </li>
             </a>
-            <a href="/">
+           <!--  <a href="/">
               <li>{{'sensors.dashboard.lastImage' | translate}} |</li>
             </a>
             <a href="/">
               <li>{{'sensors.dashboard.timelapse' | translate}}</li>
-            </a>
+            </a> -->
           </ul>
         </div>
       </div>
 
       <div class="dashboard-header-stream"> 
-        <button>{{'sensors.dashboard.livestream' | translate}}</button>
-        <div>
-          <p>{{'sensors.dashboard.lastUpdate' | translate}}: 22/01/2021</p>
-        </div>
+        <!-- <button>{{'sensors.dashboard.livestream' | translate}}</button> -->
+       <div>
+          <p>{{'sensors.dashboard.lastUpdate' | translate}}: {{lastUpdatedDate | date:"short" }}</p>
+        </div> 
       </div>
     </div>
 
@@ -96,7 +97,7 @@
 
 
       <div class="dashboard-data-vrandhz" style="width: 75%;">
-        <div class="dashboard-data-vrandhz-group">
+        <div class="dashboard-data-vrandhz-group" *ngIf="!loading">
           <h5>{{'sensors.dashboard.grapeStatus' | translate}}</h5>
           <div class="dashboard-data-vrandhz-subgroup">
             <span>{{'sensors.dashboard.mbo' | translate}}</span>
@@ -186,7 +187,7 @@
   <div class="product-date">
     <app-date-selector [year]="item.year" (onDateChange)="onDateChange($event)"></app-date-selector>
   </div>
-
+ 
   <div class="product-content-title">
     {{ 'product.subsoil_humidity.title' | translate }}
   </div>
