@@ -1,18 +1,20 @@
 <div class="container">
-  <h2>{{'sensors.title' | translate}}</h2>
+  <h2>{{ "sensors.title" | translate }}</h2>
 
-  <div class="dashboard">
-
+  <div class="dashboard" *ngIf="isDashboardReady()">
     <div class="dashboard-header">
       <div class="dashboard-header-state">
-        <h4>{{fetchRandomCycle()}}</h4>
+        <h4>{{ randomCycle }}</h4>
         <h4></h4>
         <div>
           <ul>
-            <a href="https://what3words.com/multimedia.sonorous.puppies" target="_blank">
-              <li>{{'sensors.dashboard.location' | translate}} </li>
+            <a
+              href="https://what3words.com/multimedia.sonorous.puppies"
+              target="_blank"
+            >
+              <li>{{ "sensors.dashboard.location" | translate }}</li>
             </a>
-           <!--  <a href="/">
+            <!--  <a href="/">
               <li>{{'sensors.dashboard.lastImage' | translate}} |</li>
             </a>
             <a href="/">
@@ -22,218 +24,250 @@
         </div>
       </div>
 
-      <div class="dashboard-header-stream"> 
+      <div class="dashboard-header-stream">
         <!-- <button>{{'sensors.dashboard.livestream' | translate}}</button> -->
-       <div>
-          <p>{{'sensors.dashboard.lastUpdate' | translate}}: {{lastUpdatedDate | date:"short" }}</p>
-        </div> 
+        <div>
+          <p *ngIf="lastUpdatedDate">
+            {{ "sensors.dashboard.lastUpdate" | translate }}:
+            {{ lastUpdatedDate | date: "short" }}
+          </p>
+        </div>
       </div>
     </div>
 
     <div class="dashboard-data-hz">
-      <div class="dashboard-data-hz-group" style="margin-right: 10px;">
+      <div
+        *ngIf="dashboardSensorData"
+        class="dashboard-data-hz-group"
+        style="margin-right: 10px"
+      >
         <div class="dashboard-data-hz-unit">
-          <span>{{'sensors.dashboard.temperature' | translate}}</span>
-          <p>{{dashboardSensorData[0]}} ºc</p>
+          <span>{{ "sensors.dashboard.temperature" | translate }}</span>
+          <p>{{ dashboardSensorData[0] }} ºc</p>
         </div>
-    
+
         <div class="dashboard-data-group-hz-unit">
-          <span>{{'sensors.dashboard.relativeHumidity' | translate}}</span>
-          <p>{{dashboardSensorData[0]}}<span> %</span></p>
-        </div>
-        <div class="dashboard-data-group-hz-unit">
-          <span>{{'sensors.dashboard.wind' | translate}}</span>
-          <p>{{dashboardSensorData[6]}}<span> km</span></p>
+          <span>{{ "sensors.dashboard.relativeHumidity" | translate }}</span>
+          <p>{{ dashboardSensorData[0] }}<span> %</span></p>
         </div>
         <div class="dashboard-data-group-hz-unit">
-          <span>{{'sensors.dashboard.windDirection' | translate}}</span>
-          <p>{{dashboardSensorData[7]}}<span> º</span></p>
+          <span>{{ "sensors.dashboard.wind" | translate }}</span>
+          <p>{{ dashboardSensorData[6] }}<span> km</span></p>
+        </div>
+        <div class="dashboard-data-group-hz-unit">
+          <span>{{ "sensors.dashboard.windDirection" | translate }}</span>
+          <p>{{ dashboardSensorData[7] }}<span> º</span></p>
         </div>
       </div>
 
-      <div class="dashboard-data-hz-group">
+      <div *ngIf="dashboardSensorData" class="dashboard-data-hz-group">
         <div class="dashboard-data-hz-unit">
-          <span>{{'sensors.dashboard.solarIR' | translate}}</span>
-          <p>{{dashboardSensorData[2]}}</p>
+          <span>{{ "sensors.dashboard.solarIR" | translate }}</span>
+          <p>{{ dashboardSensorData[2] }}</p>
         </div>
         <div class="dashboard-data-group-hz-unit">
-          <span>{{'sensors.dashboard.solarVI' | translate}}</span>
-          <p>{{dashboardSensorData[3]}}</p>
+          <span>{{ "sensors.dashboard.solarVI" | translate }}</span>
+          <p>{{ dashboardSensorData[3] }}</p>
         </div>
         <div class="dashboard-data-group-hz-unit">
-          <span>{{'sensors.dashboard.solarUV' | translate}}</span>
-          <p>{{dashboardSensorData[4]}}</p>
+          <span>{{ "sensors.dashboard.solarUV" | translate }}</span>
+          <p>{{ dashboardSensorData[4] }}</p>
         </div>
         <div class="dashboard-data-group-hz-unit">
-          <span>{{'sensors.dashboard.pressure' | translate}}</span>
-          <p>{{dashboardSensorData[8]}}</p>
+          <span>{{ "sensors.dashboard.pressure" | translate }}</span>
+          <p>{{ dashboardSensorData[8] }}</p>
         </div>
       </div>
     </div>
 
     <div class="dashboard-data-vr">
-      <div class="dashboard-data-vr-group" style="width: 25%; margin-right: 10px;">
-        <h5>{{'sensors.dashboard.inputMolecules' | translate}}</h5>
+      <div
+        *ngIf="dashboardAnalysisData"
+        class="dashboard-data-vr-group"
+        style="width: 25%; margin-right: 10px"
+      >
+        <h5>{{ "sensors.dashboard.inputMolecules" | translate }}</h5>
         <div class="dashboard-data-vr-group-unit">
-          <span>{{'sensors.dashboard.co' | translate}}</span>
-          <p>{{dashboardAnalysisData[0]}}<span> kg/ha</span></p>
+          <span>{{ "sensors.dashboard.co" | translate }}</span>
+          <p>{{ dashboardAnalysisData[0] }}<span> kg/ha</span></p>
         </div>
-        <hr>
+        <hr />
         <div class="dashboard-data-vr-group-unit">
-          <span>{{'sensors.dashboard.s' | translate}}</span>
-          <p>{{dashboardAnalysisData[1]}}<span> kg/ha</span></p>
+          <span>{{ "sensors.dashboard.s" | translate }}</span>
+          <p>{{ dashboardAnalysisData[1] }}<span> kg/ha</span></p>
         </div>
-        <hr>
+        <hr />
         <div class="dashboard-data-vr-group-unit">
-          <span>{{'sensors.dashboard.guano' | translate}}</span>
-          <p>{{dashboardAnalysisData[2]}}<span> kg/ha</span></p>
+          <span>{{ "sensors.dashboard.guano" | translate }}</span>
+          <p>{{ dashboardAnalysisData[2] }}<span> kg/ha</span></p>
         </div>
-        <hr>
+        <hr />
         <div class="dashboard-data-vr-group-unit">
-          <span>{{'sensors.dashboard.h2o' | translate}}</span>
-          <p>{{dashboardAnalysisData[3]}}<span> l/ha</span></p>
+          <span>{{ "sensors.dashboard.h2o" | translate }}</span>
+          <p>{{ dashboardAnalysisData[3] }}<span> l/ha</span></p>
         </div>
       </div>
 
-
-      <div class="dashboard-data-vrandhz" style="width: 75%;">
-        <div class="dashboard-data-vrandhz-group" *ngIf="!loading">
-          <h5>{{'sensors.dashboard.grapeStatus' | translate}}</h5>
+      <div
+        *ngIf="dashboardData"
+        class="dashboard-data-vrandhz"
+        style="width: 75%"
+      >
+        <div class="dashboard-data-vrandhz-group">
+          <h5>{{ "sensors.dashboard.grapeStatus" | translate }}</h5>
           <div class="dashboard-data-vrandhz-subgroup">
-            <span>{{'sensors.dashboard.mbo' | translate}}</span>
-            <div  class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.ph' | translate}}</span>
-              <p>{{dashboardData.analysis[2].ph}}</p>
+            <span>{{ "sensors.dashboard.mbo" | translate }}</span>
+            <div class="dashboard-data-hz-group-unit">
+              <span>{{ "sensors.dashboard.ph" | translate }}</span>
+              <p>{{ dashboardData?.analysis[2].ph }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.bx' | translate}}</span>
-              <p>{{dashboardData.analysis[2].bx}}</p>
+              <span>{{ "sensors.dashboard.bx" | translate }}</span>
+              <p>{{ dashboardData?.analysis[2].bx }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.ta' | translate}}</span>
-              <p>{{dashboardData.analysis[2].ta}}<span> %</span></p>
+              <span>{{ "sensors.dashboard.ta" | translate }}</span>
+              <p>{{ dashboardData?.analysis[2].ta }}<span> %</span></p>
             </div>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.kg' | translate}}</span>
-              <p>{{dashboardData.analysis[2].kg}}</p>
+              <span>{{ "sensors.dashboard.kg" | translate }}</span>
+              <p>{{ dashboardData?.analysis[2].kg }}</p>
             </div>
           </div>
-          <hr>
+          <hr />
           <div class="dashboard-data-vrandhz-subgroup">
-            <span>{{'sensors.dashboard.mbe' | translate}}</span>
+            <span>{{ "sensors.dashboard.mbe" | translate }}</span>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.ph' | translate}}</span>
-              <p>{{dashboardData.analysis[3].ph}}</p>
+              <span>{{ "sensors.dashboard.ph" | translate }}</span>
+              <p>{{ dashboardData?.analysis[3].ph }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.bx' | translate}}</span>
-              <p>{{dashboardData.analysis[3].bx}}</p>
+              <span>{{ "sensors.dashboard.bx" | translate }}</span>
+              <p>{{ dashboardData?.analysis[3].bx }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.ta' | translate}}</span>
-              <p>{{dashboardData.analysis[3].ta}}<span> %</span></p>
+              <span>{{ "sensors.dashboard.ta" | translate }}</span>
+              <p>{{ dashboardData?.analysis[3].ta }}<span> %</span></p>
             </div>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.kg' | translate}}</span>
-              <p>{{dashboardData.analysis[3].kg}}</p>
+              <span>{{ "sensors.dashboard.kg" | translate }}</span>
+              <p>{{ dashboardData?.analysis[3].kg }}</p>
             </div>
           </div>
-          <hr>
+          <hr />
           <div class="dashboard-data-vrandhz-subgroup">
-            <span>{{'sensors.dashboard.pv' | translate}}</span>
+            <span>{{ "sensors.dashboard.pv" | translate }}</span>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.ph' | translate}}</span>
-              <p>{{dashboardData.analysis[1].ph}}</p>
+              <span>{{ "sensors.dashboard.ph" | translate }}</span>
+              <p>{{ dashboardData?.analysis[1].ph }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.bx' | translate}}</span>
-              <p>{{dashboardData.analysis[1].bx}}</p>
+              <span>{{ "sensors.dashboard.bx" | translate }}</span>
+              <p>{{ dashboardData?.analysis[1].bx }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.ta' | translate}}</span>
-              <p>{{dashboardData.analysis[1].ta}}<span> %</span></p>
+              <span>{{ "sensors.dashboard.ta" | translate }}</span>
+              <p>{{ dashboardData?.analysis[1].ta }}<span> %</span></p>
             </div>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.kg' | translate}}</span>
-              <p>{{dashboardData.analysis[1].kg}}</p>
+              <span>{{ "sensors.dashboard.kg" | translate }}</span>
+              <p>{{ dashboardData?.analysis[1].kg }}</p>
             </div>
           </div>
-          <hr>
+          <hr />
           <div class="dashboard-data-vrandhz-subgroup">
-            <span>{{'sensors.dashboard.cs' | translate}}</span>
+            <span>{{ "sensors.dashboard.cs" | translate }}</span>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.ph' | translate}}</span>
-              <p>{{dashboardData.analysis[0].ph}}</p>
+              <span>{{ "sensors.dashboard.ph" | translate }}</span>
+              <p>{{ dashboardData?.analysis[0].ph }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.bx' | translate}}</span>
-              <p>{{dashboardData.analysis[0].bx}}</p>
+              <span>{{ "sensors.dashboard.bx" | translate }}</span>
+              <p>{{ dashboardData?.analysis[0].bx }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.ta' | translate}}</span>
-              <p>{{dashboardData.analysis[0].ta}}<span> %</span></p>
+              <span>{{ "sensors.dashboard.ta" | translate }}</span>
+              <p>{{ dashboardData?.analysis[0].ta }}<span> %</span></p>
             </div>
             <div class="dashboard-data-hz-group-unit">
-              <span>{{'sensors.dashboard.kg' | translate}}</span>
-              <p>{{dashboardData.analysis[0].kg}}</p>
+              <span>{{ "sensors.dashboard.kg" | translate }}</span>
+              <p>{{ dashboardData?.analysis[0].kg }}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 
   <div class="product-date">
-    <app-date-selector [year]="item.year" (onDateChange)="onDateChange($event)"></app-date-selector>
+    <app-date-selector
+      [year]="item.year"
+      (onDateChange)="onDateChange($event)"
+    ></app-date-selector>
   </div>
- 
-  <div class="product-content-title">
-    {{ 'product.subsoil_humidity.title' | translate }}
-  </div>
-  <app-heatmap-chart [data]="heatmapData" [filterType]="filterType"></app-heatmap-chart>
 
   <div class="product-content-title">
-    {{ 'product.temperature' | translate }}
+    {{ "product.subsoil_humidity.title" | translate }}
+  </div>
+  <app-heatmap-chart
+    [data]="heatmapData"
+    [filterType]="filterType"
+  ></app-heatmap-chart>
+
+  <div class="product-content-title">
+    {{ "product.temperature" | translate }}
   </div>
   <app-linear-chart [data]="temperatureData"></app-linear-chart>
 
   <div class="product-content-title">
-    {{ 'product.wind-speed' | translate }}
+    {{ "product.wind-speed" | translate }}
   </div>
   <app-linear-chart [data]="windSpeedData"></app-linear-chart>
 
   <div class="product-content-title">
-    {{ 'product.wind-direction' | translate }}
+    {{ "product.wind-direction" | translate }}
   </div>
-  <app-linear-chart [data]="windDirectionData" [min]="0" [max]="360"></app-linear-chart>
+  <app-linear-chart
+    [data]="windDirectionData"
+    [min]="0"
+    [max]="360"
+  ></app-linear-chart>
 
   <div class="product-content-title">
-    {{ 'product.humidity' | translate }}
+    {{ "product.humidity" | translate }}
   </div>
-  <app-linear-chart [data]="humidityData" [min]="0" [max]="100"></app-linear-chart>
+  <app-linear-chart
+    [data]="humidityData"
+    [min]="0"
+    [max]="100"
+  ></app-linear-chart>
 
   <div class="product-content-title">
-    {{ 'product.pressure' | translate }}
+    {{ "product.pressure" | translate }}
   </div>
-  <app-linear-chart [data]="pressureData" [min]="950" [max]="1020"></app-linear-chart>
+  <app-linear-chart
+    [data]="pressureData"
+    [min]="950"
+    [max]="1020"
+  ></app-linear-chart>
 
   <div class="product-content-title">
-    {{ 'product.rain' | translate }}
+    {{ "product.rain" | translate }}
   </div>
   <app-linear-chart [data]="rainData" [min]="0" [max]="400"></app-linear-chart>
 
   <div class="product-content-title">
-    {{ 'product.irradiance-uv' | translate }}
+    {{ "product.irradiance-uv" | translate }}
   </div>
   <app-linear-chart [data]="irradianceUVData"></app-linear-chart>
 
   <div class="product-content-title">
-    {{ 'product.irradiance-vi' | translate }}
+    {{ "product.irradiance-vi" | translate }}
   </div>
   <app-linear-chart [data]="irradianceVIData"></app-linear-chart>
 
   <div class="product-content-title">
-    {{ 'product.irradiance-ir' | translate }}
+    {{ "product.irradiance-ir" | translate }}
   </div>
   <app-linear-chart [data]="irradianceIRData"></app-linear-chart>
+</div>
