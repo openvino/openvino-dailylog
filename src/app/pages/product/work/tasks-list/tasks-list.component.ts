@@ -49,7 +49,6 @@ export class TasksListComponent implements OnInit {
       .subscribe(
        data => {
           this.filterType = date ? 'day' : month ? 'month' : 'year';
-          console.log(data, "resposta task entity")
           this.loadedTasks=data;
         })
     }

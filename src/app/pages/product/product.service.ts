@@ -434,16 +434,18 @@ export class ProductService {
     if (month) params += `&month=${month}`;
     if (day) params += `&day=${day}`;
 
-    return this.http.get(`${environment.apiUrl}/tasks`).pipe(
-/*       return this.http.get(`${environment.apiUrl}/tasks${params}`).pipe(
- */
-      map((response: any) => {
-        console.log(response, "tasks list response")
-
+     
+      return this.http.get(`${environment.apiUrl}/tasks${params}`).pipe(
+      
+        map((response: any) => {
+        console.log(response)
         return response.map((item) => {
+          console.log(TaskEntity)
           return new TaskEntity(item);
         });
+      
       }),
+    
       map((response: TaskEntity[]) => {
         let result = {};
         response.forEach((item) => {
@@ -456,11 +458,13 @@ export class ProductService {
           result[timestamp] = result[timestamp] || [];
           result[timestamp].push(item);
         });
+      
         return result;
+      
       })
     );
   }
-
+  
   public getDashboardData() {
     return this.http.get(`${environment.apiUrl}/dashboard`).pipe(
       map((response: any) => {
@@ -545,11 +549,11 @@ export class ProductService {
   public getLastUpdate () {
     return this.http.get(`${environment.apiUrl}/dashboard`).pipe(
       map((response: any) => {
-        const updates = response.analysis.sort((a,b)=> {
-          return a.UpdatedAt - b.UpdatedAt
+        const updates = response.sensor.sort((a,b)=> {
+          return a.timestamp - b.timestamp
         })
        
-       return updates[0].UpdatedAt
+       return updates[0].timestamp
       }));
     }
   

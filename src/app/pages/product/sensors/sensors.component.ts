@@ -112,17 +112,14 @@ export class SensorsComponent {
     this.productService.getDashboardSensorData()
       .subscribe((data) => {
         this.dashboardSensorData = data;
-        console.log(this.dashboardSensorData, "sensor data averages");
       }),
       this.productService.getDashboardAnalysisData()
       .subscribe((data) => {
         this.dashboardAnalysisData = data;
-        console.log(this.dashboardAnalysisData, "analysis data averages");
       }),
       this.productService.getDashboardData()
       .subscribe((data) => {
         this.dashboardData = data;
-        console.log(this.dashboardData)
       });
   }
   public fetchRandomCycle() {
@@ -132,7 +129,6 @@ export class SensorsComponent {
   public fetchLastUpdated() {
     this.productService.getLastUpdate().subscribe((data) => {
       this.lastUpdatedDate = data;
-      console.log(this.lastUpdatedDate, "last updated date");
     });
   }
 }

@@ -7,14 +7,14 @@
 
                     <div class="chart-name-percentage">20%</div>
 
-                    <div>
+                    <div class="chart-name-text">
                         <div class="chart-name-title">{{'tasks.types.0.title' | translate}}</div>
                         <div class="chart-name-description">{{'tasks.types.0.description' | translate}}</div>
                     </div>
                 </div>
                 <div class="task-bottle-chart-name" id="chart-task-two">
                     <div class="chart-name-percentage">20%</div>
-                    <div class>
+                    <div class="chart-name-text">
                         <div class="chart-name-title">{{'tasks.types.1.title' | translate}}</div>
                         <div class="chart-name-description">{{'tasks.types.1.description' | translate}}</div>
                     </div>
@@ -23,7 +23,7 @@
 
                     <div class="chart-name-percentage">20%</div>
 
-                    <div>
+                    <div class="chart-name-text">
                         <div class="chart-name-title">{{'tasks.types.2.title' | translate}}</div>
                         <div class="chart-name-description">{{'tasks.types.2.description' | translate}}</div>
                     </div>
@@ -31,7 +31,7 @@
             </div>
             <div class="tasks-bottle-chart-names-left">
                 <div class="task-bottle-chart-name" id="chart-task-four">
-                    <div style="text-align: right;">
+                    <div class="chart-name-text" style="text-align: right;">
                         <div class="chart-name-title">{{'tasks.types.3.title' | translate}}</div>
                         <div class="chart-name-description">{{'tasks.types.3.description' | translate}}</div>
                     </div>
@@ -40,7 +40,7 @@
 
                 </div>
                 <div class="task-bottle-chart-name" id="chart-task-five">
-                    <div style="text-align: right;">
+                    <div class="chart-name-text" style="text-align: right;, margin-top:7px;">
                         <div class="chart-name-title">{{'tasks.types.4.title' | translate}}</div>
                         <div class="chart-name-description">{{'tasks.types.4.description' | translate}}</div>
                     </div>
@@ -89,7 +89,7 @@
                         <ul class="details-info-ul card card-body">
 
                             <li *ngIf="value.tools && value.tools.length > 0"> {{'tasks.details.tools' | translate}}:&nbsp;
-                                <div *ngFor="let tool of value.tools">{{'tasks.tools.' + tool.name | translate}} </div>
+                                <div *ngFor="let tool of value.tools">{{'tasks.tools.' + tool.name | translate}} &nbsp;</div>
                             </li>
                             <li *ngIf="value.chemicals && value.chemicals.length > 0"> {{'tasks.details.chemicals' |
                                 translate}}:&nbsp; <div *ngFor="let chemical of value.chemicals"> {{'tasks.chemicals.' +

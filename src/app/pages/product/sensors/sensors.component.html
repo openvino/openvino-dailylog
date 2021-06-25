@@ -29,7 +29,7 @@
         <div>
           <p *ngIf="lastUpdatedDate">
             {{ "sensors.dashboard.lastUpdate" | translate }}:
-            {{ lastUpdatedDate | date: "short" }}
+            {{ lastUpdatedDate != "" && lastUpdatedDate | date: 'dd/MM/yyyy hh:mm' }}
           </p>
         </div>
       </div>
@@ -89,22 +89,34 @@
         <h5>{{ "sensors.dashboard.inputMolecules" | translate }}</h5>
         <div class="dashboard-data-vr-group-unit">
           <span>{{ "sensors.dashboard.co" | translate }}</span>
-          <p>{{ dashboardAnalysisData[0] }}<span> kg/ha</span></p>
+          <div>
+            <p>{{ dashboardAnalysisData[0] }}</p>
+            <span> kg/ha</span>
+          </div>
         </div>
         <hr />
         <div class="dashboard-data-vr-group-unit">
           <span>{{ "sensors.dashboard.s" | translate }}</span>
-          <p>{{ dashboardAnalysisData[1] }}<span> kg/ha</span></p>
+          <div>
+          <p>{{ dashboardAnalysisData[1] }}</p>
+          <span> kg/ha</span>
+        </div>
         </div>
         <hr />
         <div class="dashboard-data-vr-group-unit">
           <span>{{ "sensors.dashboard.guano" | translate }}</span>
-          <p>{{ dashboardAnalysisData[2] }}<span> kg/ha</span></p>
+          <div>
+          <p>{{ dashboardAnalysisData[2] }}</p>
+          <span>kg/ha</span>
+        </div>
         </div>
         <hr />
         <div class="dashboard-data-vr-group-unit">
           <span>{{ "sensors.dashboard.h2o" | translate }}</span>
-          <p>{{ dashboardAnalysisData[3] }}<span> l/ha</span></p>
+          <div>
+          <p>{{ dashboardAnalysisData[3] }}</p>
+          <span> l/ha</span>
+        </div>
         </div>
       </div>
 
@@ -119,19 +131,19 @@
             <span>{{ "sensors.dashboard.mbo" | translate }}</span>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ph" | translate }}</span>
-              <p>{{ dashboardData?.analysis[2].ph }}</p>
+              <p>{{   dashboardData.analysis && dashboardData.analysis[2].ph }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.bx" | translate }}</span>
-              <p>{{ dashboardData?.analysis[2].bx }}</p>
+              <p>{{ dashboardData.analysis && dashboardData.analysis[2].bx }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ta" | translate }}</span>
-              <p>{{ dashboardData?.analysis[2].ta }}<span> %</span></p>
+              <p>{{ dashboardData.analysis && dashboardData.analysis[2].ta }}<span> %</span></p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.kg" | translate }}</span>
-              <p>{{ dashboardData?.analysis[2].kg }}</p>
+              <p>{{ dashboardData.analysis && dashboardData.analysis[2].kg }}</p>
             </div>
           </div>
           <hr />
@@ -139,19 +151,19 @@
             <span>{{ "sensors.dashboard.mbe" | translate }}</span>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ph" | translate }}</span>
-              <p>{{ dashboardData?.analysis[3].ph }}</p>
+              <p>{{ dashboardData.analysis && dashboardData.analysis[3].ph }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.bx" | translate }}</span>
-              <p>{{ dashboardData?.analysis[3].bx }}</p>
+              <p>{{ dashboardData.analysis && dashboardData.analysis[3].bx }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ta" | translate }}</span>
-              <p>{{ dashboardData?.analysis[3].ta }}<span> %</span></p>
+              <p>{{ dashboardData.analysis && dashboardData.analysis[3].ta }}<span> %</span></p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.kg" | translate }}</span>
-              <p>{{ dashboardData?.analysis[3].kg }}</p>
+              <p>{{ dashboardData.analysis && dashboardData.analysis[3].kg }}</p>
             </div>
           </div>
           <hr />
@@ -159,19 +171,19 @@
             <span>{{ "sensors.dashboard.pv" | translate }}</span>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ph" | translate }}</span>
-              <p>{{ dashboardData?.analysis[1].ph }}</p>
+              <p>{{ dashboardData.analysis && dashboardData.analysis[1].ph }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.bx" | translate }}</span>
-              <p>{{ dashboardData?.analysis[1].bx }}</p>
+              <p>{{ dashboardData.analysis && dashboardData.analysis[1].bx }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ta" | translate }}</span>
-              <p>{{ dashboardData?.analysis[1].ta }}<span> %</span></p>
+              <p>{{ dashboardData.analysis && dashboardData.analysis[1].ta }}<span> %</span></p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.kg" | translate }}</span>
-              <p>{{ dashboardData?.analysis[1].kg }}</p>
+              <p>{{ dashboardData.analysis &&  dashboardData.analysis[1].kg }}</p>
             </div>
           </div>
           <hr />
@@ -179,19 +191,19 @@
             <span>{{ "sensors.dashboard.cs" | translate }}</span>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ph" | translate }}</span>
-              <p>{{ dashboardData?.analysis[0].ph }}</p>
+              <p>{{ dashboardData.analysis && dashboardData.analysis[0].ph }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.bx" | translate }}</span>
-              <p>{{ dashboardData?.analysis[0].bx }}</p>
+              <p>{{ dashboardData.analysis && dashboardData.analysis[0].bx }}</p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ta" | translate }}</span>
-              <p>{{ dashboardData?.analysis[0].ta }}<span> %</span></p>
+              <p>{{ dashboardData.analysis && dashboardData.analysis[0].ta }}<span> %</span></p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.kg" | translate }}</span>
-              <p>{{ dashboardData?.analysis[0].kg }}</p>
+              <p>{{ dashboardData.analysis && dashboardData.analysis[0].kg }}</p>
             </div>
           </div>
         </div>

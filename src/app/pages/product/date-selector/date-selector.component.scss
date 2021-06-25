@@ -7,6 +7,10 @@
     width: 160px;
     position:relative;
 
+    @media (max-width: 416px) {
+        margin: 20px 12px;
+    }
+
     &-container {
         display: flex;
         flex-direction: row;
@@ -35,6 +39,9 @@
         padding: 2px;
         width: 180px;
         color: rgb(0, 0, 0);
+        @media (max-width: 416px) {
+            font-size: 0.8rem;        }
+    
      }
     
     & select:focus{ outline: none;}
