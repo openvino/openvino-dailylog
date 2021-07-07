@@ -440,7 +440,7 @@ export class ProductService {
         map((response: any) => {
         console.log(response)
         return response.map((item) => {
-          console.log(TaskEntity)
+          console.log(item, "task entity")
           return new TaskEntity(item);
         });
       

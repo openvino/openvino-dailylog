@@ -9,7 +9,7 @@ export class TaskEntity {
     public endDate: Date;
     public iniClaro: String;
     public endClaro: String;
-    public inicRow: String;
+    public iniRow: String;
     public endRow: String;
     public iniPlant: String;
     public endPlant: String;
@@ -41,6 +41,7 @@ constructor ( data?: {
         });
         this.notes= data.notes;
         this.iniClaro= data.ini_claro;  
+        this.endClaro= data.end_claro;
         this.hash= Message.fromHash(data.hash)
     }
 }
