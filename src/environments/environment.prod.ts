@@ -1,5 +1,5 @@
 function getProvider(providers: string[]) {
-  let index = Math.floor(Math.random() * providers.length)
+  let index = Math.floor(Math.random() * providers.length);
 
   return providers[index];
 }
@@ -7,12 +7,12 @@ function getProvider(providers: string[]) {
 export const environment = {
   production: true,
   providerUrl: getProvider([
-    'https://mainnet.infura.io/v3/80311d26ccb74946b9d016f38ce901d2',
-    'https://mainnet.infura.io/v3/781c281ea82347709935f5b394f2383c',
-    'https://mainnet.infura.io/v3/6d7880a8f4b347ca8953d2715e164241',
+    "https://mainnet.infura.io/v3/80311d26ccb74946b9d016f38ce901d2",
+    "https://mainnet.infura.io/v3/781c281ea82347709935f5b394f2383c",
+    "https://mainnet.infura.io/v3/6d7880a8f4b347ca8953d2715e164241",
   ]),
-  apiUrl: 'https://costaflores.openvino.exchange',
-  apiKey:"lK8KoFYW6ln0fUB8VoMqQkPyyOQVOWOnPN51vCGimzWACXFUy02uuRS7pLM91HoM",
-  mapsApiKey:"AIzaSyC6t7EuOhDJf_B8gpafWNUnqNqoLvZy0jI",
-  shippingAccount:"0xe613FAF5fA44f019E3A3AF5927bAA6B13643BA53",
+  apiUrl: "https://costaflores.openvino.exchange",
+  apiKey: "9YLQ3V5oXmjcVa0xF5-Q5am1BoY50E5kAIdcf9GHt9v3rZcJPsptW0lLmMlUH7pe",
+  mapsApiKey: "AIzaSyC6t7EuOhDJf_B8gpafWNUnqNqoLvZy0jI",
+  shippingAccount: "0xe613FAF5fA44f019E3A3AF5927bAA6B13643BA53",
 };
