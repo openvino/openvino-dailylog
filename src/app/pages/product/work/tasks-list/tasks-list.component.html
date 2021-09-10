@@ -1,6 +1,6 @@
 <div class="tasks-list-container">
-    <h2>{{'tasks.title' | translate}}</h2>
-    <div class="tasks-bottle-chart">
+  <h2>{{'tasks.title' | translate}}</h2>
+  <!--   <div class="tasks-bottle-chart">
         <div class="tasks-bottle-chart-names">
             <div class="tasks-bottle-chart-names-right">
                 <div class="task-bottle-chart-name" id="chart-task-one">
@@ -54,58 +54,77 @@
             <img src="/assets/images/bottle-img.png" alt="Wine bottle with percentatges of amount of work">
         </div>
     </div>
+ -->
 
 
-    <div class="product-content-subtitle">
-        <h4>{{'tasks.list' | translate}}</h4>
+  <div class="bottle-img">
+    <img src="/assets/images/bottle-img.png" alt="Wine bottle with percentatges of amount of work">
+  </div>
+
+  <div class="product-content-subtitle">
+    <h4>{{'tasks.list' | translate}}</h4>
+  </div>
+
+  <div class="product-date">
+    <app-date-selector (onDateChange)="onDateChange($event)"></app-date-selector>
+  </div>
+
+  <div class="tasks-list">
+    <div *ngIf="(loadedTasks | keyvalue)?.length == 0">
+      <div class="empty-state-img">
+        <img src="/assets/images/list.png" alt="No tasks created">
+        {{'tasks.emptyList' | translate}}
+      </div>
     </div>
-
-    <div class="product-date">
-        <app-date-selector (onDateChange)="onDateChange($event)"></app-date-selector>
-    </div>
-
-    <div class="tasks-list">
-        <div *ngIf="!loadedTasks || loadedTasks.length < 1">
-            {{'tasks.emptyList' | translate}}
+    <div *ngIf="(loadedTasks | keyvalue)?.length">
+      <div *ngFor="let date of loadedTasks | keyvalue : sortByDate">
+        <div *ngIf="!loadedTasks || loadedTasks.length == 0">
+          {{'tasks.emptyList' | translate}}
         </div>
-        <div *ngIf="loadedTasks || loadedTasks.length > 0">
-            <div *ngFor="let date of loadedTasks | keyvalue : sortByDate">
-                <div class="task-date">{{getDate(date.key).getDate()}} {{'months.'+ getDate(date.key).getMonth() |
+        <div class="task-date">{{getDate(date.key).getDate()}} {{'months.'+ getDate(date.key).getMonth() |
                     translate}} {{getDate(date.key).getFullYear()}}</div>
-                <div *ngFor="let value of date.value">
-                    <div class="task">
-                        <div class="task-description">
-                            <h3>{{'tasks.types.' + value.typeId + '.title' | translate}}</h3>
-                            <button type="button" class="task-details-btn" data-bs-toggle="collapse"
-                                [attr.data-bs-target]="'#task-' + value.hash.hash" aria-expanded="false"
-                                [attr.aria-controls]="'#task-' + value.hash.hash">
-                                {{'tasks.details.title' | translate}}
-                            </button>
-                        </div>
-                        <app-verifier-button [hashes]="[value.hash]"></app-verifier-button>
-
-                    </div>
-                    <div class="collapse" [id]="'task-' + value.hash.hash">
-                        <ul class="details-info-ul card card-body">
-
-                            <li *ngIf="value.tools && value.tools.length > 0"> {{'tasks.details.tools' | translate}}:&nbsp;
-                                <div *ngFor="let tool of value.tools">{{'tasks.tools.' + tool.name | translate}} &nbsp;</div>
-                            </li>
-                            <li *ngIf="value.chemicals && value.chemicals.length > 0"> {{'tasks.details.chemicals' |
-                                translate}}:&nbsp; <div *ngFor="let chemical of value.chemicals"> {{'tasks.chemicals.' +
-                                    chemical.name | translate}} ({{chemical.amount}})</div>
-                            </li>
-                            <li>{{'tasks.details.startDate' | translate}}: {{value.startDate | date:"short"}}</li>
-                            <li>{{'tasks.details.endDate' | translate}}: {{value.endDate | date:"short"}}</li>
-                            <li>{{'tasks.details.notes' | translate}}: {{value.notes}}</li>
-                            <li>{{'tasks.details.startLocation' | translate}}: {{value.iniClaro}}</li>
-                            <li>{{'tasks.details.endLocation' | translate}}: {{value.endClaro}}</li>
-                        </ul>
-                    </div>
-                    <hr>
-                </div>
+        <div *ngFor="let value of date.value">
+          <div class="task">
+            <div class="task-description">
+              <h3>{{'tasks.types.' + value.typeId + '.title' | translate}}</h3>
+              <button type="button" class="task-details-btn" data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#task-' + value.hash.hash" aria-expanded="false"
+                [attr.aria-controls]="'#task-' + value.hash.hash">
+                {{'tasks.details.title' | translate}}
+              </button>
             </div>
+            <app-verifier-button [hashes]="[value.hash]"></app-verifier-button>
 
+          </div>
+          <div class="collapse" [id]="'task-' + value.hash.hash">
+            <ul class="details-info-ul card card-body">
+
+              <li class="task-detail-small" *ngIf="value.tools && value.tools.length > 0">
+                {{'tasks.details.tools' | translate}}:&nbsp;
+              </li>
+              <div *ngFor="let tool of value.tools">
+                <li class="task-detail-regular vinyetes">{{'tasks.tools.' + tool.name | translate}} &nbsp;</li>
+              </div>
+
+              <li class="task-detail-regular" *ngIf="value.chemicals && value.chemicals.length > 0"> {{'tasks.details.chemicals' | translate}}:&nbsp; <div *ngFor="let chemical of value.chemicals"> {{'tasks.chemicals.' + chemical.name | translate}} ({{chemical.amount}})</div>
+              </li>
+              <li class="task-detail-small"> {{'tasks.details.startDate' | translate}}</li>
+              <li class="task-detail-regular"> {{value.startDate | date:"short"}}</li>
+              <li class="task-detail-small">{{'tasks.details.endDate' | translate}} </li>
+              <li class="task-detail-regular">{{value.endDate | date:"short"}}</li>
+              <li class="task-detail-small">{{'tasks.details.notes' | translate}} </li>
+              <li class="task-detail-regular">{{value.notes}}</li>
+              <li class="task-detail-small">{{'tasks.details.startLocation' | translate}} </li>
+              <li class="task-detail-regular">{{value.iniClaro}}</li>
+              <li class="task-detail-small">{{'tasks.details.endLocation' | translate}} </li>
+              <li class="task-detail-regular"> {{value.endClaro}}</li>
+            </ul>
+          </div>
+          <hr>
         </div>
+      </div>
+
+
     </div>
+  </div>
 </div>

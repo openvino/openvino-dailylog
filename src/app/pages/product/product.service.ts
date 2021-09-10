@@ -438,9 +438,7 @@ export class ProductService {
       return this.http.get(`${environment.apiUrl}/tasks${params}`).pipe(
       
         map((response: any) => {
-        console.log(response)
         return response.map((item) => {
-          console.log(item, "task entity")
           return new TaskEntity(item);
         });
       
@@ -460,9 +458,9 @@ export class ProductService {
         });
       
         return result;
-      
+        
       })
-    );
+      );
   }
   
   public getDashboardData() {
@@ -476,7 +474,6 @@ export class ProductService {
   public getDashboardSensorData() {
     return this.http.get(`${environment.apiUrl}/dashboard`).pipe(
       map((response: any) => {
-        console.log(response);
 
         let sensorResult = response.sensor.reduce(
           (acc, curr) => {

@@ -47,11 +47,14 @@ export class TasksListComponent implements OnInit {
       this.productService.getTasks(year, month, date)
 
       .subscribe(
-       data => {
+        data => {
+         console.log(data)
           this.filterType = date ? 'day' : month ? 'month' : 'year';
+          
           this.loadedTasks=data;
+          console.log(this.loadedTasks)
         })
+      }
+      
+      
     }
-
-
-  }
