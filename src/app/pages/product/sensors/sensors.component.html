@@ -8,10 +8,7 @@
         <h4></h4>
         <div>
           <ul>
-            <a
-              href="https://what3words.com/multimedia.sonorous.puppies"
-              target="_blank"
-            >
+            <a href="https://what3words.com/multimedia.sonorous.puppies" target="_blank">
               <li>{{ "sensors.dashboard.location" | translate }}</li>
             </a>
             <!--  <a href="/">
@@ -36,11 +33,7 @@
     </div>
 
     <div class="dashboard-data-hz">
-      <div
-        *ngIf="dashboardSensorData"
-        class="dashboard-data-hz-group"
-        style="margin-right: 10px"
-      >
+      <div *ngIf="dashboardSensorData" class="dashboard-data-hz-group" style="margin-right: 10px">
         <div class="dashboard-data-hz-unit">
           <span>{{ "sensors.dashboard.temperature" | translate }}</span>
           <p>{{ dashboardSensorData[0] }} ºc</p>
@@ -81,11 +74,7 @@
     </div>
 
     <div class="dashboard-data-vr">
-      <div
-        *ngIf="dashboardAnalysisData"
-        class="dashboard-data-vr-group"
-        style="width: 25%; margin-right: 10px"
-      >
+      <div *ngIf="dashboardAnalysisData" class="dashboard-data-vr-group" style="width: 25%; margin-right: 10px">
         <h5>{{ "sensors.dashboard.inputMolecules" | translate }}</h5>
         <div class="dashboard-data-vr-group-unit">
           <span>{{ "sensors.dashboard.co" | translate }}</span>
@@ -98,33 +87,29 @@
         <div class="dashboard-data-vr-group-unit">
           <span>{{ "sensors.dashboard.s" | translate }}</span>
           <div>
-          <p>{{ dashboardAnalysisData[1] }}</p>
-          <span> kg/ha</span>
-        </div>
+            <p>{{ dashboardAnalysisData[1] }}</p>
+            <span> kg/ha</span>
+          </div>
         </div>
         <hr />
         <div class="dashboard-data-vr-group-unit">
           <span>{{ "sensors.dashboard.guano" | translate }}</span>
           <div>
-          <p>{{ dashboardAnalysisData[2] }}</p>
-          <span>kg/ha</span>
-        </div>
+            <p>{{ dashboardAnalysisData[2] }}</p>
+            <span>kg/ha</span>
+          </div>
         </div>
         <hr />
         <div class="dashboard-data-vr-group-unit">
           <span>{{ "sensors.dashboard.h2o" | translate }}</span>
           <div>
-          <p>{{ dashboardAnalysisData[3] }}</p>
-          <span> l/ha</span>
-        </div>
+            <p>{{ dashboardAnalysisData[3] }}</p>
+            <span> l/ha</span>
+          </div>
         </div>
       </div>
 
-      <div
-        *ngIf="dashboardData"
-        class="dashboard-data-vrandhz"
-        style="width: 75%"
-      >
+      <div *ngIf="dashboardData" class="dashboard-data-vrandhz" style="width: 75%">
         <div class="dashboard-data-vrandhz-group">
           <h5>{{ "sensors.dashboard.grapeStatus" | translate }}</h5>
           <div class="dashboard-data-vrandhz-subgroup">
@@ -211,20 +196,22 @@
     </div>
   </div>
 
+
+
+    <h3>{{'tasks.title' | translate}}</h3>
+    <div class="bottle-img">
+      <img src="/assets/images/bottle-img.png" alt="Wine bottle with percentatges of amount of work">
+    </div>
+  
+  <h3>{{'product.tabs.sensoric' | translate}}</h3>
   <div class="product-date">
-    <app-date-selector
-      [year]="item.year"
-      (onDateChange)="onDateChange($event)"
-    ></app-date-selector>
+    <app-date-selector [year]="item.year" (onDateChange)="onDateChange($event)"></app-date-selector>
   </div>
 
   <div class="product-content-title">
     {{ "product.subsoil_humidity.title" | translate }}
   </div>
-  <app-heatmap-chart
-    [data]="heatmapData"
-    [filterType]="filterType"
-  ></app-heatmap-chart>
+  <app-heatmap-chart [data]="heatmapData" [filterType]="filterType"></app-heatmap-chart>
 
   <div class="product-content-title">
     {{ "product.temperature" | translate }}
@@ -239,29 +226,17 @@
   <div class="product-content-title">
     {{ "product.wind-direction" | translate }}
   </div>
-  <app-linear-chart
-    [data]="windDirectionData"
-    [min]="0"
-    [max]="360"
-  ></app-linear-chart>
+  <app-linear-chart [data]="windDirectionData" [min]="0" [max]="360"></app-linear-chart>
 
   <div class="product-content-title">
     {{ "product.humidity" | translate }}
   </div>
-  <app-linear-chart
-    [data]="humidityData"
-    [min]="0"
-    [max]="100"
-  ></app-linear-chart>
+  <app-linear-chart [data]="humidityData" [min]="0" [max]="100"></app-linear-chart>
 
   <div class="product-content-title">
     {{ "product.pressure" | translate }}
   </div>
-  <app-linear-chart
-    [data]="pressureData"
-    [min]="950"
-    [max]="1020"
-  ></app-linear-chart>
+  <app-linear-chart [data]="pressureData" [min]="950" [max]="1020"></app-linear-chart>
 
   <div class="product-content-title">
     {{ "product.rain" | translate }}

@@ -10,7 +10,7 @@
     border: none;
   }
 
-  &>.container {
+  & > .container {
     padding-left: 0;
     padding-right: 0;
   }
@@ -30,189 +30,16 @@
   h2 {
     @media (max-width: 540px) {
       font-size: 1.5rem;
-
     }
   }
 
-  h4 {
+  h3 {
     @media (max-width: 540px) {
       font-size: 1.2rem;
-
     }
   }
 
-  .tasks-bottle-chart {
-    width: 100%;
-    height: 100%;
-    align-items: center;
-
-    #chart-task-three,
-    #chart-task-two,
-    #chart-task-one {
-      @media (max-width: 756px) {
-        flex-direction: column-reverse;
-        text-align: center;
-      }
-    }
-
-    .task-bottle-chart-name {
-      display: flex;
-      flex-direction: row;
-      width: 35%;
-
-      @media (max-width: 1084px) {
-        flex-direction: column;
-        align-items: center;
-
-      }
-
-      @media (max-width: 690px) {
-        width: 25%;
-      }
-    }
-
-    &-img {
-      text-align: center;
-      position: relative;
-
-      img {
-        width: 43%;
-        margin: 10px auto;
-
-        @media (max-width: 540px) {
-          width: 70%;
-        }
-      }
-    }
-
-    &-names {
-      position: absolute;
-      width: 100%;
-      height: 70%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding-top: 8%;
-
-      @media (max-width: 1024px) {
-        height: 43%;
-        padding-top: 1%;
-
-      }
-
-      @media (max-width: 768px) {
-        padding-top: 2%;
-        height: 42%;
-      }
-
-      @media (max-width: 416px) {
-        top: 37%;
-        height: 48%;
-
-      }
-
-      &-right {
-        position: absolute;
-        width: 80%;
-        height: 83%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-end;
-        padding-top: 0%;
-
-        @media (max-width: 1024px) {
-          height: 75%;
-          padding-top: 5%;
-        }
-
-        @media (max-width: 768px) {
-          height: 75%;
-          padding-top: 2%;
-        }
-
-        @media (max-width: 640px) {
-          height: 80%;
-          padding-top: 0%;
-        }
-      }
-
-      &-left {
-        position: absolute;
-        width: 80%;
-        height: 83%;
-        display: flex;
-        flex-direction: column-reverse;
-        justify-content: space-evenly;
-        align-items: flex-start;
-        padding-top: 0%;
-
-        @media (max-width: 1024px) {}
-
-        @media (max-width: 960px) {
-          height: 85%;
-          padding-top: 3%;
-        }
-
-        @media (max-width: 768px) {
-          height: 75%;
-          padding-top: 1%;
-        }
-      }
-
-      .chart-name-text {
-        margin-top: 9px;
-      }
-
-      .chart-name-percentage {
-        color: var(--primary-text-color);
-        font-size: 2rem;
-        padding: 0 20px;
-
-        @media (max-width: 756px) {
-          font-size: 1.3rem;
-          text-align: center;
-        }
-
-        @media (max-width: 540px) {
-          font-size: 1.2rem;
-          padding-bottom: 0;
-        }
-      }
-
-      .chart-name-title {
-        font-size: 1.5rem;
-        color: var(--primary-color);
-        line-height: 1.1;
-        padding-bottom: 10px;
-
-        @media (max-width: 756px) {
-          font-size: 1rem;
-          text-align: center;
-        }
-
-        @media (max-width: 540px) {
-          font-size: 0.8rem;
-          padding-bottom: 0;
-        }
-      }
-
-      .chart-name-description {
-        font-size: 1rem;
-
-        @media (max-width: 756px) {
-          font-size: 0.7rem;
-        }
-      }
-
-      @media(max-width: 1084px) {
-        .chart-name-description {
-          display: none;
-        }
-      }
-    }
-  }
-
+  
 
   .task-date {
     margin: 35px 0 20px 0;
@@ -238,8 +65,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
-
-
     }
 
     &-details-btn {
@@ -268,7 +93,6 @@
   }
 
   & li {
-    
   }
 
   .card-body {
@@ -307,41 +131,41 @@ h4 {
 
   .tasks-bottle-chart-name {
     width: 95%;
-
   }
-
-}
-
-.bottle-img img {
-  width: 50%;
-  padding: 20px 0 ;
 }
 
 .empty-state-img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px 0;
+  padding: 40px 0;
   opacity: 50%;
 
   img {
-    width: 5%;
+    width: 4%;
     padding-bottom: 10px;
   }
 }
 
 .task-detail-small {
-    font-size: 14px;
-    padding-top: 5px;
-    color: gray;
-
+  font-size: 14px;
+  padding-top: 5px;
+  color: gray;
 }
 
 .task-detail-regular {
-    font-size: 16px;
+  font-size: 16px;
 }
 
-.vinyetes{
-    margin-left: 20px;
-    list-style-type: circle;
+.vinyetes {
+  margin-left: 20px;
+  list-style-type: circle;
 }
+
+.graphic-group-text {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
