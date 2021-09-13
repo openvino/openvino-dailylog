@@ -11,6 +11,7 @@ import { VerifierComponent } from './verifier/verifier.component';
 import { VerifierService } from './verifier/verifier.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { TasksListComponent} from "./work/tasks-list/tasks-list.component"
+import { BusinessListComponent } from './work/business-list/business-list.component';
 import { SensorsComponent } from './sensors/sensors.component';
 
 import '@enchainte-projects/enchainte-uniswap-component';
@@ -29,7 +30,8 @@ import { VerifierButtonComponent } from './verifier/verifier-button/verifier-but
     DateSelectorComponent,
     TasksListComponent,
     SensorsComponent,
-    VerifierButtonComponent
+    VerifierButtonComponent,
+    BusinessListComponent
   ],
   imports: [
     CommonModule,

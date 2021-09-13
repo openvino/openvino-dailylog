@@ -39,8 +39,6 @@
     }
   }
 
-  
-
   .task-date {
     margin: 35px 0 20px 0;
     text-transform: uppercase;
@@ -144,6 +142,19 @@ h4 {
   img {
     width: 4%;
     padding-bottom: 10px;
+  }
+}
+
+.empty-state-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0;
+  opacity: 50%;
+
+  img {
+    width: 4%;
+    padding-bottom: 10px;
     @media (max-width: 1084px) {
       width: 6%;
     }
@@ -152,7 +163,6 @@ h4 {
     }
   }
 }
-
 .task-detail-small {
   font-size: 14px;
   padding-top: 5px;
@@ -169,4 +179,3 @@ h4 {
   justify-content: center;
   padding: 20px 0;
 }
-

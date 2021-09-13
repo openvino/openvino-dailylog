@@ -29,3 +29,22 @@
 
     font-family: 'Futura', Helvetica, Arial, sans-serif;
 }
+
+.empty-state-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+    opacity: 50%;
+  
+    img {
+      width: 4%;
+      padding-bottom: 10px;
+      @media (max-width: 1084px) {
+        width: 6%;
+      }
+      @media (max-width: 496px) {
+        width: 10%;
+      }
+    }
+  }

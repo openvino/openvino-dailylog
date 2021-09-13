@@ -214,15 +214,13 @@
 }
 
 .bottle-img img {
-  width: 40%;
+  width: 65%;
   padding: 20px 0;
 
   @media (max-width: 1084px) {
-    width: 60%;
-  }
-  @media (max-width: 496px) {
     width: 80%;
   }
+ 
 }
 
 .bottle-img {

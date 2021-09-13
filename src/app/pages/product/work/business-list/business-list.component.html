@@ -1,7 +1,8 @@
 <div class="tasks-list-container">
- 
+
   <div class="product-content-subtitle">
-    <h2>{{'tasks.list' | translate}}</h2>
+    <h2>{{'business.list' | translate}}</h2>
+   
   </div>
 
   <div class="product-date">
@@ -20,8 +21,8 @@
         <div *ngIf="!loadedTasks || loadedTasks.length == 0">
           {{'tasks.emptyList' | translate}}
         </div>
-        <div class="task-date">{{getDate(date.key).getDate()}} {{'months.'+ getDate(date.key).getMonth() |
-                    translate}} {{getDate(date.key).getFullYear()}}</div>
+        <div class="task-date">{{getDate(date.key).getDate()}} {{'months.'+ getDate(date.key).getMonth() | translate}}
+          {{getDate(date.key).getFullYear()}}</div>
         <div *ngFor="let value of date.value">
           <div class="task">
             <div class="task-description">
@@ -45,7 +46,9 @@
                 <li class="task-detail-regular">{{'tasks.tools.' + tool.name | translate}} &nbsp;</li>
               </div>
 
-              <li class="task-detail-regular" *ngIf="value.chemicals && value.chemicals.length > 0"> {{'tasks.details.chemicals' | translate}}:&nbsp; <div *ngFor="let chemical of value.chemicals"> {{'tasks.chemicals.' + chemical.name | translate}} ({{chemical.amount}})</div>
+              <li class="task-detail-regular" *ngIf="value.chemicals && value.chemicals.length > 0">
+                {{'tasks.details.chemicals' | translate}}:&nbsp; <div *ngFor="let chemical of value.chemicals">
+                  {{'tasks.chemicals.' + chemical.name | translate}} ({{chemical.amount}})</div>
               </li>
               <li class="task-detail-small"> {{'tasks.details.startDate' | translate}}</li>
               <li class="task-detail-regular"> {{value.startDate | date:"short"}}</li>

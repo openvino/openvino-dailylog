@@ -6,6 +6,10 @@ export const TABS = [
   {
     id: "WORK",
     name:"product.tabs.work"
+  },
+  {
+    id: "BUSINESS",
+    name:"product.tabs.business"
   }
 ]
 
