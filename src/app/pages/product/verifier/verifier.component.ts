@@ -1,18 +1,22 @@
-import { Component, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
-import { VerifierService } from './verifier.service';
-import { TranslateService } from '@ngx-translate/core';
-import { Record, Proof } from '@bloock/sdk';
-import { EnchainteService } from 'src/app/services/enchainte.service';
-import { Router } from '@angular/router';
-
+import {
+  Component,
+  OnInit,
+  HostListener,
+  ElementRef,
+  ViewChild,
+} from "@angular/core";
+import { VerifierService } from "./verifier.service";
+import { TranslateService } from "@ngx-translate/core";
+import { Record, Proof } from "@bloock/sdk";
+import { EnchainteService } from "src/app/services/enchainte.service";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-verifier',
-  templateUrl: './verifier.component.html',
-  styleUrls: ['./verifier.component.scss']
+  selector: "app-verifier",
+  templateUrl: "./verifier.component.html",
+  styleUrls: ["./verifier.component.scss"],
 })
 export class VerifierComponent implements OnInit {
-
   public open = false;
   public xCoord = null;
   public yCoord = null;
@@ -31,17 +35,17 @@ export class VerifierComponent implements OnInit {
 
   private clickInside = false;
 
-  @ViewChild('verifier') verifier: ElementRef;
+  @ViewChild("verifier") verifier: ElementRef;
 
-  @HostListener('click')
+  @HostListener("click")
   clickIn() {
     this.clickInside = true;
   }
-  
-  @HostListener('document:click')
+
+  @HostListener("document:click")
   clickOut() {
     if (!this.clickInside && this.open) {
-      this.verifierService.closeVerifier()
+      this.verifierService.closeVerifier();
     } else {
       this.clickInside = false;
     }
@@ -53,10 +57,11 @@ export class VerifierComponent implements OnInit {
     public translate: TranslateService,
     public router: Router
   ) {}
-  
+
   ngOnInit(): void {
-    this.verifierService.getOpenedObservable()
-      .subscribe(({open, x, y, date, isDay, value, data, hash}) => {
+    this.verifierService
+      .getOpenedObservable()
+      .subscribe(({ open, x, y, date, isDay, value, data, hash }) => {
         this.open = open;
 
         this.xCoord = -500;
@@ -68,6 +73,7 @@ export class VerifierComponent implements OnInit {
         this.data = data;
 
         this.hashes = hash;
+        console.log(this.hashes);
 
         this.proof = null;
         this.proofVerified = null;
@@ -79,37 +85,51 @@ export class VerifierComponent implements OnInit {
           if (this.verifier) {
             this.yCoord = y;
 
-            if ((window.innerWidth - (x + this.verifier.nativeElement.offsetWidth)) > 0) {
+            if (
+              window.innerWidth -
+                (x + this.verifier.nativeElement.offsetWidth) >
+              0
+            ) {
               this.xCoord = x;
             } else {
               this.xCoord = x - this.verifier.nativeElement.offsetWidth;
             }
           }
         }, 300);
-      })
+      });
   }
 
   public openEtherscan() {
     if (this.transactionHash) {
-      window.open(`https://rinkeby.etherscan.io/tx/${this.transactionHash}`, '_blank');
+      window.open(
+        `https://rinkeby.etherscan.io/tx/${this.transactionHash}`,
+        "_blank"
+      );
     }
   }
 
   public openLink() {
-    this.router.navigate(['/proof'], { queryParams: { date: this.date.toISOString() } })
+    this.router.navigate(["/proof"], {
+      queryParams: { date: this.date.toISOString() },
+    });
   }
 
   getProof() {
     if (this.hashes) {
-      this.enchainteService.getProof(this.hashes, this.date, this.isDay)
-        .subscribe(res => {
-          this.proof = res.proof;
-          this.transactionHash = res.txHash;
-        }, err => {
-          this.proof = null;
-          this.transactionHash = null;
-          this.proofVerified = false;
-        })
+      this.enchainteService
+        .getProof(this.hashes, this.date, this.isDay)
+        .subscribe(
+          (res) => {
+            this.proof = res.proof;
+            this.transactionHash = res.txHash;
+            this.hashes = res.hashes;
+          },
+          (err) => {
+            this.proof = null;
+            this.transactionHash = null;
+            this.proofVerified = false;
+          }
+        );
     }
   }
 
@@ -118,14 +138,14 @@ export class VerifierComponent implements OnInit {
       this.proofLoading = true;
       setTimeout(async () => {
         try {
-          this.proofVerified = (await this.enchainteService.verify(this.proof)!=0)
+          this.proofVerified =
+            (await this.enchainteService.verify(this.proof)) != 0;
         } catch (err) {
-          console.error(err)
-          this.proofVerified = false
+          console.error(err);
+          this.proofVerified = false;
         }
         this.proofLoading = false;
-      }, 100)
+      }, 100);
     }
   }
-
 }
