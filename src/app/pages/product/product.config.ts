@@ -2,7 +2,7 @@ export const TABS = [
   {
     id: "SENSORIC",
     name: "product.tabs.sensoric"
-  }, 
+  }/* , 
   {
     id: "WORK",
     name:"product.tabs.work"
@@ -10,7 +10,7 @@ export const TABS = [
   {
     id: "BUSINESS",
     name:"product.tabs.business"
-  }
+  } */
 ]
 
 export const YEARS = [2019,2020,2021];
