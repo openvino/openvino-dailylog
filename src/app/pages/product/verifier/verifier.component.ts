@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { VerifierService } from './verifier.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Message, Proof } from '@enchainte/sdk';
+import { Record, Proof } from '@bloock/sdk';
 import { EnchainteService } from 'src/app/services/enchainte.service';
 import { Router } from '@angular/router';
 
@@ -21,7 +21,7 @@ export class VerifierComponent implements OnInit {
   public isDay: boolean;
   public value: string;
   public data = null;
-  public hashes: Message[];
+  public hashes: Record[];
 
   public proof: Proof;
   public proofVerified: boolean;

@@ -1,4 +1,4 @@
-import { Message } from "@enchainte/sdk";
+import { Record } from "@bloock/sdk";
 
 export class TaskEntity {
     public name: String;
@@ -14,7 +14,7 @@ export class TaskEntity {
     public iniPlant: String;
     public endPlant: String;
     public notes: String;
-    public hash: Message;
+    public hash: Record;
 
 constructor ( data?: {
     public_key: String;
@@ -42,7 +42,7 @@ constructor ( data?: {
         this.notes= data.notes;
         this.iniClaro= data.ini_claro;  
         this.endClaro= data.end_claro;
-        this.hash= Message.fromHash(data.hash)
+        this.hash= Record.fromHash(data.hash)
     }
 }
 }

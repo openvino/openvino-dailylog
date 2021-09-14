@@ -1,10 +1,10 @@
-import { Message } from '@enchainte/sdk';
+import { Record } from '@bloock/sdk';
 
 export default class ChartItemEntity {
     public date: Date;
     public units: string;
     public label: string = '';
-    public hash: Message[]
+    public hash: Record[]
 
     constructor({
         date,
@@ -19,7 +19,7 @@ export default class ChartItemEntity {
         if (hash) {
             this.hash = hash.reduce((prev, current) => {
                 if (current) {
-                    prev.push(Message.fromHash(current))
+                    prev.push(Record.fromHash(current))
                 }
                 return prev;
             }, []);

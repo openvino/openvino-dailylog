@@ -1,10 +1,10 @@
 import { Component, OnInit, HostListener, ElementRef, ViewChild, Input } from '@angular/core';
 import { VerifierService } from '../verifier.service';
 import { TranslateService } from '@ngx-translate/core';
-import { Message } from '@enchainte/sdk';
+import { Record } from '@bloock/sdk';
 import { EnchainteService } from 'src/app/services/enchainte.service';
 import { Router } from '@angular/router';
-import { Proof } from '@enchainte/sdk/dist/types/proof/entity/proof.entity';
+import { Proof } from '@bloock/sdk/dist/types/proof/entity/proof.entity';
 
 @Component({
   selector: 'app-verifier-button',
@@ -13,7 +13,7 @@ import { Proof } from '@enchainte/sdk/dist/types/proof/entity/proof.entity';
 })
 export class VerifierButtonComponent implements OnInit {
 
-  @Input() public hashes: Message[];
+  @Input() public hashes: Record[];
   @Input() public proof: Proof;
 
   public proofVerified: boolean;

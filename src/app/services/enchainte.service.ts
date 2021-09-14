@@ -1,31 +1,30 @@
 import { Injectable } from '@angular/core';
-import { EnchainteClient, Message } from '@enchainte/sdk';
 import { from, Observable } from 'rxjs';
 import { flatMap, map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Proof } from '@enchainte/sdk/dist/types/proof/entity/proof.entity';
+import { BloockClient, Proof, Record} from '@bloock/sdk';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EnchainteService {
 
-  private sdk: EnchainteClient;
+  private sdk: BloockClient;
 
   constructor(
     public http: HttpClient
   ) {
-    this.sdk = new EnchainteClient(environment.apiKey);
+    this.sdk = new BloockClient(environment.apiKey);
   }
 
-  public getProof(hash: Message[], date?: Date, day = false): Observable<any> {
+  public getProof(hash: Record[], date?: Date, day = false): Observable<any> {
     if (hash && hash.length > 0) {
       let firstHash = hash[0]
       return from(this.sdk.getProof(hash))
         .pipe(
           flatMap(proof => {
-            return from(this.sdk.getMessages([firstHash]))
+            return from(this.sdk.getRecords([firstHash]))
               .pipe(
                 map(messages => {
                     return {
@@ -55,7 +54,7 @@ export class EnchainteService {
         .pipe(
           map((hashes: any[]) => {
             return hashes.map(hash => {
-              return Message.fromHash(hash)
+              return Record.fromHash(hash)
             })
           }),
           flatMap(hashes => {
