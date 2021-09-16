@@ -2,11 +2,11 @@ export const TABS = [
   {
     id: "SENSORIC",
     name: "product.tabs.sensoric"
-  }/* , 
+  }, 
   {
     id: "WORK",
     name:"product.tabs.work"
-  },
+  }/* ,
   {
     id: "BUSINESS",
     name:"product.tabs.business"

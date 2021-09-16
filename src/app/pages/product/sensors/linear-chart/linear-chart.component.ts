@@ -51,6 +51,7 @@ export class LinearChartComponent implements OnInit {
           data: this.data,
           backgroundColor: gradient,
           borderColor: 'rgba(213, 132, 27, .61)',
+          borderWidth:2,
           pointBackgroundColor: 'rgb(213, 132, 27)'
         }],
         labels: [ ...Array(this.data.length).keys() ]

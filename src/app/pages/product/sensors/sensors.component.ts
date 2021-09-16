@@ -73,7 +73,12 @@ export class SensorsComponent {
   }
 
   public isDashboardReady() {
-    return this.dashboardAnalysisData && this.dashboardData && this.dashboardTaskData && this.dashboardSensorData
+    return (
+      this.dashboardAnalysisData &&
+      this.dashboardData &&
+      this.dashboardTaskData &&
+      this.dashboardSensorData
+    );
   }
 
   public fetchData(year, month, date) {
@@ -109,16 +114,13 @@ export class SensorsComponent {
   }
 
   public fetchDashboardData() {
-    this.productService.getDashboardSensorData()
-      .subscribe((data) => {
-        this.dashboardSensorData = data;
-      }),
-      this.productService.getDashboardAnalysisData()
-      .subscribe((data) => {
+    this.productService.getDashboardSensorData().subscribe((data) => {
+      this.dashboardSensorData = data;
+    }),
+      this.productService.getDashboardAnalysisData().subscribe((data) => {
         this.dashboardAnalysisData = data;
       }),
-      this.productService.getDashboardData()
-      .subscribe((data) => {
+      this.productService.getDashboardData().subscribe((data) => {
         this.dashboardData = data;
       });
   }
