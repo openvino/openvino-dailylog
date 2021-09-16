@@ -1,19 +1,25 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  Input,
+  ViewEncapsulation,
+} from "@angular/core";
 
-import { HEATMAP_TABS, HEATMAP_ZONES } from './heatmap-chart.config';
-import { VerifierService } from '../../verifier/verifier.service';
-import HeatmapData from './heatmap-data.entity';
+import { HEATMAP_TABS, HEATMAP_ZONES } from "./heatmap-chart.config";
+import { VerifierService } from "../../verifier/verifier.service";
+import HeatmapData from "./heatmap-data.entity";
 
 @Component({
-  selector: 'app-heatmap-chart',
+  selector: "app-heatmap-chart",
   encapsulation: ViewEncapsulation.None,
-  templateUrl: './heatmap-chart.component.html',
-  styleUrls: ['./heatmap-chart.component.scss']
+  templateUrl: "./heatmap-chart.component.html",
+  styleUrls: ["./heatmap-chart.component.scss"],
 })
 export class HeatmapComponent {
   @Input() public data: {};
-  @Input() public filterType: 'day' | 'month' | 'year';
-
+  @Input() public filterType: "day" | "month" | "year";
 
   public zoneData: HeatmapData[] = [];
 
@@ -25,9 +31,7 @@ export class HeatmapComponent {
   public activeDay = null;
   public activeZone = null;
 
-  constructor(
-    public verifierService: VerifierService
-  ) {}
+  constructor(public verifierService: VerifierService) {}
 
   ngOnInit() {
     this.onZoneChange(this.tabs[0]);
@@ -42,21 +46,23 @@ export class HeatmapComponent {
 
   getElementWith() {
     switch (this.filterType) {
-      case 'year':
+      case "year":
         return 70;
-      case 'month':
+      case "month":
         return 30;
-      case 'day':
+      case "day":
         return 30;
     }
   }
 
   getValueForDayAndZone(day, zone) {
-    return this.zoneData[day].data[zone] === null ? '-' : this.zoneData[day].data[zone];
+    return this.zoneData[day].data[zone] === null
+      ? "-"
+      : this.zoneData[day].data[zone];
   }
 
   getDayCount() {
-    return Array.from(Array(this.zoneData.length).keys())
+    return Array.from(Array(this.zoneData.length).keys());
   }
 
   public isActive(day, zone) {
@@ -64,10 +70,10 @@ export class HeatmapComponent {
   }
 
   public getColor(value) {
-    if (value === null || value === '-') return 'transparent';
-    
-    let color1 = [ 213, 132, 27 ];
-    let color2 = [ 2, 179, 190 ];
+    if (value === null || value === "-") return "transparent";
+
+    let color1 = [213, 132, 27];
+    let color2 = [2, 179, 190];
     let valuePercent = value / 100;
 
     if (value < 0) valuePercent = 0;
@@ -75,9 +81,11 @@ export class HeatmapComponent {
 
     var w1 = valuePercent;
     var w2 = 1 - w1;
-    var rgb = [Math.round(color1[0] * w1 + color2[0] * w2),
-        Math.round(color1[1] * w1 + color2[1] * w2),
-        Math.round(color1[2] * w1 + color2[2] * w2)];
+    var rgb = [
+      Math.round(color1[0] * w1 + color2[0] * w2),
+      Math.round(color1[1] * w1 + color2[1] * w2),
+      Math.round(color1[2] * w1 + color2[2] * w2),
+    ];
 
     return `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
   }
@@ -86,7 +94,16 @@ export class HeatmapComponent {
     if (this.zoneData[day].data[zone] !== null) {
       this.activeDay = day;
       this.activeZone = zone;
-      this.verifierService.openVerifier($event.pageX, $event.pageY, this.zoneData[day].date, this.filterType === 'month', `${this.zoneData[day].data[zone]} ${this.zoneData[day].units}` , {}, this.zoneData[day].hash);
+      console.log(this.zoneData[day]);
+      this.verifierService.openVerifier(
+        $event.pageX,
+        $event.pageY,
+        this.zoneData[day].date,
+        this.filterType === "month",
+        `${this.zoneData[day].data[zone]} ${this.zoneData[day].units}`,
+        {},
+        this.zoneData[day].hash
+      );
     }
     $event.stopPropagation();
   }

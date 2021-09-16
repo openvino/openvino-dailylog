@@ -8,7 +8,7 @@ import { HEATMAP_TABS } from "./sensors/heatmap-chart/heatmap-chart.config";
 import { YEARS, MONTHS } from "./product.config";
 import LinearChartData from "./sensors/linear-chart/linear-data.entity";
 import { TaskEntity } from "./work/tasks-list/tasks-list.entity";
-import { Moment } from 'moment';
+import { Moment } from "moment";
 
 @Injectable({
   providedIn: "root",
@@ -434,16 +434,13 @@ export class ProductService {
     if (month) params += `&month=${month}`;
     if (day) params += `&day=${day}`;
 
-     
-      return this.http.get(`${environment.apiUrl}/tasks${params}`).pipe(
-      
-        map((response: any) => {
+    return this.http.get(`${environment.apiUrl}/tasks${params}`).pipe(
+      map((response: any) => {
         return response.map((item) => {
           return new TaskEntity(item);
         });
-      
       }),
-    
+
       map((response: TaskEntity[]) => {
         let result = {};
         response.forEach((item) => {
@@ -456,13 +453,12 @@ export class ProductService {
           result[timestamp] = result[timestamp] || [];
           result[timestamp].push(item);
         });
-      
+
         return result;
-        
       })
-      );
+    );
   }
-  
+
   public getDashboardData() {
     return this.http.get(`${environment.apiUrl}/dashboard`).pipe(
       map((response: any) => {
@@ -474,7 +470,6 @@ export class ProductService {
   public getDashboardSensorData() {
     return this.http.get(`${environment.apiUrl}/dashboard`).pipe(
       map((response: any) => {
-
         let sensorResult = response.sensor.reduce(
           (acc, curr) => {
             return {
@@ -543,26 +538,31 @@ export class ProductService {
     );
   }
 
-  public getLastUpdate () {
+  public getLastUpdate() {
     return this.http.get(`${environment.apiUrl}/dashboard`).pipe(
       map((response: any) => {
-        const updates = response.sensor.sort((a,b)=> {
-          return a.timestamp - b.timestamp
-        })
-       
-       return updates[0].timestamp
-      }));
-    }
-  
-   public getRandomCycle () {
-      const growingCycles = [
-        "Bud burst","Flowering", "Setting", "Thinning and ulling", "Veraison", "Harvest", "Pruning"
-      ]
+        const updates = response.sensor.sort((a, b) => {
+          return a.timestamp - b.timestamp;
+        });
 
-      const randomCycle = Math.floor(Math.random()*growingCycles.length);
-      const randomCycleString = growingCycles[randomCycle]
-      return randomCycleString
-    } 
+        return updates[0].timestamp;
+      })
+    );
   }
 
+  public getRandomCycle() {
+    const growingCycles = [
+      "Bud burst",
+      "Flowering",
+      "Setting",
+      "Thinning and ulling",
+      "Veraison",
+      "Harvest",
+      "Pruning",
+    ];
 
+    const randomCycle = Math.floor(Math.random() * growingCycles.length);
+    const randomCycleString = growingCycles[randomCycle];
+    return randomCycleString;
+  }
+}
