@@ -7,9 +7,7 @@
     transition: transform .2s; 
     box-shadow: 35px 35px 35px 35px white inset;
 
-    &:active {
-        background-color: rgba(109, 114, 120, 0.22);
-    }
+  
 
     &-img {
         position: absolute;
@@ -17,7 +15,6 @@
         left: 0;
         bottom: 0;
         right: 0;
-
         height: 100%;
         width: auto;
         max-width: 100%;

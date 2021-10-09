@@ -18,6 +18,7 @@ import '@enchainte-projects/enchainte-uniswap-component';
 import { DateSelectorComponent } from './date-selector/date-selector.component';
 import { ProductRoutingModule } from './product-routing.module';
 import { VerifierButtonComponent } from './verifier/verifier-button/verifier-button.component';
+import { CategorySelectorComponent } from './category-selector/category-selector.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -31,7 +32,8 @@ import { VerifierButtonComponent } from './verifier/verifier-button/verifier-but
     TasksListComponent,
     SensorsComponent,
     VerifierButtonComponent,
-    BusinessListComponent
+    BusinessListComponent,
+    CategorySelectorComponent,
   ],
   imports: [
     CommonModule,

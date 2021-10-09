@@ -73,7 +73,6 @@ export class VerifierComponent implements OnInit {
         this.data = data;
 
         this.hashes = hash;
-        console.log(this.hashes);
 
         this.proof = null;
         this.proofVerified = null;

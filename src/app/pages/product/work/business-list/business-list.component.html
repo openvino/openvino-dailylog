@@ -1,72 +1,37 @@
-<div class="tasks-list-container">
+<div class="expenses-list-container">
 
   <div class="product-content-subtitle">
     <h2>{{'business.list' | translate}}</h2>
-   
   </div>
 
-  <div class="product-date">
-    <app-date-selector (onDateChange)="onDateChange($event)"></app-date-selector>
-  </div>
+  <div class="category-selector">
+    <select [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange($event)">
+        <option  *ngFor="let category of categoriesLabels | keyvalue" [value]="category.key"  [selected]="category === 'cultivo'">{{ category.value }}</option>
+    </select>
+</div>
 
-  <div class="tasks-list">
-    <div *ngIf="(loadedTasks | keyvalue)?.length == 0">
+  <div class="expenses-list">
+
+    <div *ngIf="loadedExpenses.length == 0">
       <div class="empty-state-img">
-        <img src="/assets/images/list.png" alt="No tasks created">
-        {{'tasks.emptyList' | translate}}
+        <img src="/assets/images/list.png" alt="No expenses created">
+        {{'expenses-app.home.empty-state' | translate}}
       </div>
     </div>
-    <div *ngIf="(loadedTasks | keyvalue)?.length">
-      <div *ngFor="let date of loadedTasks | keyvalue : sortByDate">
-        <div *ngIf="!loadedTasks || loadedTasks.length == 0">
-          {{'tasks.emptyList' | translate}}
+    <div class="expense" *ngFor="let expense of loadedExpenses.expenses">
+      <div class="expense-box">
+        <div class="expense-description">
+          <p class="expense-date">{{expense.timestamp | date:"short"}}</p>
+          <p *ngIf="expense.categories && expense.categories.length > 0">
+            {{'expenses.categories' | translate}}</p>
+          <h3>{{'expenses.categories.' + expense.expense_id  | translate}}</h3>
+          <p>{{expense.description}}</p>
+          <h5>{{expense.value + " $"}}</h5>
         </div>
-        <div class="task-date">{{getDate(date.key).getDate()}} {{'months.'+ getDate(date.key).getMonth() | translate}}
-          {{getDate(date.key).getFullYear()}}</div>
-        <div *ngFor="let value of date.value">
-          <div class="task">
-            <div class="task-description">
-              <h3>{{'tasks.types.' + value.typeId + '.title' | translate}}</h3>
-              <button type="button" class="task-details-btn" data-bs-toggle="collapse"
-                [attr.data-bs-target]="'#task-' + value.hash.hash" aria-expanded="false"
-                [attr.aria-controls]="'#task-' + value.hash.hash">
-                {{'tasks.details.title' | translate}}
-              </button>
-            </div>
-            <app-verifier-button [hashes]="[value.hash]"></app-verifier-button>
-
-          </div>
-          <div class="collapse" [id]="'task-' + value.hash.hash">
-            <ul class="details-info-ul card card-body">
-
-              <li class="task-detail-small" *ngIf="value.tools && value.tools.length > 0">
-                {{'tasks.details.tools' | translate}}:&nbsp;
-              </li>
-              <div *ngFor="let tool of value.tools">
-                <li class="task-detail-regular">{{'tasks.tools.' + tool.name | translate}} &nbsp;</li>
-              </div>
-
-              <li class="task-detail-regular" *ngIf="value.chemicals && value.chemicals.length > 0">
-                {{'tasks.details.chemicals' | translate}}:&nbsp; <div *ngFor="let chemical of value.chemicals">
-                  {{'tasks.chemicals.' + chemical.name | translate}} ({{chemical.amount}})</div>
-              </li>
-              <li class="task-detail-small"> {{'tasks.details.startDate' | translate}}</li>
-              <li class="task-detail-regular"> {{value.startDate | date:"short"}}</li>
-              <li class="task-detail-small">{{'tasks.details.endDate' | translate}} </li>
-              <li class="task-detail-regular">{{value.endDate | date:"short"}}</li>
-              <li class="task-detail-small">{{'tasks.details.notes' | translate}} </li>
-              <li class="task-detail-regular">{{value.notes}}</li>
-              <li class="task-detail-small">{{'tasks.details.startLocation' | translate}} </li>
-              <li class="task-detail-regular">{{value.iniClaro}}</li>
-              <li class="task-detail-small">{{'tasks.details.endLocation' | translate}} </li>
-              <li class="task-detail-regular"> {{value.endClaro}}</li>
-            </ul>
-          </div>
-          <hr>
-        </div>
+        <app-verifier-button [hashes]="[expense.hash]"></app-verifier-button>
       </div>
-
-
+      <hr>
     </div>
   </div>
+
 </div>

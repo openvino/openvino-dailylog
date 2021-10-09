@@ -43,7 +43,8 @@ export class TasksListComponent implements OnInit {
     });
   }
 
-  public onDateChange($event) {
+  public onDateChange($event) { 
+  console.log($event)
     this.fetchTasks($event.year, $event.month, $event.day);
   }
 
@@ -68,6 +69,7 @@ export class TasksListComponent implements OnInit {
       .subscribe((data) => {
         this.filterType = date ? "day" : month ? "month" : "year";
         this.loadedTasks = data;
+        console.log(data, "tasks")
       });
   }
 }

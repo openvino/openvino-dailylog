@@ -1,9 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { VerifierService } from "../../verifier/verifier.service";
 import { ProductService } from "../../product.service";
 import { map } from "rxjs/operators";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CoreService } from "src/app/services/core.service";
+import { YEARS } from "../../product.config"
+
 
 @Component({
   selector: "app-business-list",
@@ -11,11 +13,16 @@ import { CoreService } from "src/app/services/core.service";
   styleUrls: ["./business-list.component.scss"],
 })
 export class BusinessListComponent implements OnInit {
-  public loadedTasks = <any>[];
-  public filterType = "month";
+  @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
+
+  public loadedExpenses = <any>[];
   public item;
-  public loadedTasksKeys = <any>[];
-  public taskKeyToDate;
+  public token_id;
+  public category_id;
+  public categoriesLabels = <any>[]
+  public selectedCategory;
+  public active;
+
 
   constructor(
     public coreService: CoreService,
@@ -26,6 +33,14 @@ export class BusinessListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.fetchExpenses(2020, 1)
+    this.fetchLabels()
+    this.selectedCategory;
+
+    if (this.selectedCategory) {
+      this.active = this.selectedCategory[0].id;
+    }
+
     this.route.paramMap.subscribe((params) => {
       let id = params.get("id");
 
@@ -41,34 +56,37 @@ export class BusinessListComponent implements OnInit {
 
       this.router.navigate(["/"]);
     });
+
   }
 
-  public onDateChange($event) {
-    this.fetchTasks($event.year, $event.month, $event.day);
-  }
 
-  public getDate(key) {
-    return new Date(parseInt(key));
-  }
-
-  public sortByDate(a, b) {
-    if (a.key < b.key) {
-      return 1;
+   public onCategoryChange(category) {
+     console.log(category)
+      this.active = category;
     }
-    if (a.key > b.key) {
-      return -1;
-    }
-    return 0;
-  }
 
-  public fetchTasks(year, month, date) {
+
+  public fetchExpenses(token_id, category_id) {
     this.productService
-      .getTasks(year, month, date)
-
+      .getExpenses(token_id, category_id)
       .subscribe((data) => {
-        this.filterType = date ? "day" : month ? "month" : "year";
 
-        this.loadedTasks = data;
+        this.loadedExpenses = data;
+        console.log(data, "expenses data");
+        console.log(this.loadedExpenses, "loaded expenses data");
       });
   }
+
+  public fetchLabels() {
+    this.productService
+    .getCategoriesLabels()
+    .subscribe((data) => {
+      this.categoriesLabels = data
+      console.log(this.categoriesLabels)
+    })
+
+  }
 }
+
+
+

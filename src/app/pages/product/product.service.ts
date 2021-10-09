@@ -9,6 +9,7 @@ import { YEARS, MONTHS } from "./product.config";
 import LinearChartData from "./sensors/linear-chart/linear-data.entity";
 import { TaskEntity } from "./work/tasks-list/tasks-list.entity";
 import { Moment } from "moment";
+import { BusinessEntity } from "./work/business-list/business-list.entity";
 
 @Injectable({
   providedIn: "root",
@@ -436,6 +437,8 @@ export class ProductService {
 
     return this.http.get(`${environment.apiUrl}/tasks${params}`).pipe(
       map((response: any) => {
+        console.log(response, "response tasks api");
+
         return response.map((item) => {
           return new TaskEntity(item);
         });
@@ -444,6 +447,7 @@ export class ProductService {
       map((response: TaskEntity[]) => {
         let result = {};
         response.forEach((item) => {
+          console.log(item);
           let timestamp =
             Math.floor(item.startDate.getTime() / (1000 * 60 * 60 * 24)) *
             1000 *
@@ -452,11 +456,35 @@ export class ProductService {
             24;
           result[timestamp] = result[timestamp] || [];
           result[timestamp].push(item);
+          console.log(timestamp, "tasks timestamp");
         });
 
         return result;
       })
     );
+  }
+
+  public getExpenses(token_id?: number, category_id?: number) {
+    let params = "?";
+    if (token_id) params += `token_id=${token_id}`;
+    if (category_id) params += `&category_id=${category_id}`;
+   
+
+return this.http.get(`${environment.apiUrl}/expenses${params}`).pipe(   
+    /*  return this.http
+      .get(`${environment.apiUrl}/expenses?token_id=2022&category_id=1`)
+      .pipe(   */
+        map((response: any) => {
+          console.log(response, "response expenses api");
+          let expensesResponse = Object.keys(response);
+          for (let i = 0; i < expensesResponse.length; i++) {
+            let key = expensesResponse[i];
+            console.log(response[key], "business entity");
+            console.log(response.expenses[0].timestamp, "timestamp");
+          }
+          return new BusinessEntity(response);
+        })
+      );
   }
 
   public getDashboardData() {
@@ -564,5 +592,15 @@ export class ProductService {
     const randomCycle = Math.floor(Math.random() * growingCycles.length);
     const randomCycleString = growingCycles[randomCycle];
     return randomCycleString;
+  }
+  
+  public getCategoriesLabels () {
+    return this.http.get(`${environment.apiUrl}/language/es`).pipe(
+      map((response: any) => {
+        let categoriesLabels = response.expenses.categories 
+        return categoriesLabels
+        
+      })
+    );
   }
 }

@@ -17,7 +17,6 @@ export class EnchainteService {
 
   public getProof(hash: Record[], date?: Date, day = false): Observable<any> {
     if (hash && hash.length > 0) {
-      console.log(hash);
       let firstHash = hash[0];
       return from(this.sdk.getProof(hash)).pipe(
         flatMap((proof) => {
@@ -59,7 +58,6 @@ export class EnchainteService {
         )
         .pipe(
           map((hashes: any[]) => {
-            console.log(hashes);
             return hashes.map((hash) => {
               return Record.fromHash(hash);
             });

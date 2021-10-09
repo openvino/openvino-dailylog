@@ -31,6 +31,7 @@ export class ProductComponent {
 
   public tabs = [];
   public tabActive;
+  public categoryActive;
   public apiUrl;
 
   constructor(
@@ -66,7 +67,7 @@ export class ProductComponent {
   }
 
   public fetchData(year, month, date) {
-    this.productService.getSensorsData(year, month, date)
+    this.productService.getSensorsData(year, month, date )
       .subscribe(data => {
         this.filterType = date ? 'day' : month ? 'month' : 'year';
         this.heatmapData = data.soilHumidity;
@@ -96,5 +97,10 @@ export class ProductComponent {
 
   public onTabChange(event){
     this.tabActive=event
+  }
+
+  public onCategoryChange(event){
+    console.log(event)
+    this.categoryActive=event
   }
 }

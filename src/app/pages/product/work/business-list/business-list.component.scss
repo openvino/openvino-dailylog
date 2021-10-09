@@ -16,7 +16,7 @@
   }
 }
 
-.tasks-list-container {
+.expenses-list-container {
   width: 80%;
   margin: 0 auto;
   display: flex;
@@ -39,16 +39,16 @@
     }
   }
 
-  .task-date {
-    margin: 35px 0 20px 0;
+  .expense-date {
+    margin: 0 0 20px 0;
     text-transform: uppercase;
     font-size: 0.7rem;
     letter-spacing: 0.1rem;
   }
 
-  .task {
+  .expense {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     width: 100%;
@@ -63,6 +63,13 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
+    }
+    &-box {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
     }
 
     &-details-btn {
@@ -82,30 +89,6 @@
   }
 }
 
-.collapse {
-  & ul {
-    padding: 0;
-    list-style-type: none;
-    color: var(--primary-text-color);
-    border: none;
-  }
-
-  & li {
-  }
-
-  .card-body {
-    border: none;
-    margin: 20px 0;
-    list-style-type: none;
-  }
-}
-
-.collapsing {
-  border: none;
-  visibility: hidden;
-  transition: 0.1ms;
-}
-
 h2,
 h4 {
   text-align: center;
@@ -113,7 +96,7 @@ h4 {
   margin-top: 20px;
 }
 
-.tasks-list {
+.expenses-list {
   width: 70%;
   margin: 0 auto;
 
@@ -121,15 +104,12 @@ h4 {
     width: 100%;
     margin: 0 auto;
   }
+}
 
-  hr {
-    border: 0;
-    margin: 20px 0;
-  }
-
-  .tasks-bottle-chart-name {
-    width: 95%;
-  }
+hr {
+  width: 100%;
+  border: 0;
+  margin: 20px 0;
 }
 
 .empty-state-img {
@@ -163,13 +143,13 @@ h4 {
     }
   }
 }
-.task-detail-small {
+.expense-detail-small {
   font-size: 14px;
   padding-top: 5px;
   color: gray;
 }
 
-.task-detail-regular {
+.expense-detail-regular {
   font-size: 16px;
 }
 
