@@ -1,13 +1,18 @@
-
-
 <div class="product-header" *ngIf="item.open">
   <div class="product-header-logo">
     <picture (click)="onLogoClick()">
-        <source media="(min-width: 576px)" srcset="assets/images/logo-costaflores.png">
-        <img src="assets/images/logo-costaflores-reduced.png" alt="Costaflores" style="width:auto;">
+      <source
+        media="(min-width: 576px)"
+        srcset="assets/images/logo-costaflores.png"
+      />
+      <img
+        src="assets/images/logo-costaflores-reduced.png"
+        alt="Costaflores"
+        style="width: auto"
+      />
     </picture>
     <div class="product-header-change" (click)="back()">
-      {{ 'labels.change' | translate }}
+      {{ "labels.change" | translate }}
     </div>
   </div>
   <div class="container">
@@ -35,12 +40,12 @@
   <div *ngIf="tabActive.id == tabs[0].id">
     <app-sensors></app-sensors>
   </div>
-  <div *ngIf="tabActive.id == tabs[1].id">
+  <!-- <div *ngIf="tabActive.id == tabs[1].id">
     <app-tasks-list></app-tasks-list>
   </div>
   <div *ngIf="tabActive.id == tabs[2].id">
     <app-business-list></app-business-list>
-  </div> 
+  </div>  -->
 </div>
 
 <app-verifier></app-verifier>

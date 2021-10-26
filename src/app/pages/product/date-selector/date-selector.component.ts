@@ -67,6 +67,6 @@ export class DateSelectorComponent implements OnInit {
   }
 
   public getYearByMonth(month: number) {
-    return month < 6 ? this.year - 1 : this.year;
+    return month >= 4 ? this.year - 1 : this.year;
   }
 }
