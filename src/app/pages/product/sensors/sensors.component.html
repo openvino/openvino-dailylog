@@ -8,7 +8,10 @@
         <h4></h4>
         <div>
           <ul>
-            <a href="https://what3words.com/multimedia.sonorous.puppies" target="_blank">
+            <a
+              href="https://what3words.com/multimedia.sonorous.puppies"
+              target="_blank"
+            >
               <li>{{ "sensors.dashboard.location" | translate }}</li>
             </a>
             <!--  <a href="/">
@@ -26,14 +29,21 @@
         <div>
           <p *ngIf="lastUpdatedDate">
             {{ "sensors.dashboard.lastUpdate" | translate }}:
-            {{ lastUpdatedDate != "" && lastUpdatedDate | date: 'dd/MM/yyyy hh:mm' }}
+            {{
+              lastUpdatedDate != "" && lastUpdatedDate
+                | date: "dd/MM/yyyy hh:mm"
+            }}
           </p>
         </div>
       </div>
     </div>
 
     <div class="dashboard-data-hz">
-      <div *ngIf="dashboardSensorData" class="dashboard-data-hz-group" style="margin-right: 10px">
+      <div
+        *ngIf="dashboardSensorData"
+        class="dashboard-data-hz-group"
+        style="margin-right: 10px"
+      >
         <div class="dashboard-data-hz-unit">
           <span>{{ "sensors.dashboard.temperature" | translate }}</span>
           <p>{{ dashboardSensorData[0] }} ºc</p>
@@ -74,7 +84,11 @@
     </div>
 
     <div class="dashboard-data-vr">
-      <div *ngIf="dashboardAnalysisData" class="dashboard-data-vr-group" style="width: 25%; margin-right: 10px">
+      <div
+        *ngIf="dashboardAnalysisData"
+        class="dashboard-data-vr-group"
+        style="width: 25%; margin-right: 10px"
+      >
         <h5>{{ "sensors.dashboard.inputMolecules" | translate }}</h5>
         <div class="dashboard-data-vr-group-unit">
           <span>{{ "sensors.dashboard.co" | translate }}</span>
@@ -109,26 +123,39 @@
         </div>
       </div>
 
-      <div *ngIf="dashboardData" class="dashboard-data-vrandhz" style="width: 75%">
+      <div
+        *ngIf="dashboardData"
+        class="dashboard-data-vrandhz"
+        style="width: 75%"
+      >
         <div class="dashboard-data-vrandhz-group">
           <h5>{{ "sensors.dashboard.grapeStatus" | translate }}</h5>
           <div class="dashboard-data-vrandhz-subgroup">
             <span>{{ "sensors.dashboard.mbo" | translate }}</span>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ph" | translate }}</span>
-              <p>{{   dashboardData.analysis && dashboardData.analysis[2].ph }}</p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[2].ph }}
+              </p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.bx" | translate }}</span>
-              <p>{{ dashboardData.analysis && dashboardData.analysis[2].bx }}</p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[2].bx }}
+              </p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ta" | translate }}</span>
-              <p>{{ dashboardData.analysis && dashboardData.analysis[2].ta }}<span> %</span></p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[2].ta
+                }}<span> %</span>
+              </p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.kg" | translate }}</span>
-              <p>{{ dashboardData.analysis && dashboardData.analysis[2].kg }}</p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[2].kg }}
+              </p>
             </div>
           </div>
           <hr />
@@ -136,19 +163,28 @@
             <span>{{ "sensors.dashboard.mbe" | translate }}</span>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ph" | translate }}</span>
-              <p>{{ dashboardData.analysis && dashboardData.analysis[3].ph }}</p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[3].ph }}
+              </p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.bx" | translate }}</span>
-              <p>{{ dashboardData.analysis && dashboardData.analysis[3].bx }}</p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[3].bx }}
+              </p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ta" | translate }}</span>
-              <p>{{ dashboardData.analysis && dashboardData.analysis[3].ta }}<span> %</span></p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[3].ta
+                }}<span> %</span>
+              </p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.kg" | translate }}</span>
-              <p>{{ dashboardData.analysis && dashboardData.analysis[3].kg }}</p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[3].kg }}
+              </p>
             </div>
           </div>
           <hr />
@@ -156,19 +192,28 @@
             <span>{{ "sensors.dashboard.pv" | translate }}</span>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ph" | translate }}</span>
-              <p>{{ dashboardData.analysis && dashboardData.analysis[1].ph }}</p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[1].ph }}
+              </p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.bx" | translate }}</span>
-              <p>{{ dashboardData.analysis && dashboardData.analysis[1].bx }}</p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[1].bx }}
+              </p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ta" | translate }}</span>
-              <p>{{ dashboardData.analysis && dashboardData.analysis[1].ta }}<span> %</span></p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[1].ta
+                }}<span> %</span>
+              </p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.kg" | translate }}</span>
-              <p>{{ dashboardData.analysis &&  dashboardData.analysis[1].kg }}</p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[1].kg }}
+              </p>
             </div>
           </div>
           <hr />
@@ -176,19 +221,28 @@
             <span>{{ "sensors.dashboard.cs" | translate }}</span>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ph" | translate }}</span>
-              <p>{{ dashboardData.analysis && dashboardData.analysis[0].ph }}</p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[0].ph }}
+              </p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.bx" | translate }}</span>
-              <p>{{ dashboardData.analysis && dashboardData.analysis[0].bx }}</p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[0].bx }}
+              </p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.ta" | translate }}</span>
-              <p>{{ dashboardData.analysis && dashboardData.analysis[0].ta }}<span> %</span></p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[0].ta
+                }}<span> %</span>
+              </p>
             </div>
             <div class="dashboard-data-hz-group-unit">
               <span>{{ "sensors.dashboard.kg" | translate }}</span>
-              <p>{{ dashboardData.analysis && dashboardData.analysis[0].kg }}</p>
+              <p>
+                {{ dashboardData.analysis && dashboardData.analysis[0].kg }}
+              </p>
             </div>
           </div>
         </div>
@@ -196,24 +250,62 @@
     </div>
   </div>
 
+  <h3>{{ "sensors.subtitle" | translate }}</h3>
+  <div class="bottle-img">
+    <div class="bottle">
+      <img
+        src="/assets/images/bottle-chart-dynamic.png"
+        style="width: 33%; min-width: 350px; height: 100%"
+        alt="Wine bottle with percentatges of amount of work"
+      />
+      <div class="bottle-metric bottle-metric-1">
+        <span class="bottle-metric-percent"
+          >{{ item.metrics.grapeCultivation }}%</span
+        >
+        <span class="bottle-metric-label">Grape cultivation</span>
+      </div>
+      <div class="bottle-metric bottle-metric-2">
+        <span class="bottle-metric-percent"
+          >{{ item.metrics.wineProduction }}%</span
+        >
+        <span class="bottle-metric-label">Wine production</span>
+      </div>
+      <div class="bottle-metric bottle-metric-3">
+        <span class="bottle-metric-percent">{{ item.metrics.packaging }}%</span>
+        <span class="bottle-metric-label">Packaging</span>
+      </div>
+      <div class="bottle-metric bottle-metric-4">
+        <span class="bottle-metric-percent">{{ item.metrics.logistics }}%</span>
+        <span class="bottle-metric-label">Logistics</span>
+      </div>
+      <div class="bottle-metric bottle-metric-5">
+        <span class="bottle-metric-percent"
+          >{{ item.metrics.administration }}%</span
+        >
+        <span class="bottle-metric-label">Administration</span>
+      </div>
+      <div class="bottle-metric bottle-metric-6">
+        <span class="bottle-metric-percent">{{ item.metrics.marketing }}%</span>
+        <span class="bottle-metric-label">Marketing and communication</span>
+      </div>
+    </div>
+  </div>
 
-
-    <!-- <h3>{{'sensors.subtitle' | translate}}</h3>
-    <div class="bottle-img">
-      <img src="/assets/images/bottle-chart.png" alt="Wine bottle with percentatges of amount of work">
-    </div> -->
-  
-  
-  
-  <h3>{{'product.tabs.sensoric' | translate}}</h3>
+  <h3>{{ "product.tabs.sensoric" | translate }}</h3>
   <div class="product-date">
-    <app-date-selector [year]="item.year" (onDateChange)="onDateChange($event)"></app-date-selector>
+    <app-date-selector
+      [year]="item.year"
+      (onDateChange)="onDateChange($event)"
+    ></app-date-selector>
   </div>
 
   <div class="product-content-title">
     {{ "product.subsoil_humidity.title" | translate }}
   </div>
-  <app-heatmap-chart [data]="heatmapData" [filterType]="filterType"></app-heatmap-chart>
+  <app-heatmap-chart
+    [data]="heatmapData"
+    [filterType]="filterType"
+  ></app-heatmap-chart>
 
   <div class="product-content-title">
     {{ "product.temperature" | translate }}
@@ -228,17 +320,29 @@
   <div class="product-content-title">
     {{ "product.wind-direction" | translate }}
   </div>
-  <app-linear-chart [data]="windDirectionData" [min]="0" [max]="360"></app-linear-chart>
+  <app-linear-chart
+    [data]="windDirectionData"
+    [min]="0"
+    [max]="360"
+  ></app-linear-chart>
 
   <div class="product-content-title">
     {{ "product.humidity" | translate }}
   </div>
-  <app-linear-chart [data]="humidityData" [min]="0" [max]="100"></app-linear-chart>
+  <app-linear-chart
+    [data]="humidityData"
+    [min]="0"
+    [max]="100"
+  ></app-linear-chart>
 
   <div class="product-content-title">
     {{ "product.pressure" | translate }}
   </div>
-  <app-linear-chart [data]="pressureData" [min]="950" [max]="1020"></app-linear-chart>
+  <app-linear-chart
+    [data]="pressureData"
+    [min]="950"
+    [max]="1020"
+  ></app-linear-chart>
 
   <div class="product-content-title">
     {{ "product.rain" | translate }}
