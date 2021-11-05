@@ -25,6 +25,7 @@ export class VerifierButtonComponent implements OnInit {
   ) {}
   
   ngOnInit(): void {
+    console.log(this.hashes)
     this.proofVerified = null;
     this.proofLoading = false;
 

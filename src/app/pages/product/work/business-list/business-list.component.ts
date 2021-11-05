@@ -1,11 +1,13 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { VerifierService } from "../../verifier/verifier.service";
 import { ProductService } from "../../product.service";
-import { map } from "rxjs/operators";
+import { ignoreElements, map, switchMap } from "rxjs/operators";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CoreService } from "src/app/services/core.service";
-import { YEARS } from "../../product.config"
-
+import { YEARS } from "../../product.config";
+import { Observable } from "rxjs";
+import { BusinessEntity } from "./business-list.entity";
+import { filter } from "rxjs/operators";
 
 @Component({
   selector: "app-business-list",
@@ -17,12 +19,13 @@ export class BusinessListComponent implements OnInit {
 
   public loadedExpenses = <any>[];
   public item;
-  public token_id;
+  public tokenId;
   public category_id;
-  public categoriesLabels = <any>[]
-  public selectedCategory;
+  public categoriesLabels = <any>[];
   public active;
-
+  public filteredExpenses = <any>[];
+  public expense;
+  public selectedCategory;
 
   constructor(
     public coreService: CoreService,
@@ -33,60 +36,53 @@ export class BusinessListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.fetchExpenses(2020, 1)
-    this.fetchLabels()
-    this.selectedCategory;
-
-    if (this.selectedCategory) {
-      this.active = this.selectedCategory[0].id;
-    }
+ 
+    this.fetchLabels();
 
     this.route.paramMap.subscribe((params) => {
-      let id = params.get("id");
+   
+    let id = params.get("id")
 
-      if (id) {
-        let products = this.coreService.getProductList();
-        let item = products.filter((item) => item.id == id);
+    if (id) {
+      let products = this.coreService.getProductList();
+      let item = products.filter((item) => item.id == id);
 
-        if (item && item[0]) {
-          this.item = item[0];
-          return;
-        }
+      if (item && item[0]) {
+        this.item = item[0];
+        console.log(this.item, "item")
+        this.fetchExpenses(this.item.year, this.selectedCategory);
+
+        return;
       }
-
-      this.router.navigate(["/"]);
-    });
-
-  }
-
-
-   public onCategoryChange(category) {
-     console.log(category)
-      this.active = category;
     }
 
+    this.router.navigate(["/"]);
+  });
+  }
 
-  public fetchExpenses(token_id, category_id) {
-    this.productService
-      .getExpenses(token_id, category_id)
-      .subscribe((data) => {
+  public fetchExpenses(tokenId: any, selectedCategory: any): void {
 
-        this.loadedExpenses = data;
-        console.log(data, "expenses data");
-        console.log(this.loadedExpenses, "loaded expenses data");
-      });
+    this.productService.getExpenses(tokenId, selectedCategory).subscribe((data) => {
+      this.loadedExpenses = data;
+      console.log(data, "expenses data");
+    
+    });
   }
 
   public fetchLabels() {
-    this.productService
-    .getCategoriesLabels()
-    .subscribe((data) => {
-      this.categoriesLabels = data
-      console.log(this.categoriesLabels)
-    })
-
+    this.productService.getCategoriesLabels().subscribe((data) => {
+      this.categoriesLabels = data;
+      console.log(this.categoriesLabels);
+    });
   }
+
+/*   public onSelectedCategory(selectedCategory: any): void {
+    this.productService
+
+      .getExpensesForSelectedCategory(selectedCategory)
+      .subscribe((data) => {
+        this.filteredExpenses = data;
+        console.log(this.filteredExpenses, "filtered expenses");
+      });
+  } */
 }
-
-
-

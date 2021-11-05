@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { filter, map, reduce } from "rxjs/operators";
 import HeatmapData from "./sensors/heatmap-chart/heatmap-data.entity";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { HEATMAP_TABS } from "./sensors/heatmap-chart/heatmap-chart.config";
 import { YEARS, MONTHS } from "./product.config";
@@ -464,27 +464,20 @@ export class ProductService {
     );
   }
 
-  public getExpenses(token_id?: number, category_id?: number) {
+  public getExpenses(tokenId: string, selectedCategory: string) {
     let params = "?";
-    if (token_id) params += `token_id=${token_id}`;
-    if (category_id) params += `&category_id=${category_id}`;
-   
+    if (tokenId) params += `token_id=${tokenId}`;
+    if (selectedCategory) params += `&category_id=${selectedCategory}`;
 
-return this.http.get(`${environment.apiUrl}/expenses${params}`).pipe(   
-    /*  return this.http
-      .get(`${environment.apiUrl}/expenses?token_id=2022&category_id=1`)
-      .pipe(   */
-        map((response: any) => {
-          console.log(response, "response expenses api");
-          let expensesResponse = Object.keys(response);
-          for (let i = 0; i < expensesResponse.length; i++) {
-            let key = expensesResponse[i];
-            console.log(response[key], "business entity");
-            console.log(response.expenses[0].timestamp, "timestamp");
-          }
-          return new BusinessEntity(response);
-        })
-      );
+    return this.http.get(`${environment.apiUrl}/expenses${params}`).pipe(
+      map((response: any) => {
+        let expensesResponse = Object.keys(response);
+        for (let i = 0; i < expensesResponse.length; i++) {
+          let key = expensesResponse[i];
+        }
+        return new BusinessEntity(response);
+      })
+    );
   }
 
   public getDashboardData() {
@@ -593,13 +586,12 @@ return this.http.get(`${environment.apiUrl}/expenses${params}`).pipe(
     const randomCycleString = growingCycles[randomCycle];
     return randomCycleString;
   }
-  
-  public getCategoriesLabels () {
+
+  public getCategoriesLabels() {
     return this.http.get(`${environment.apiUrl}/language/es`).pipe(
       map((response: any) => {
-        let categoriesLabels = response.expenses.categories 
-        return categoriesLabels
-        
+        let categoriesLabels = response.expenses.categories;
+        return categoriesLabels;
       })
     );
   }

@@ -3,14 +3,14 @@ export const TABS = [
     id: "SENSORIC",
     name: "product.tabs.sensoric",
   },
-  // {
-  //   id: "WORK",
-  //   name:"product.tabs.work"
-  // } ,
-  // {
-  //   id: "BUSINESS",
-  //   name:"product.tabs.business"
-  // }
+   {
+    id: "WORK",
+     name:"product.tabs.work"
+   } ,
+   {
+    id: "BUSINESS",
+     name:"product.tabs.business"
+   }
 ];
 
 export const YEARS = [2019, 2020, 2021];

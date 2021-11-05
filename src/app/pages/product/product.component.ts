@@ -28,6 +28,7 @@ export class ProductComponent {
   public irradianceIRData = [];
   public irradianceVIData = [];
   public filterType = 'month';
+  public filteredCategory = null
 
   public tabs = [];
   public tabActive;
@@ -70,6 +71,7 @@ export class ProductComponent {
     this.productService.getSensorsData(year, month, date )
       .subscribe(data => {
         this.filterType = date ? 'day' : month ? 'month' : 'year';
+        this.filteredCategory;
         this.heatmapData = data.soilHumidity;
         this.temperatureData = data.temperature;
         this.windSpeedData = data.windSpeed;

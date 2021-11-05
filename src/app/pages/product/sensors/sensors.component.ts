@@ -33,8 +33,6 @@ export class SensorsComponent {
   public lastUpdatedDate = <any>[];
   public loading = true;
 
-  public tabs = [];
-  public tabActive;
   public apiUrl;
 
   constructor(
@@ -45,8 +43,7 @@ export class SensorsComponent {
   ) {}
 
   ngOnInit() {
-    this.tabs = TABS;
-    this.tabActive = this.tabs[0];
+
 
     this.apiUrl = environment.apiUrl;
 
@@ -60,6 +57,7 @@ export class SensorsComponent {
 
       if (id) {
         let products = this.coreService.getProductList();
+        console.log(products, "proddd")
         let item = products.filter((item) => item.id == id);
 
         if (item && item[0]) {
@@ -109,9 +107,6 @@ export class SensorsComponent {
     this.router.navigate(["/"]);
   }
 
-  public onTabChange(event) {
-    this.tabActive = event;
-  }
 
   public fetchDashboardData() {
     this.productService.getDashboardSensorData().subscribe((data) => {
