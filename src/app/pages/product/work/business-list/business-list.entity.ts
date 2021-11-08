@@ -19,7 +19,7 @@ export class BusinessEntity {
       timestamp: Date;
       expense_id: number;
       description: string;
-      value: number;
+      value: number ;
 
     }[];
     total_tokens_year: number;

@@ -1,28 +1,18 @@
 <div class="expenses-list-container">
-
   <div class="product-content-subtitle">
     <h2>{{'business.list' | translate}}</h2>
   </div>
 
-
-
-
-
   <div class="category-selector">
     <select [(ngModel)]="selectedCategory" (ngModelChange)="fetchExpenses(item.year, selectedCategory)"
       style="border-bottom: 1px solid black; border-top: none; border-right: none; border-left: none; outline: none;">
-      <option value="undefined">{{'All categories' | translate}}</option>
-
-
+      <option value="all">{{'All categories' | translate}}</option>
       <option *ngFor="let category of categoriesLabels | keyvalue " [value]="category.key">{{ category.value }}</option>
     </select>
   </div>
 
   <div class="expenses-list">
-
-
-   
-    <div *ngIf="loadedExpenses.expenses.length === 0 || selectedCategory && filteredExpenses.expenses.length === 0">
+    <div *ngIf=" selectedCategory && loadedExpenses.expenses.length === 0">
       <div class="empty-state-img">
         <img src="/assets/images/list.png" alt="No expenses created">
         {{'expenses-app.home.empty-state' | translate}}
@@ -47,8 +37,8 @@
     </div>
 
 
-    <div *ngIf="selectedCategory && filteredExpenses.expenses.length > 0">
-      <div class="expense" *ngFor="let expense of filteredExpenses.expenses">
+    <div *ngIf="selectedCategory && loadedExpenses.expenses.length > 0">
+      <div class="expense" *ngFor="let expense of loadedExpenses.expenses">
         <div class="expense-box">
           <div class="expense-description">
             <p class="expense-date">{{expense.timestamp | date:"short"}}</p>
@@ -63,7 +53,5 @@
         <hr>
       </div>
     </div>
-  
-
   </div>
 </div>

@@ -437,8 +437,6 @@ export class ProductService {
 
     return this.http.get(`${environment.apiUrl}/tasks${params}`).pipe(
       map((response: any) => {
-        console.log(response, "response tasks api");
-
         return response.map((item) => {
           return new TaskEntity(item);
         });
@@ -447,7 +445,6 @@ export class ProductService {
       map((response: TaskEntity[]) => {
         let result = {};
         response.forEach((item) => {
-          console.log(item);
           let timestamp =
             Math.floor(item.startDate.getTime() / (1000 * 60 * 60 * 24)) *
             1000 *
@@ -456,7 +453,6 @@ export class ProductService {
             24;
           result[timestamp] = result[timestamp] || [];
           result[timestamp].push(item);
-          console.log(timestamp, "tasks timestamp");
         });
 
         return result;
@@ -467,7 +463,7 @@ export class ProductService {
   public getExpenses(tokenId: string, selectedCategory: string) {
     let params = "?";
     if (tokenId) params += `token_id=${tokenId}`;
-    if (selectedCategory) params += `&category_id=${selectedCategory}`;
+    if (selectedCategory && selectedCategory!=="all") params += `&category_id=${selectedCategory}`;
 
     return this.http.get(`${environment.apiUrl}/expenses${params}`).pipe(
       map((response: any) => {

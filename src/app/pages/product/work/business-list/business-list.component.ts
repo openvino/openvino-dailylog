@@ -1,13 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { VerifierService } from "../../verifier/verifier.service";
 import { ProductService } from "../../product.service";
-import { ignoreElements, map, switchMap } from "rxjs/operators";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CoreService } from "src/app/services/core.service";
-import { YEARS } from "../../product.config";
-import { Observable } from "rxjs";
-import { BusinessEntity } from "./business-list.entity";
-import { filter } from "rxjs/operators";
 
 @Component({
   selector: "app-business-list",
@@ -22,9 +17,6 @@ export class BusinessListComponent implements OnInit {
   public tokenId;
   public category_id;
   public categoriesLabels = <any>[];
-  public active;
-  public filteredExpenses = <any>[];
-  public expense;
   public selectedCategory;
 
   constructor(
@@ -36,53 +28,39 @@ export class BusinessListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
- 
     this.fetchLabels();
-
     this.route.paramMap.subscribe((params) => {
-   
-    let id = params.get("id")
+      let id = params.get("id");
 
-    if (id) {
-      let products = this.coreService.getProductList();
-      let item = products.filter((item) => item.id == id);
+      if (id) {
+        let products = this.coreService.getProductList();
+        let item = products.filter((item) => item.id == id);
 
-      if (item && item[0]) {
-        this.item = item[0];
-        console.log(this.item, "item")
-        this.fetchExpenses(this.item.year, this.selectedCategory);
+        if (item && item[0]) {
+          this.item = item[0];
+          console.log(this.item, "item");
+          this.fetchExpenses(this.item.year, this.selectedCategory);
 
-        return;
+          return;
+        }
       }
-    }
 
-    this.router.navigate(["/"]);
-  });
+      this.router.navigate(["/"]);
+    });
   }
 
   public fetchExpenses(tokenId: any, selectedCategory: any): void {
-
-    this.productService.getExpenses(tokenId, selectedCategory).subscribe((data) => {
-      this.loadedExpenses = data;
-      console.log(data, "expenses data");
-    
-    });
+    this.productService
+      .getExpenses(tokenId, selectedCategory)
+      .subscribe((data) => {
+        this.loadedExpenses = data;
+        console.log(data, "expenses data");
+      });
   }
 
   public fetchLabels() {
     this.productService.getCategoriesLabels().subscribe((data) => {
       this.categoriesLabels = data;
-      console.log(this.categoriesLabels);
     });
   }
-
-/*   public onSelectedCategory(selectedCategory: any): void {
-    this.productService
-
-      .getExpensesForSelectedCategory(selectedCategory)
-      .subscribe((data) => {
-        this.filteredExpenses = data;
-        console.log(this.filteredExpenses, "filtered expenses");
-      });
-  } */
 }
