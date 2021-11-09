@@ -55,6 +55,10 @@
 
     &-description {
       width: 80%;
+     &-text {
+       font-weight: 400;
+       font-size: 14px;
+     }
 
       & h3 {
         color: var(--primary-color);

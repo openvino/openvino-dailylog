@@ -27,7 +27,7 @@
             <p *ngIf="expense.categories && expense.categories.length > 0">
               {{'expenses.categories' | translate}}</p>
             <h3>{{'expenses.categories.' + expense.expense_id  | translate}}</h3>
-            <p>{{expense.description}}</p>
+            <p class="expense-description-text">{{expense.description}}</p>
             <h5>{{expense.value + " $"}}</h5>
           </div>
           <app-verifier-button [hashes]="[expense.hash]"></app-verifier-button>

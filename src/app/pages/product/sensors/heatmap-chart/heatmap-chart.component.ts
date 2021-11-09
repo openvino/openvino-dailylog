@@ -94,7 +94,6 @@ export class HeatmapComponent {
     if (this.zoneData[day].data[zone] !== null) {
       this.activeDay = day;
       this.activeZone = zone;
-      console.log(this.zoneData[day]);
       this.verifierService.openVerifier(
         $event.pageX,
         $event.pageY,

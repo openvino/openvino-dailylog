@@ -54,7 +54,6 @@ export class BusinessListComponent implements OnInit {
       .getExpenses(tokenId, selectedCategory)
       .subscribe((data) => {
         this.loadedExpenses = data;
-        console.log(data, "expenses data");
       });
   }
 

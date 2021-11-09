@@ -102,7 +102,6 @@ export class ProductComponent {
   }
 
   public onCategoryChange(event){
-    console.log(event)
     this.categoryActive=event
   }
 }
