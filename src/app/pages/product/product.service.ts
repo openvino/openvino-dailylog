@@ -460,10 +460,10 @@ export class ProductService {
     );
   }
 
-  public getExpenses(tokenId: string, selectedCategory: string) {
+  public getExpenses(tokenId: string, selectedCategory: number) {
     let params = "?";
     if (tokenId) params += `token_id=${tokenId}`;
-    if (selectedCategory && selectedCategory!=="all") params += `&category_id=${selectedCategory}`;
+    if (selectedCategory && selectedCategory>=0 ) params += `&category_id=${selectedCategory}`;
 
     return this.http.get(`${environment.apiUrl}/expenses${params}`).pipe(
       map((response: any) => {
@@ -586,7 +586,7 @@ export class ProductService {
   public getCategoriesLabels() {
     return this.http.get(`${environment.apiUrl}/language/es`).pipe(
       map((response: any) => {
-        let categoriesLabels = response.expenses.categories;
+        let categoriesLabels = response.expenses.categories ;
         return categoriesLabels;
       })
     );

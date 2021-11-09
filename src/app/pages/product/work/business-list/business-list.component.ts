@@ -17,7 +17,8 @@ export class BusinessListComponent implements OnInit {
   public tokenId;
   public category_id;
   public categoriesLabels = <any>[];
-  public selectedCategory;
+  public selectedCategory: number = -1;
+
 
   constructor(
     public coreService: CoreService,
@@ -38,7 +39,6 @@ export class BusinessListComponent implements OnInit {
 
         if (item && item[0]) {
           this.item = item[0];
-          console.log(this.item, "item");
           this.fetchExpenses(this.item.year, this.selectedCategory);
 
           return;

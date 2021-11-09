@@ -33,14 +33,15 @@ export class BusinessEntity {
         return {
           hash: Record.fromHash(expense.hash),
           token_id: expense.token_id,
-          timestamp: new Date(expense.timestamp),
+          timestamp: expense.timestamp,
           expense_id: expense.expense_id,
           description: expense.description,
           value:
             expense.token_id == 0
-              ? parseInt(((expense.value * this.tokensPerYear) / this.totalTokens).toFixed(2))
+              ? parseFloat(((expense.value * this.tokensPerYear) / this.totalTokens).toFixed(2))
 
-              : parseInt(expense.value.toFixed(2)),
+              : parseFloat(expense.value.toFixed(2)),
+
         };
       }); 
     }
