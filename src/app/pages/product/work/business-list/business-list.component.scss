@@ -123,20 +123,7 @@ hr {
   flex-direction: column;
   align-items: center;
   padding: 40px 0;
-  opacity: 50%;
-
-  img {
-    width: 4%;
-    padding-bottom: 10px;
-  }
-}
-
-.empty-state-img {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 0;
-  opacity: 50%;
+  opacity: 0.5;
 
   img {
     width: 4%;
