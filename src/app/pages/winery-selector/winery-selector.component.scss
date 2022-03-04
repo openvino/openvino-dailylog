@@ -1,0 +1,141 @@
+.winery-selector {
+  min-height: 100vh;
+  background-color: var(--background-gray);
+
+  & > .container {
+    min-height: 100vh;
+    padding: 8px 16px;
+  }
+
+  &-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 40px 40px;
+    height: 110px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(211, 211, 211);
+
+    background-color: var(--background-gray);
+
+    z-index: 2;
+    & > ul {
+      margin: 0px;
+      & > li {
+        padding: 0 20px;
+        text-transform: uppercase;
+        list-style-type: none;
+        letter-spacing: 1px;
+      }
+    }
+    & > picture {
+      cursor: pointer;
+    }
+
+    & > img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      min-height: 26px;
+    }
+  }
+
+  &-content {
+    padding-top: 206px;
+    display: flex;
+    flex-direction: column;
+
+    &-header {
+      flex: 1;
+      width: 100%;
+      max-width: 480px;
+      color: var(--primary-text-color);
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      padding: 60px 0;
+
+      h1 {
+        font-size: 2rem;
+        letter-spacing: 2.52px;
+        text-transform: uppercase;
+      }
+
+      h2 {
+        font-size: 1rem;
+        opacity: 0.4;
+        letter-spacing: 0.88px;
+      }
+      p {
+        font-size: 0.5rem;
+      }
+    }
+
+    &-items {
+      flex: 2;
+    }
+
+    &-button {
+      margin: 32px 16px;
+      padding: 8px;
+
+      max-width: 100%;
+      width: 300px;
+      align-self: center;
+      border-radius: 5px;
+      background-color: var(--primary-color);
+
+      font-size: 1rem;
+
+      text-transform: uppercase;
+      letter-spacing: 0.88px;
+      text-align: center;
+      color: #ffffff;
+
+      cursor: pointer;
+
+      &:hover {
+        filter: brightness(85%);
+      }
+
+      &:active {
+        filter: brightness(70%);
+      }
+    }
+  }
+
+  &-cards {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .input-group {
+    width: 50%;
+
+    & > input {
+      background-color: rgb(235, 235, 235);
+      border:none;
+      padding: 25px 40px;
+    }
+  }
+}
+
+.card-group {
+ text-align: center;
+}
+
+.form-control {
+  background: url(/assets/images/search.png) no-repeat 10px;
+  background-size: 20px;
+  background-color: #747474;
+}
+
+.form-control:focus { 
+  outline: none !important;
+  border-color: #7a7a7a!important;
+  box-shadow: 0 0 2px #b1b1b1!important;
+}

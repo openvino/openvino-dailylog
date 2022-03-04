@@ -1,0 +1,11 @@
+  <div class="card" (click)="onClick()">
+    <div class="card-body">
+    <p class="card-img-link">Visit winery ></p>
+    <div>
+      <a href={{product.website}}>
+          <img class="card-img-top" src={{product.img}} [alt]="'Costaflores Dailylog - ' + product.id">
+      </a>
+    </div>
+      <h5 class="card-title">{{product.name}}</h5>
+    </div>
+  </div>

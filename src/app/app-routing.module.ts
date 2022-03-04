@@ -8,6 +8,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/selector/selector.module').then(m => m.SelectorModule)
   },
   { 
+    path: 'wineries', 
+    loadChildren: () => import('./pages/winery-selector/winery-selector.module').then(m => m.WinerySelectorModule)
+  },
+  { 
     path: 'proof',
     loadChildren: () => import('./pages/proof/proof.module').then(m => m.ProofModule)
   },

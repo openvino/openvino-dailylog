@@ -18,8 +18,8 @@ export class SelectorComponent implements OnInit {
 
   ngOnInit(): void {
     this.productList = this.coreService.getProductList()
+    console.log(this.productList)
   }
-
   onProductClick(product) {
     this.router.navigate([`${product.id}`])
   }

@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreService } from './services/core.service';
 import { SelectorModule } from './pages/selector/selector.module';
+import { WinerySelectorModule } from "./pages/winery-selector/winery-selector.module"
 import { ProductModule } from './pages/product/product.module';
 import { EnchainteService } from './services/enchainte.service';
 import { CommonModule } from '@angular/common';
@@ -33,6 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     SelectorModule,
+    WinerySelectorModule,
     ProductModule,
   
   ],
