@@ -18,7 +18,7 @@ export class WinerySelectorComponent implements OnInit {
 
     this.productList = [
       {
-        id: "1",
+        id: 1,
         name: "Openvino",
         website: "https://openvino.org/ca/",
         img: "assets/images/winery-01.jpeg",
@@ -58,8 +58,10 @@ export class WinerySelectorComponent implements OnInit {
   }
 
   onProductClick(product) {
+    console.log(product);
     this.router.navigate([`${product.id}`]) 
     console.log(product);
+
   }
   
   onLogoClick() {
