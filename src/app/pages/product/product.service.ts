@@ -10,6 +10,8 @@ import LinearChartData from "./sensors/linear-chart/linear-data.entity";
 import { TaskEntity } from "./work/tasks-list/tasks-list.entity";
 import { Moment } from "moment";
 import { BusinessEntity } from "./work/business-list/business-list.entity";
+import { WineriesEntity } from "src/app/pages/winery-selector/winery-selector.entity";
+
 
 @Injectable({
   providedIn: "root",
@@ -591,4 +593,18 @@ export class ProductService {
       })
     );
   }
+
+ /*  public getWineries () {
+    return this.http.get(`${environment.apiUrl}/wineries`).pipe(
+      map((response: any) => {
+        let wineriesResponse = Object.keys(response);
+        for (let i = 0; i < wineriesResponse.length; i++) {
+          let key = wineriesResponse[i];
+        }
+        return new WineriesEntity(response);
+      })
+    );
+  } */
 }
+
+

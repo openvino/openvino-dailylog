@@ -1,11 +1,15 @@
 .card {
   background-color: transparent;
   border: none;
+  cursor: pointer;
 
   & > a {
     text-decoration: none;
     color: var(--primary-text-color);
+    cursor: pointer;
   }
+
+
 
   .card-body {
     padding: 8px;

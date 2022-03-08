@@ -29,10 +29,21 @@
         </div>
 
       </div>
-      <div class="card-group">
-        <product-winery-selector class="" style="padding-bottom: 24px; width: 25%;" *ngFor="let product of productList" [product]="product"
-          (onProductClick)="onProductClick($event)"></product-winery-selector>
+      <div *ngIf="wineriestList.length > 0" class="card-group">
+        <product-winery-selector  class="single-card" *ngFor="let winery of wineriestList" [product]="winery"
+        (onProductClick)="onProductClick($event)"></product-winery-selector>
       </div>
+
+     
+        <div *ngIf="wineriestList.length === 0" class="empty-state-img">
+          <div>
+
+            <img src="/assets/images/winery-empty-state.png" alt="No wineries added yet">
+            {{'wineries.empty-state' | translate}} No wineries added yet
+
+          </div>
+        </div>
+     
 
     </div>
   </div>
