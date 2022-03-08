@@ -24,26 +24,20 @@
           <h1>{{ 'Wineries' }}</h1>
         </div>
         <div class="input-group rounded pb-2">
-          <input type="search" class="form-control rounded search-input" placeholder="Search for your winery here"
-            aria-label="Search" aria-describedby="search-addon" />
+          <input type="text" class="form-control rounded search-input" [(ngModel)]="searchWinery" placeholder="Search for your winery here"
+            name="search"  />
         </div>
-
       </div>
       <div *ngIf="wineriestList.length > 0" class="card-group">
-        <product-winery-selector  class="single-card" *ngFor="let winery of wineriestList" [product]="winery"
-        (onProductClick)="onProductClick($event)"></product-winery-selector>
+        <product-winery-selector class="single-card" *ngFor="let winery of wineriestList | filter:searchWinery" [product]="winery"
+          (onProductClick)="onProductClick($event)"></product-winery-selector>
       </div>
-
-     
-        <div *ngIf="wineriestList.length === 0" class="empty-state-img">
-          <div>
-
-            <img src="/assets/images/winery-empty-state.png" alt="No wineries added yet">
-            {{'wineries.empty-state' | translate}} No wineries added yet
-
-          </div>
+      <div *ngIf="wineriestList.length === 0" class="empty-state-img">
+        <div>
+          <img src="/assets/images/winery-empty-state.png" alt="No wineries added yet">
+          {{'wineries.empty-state' | translate}} No wineries added yet
         </div>
-     
+      </div>
 
     </div>
   </div>

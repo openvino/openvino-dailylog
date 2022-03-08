@@ -12,6 +12,7 @@ import { ProductService } from "../product/product.service";
 export class WinerySelectorComponent implements OnInit {
   public wineriestList = [];
   public productList = [];
+  public searchWinery :string = "";
 
   constructor(public router: Router, public coreService: CoreService,  private productService: ProductService,
 
@@ -23,7 +24,7 @@ export class WinerySelectorComponent implements OnInit {
      */
 
     this.wineriestList = [
-     /*  {
+      {
         id: 1,
         name: "Openvino",
         website: "https://openvino.org/ca/",
@@ -43,22 +44,22 @@ export class WinerySelectorComponent implements OnInit {
       },
       {
         id: 4,
-        name: "Openvino",
+        name: "Lorem",
         website: "www.openvino.com",
         img: "assets/images/winery-01.jpeg",
       },
       {
         id: 5,
-        name: "Marlet Wines",
+        name: "Ipsum",
         website: "www.openvino.com",
         img: "assets/images/winery-02.jpeg",
       },
       {
         id: 6,
-        name: "Vallformosa",
+        name: "Ejsjf",
         website: "www.openvino.com",
         img: "assets/images/winery-03.jpeg",
-      }, */
+      },
     ];
     console.log(this.productList)
   }
