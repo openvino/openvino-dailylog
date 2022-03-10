@@ -28,11 +28,11 @@
             name="search"  />
         </div>
       </div>
-      <div *ngIf="wineriestList.length > 0" class="card-group">
-        <product-winery-selector class="single-card" *ngFor="let winery of wineriestList | filter:searchWinery" [product]="winery"
+      <div *ngIf="wineriesList.length > 0" class="card-group">
+        <product-winery-selector class="single-card" *ngFor="let winery of wineriesList | filter:searchWinery" [product]="winery"
           (onProductClick)="onProductClick($event)"></product-winery-selector>
       </div>
-      <div *ngIf="wineriestList.length === 0" class="empty-state-img">
+      <div *ngIf="wineriesList.length === 0" class="empty-state-img">
         <div>
           <img src="/assets/images/winery-empty-state.png" alt="No wineries added yet">
           {{'wineries.empty-state' | translate}} No wineries added yet

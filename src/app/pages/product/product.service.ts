@@ -594,17 +594,14 @@ export class ProductService {
     );
   }
 
- /*  public getWineries () {
+  public getWineries () {
     return this.http.get(`${environment.apiUrl}/wineries`).pipe(
       map((response: any) => {
-        let wineriesResponse = Object.keys(response);
-        for (let i = 0; i < wineriesResponse.length; i++) {
-          let key = wineriesResponse[i];
-        }
-        return new WineriesEntity(response);
-      })
-    );
-  } */
+        return response.map((item) => {
+          return new WineriesEntity(item);
+        });
+      }),
+    )} 
 }
 
 

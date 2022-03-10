@@ -21,7 +21,6 @@
       width: fit-content;
     }
     .card-img-top {
-      width: auto;
       height: 200px;
       border-radius: 5px;
       object-fit: cover;
@@ -34,7 +33,6 @@
 
     .card-img-top:hover {
       opacity: 0.3;
-      width: auto;
     }
 
     .card-img-link {
