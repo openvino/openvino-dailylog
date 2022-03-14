@@ -33,7 +33,6 @@ export class WinerySelectorComponent implements OnInit {
   }
 
   onProductClick(product) {
-    console.log(product)
     this.router.navigate([`${product.id}`]);
   }
 
