@@ -9,9 +9,10 @@ import { ProductService } from "../product/product.service";
   styleUrls: ["./winery-selector.component.scss"],
 })
 export class WinerySelectorComponent implements OnInit {
-  public wineriesList = <any>[];
   public productList = <any>[];
-  public searchWinery: string = "";
+  public wineriesList = <any>[];
+  public allWineries = <any>[];
+  public searchTerm: string;
 
   constructor(
     public router: Router,
@@ -25,17 +26,25 @@ export class WinerySelectorComponent implements OnInit {
     this.fetchWineries();
   }
 
+  search(value: string): void {
+    this.wineriesList = this.allWineries.filter((val) =>
+      val.name.toLowerCase().includes(value)
+    );
+  }
+
   onProductClick(product) {
+    console.log(product)
     this.router.navigate([`${product.id}`]);
   }
 
   onLogoClick() {
-    window.open("https://openvino.exchange/");
+    window.open("https://openvino.org/es/");
   }
 
   public fetchWineries() {
     this.productService.getWineries().subscribe((data) => {
       this.wineriesList = data;
+      this.allWineries = this.wineriesList
     });
   }
 }

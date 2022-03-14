@@ -12,8 +12,8 @@
     </div>
     <div class="collapse navbar-collapse w-full justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link" href="#">OPENVINO WIKI</a>
-        <a class="nav-item nav-link" href="#">CONTACT</a>
+        <a class="nav-item nav-link" href="https://openvino.atlassian.net/wiki/spaces/OPENVINO/overview?mode=global">OPENVINO WIKI</a>
+        <a class="nav-item nav-link" href="https://openvino.org/es/">CONTACT</a>
       </div>
     </div>
   </nav>
@@ -24,19 +24,18 @@
           <h1>{{ 'Wineries' }}</h1>
         </div>
         <div class="input-group rounded pb-2">
-          <input type="text" class="form-control rounded search-input" [(ngModel)]="searchWinery" placeholder="Search for your winery here"
-            name="search"  />
+          <input type="text" class="form-control rounded search-input" [(ngModel)]="searchTerm" placeholder="Search for your winery here"
+          (input)="search($event.target.value)" name="searchTerm"  />
         </div>
       </div>
       <div *ngIf="wineriesList.length > 0" class="card-group">
-        <product-winery-selector class="single-card" *ngFor="let winery of wineriesList | filter:searchWinery" [product]="winery"
+        <product-winery-selector class="single-card" *ngFor="let winery of wineriesList " [product]="winery"
           (onProductClick)="onProductClick($event)"></product-winery-selector>
       </div>
       <div *ngIf="wineriesList.length === 0" class="empty-state-img">
         <div>
           <img src="/assets/images/winery-empty-state.png" alt="No wineries added yet">
-          {{'wineries.empty-state' | translate}} No wineries added yet
-        </div>
+          {{'No wineries added yet'}} 
       </div>
 
     </div>

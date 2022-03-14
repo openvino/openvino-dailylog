@@ -12,6 +12,7 @@ import { ProductModule } from './pages/product/product.module';
 import { EnchainteService } from './services/enchainte.service';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { SearchWineriesPipe } from './pages/winery-selector/search-wineries.pipe';
 
 
 
@@ -22,6 +23,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    SearchWineriesPipe,
     
   ],
   imports: [

@@ -175,16 +175,18 @@ width: 100%;
   position: absolute;
   top: 50%; right: 50%;
   transform: translate(50%,-50%);
+
+  text-align: center;
 }
 
 img {
     width: 11%;
     padding-bottom: 10px;
     @media (max-width: 1084px) {
-      width: 6%;
+      width: 15%;
     }
     @media (max-width: 496px) {
-      width: 10%;
+      width: 20%;
     }
   }
 }
