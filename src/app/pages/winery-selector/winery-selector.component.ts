@@ -28,7 +28,7 @@ export class WinerySelectorComponent implements OnInit {
 
   search(value: string): void {
     this.wineriesList = this.allWineries.filter((val) =>
-      val.name.toLowerCase().includes(value)
+      val.name.toLowerCase().includes(value.toLowerCase())
     );
   }
 
@@ -43,7 +43,7 @@ export class WinerySelectorComponent implements OnInit {
   public fetchWineries() {
     this.productService.getWineries().subscribe((data) => {
       this.wineriesList = data;
-      this.allWineries = this.wineriesList
+      this.allWineries = this.wineriesList;
     });
   }
 }
