@@ -16,6 +16,7 @@ export class TasksListComponent implements OnInit {
   public item;
   public loadedTasksKeys = <any>[];
   public taskKeyToDate;
+  public wineryId;
 
   constructor(
     public coreService: CoreService,
@@ -30,13 +31,13 @@ export class TasksListComponent implements OnInit {
       let id = params.get("id");
 
       if (id) {
-        let products = this.coreService.getProductList();
-        let item = products.filter((item) => item.id == id);
+        let products = this.coreService.getProductList(this.wineryId);
+      /*   let item = products.filter((item) => item.id == id);
 
         if (item && item[0]) {
           this.item = item[0];
           return;
-        }
+        } */
       }
 
       this.router.navigate(["/"]);
@@ -44,7 +45,7 @@ export class TasksListComponent implements OnInit {
   }
 
   public onDateChange($event) { 
-    this.fetchTasks($event.year, $event.month, $event.day);
+    this.fetchTasks( this.wineryId, $event.year, $event.month, $event.day);
   }
 
   public getDate(key) {
@@ -61,9 +62,9 @@ export class TasksListComponent implements OnInit {
     return 0;
   }
 
-  public fetchTasks(year, month, date) {
+  public fetchTasks(wineryId, year, month, date) {
     this.productService
-      .getTasks(year, month, date)
+      .getTasks(wineryId,year, month, date)
 
       .subscribe((data) => {
         this.filterType = date ? "day" : month ? "month" : "year";

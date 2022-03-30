@@ -5,18 +5,18 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { 
     path: '', 
-    loadChildren: () => import('./pages/selector/selector.module').then(m => m.SelectorModule)
+    loadChildren: () => import('./pages/winery-selector/winery-selector.module').then(m => m.WinerySelectorModule)
   },
   { 
-    path: 'wineries', 
-    loadChildren: () => import('./pages/winery-selector/winery-selector.module').then(m => m.WinerySelectorModule)
+    path: ':wineryId', 
+    loadChildren: () => import('./pages/selector/selector.module').then(m => m.SelectorModule)
   },
   { 
     path: 'proof',
     loadChildren: () => import('./pages/proof/proof.module').then(m => m.ProofModule)
   },
   { 
-    path: ':id',
+    path: ':winerId/:tokenId',
     loadChildren: () => import('./pages/product/product.module').then(m => m.ProductModule)
   },
 ];

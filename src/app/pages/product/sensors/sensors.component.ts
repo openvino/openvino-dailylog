@@ -33,6 +33,8 @@ export class SensorsComponent {
   public lastUpdatedDate = <any>[];
   public loading = true;
 
+  public wineryId;
+
   public apiUrl;
 
   constructor(
@@ -56,14 +58,13 @@ export class SensorsComponent {
       let id = params.get("id");
 
       if (id) {
-        let products = this.coreService.getProductList();
-        console.log(products, "proddd")
-        let item = products.filter((item) => item.id == id);
+        let products = this.coreService.getProductList(this.wineryId);
+      /*   let item = products.filter((item) => item.id == id);
 
         if (item && item[0]) {
           this.item = item[0];
           return;
-        }
+        } */
       }
 
       this.router.navigate(["/"]);
@@ -109,13 +110,13 @@ export class SensorsComponent {
 
 
   public fetchDashboardData() {
-    this.productService.getDashboardSensorData().subscribe((data) => {
+    this.productService.getDashboardSensorData(this.wineryId).subscribe((data) => {
       this.dashboardSensorData = data;
     }),
-      this.productService.getDashboardAnalysisData().subscribe((data) => {
+      this.productService.getDashboardAnalysisData(this.wineryId).subscribe((data) => {
         this.dashboardAnalysisData = data;
       }),
-      this.productService.getDashboardData().subscribe((data) => {
+      this.productService.getDashboardData(this.wineryId).subscribe((data) => {
         this.dashboardData = data;
       });
   }
@@ -124,7 +125,7 @@ export class SensorsComponent {
   }
 
   public fetchLastUpdated() {
-    this.productService.getLastUpdate().subscribe((data) => {
+    this.productService.getLastUpdate(this.wineryId).subscribe((data) => {
       this.lastUpdatedDate = data;
     });
   }

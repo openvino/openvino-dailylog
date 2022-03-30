@@ -22,6 +22,10 @@
       <div class="d-sm-flex align-items-center justify-content-between py-2 py-sm-3">
         <div class="selector-content-header pb-2">
           <h1>{{ 'Wineries' }}</h1>
+          <div *ngIf="productList.length > -1" class="card-group">
+            <div class="single-card" *ngFor="let product of productList "
+             >{{product.year}} jjkhkkhjkn</div>
+          </div>
         </div>
         <div class="input-group rounded pb-2">
           <input type="text" class="form-control rounded search-input" [(ngModel)]="searchTerm" placeholder="Search for your winery here"
@@ -32,6 +36,9 @@
         <product-winery-selector class="single-card" *ngFor="let winery of wineriesList " [product]="winery"
           (onProductClick)="onProductClick($event)"></product-winery-selector>
       </div>
+
+    
+
       <div *ngIf="wineriesList.length === 0" class="empty-state-img">
         <div>
           <img src="/assets/images/winery-empty-state.png" alt="No wineries added yet">
@@ -39,5 +46,7 @@
       </div>
 
     </div>
+
+   
   </div>
 </div>

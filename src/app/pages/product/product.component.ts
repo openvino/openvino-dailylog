@@ -4,6 +4,8 @@ import { ProductService } from './product.service';
 import { TABS } from './product.config';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { filter } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-product',
@@ -12,7 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductComponent {
 
-  public item;
+  public item: string;
   public providerUrl: string;
   public mapsApiKey: string = environment.mapsApiKey;
   public shippingAccount: string = environment.shippingAccount;
@@ -34,6 +36,7 @@ export class ProductComponent {
   public tabActive;
   public categoryActive;
   public apiUrl;
+  public wineryId ;
 
   constructor(
     public coreService: CoreService,
@@ -45,30 +48,13 @@ export class ProductComponent {
   ngOnInit() {
     this.tabs = TABS;
     this.tabActive=this.tabs[0]
-
     this.apiUrl = environment.apiUrl;
-
     this.providerUrl = environment.providerUrl;
-
-    this.route.paramMap.subscribe(params => {
-      let id = params.get('id');
-      
-      if (id) {
-        let products = this.coreService.getProductList();
-        let item = products.filter(item => item.id == id);
-        
-        if (item && item[0]) {
-          this.item = item[0];
-          return;
-        }
-      }
-
-      this.router.navigate(['/']);
-    });
+    
   }
 
-  public fetchData(year, month, date) {
-    this.productService.getSensorsData(year, month, date )
+  public fetchData(wineryId, year, month, date) {
+    this.productService.getSensorsData(wineryId,year, month, date )
       .subscribe(data => {
         this.filterType = date ? 'day' : month ? 'month' : 'year';
         this.filteredCategory;
@@ -86,7 +72,7 @@ export class ProductComponent {
   }
 
   public onDateChange($event) {
-    this.fetchData($event.year, $event.month, $event.day);
+    this.fetchData($event.wineryId, $event.year, $event.month, $event.day);
   }
 
   public onLogoClick() {

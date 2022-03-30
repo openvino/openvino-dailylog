@@ -19,7 +19,7 @@ import { WineriesEntity } from "src/app/pages/winery-selector/winery-selector.en
 export class ProductService {
   constructor(public http: HttpClient) {}
 
-  public getSensorsData(year: number, month?: number, day?: number) {
+  public getSensorsData(wineryId:string, year: number, month?: number, day?: number) {
     let filterType = day ? "day" : month ? "month" : "year";
 
     let params = "?";
@@ -27,7 +27,7 @@ export class ProductService {
     if (month) params += `&month=${month}`;
     if (day) params += `&day=${day}`;
 
-    return this.http.get(`${environment.apiUrl}/sensor_data${params}`).pipe(
+    return this.http.get(`${environment.apiUrl}/sensor_data?${wineryId}${params}`).pipe(
       map((response: any[]) => {
         return {
           soilHumidity: this.getHeatmapData(
@@ -431,13 +431,14 @@ export class ProductService {
     return sum / array.length;
   }
 
-  public getTasks(year: number, month?: number, day?: number) {
+  public getTasks(wineryId: string, year: number, month?: number, day?: number) {
+    
     let params = "?";
     if (year) params += `year=${year}`;
     if (month) params += `&month=${month}`;
     if (day) params += `&day=${day}`;
 
-    return this.http.get(`${environment.apiUrl}/tasks${params}`).pipe(
+    return this.http.get(`${environment.apiUrl}/tasks?winery_id=${wineryId}${params}`).pipe(
       map((response: any) => {
         return response.map((item) => {
           return new TaskEntity(item);
@@ -462,9 +463,10 @@ export class ProductService {
     );
   }
 
-  public getExpenses(tokenId: string, selectedCategory: number) {
+  public getExpenses(wineryId:string, tokenId: string, selectedCategory: number) {
     let params = "?";
     if (tokenId) params += `token_id=${tokenId}`;
+    if (wineryId) params += `winerie_id=${wineryId}`;
     if (selectedCategory && selectedCategory>=0 ) params += `&category_id=${selectedCategory}`;
 
     return this.http.get(`${environment.apiUrl}/expenses${params}`).pipe(
@@ -478,16 +480,16 @@ export class ProductService {
     );
   }
 
-  public getDashboardData() {
-    return this.http.get(`${environment.apiUrl}/dashboard`).pipe(
+  public getDashboardData(wineryId: string) {
+    return this.http.get(`${environment.apiUrl}/dashboard?winerie_id=${wineryId}`).pipe(
       map((response: any) => {
         return response;
       })
     );
   }
 
-  public getDashboardSensorData() {
-    return this.http.get(`${environment.apiUrl}/dashboard`).pipe(
+  public getDashboardSensorData(wineryId: string) {
+    return this.http.get(`${environment.apiUrl}/dashboard?winerie_id=${wineryId}`).pipe(
       map((response: any) => {
         let sensorResult = response.sensor.reduce(
           (acc, curr) => {
@@ -531,8 +533,8 @@ export class ProductService {
     );
   }
 
-  public getDashboardAnalysisData() {
-    return this.http.get(`${environment.apiUrl}/dashboard`).pipe(
+  public getDashboardAnalysisData(wineryId: string) {
+    return this.http.get(`${environment.apiUrl}/dashboard?winerie_id=${wineryId}`).pipe(
       map((response: any) => {
         let analysisResult = response.analysis.reduce((acc, curr) => {
           return {
@@ -557,8 +559,8 @@ export class ProductService {
     );
   }
 
-  public getLastUpdate() {
-    return this.http.get(`${environment.apiUrl}/dashboard`).pipe(
+  public getLastUpdate(wineryId: string) {
+    return this.http.get(`${environment.apiUrl}/dashboard?winerie_id=${wineryId}`).pipe(
       map((response: any) => {
         const updates = response.sensor.sort((a, b) => {
           return a.timestamp - b.timestamp;
@@ -602,6 +604,17 @@ export class ProductService {
         });
       }),
     )} 
+
+    public getTokensByWinery (wineryId:string) {
+      let params = "?";
+      if (wineryId) params += `winerie_id=${wineryId}`;
+      return this.http.get(`${environment.apiUrl}/token${params}`).pipe(
+        map((response: any) => {
+          return response.map((item) => {
+            return new WineriesEntity(item);
+          });
+        }),
+      )} 
 }
 
 

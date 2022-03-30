@@ -18,6 +18,7 @@ export class BusinessListComponent implements OnInit {
   public category_id;
   public categoriesLabels = <any>[];
   public selectedCategory: number = -1;
+  public wineryId;
 
 
   constructor(
@@ -34,24 +35,24 @@ export class BusinessListComponent implements OnInit {
       let id = params.get("id");
 
       if (id) {
-        let products = this.coreService.getProductList();
-        let item = products.filter((item) => item.id == id);
+        let products = this.coreService.getProductList(this.wineryId);
+       /*  let item = products.filter((item) => item.id == id);
 
         if (item && item[0]) {
           this.item = item[0];
-          this.fetchExpenses(this.item.year, this.selectedCategory);
+          this.fetchExpenses(this.wineryId,this.item.year, this.selectedCategory);
 
           return;
-        }
+        } */
       }
 
       this.router.navigate(["/"]);
     });
   }
 
-  public fetchExpenses(tokenId: any, selectedCategory: any): void {
+  public fetchExpenses(wineryId: any, tokenId: any, selectedCategory: any): void {
     this.productService
-      .getExpenses(tokenId, selectedCategory)
+      .getExpenses(wineryId,tokenId, selectedCategory)
       .subscribe((data) => {
         this.loadedExpenses = data;
       });

@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { CoreService } from "src/app/services/core.service";
-import { Router } from "@angular/router";
+import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { ProductService } from "../product/product.service";
+import { filter } from "rxjs/operators";
 
 @Component({
   selector: "app-selector",
@@ -13,17 +14,19 @@ export class WinerySelectorComponent implements OnInit {
   public wineriesList = <any>[];
   public allWineries = <any>[];
   public searchTerm: string;
+  public item;
 
   constructor(
     public router: Router,
+    private route: ActivatedRoute,
     public coreService: CoreService,
     private productService: ProductService
   ) {}
 
   ngOnInit(): void {
-    this.productList = this.coreService.getProductList();
     this.wineriesList = this.productService.getWineries();
     this.fetchWineries();
+  
   }
 
   search(value: string): void {
@@ -33,7 +36,8 @@ export class WinerySelectorComponent implements OnInit {
   }
 
   onProductClick(product) {
-    this.router.navigate([`${product.id}`]);
+    console.log(product.id, "prod")
+    this.router.navigate([`/${product.id}`]);
   }
 
   onLogoClick() {
@@ -42,8 +46,12 @@ export class WinerySelectorComponent implements OnInit {
 
   public fetchWineries() {
     this.productService.getWineries().subscribe((data) => {
+      console.log(data , "response")
       this.wineriesList = data;
       this.allWineries = this.wineriesList;
     });
   }
+
+  
+
 }
