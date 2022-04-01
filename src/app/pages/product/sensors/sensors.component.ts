@@ -34,6 +34,11 @@ export class SensorsComponent {
   public loading = true;
 
   public wineryId;
+  public year;
+  public month;
+  public day;
+
+  public productList = <any>[];
 
   public apiUrl;
 
@@ -50,21 +55,33 @@ export class SensorsComponent {
     this.apiUrl = environment.apiUrl;
 
     this.providerUrl = environment.providerUrl;
-    this.fetchDashboardData();
-    this.fetchLastUpdated();
-    this.fetchRandomCycle();
-
+    
     this.route.paramMap.subscribe((params) => {
-      let id = params.get("id");
-
+      let id = params.get("tokenId");
+      let wineryId = params.get("wineryId");
+      
       if (id) {
-        let products = this.coreService.getProductList(this.wineryId);
-      /*   let item = products.filter((item) => item.id == id);
+        this.wineryId = wineryId;
 
-        if (item && item[0]) {
-          this.item = item[0];
-          return;
-        } */
+        this.fetchRandomCycle();
+        this.fetchLastUpdated();
+        this.fetchDashboardData();
+        this.fetchData(this.wineryId, this.year, this.month, this.day)
+
+        this.fetchProducts(this.wineryId);
+
+        this.coreService.getProductList(this.wineryId).subscribe((data) => {
+          let item = data.filter((token) => token.id === id);
+          if (item.length > 0) {
+            console.log(item, "2dejskf")
+            this.item = item[0];
+            console.log(this.item)
+            return;
+          }
+        });
+   
+        return;
+        
       }
 
       this.router.navigate(["/"]);
@@ -80,9 +97,10 @@ export class SensorsComponent {
     );
   }
 
-  public fetchData(year, month, date) {
-    this.productService.getSensorsData(year, month, date).subscribe((data) => {
+  public fetchData(wineryId, year, month, date) {
+    this.productService.getSensorsData(wineryId, year, month, date).subscribe((data) => {
       this.filterType = date ? "day" : month ? "month" : "year";
+this.wineryId
       this.heatmapData = data.soilHumidity;
       this.temperatureData = data.temperature;
       this.windSpeedData = data.windSpeed;
@@ -97,7 +115,7 @@ export class SensorsComponent {
   }
 
   public onDateChange($event) {
-    this.fetchData($event.year, $event.month, $event.day);
+    this.fetchData($event.wineryId, $event.year, $event.month, $event.day);
   }
 
   public onLogoClick() {
@@ -126,7 +144,14 @@ export class SensorsComponent {
 
   public fetchLastUpdated() {
     this.productService.getLastUpdate(this.wineryId).subscribe((data) => {
+      console.log(data)
       this.lastUpdatedDate = data;
+    });
+  }
+  public fetchProducts(wineryId: any) {
+    this.coreService.getProductList(wineryId).subscribe((data) => {
+      console.log(data);
+      this.productList = data;
     });
   }
 }

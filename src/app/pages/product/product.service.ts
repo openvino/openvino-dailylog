@@ -23,11 +23,12 @@ export class ProductService {
     let filterType = day ? "day" : month ? "month" : "year";
 
     let params = "?";
-    if (year) params += `year=${year}`;
+    if (wineryId) params += `winerie_id=${wineryId}`;
+    if (year) params += `&year=${year}`;
     if (month) params += `&month=${month}`;
     if (day) params += `&day=${day}`;
 
-    return this.http.get(`${environment.apiUrl}/sensor_data?${wineryId}${params}`).pipe(
+    return this.http.get(`${environment.apiUrl}/sensor_data${params}`).pipe(
       map((response: any[]) => {
         return {
           soilHumidity: this.getHeatmapData(
@@ -463,14 +464,15 @@ export class ProductService {
     );
   }
 
-  public getExpenses(wineryId:string, tokenId: string, selectedCategory: number) {
+  public getExpenses( expenseId: string, wineryId:string, selectedCategory: number) {
     let params = "?";
-    if (tokenId) params += `token_id=${tokenId}`;
-    if (wineryId) params += `winerie_id=${wineryId}`;
+    if (expenseId) params += `token_id=${expenseId}`;
+    if (wineryId) params += `&winerie_id=${wineryId}`;
     if (selectedCategory && selectedCategory>=0 ) params += `&category_id=${selectedCategory}`;
 
     return this.http.get(`${environment.apiUrl}/expenses${params}`).pipe(
       map((response: any) => {
+        console.log(response)
         let expensesResponse = Object.keys(response);
         for (let i = 0; i < expensesResponse.length; i++) {
           let key = expensesResponse[i];
@@ -562,6 +564,7 @@ export class ProductService {
   public getLastUpdate(wineryId: string) {
     return this.http.get(`${environment.apiUrl}/dashboard?winerie_id=${wineryId}`).pipe(
       map((response: any) => {
+        console.log(response, "response last update")
         const updates = response.sensor.sort((a, b) => {
           return a.timestamp - b.timestamp;
         });

@@ -1,25 +1,26 @@
 <div class="selector">
-    <div class="container">
-        <div class="selector-header">
-            <picture (click)="onLogoClick()">
-                <source media="(min-width: 576px)" srcset="assets/images/logo-costaflores.png">
-                <img src="assets/images/logo-costaflores-reduced.png" alt="Costaflores" style="width:auto;">
-            </picture>
-        </div>
-        <div class="selector-content">
-            <div class="selector-content-header py-4 py-sm-5">
-                <h1>{{ 'selection.title' | translate }}</h1>
-                <h2>{{ 'selection.subtitle' | translate }}</h2>
-            </div>
-        <div ><a routerLink="/">Back to wineries</a></div>
-            <div class="row justify-content-center selector-content-items">
-                <product-selector class="col-6 col-sm-6 col-md-4 col-lg-3" style="padding-bottom: 24px;" *ngFor="let product of productList" [product]="product" (onProductClick)="onProductClick($event)">
-                </product-selector>
-            </div>
-            
-            <div class="selector-content-button my-5" (click)="onKnowMoreClick()">
-                {{ 'selection.know-more' | translate }}
-            </div>
-        </div>
+  <div class="container">
+    <div class="selector-header">
+      <picture (click)="onLogoClick()">
+        <source media="(min-width: 576px)" srcset="assets/images/logo-costaflores.png">
+        <img src="assets/images/logo-costaflores-reduced.png" alt="Costaflores" style="width:auto;">
+      </picture>
     </div>
+    <div class="selector-content">
+      <div class="selector-content-header py-4 py-sm-5">
+        <h1>{{ 'selection.title' | translate }}</h1>
+        <h2>{{ 'selection.subtitle' | translate }}</h2>
+      </div>
+<!--       <div><a routerLink="/">Back to wineries</a></div>
+ -->      <div class="row justify-content-center selector-content-items">
+        <product-selector class="col-6 col-sm-6 col-md-4 col-lg-3" style="padding-bottom: 24px;"
+          *ngFor="let product of productList" [product]="product" (onProductClick)="onProductClick($event)" >
+        </product-selector>
+      </div>
+
+      <div class="selector-content-button my-5" (click)="onKnowMoreClick()">
+        {{ 'selection.know-more' | translate }}
+      </div>
+    </div>
+  </div>
 </div>

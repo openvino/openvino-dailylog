@@ -251,7 +251,7 @@
   </div>
 
   <h3>{{ "sensors.subtitle" | translate }}</h3>
- <!--  <div class="bottle-img">
+ <div class="bottle-img">
     <div class="bottle">
       <img
         src="/assets/images/bottle-chart-dynamic.png"
@@ -260,13 +260,13 @@
       />
       <div class="bottle-metric bottle-metric-1">
         <span class="bottle-metric-percent"
-          >{{ item.metrics.grapeCultivation }}%</span
+          >{{ item.metrics.grape_cultivation }}%</span
         >
         <span class="bottle-metric-label">{{'expenses.categories.0' | translate}}</span>
       </div>
       <div class="bottle-metric bottle-metric-2">
         <span class="bottle-metric-percent"
-          >{{ item.metrics.wineProduction }}%</span
+          >{{ item.metrics.wine_production }}%</span
         >
         <span class="bottle-metric-label">{{'expenses.categories.1' | translate}}</span>
       </div>
@@ -289,10 +289,10 @@
         <span class="bottle-metric-label">{{'expenses.categories.5' | translate}}</span>
       </div>
     </div>
-  </div>
+  </div> 
 
   <h3>{{ "product.tabs.sensoric" | translate }}</h3>
-  <div class="product-date">
+ <div class="product-date">
     <app-date-selector
       [year]="item.year"
       (onDateChange)="onDateChange($event)"
@@ -362,5 +362,5 @@
   <div class="product-content-title">
     {{ "product.irradiance-ir" | translate }}
   </div>
-  <app-linear-chart [data]="irradianceIRData"></app-linear-chart> -->
+  <app-linear-chart [data]="irradianceIRData"></app-linear-chart>  
 </div>

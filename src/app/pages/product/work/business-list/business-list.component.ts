@@ -19,6 +19,9 @@ export class BusinessListComponent implements OnInit {
   public categoriesLabels = <any>[];
   public selectedCategory: number = -1;
   public wineryId;
+  public productList = <any>[];
+  public expenseId;
+
 
 
   constructor(
@@ -32,35 +35,50 @@ export class BusinessListComponent implements OnInit {
   ngOnInit() {
     this.fetchLabels();
     this.route.paramMap.subscribe((params) => {
-      let id = params.get("id");
-
+      let id = params.get("tokenId");
+      let wineryId = params.get("wineryId");
+      
       if (id) {
-        let products = this.coreService.getProductList(this.wineryId);
-       /*  let item = products.filter((item) => item.id == id);
-
-        if (item && item[0]) {
-          this.item = item[0];
-          this.fetchExpenses(this.wineryId,this.item.year, this.selectedCategory);
-
-          return;
-        } */
+        this.wineryId = wineryId;
+        this.fetchProducts(this.wineryId);
+        
+        this.coreService.getProductList(this.wineryId).subscribe((data) => {
+          let item = data.filter((token) => token.id === id);
+          if (item.length > 0) {
+            console.log(item, "2dejskf")
+            this.item = item[0];
+            this.fetchExpenses( this.item.year,this.wineryId, this.selectedCategory)
+            console.log(this.item)
+            return;
+          }
+        });
+        return
       }
 
       this.router.navigate(["/"]);
     });
   }
 
-  public fetchExpenses(wineryId: any, tokenId: any, selectedCategory: any): void {
+  public fetchExpenses(wineryId: any, expenseId: any, selectedCategory: any): void {
     this.productService
-      .getExpenses(wineryId,tokenId, selectedCategory)
+      .getExpenses(wineryId, expenseId, selectedCategory)
       .subscribe((data) => {
+        console.log(data)
         this.loadedExpenses = data;
       });
   }
 
   public fetchLabels() {
     this.productService.getCategoriesLabels().subscribe((data) => {
+      console.log(data)
       this.categoriesLabels = data;
+    });
+  }
+
+  public fetchProducts(wineryId: any) {
+    this.coreService.getProductList(wineryId).subscribe((data) => {
+      console.log(data);
+      this.productList = data;
     });
   }
 }

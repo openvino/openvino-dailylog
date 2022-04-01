@@ -12,6 +12,8 @@ import { ProductService } from "../product/product.service";
 export class SelectorComponent implements OnInit {
   public productList = <any>[];
   public wineryId;
+  public tokenId;
+
   public item;
 
   constructor(
@@ -24,20 +26,17 @@ export class SelectorComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       let id = params.get("wineryId");
-
       if (id) {
         this.wineryId = id;
         this.fetchProducts(this.wineryId);
-
         return;
       }
-
       this.router.navigate(["/"]);
     });
   }
 
   onProductClick(product) {
-    this.router.navigate([`/${this.wineryId}/${product.id}`]);
+    this.router.navigate([`${this.wineryId}/${product.id}`]);
   }
 
   onLogoClick() {
@@ -50,7 +49,6 @@ export class SelectorComponent implements OnInit {
 
   public fetchProducts(wineryId: any) {
     this.coreService.getProductList(wineryId).subscribe((data) => {
-      console.log(data, "dvxv");
       this.productList = data;
     });
   }

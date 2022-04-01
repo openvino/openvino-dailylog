@@ -17,6 +17,8 @@ export class TasksListComponent implements OnInit {
   public loadedTasksKeys = <any>[];
   public taskKeyToDate;
   public wineryId;
+  public productList = <any>[];
+
 
   constructor(
     public coreService: CoreService,
@@ -28,16 +30,23 @@ export class TasksListComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
-      let id = params.get("id");
+      let id = params.get("tokenId");
+      let wineryId = params.get("wineryId");
 
       if (id) {
-        let products = this.coreService.getProductList(this.wineryId);
-      /*   let item = products.filter((item) => item.id == id);
+        this.wineryId = wineryId;
+        this.fetchProducts(this.wineryId);
 
-        if (item && item[0]) {
-          this.item = item[0];
-          return;
-        } */
+        this.coreService.getProductList(this.wineryId).subscribe((data) => {
+          let item = data.filter((token) => token.id === id);
+          if (item.length > 0) {
+            console.log(item, "2dejskf")
+            this.item = item[0];
+            console.log(this.item)
+            return;
+          }
+        });
+        return
       }
 
       this.router.navigate(["/"]);
@@ -70,5 +79,11 @@ export class TasksListComponent implements OnInit {
         this.filterType = date ? "day" : month ? "month" : "year";
         this.loadedTasks = data;
       });
+  }
+  public fetchProducts(wineryId: any) {
+    this.coreService.getProductList(wineryId).subscribe((data) => {
+      console.log(data);
+      this.productList = data;
+    });
   }
 }

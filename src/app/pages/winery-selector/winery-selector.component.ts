@@ -26,7 +26,6 @@ export class WinerySelectorComponent implements OnInit {
   ngOnInit(): void {
     this.wineriesList = this.productService.getWineries();
     this.fetchWineries();
-  
   }
 
   search(value: string): void {
@@ -36,8 +35,7 @@ export class WinerySelectorComponent implements OnInit {
   }
 
   onProductClick(product) {
-    console.log(product.id, "prod")
-    this.router.navigate([`/${product.id}`]);
+    this.router.navigate([`${product.id}`]);
   }
 
   onLogoClick() {
@@ -46,12 +44,8 @@ export class WinerySelectorComponent implements OnInit {
 
   public fetchWineries() {
     this.productService.getWineries().subscribe((data) => {
-      console.log(data , "response")
       this.wineriesList = data;
       this.allWineries = this.wineriesList;
     });
   }
-
-  
-
 }
