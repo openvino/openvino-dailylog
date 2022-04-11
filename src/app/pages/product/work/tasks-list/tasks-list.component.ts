@@ -80,7 +80,6 @@ export class TasksListComponent implements OnInit {
   }
   public fetchProducts(wineryId: any) {
     this.coreService.getProductList(wineryId).subscribe((data) => {
-      console.log(data);
       this.productList = data;
     });
   }

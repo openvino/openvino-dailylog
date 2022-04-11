@@ -33,7 +33,7 @@ export class SensorsComponent {
   public lastUpdatedDate = <any>[];
   public loading = true;
 
-  public wineryId;
+  public wineryId: string = "";
   public year;
   public month;
   public day;
@@ -57,15 +57,14 @@ export class SensorsComponent {
     this.route.paramMap.subscribe((params) => {
       let id = params.get("tokenId");
       let wineryId = params.get("wineryId");
+      this.wineryId = wineryId;
+      console.log(wineryId);
 
       if (id) {
-        this.wineryId = wineryId;
-
         this.fetchRandomCycle();
         this.fetchLastUpdated();
         this.fetchDashboardData();
         this.fetchData(this.wineryId, this.year, this.month, this.day);
-
         this.fetchProducts(this.wineryId);
 
         this.coreService.getProductList(this.wineryId).subscribe((data) => {
@@ -92,12 +91,13 @@ export class SensorsComponent {
     );
   }
 
-  public fetchData(wineryId, year, month, date) {
+  public fetchData(wineryId: any, year, month, date) {
     this.productService
       .getSensorsData(wineryId, year, month, date)
       .subscribe((data) => {
+        console.log(data, "sensor data");
         this.filterType = date ? "day" : month ? "month" : "year";
-        this.wineryId;
+        this.wineryId = "1";
         this.heatmapData = data.soilHumidity;
         this.temperatureData = data.temperature;
         this.windSpeedData = data.windSpeed;
@@ -112,7 +112,7 @@ export class SensorsComponent {
   }
 
   public onDateChange($event) {
-    this.fetchData($event.wineryId, $event.year, $event.month, $event.day);
+    this.fetchData(this.wineryId, $event.year, $event.month, $event.day);
   }
 
   public onLogoClick() {
@@ -132,6 +132,7 @@ export class SensorsComponent {
       this.productService
         .getDashboardAnalysisData(this.wineryId)
         .subscribe((data) => {
+          console.log(data);
           this.dashboardAnalysisData = data;
         }),
       this.productService.getDashboardData(this.wineryId).subscribe((data) => {

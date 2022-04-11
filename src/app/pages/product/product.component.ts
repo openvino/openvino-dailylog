@@ -38,7 +38,7 @@ export class ProductComponent {
   public tabActive;
   public categoryActive;
   public apiUrl;
-  public wineryId;
+  public wineryId = "1";
   public productList = <any>[];
   public sensorsData = <any>[];
 
@@ -54,14 +54,13 @@ export class ProductComponent {
     this.tabActive = this.tabs[0];
     this.apiUrl = environment.apiUrl;
     this.providerUrl = environment.providerUrl;
-    console.log(this.shippingAccount);
-    console.log(this.apiUrl);
-    console.log(this.mapsApiKey);
+  
     this.route.paramMap.subscribe((params) => {
       let id = params.get("wineryId");
       let tokenId = params.get("tokenId");
       if (id) {
         this.wineryId = id;
+        console.log(this.wineryId)
         this.fetchProducts(this.wineryId);
 
         this.coreService.getProductList(this.wineryId).subscribe((data) => {
@@ -75,28 +74,7 @@ export class ProductComponent {
     });
   }
 
-  public fetchData(wineryId, year, month, date) {
-    this.productService
-      .getSensorsData(wineryId, year, month, date)
-      .subscribe((data) => {
-        this.wineryId;
-        this.filterType = date ? "day" : month ? "month" : "year";
-        this.filteredCategory;
-        this.heatmapData = data.soilHumidity;
-        this.temperatureData = data.temperature;
-        this.windSpeedData = data.windSpeed;
-        this.windDirectionData = data.windDirection;
-        this.humidityData = data.humidity;
-        this.pressureData = data.pressure;
-        this.rainData = data.rain;
-        this.irradianceUVData = data.irradianceUV;
-        this.irradianceIRData = data.irradianceIR;
-        this.irradianceVIData = data.irradianceVI;
-      });
-  }
-  public onDateChange($event) {
-    this.fetchData($event.wineryId, $event.year, $event.month, $event.day);
-  }
+  
 
   public onLogoClick() {
     window.open("https://costaflores.com");
@@ -114,11 +92,7 @@ export class ProductComponent {
     this.categoryActive = event;
   }
 
-  public fetchSensorsData(wineryId: any) {
-    this.productService.getDashboardSensorData(wineryId).subscribe((data) => {
-      this.sensorsData = data;
-    });
-  }
+
   public fetchProducts(wineryId: any) {
     this.coreService.getProductList(wineryId).subscribe((data) => {
       console.log(data);

@@ -9,41 +9,14 @@
     </div>
   </div>
   <div class="container">
-    <uniswap-enchainte
-      *ngIf="item"
-      title="Viniswap"
-      [attr.providerUrl]="providerUrl"
-      networkid="1"
-      [attr.mapsapikey]="mapsApiKey"
-      shippingaccount="shippingAccount"
-      [attr.crowdsaleaddress]="item.crow_sale_address"
-      [attr.tokenAddress]="item.token_address"
-      [attr.tokenYear]="item.year"
-      [attr.tokenName]="item.id"
-      redeemdate="5/6/2022"
-      [attr.image]="item.bottle_image"
-      [attr.tokenIcon]="item.token_icon"
-      [attr.apiUrl]="apiUrl"
-    ></uniswap-enchainte>  
+    <uniswap-enchainte *ngIf="item" title="Viniswap" [attr.providerUrl]="providerUrl" networkid="1"
+      [attr.mapsapikey]="mapsApiKey" shippingaccount="shippingAccount" [attr.crowdsaleaddress]="item.crow_sale_address"
+      [attr.tokenAddress]="item.token_address" [attr.tokenYear]="item.year" [attr.tokenName]="item.id"
+      [attr.redeemDate]="item.redeem_date" [attr.image]="item.bottle_image" [attr.tokenIcon]="item.token_icon"
+      [attr.apiUrl]="apiUrl"></uniswap-enchainte>
 
-    <uniswap-enchainte
-      title="Viniswap"
-      [attr.providerUrl]="providerUrl"
-      networkid="1"
-      mapsapikey="mapsApiKey"
-      shippingaccount="shippingAccount"
-      crowdsaleaddress="0x5e147daE49916b714A3639D2f5bdf1e989D4802B"
-      tokenaddress="0x87ab739464881af0011052d4ca0b0d657e8c3b48"
-      redeemdate="5/6/2022"
-      tokenyear="2019"
-      tokenname="MTB19"
-      image=""
-      tokenicon="assets/images/mtb19/token.svg"
-      apiurl="https://costaflores.openvino.exchange"
-  ></uniswap-enchainte>  
   </div>
 </div>
-
 <div class="product-content">
   <app-tabs [tabs]="tabs" (onChange)="onTabChange($event)"></app-tabs>
   <div *ngIf="tabActive.id == tabs[0].id">

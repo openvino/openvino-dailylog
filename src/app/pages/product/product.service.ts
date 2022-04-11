@@ -27,13 +27,14 @@ export class ProductService {
     let filterType = day ? "day" : month ? "month" : "year";
 
     let params = "?";
-    if (wineryId) params += `winerie_id=${wineryId}`;
-    if (year) params += `&year=${year}`;
+    if (wineryId ) params += `winerie_id=${wineryId}`;
+    if ( year) params += `&year=${year}`;
     if (month) params += `&month=${month}`;
     if (day) params += `&day=${day}`;
 
     return this.http.get(`${environment.apiUrl}/sensor_data${params}`).pipe(
       map((response: any[]) => {
+        console.log(response)
         return {
           soilHumidity: this.getHeatmapData(
             response,

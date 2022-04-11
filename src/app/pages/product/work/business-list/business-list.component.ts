@@ -62,21 +62,18 @@ export class BusinessListComponent implements OnInit {
     this.productService
       .getExpenses(wineryId, expenseId, selectedCategory)
       .subscribe((data) => {
-        console.log(data)
         this.loadedExpenses = data;
       });
   }
 
   public fetchLabels() {
     this.productService.getCategoriesLabels().subscribe((data) => {
-      console.log(data)
       this.categoriesLabels = data;
     });
   }
 
   public fetchProducts(wineryId: any) {
     this.coreService.getProductList(wineryId).subscribe((data) => {
-      console.log(data);
       this.productList = data;
     });
   }
