@@ -36,6 +36,7 @@ export class BusinessListComponent implements OnInit {
     this.fetchLabels();
     this.route.paramMap.subscribe((params) => {
       let id = params.get("tokenId");
+     
       let wineryId = params.get("wineryId");
       
       if (id) {
@@ -45,10 +46,8 @@ export class BusinessListComponent implements OnInit {
         this.coreService.getProductList(this.wineryId).subscribe((data) => {
           let item = data.filter((token) => token.id === id);
           if (item.length > 0) {
-            console.log(item, "2dejskf")
             this.item = item[0];
             this.fetchExpenses( this.item.year,this.wineryId, this.selectedCategory)
-            console.log(this.item)
             return;
           }
         });

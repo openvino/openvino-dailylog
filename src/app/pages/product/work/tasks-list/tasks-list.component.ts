@@ -40,9 +40,7 @@ export class TasksListComponent implements OnInit {
         this.coreService.getProductList(this.wineryId).subscribe((data) => {
           let item = data.filter((token) => token.id === id);
           if (item.length > 0) {
-            console.log(item, "2dejskf")
             this.item = item[0];
-            console.log(this.item)
             return;
           }
         });

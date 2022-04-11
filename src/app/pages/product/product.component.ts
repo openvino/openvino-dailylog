@@ -54,7 +54,9 @@ export class ProductComponent {
     this.tabActive = this.tabs[0];
     this.apiUrl = environment.apiUrl;
     this.providerUrl = environment.providerUrl;
-
+    console.log(this.shippingAccount);
+    console.log(this.apiUrl);
+    console.log(this.mapsApiKey);
     this.route.paramMap.subscribe((params) => {
       let id = params.get("wineryId");
       let tokenId = params.get("tokenId");
@@ -65,9 +67,7 @@ export class ProductComponent {
         this.coreService.getProductList(this.wineryId).subscribe((data) => {
           let item = data.filter((token) => token.id === tokenId);
           if (item.length > 0) {
-            console.log(item, "2dejskf")
             this.item = item[0];
-            console.log(this.item)
             return;
           }
         });
@@ -79,7 +79,6 @@ export class ProductComponent {
     this.productService
       .getSensorsData(wineryId, year, month, date)
       .subscribe((data) => {
-        console.log(data);
         this.wineryId;
         this.filterType = date ? "day" : month ? "month" : "year";
         this.filteredCategory;
@@ -95,7 +94,6 @@ export class ProductComponent {
         this.irradianceVIData = data.irradianceVI;
       });
   }
-
   public onDateChange($event) {
     this.fetchData($event.wineryId, $event.year, $event.month, $event.day);
   }
@@ -118,7 +116,6 @@ export class ProductComponent {
 
   public fetchSensorsData(wineryId: any) {
     this.productService.getDashboardSensorData(wineryId).subscribe((data) => {
-      console.log(data, "sensors data");
       this.sensorsData = data;
     });
   }

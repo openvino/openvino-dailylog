@@ -50,38 +50,33 @@ export class SensorsComponent {
   ) {}
 
   ngOnInit() {
-
-
     this.apiUrl = environment.apiUrl;
 
     this.providerUrl = environment.providerUrl;
-    
+
     this.route.paramMap.subscribe((params) => {
       let id = params.get("tokenId");
       let wineryId = params.get("wineryId");
-      
+
       if (id) {
         this.wineryId = wineryId;
 
         this.fetchRandomCycle();
         this.fetchLastUpdated();
         this.fetchDashboardData();
-        this.fetchData(this.wineryId, this.year, this.month, this.day)
+        this.fetchData(this.wineryId, this.year, this.month, this.day);
 
         this.fetchProducts(this.wineryId);
 
         this.coreService.getProductList(this.wineryId).subscribe((data) => {
           let item = data.filter((token) => token.id === id);
           if (item.length > 0) {
-            console.log(item, "2dejskf")
             this.item = item[0];
-            console.log(this.item)
             return;
           }
         });
-   
+
         return;
-        
       }
 
       this.router.navigate(["/"]);
@@ -98,20 +93,22 @@ export class SensorsComponent {
   }
 
   public fetchData(wineryId, year, month, date) {
-    this.productService.getSensorsData(wineryId, year, month, date).subscribe((data) => {
-      this.filterType = date ? "day" : month ? "month" : "year";
-this.wineryId
-      this.heatmapData = data.soilHumidity;
-      this.temperatureData = data.temperature;
-      this.windSpeedData = data.windSpeed;
-      this.windDirectionData = data.windDirection;
-      this.humidityData = data.humidity;
-      this.pressureData = data.pressure;
-      this.rainData = data.rain;
-      this.irradianceUVData = data.irradianceUV;
-      this.irradianceIRData = data.irradianceIR;
-      this.irradianceVIData = data.irradianceVI;
-    });
+    this.productService
+      .getSensorsData(wineryId, year, month, date)
+      .subscribe((data) => {
+        this.filterType = date ? "day" : month ? "month" : "year";
+        this.wineryId;
+        this.heatmapData = data.soilHumidity;
+        this.temperatureData = data.temperature;
+        this.windSpeedData = data.windSpeed;
+        this.windDirectionData = data.windDirection;
+        this.humidityData = data.humidity;
+        this.pressureData = data.pressure;
+        this.rainData = data.rain;
+        this.irradianceUVData = data.irradianceUV;
+        this.irradianceIRData = data.irradianceIR;
+        this.irradianceVIData = data.irradianceVI;
+      });
   }
 
   public onDateChange($event) {
@@ -126,14 +123,17 @@ this.wineryId
     this.router.navigate(["/"]);
   }
 
-
   public fetchDashboardData() {
-    this.productService.getDashboardSensorData(this.wineryId).subscribe((data) => {
-      this.dashboardSensorData = data;
-    }),
-      this.productService.getDashboardAnalysisData(this.wineryId).subscribe((data) => {
-        this.dashboardAnalysisData = data;
+    this.productService
+      .getDashboardSensorData(this.wineryId)
+      .subscribe((data) => {
+        this.dashboardSensorData = data;
       }),
+      this.productService
+        .getDashboardAnalysisData(this.wineryId)
+        .subscribe((data) => {
+          this.dashboardAnalysisData = data;
+        }),
       this.productService.getDashboardData(this.wineryId).subscribe((data) => {
         this.dashboardData = data;
       });
@@ -144,7 +144,6 @@ this.wineryId
 
   public fetchLastUpdated() {
     this.productService.getLastUpdate(this.wineryId).subscribe((data) => {
-      console.log(data)
       this.lastUpdatedDate = data;
     });
   }
