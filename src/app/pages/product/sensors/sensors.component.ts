@@ -58,7 +58,6 @@ export class SensorsComponent {
       let id = params.get("tokenId");
       let wineryId = params.get("wineryId");
       this.wineryId = wineryId;
-      console.log(wineryId);
 
       if (id) {
         this.fetchRandomCycle();
@@ -95,7 +94,6 @@ export class SensorsComponent {
     this.productService
       .getSensorsData(wineryId, year, month, date)
       .subscribe((data) => {
-        console.log(data, "sensor data");
         this.filterType = date ? "day" : month ? "month" : "year";
         this.wineryId = "1";
         this.heatmapData = data.soilHumidity;
@@ -120,7 +118,7 @@ export class SensorsComponent {
   }
 
   public back() {
-    this.router.navigate(["/"]);
+    this.router.navigate([`${this.wineryId}`]);
   }
 
   public fetchDashboardData() {
@@ -132,7 +130,6 @@ export class SensorsComponent {
       this.productService
         .getDashboardAnalysisData(this.wineryId)
         .subscribe((data) => {
-          console.log(data);
           this.dashboardAnalysisData = data;
         }),
       this.productService.getDashboardData(this.wineryId).subscribe((data) => {
@@ -150,7 +147,6 @@ export class SensorsComponent {
   }
   public fetchProducts(wineryId: any) {
     this.coreService.getProductList(wineryId).subscribe((data) => {
-      console.log(data);
       this.productList = data;
     });
   }

@@ -54,13 +54,12 @@ export class ProductComponent {
     this.tabActive = this.tabs[0];
     this.apiUrl = environment.apiUrl;
     this.providerUrl = environment.providerUrl;
-  
+
     this.route.paramMap.subscribe((params) => {
       let id = params.get("wineryId");
       let tokenId = params.get("tokenId");
       if (id) {
         this.wineryId = id;
-        console.log(this.wineryId)
         this.fetchProducts(this.wineryId);
 
         this.coreService.getProductList(this.wineryId).subscribe((data) => {
@@ -74,14 +73,12 @@ export class ProductComponent {
     });
   }
 
-  
-
   public onLogoClick() {
     window.open("https://costaflores.com");
   }
 
   public back() {
-    this.router.navigate(["/"]);
+    this.router.navigate([`${this.wineryId}`]);
   }
 
   public onTabChange(event) {
@@ -92,10 +89,8 @@ export class ProductComponent {
     this.categoryActive = event;
   }
 
-
   public fetchProducts(wineryId: any) {
     this.coreService.getProductList(wineryId).subscribe((data) => {
-      console.log(data);
       this.productList = data;
     });
   }

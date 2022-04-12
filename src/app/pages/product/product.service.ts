@@ -34,7 +34,6 @@ export class ProductService {
 
     return this.http.get(`${environment.apiUrl}/sensor_data${params}`).pipe(
       map((response: any[]) => {
-        console.log(response)
         return {
           soilHumidity: this.getHeatmapData(
             response,
