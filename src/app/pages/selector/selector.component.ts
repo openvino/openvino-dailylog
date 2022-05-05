@@ -12,7 +12,9 @@ import { ProductService } from "../product/product.service";
 export class SelectorComponent implements OnInit {
   public productList = <any>[];
   public wineryId;
+  public winery = <any>[];
   public tokenId;
+  public wineriesList = <any>[];
 
   public item;
 
@@ -29,8 +31,20 @@ export class SelectorComponent implements OnInit {
       if (id) {
         this.wineryId = id;
         this.fetchProducts(this.wineryId);
+        this.fetchWineries();
+        this.productService.getWineries().subscribe((data) => {
+          let currentWinery = data.filter(
+            (winery) => winery.id == this.wineryId
+          );
+          if (currentWinery.length > 0) {
+            this.winery = currentWinery[0];
+            return;
+          }
+        });
+
         return;
       }
+
       this.router.navigate(["/"]);
     });
   }
@@ -40,16 +54,22 @@ export class SelectorComponent implements OnInit {
   }
 
   onLogoClick() {
-    window.open("https://costaflores.com");
+    window.open(this.winery.website);
   }
 
   onKnowMoreClick() {
-    window.open("https://ico.costaflores.com");
+    window.open(this.winery.website);
   }
 
   public fetchProducts(wineryId: any) {
     this.coreService.getProductList(wineryId).subscribe((data) => {
       this.productList = data;
+    });
+  }
+
+  public fetchWineries() {
+    this.productService.getWineries().subscribe((data) => {
+      this.wineriesList = data;
     });
   }
 }

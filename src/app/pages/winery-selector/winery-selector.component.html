@@ -12,8 +12,9 @@
     </div>
     <div class="collapse navbar-collapse w-full justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link" href="https://openvino.atlassian.net/wiki/spaces/OPENVINO/overview?mode=global">OPENVINO WIKI</a>
-        <a class="nav-item nav-link" href="https://openvino.org/es/">CONTACT</a>
+        <a class="nav-item nav-link"
+          href="https://openvino.atlassian.net/wiki/spaces/OPENVINO/overview?mode=global">{{"wineries.openvino-wiki" | translate}}</a>
+        <a class="nav-item nav-link" href="https://openvino.org/es/">{{"wineries.contact" | translate}}</a>
       </div>
     </div>
   </nav>
@@ -21,15 +22,14 @@
     <div class="winery-selector-content">
       <div class="d-sm-flex align-items-center justify-content-between py-2 py-sm-3">
         <div class="selector-content-header pb-2">
-          <h1>{{ 'Wineries' }}</h1>
+          <h1>{{"wineries.title" | translate}}</h1>
           <div *ngIf="productList.length > -1" class="card-group">
-            <div class="single-card" *ngFor="let product of productList "
-             >{{product.year}} jjkhkkhjkn</div>
+            <div class="single-card" *ngFor="let product of productList ">{{product.year}}</div>
           </div>
         </div>
         <div class="input-group rounded pb-2">
-          <input type="text" class="form-control rounded search-input" [(ngModel)]="searchTerm" placeholder="Search for your winery here"
-          (input)="search($event.target.value)" name="searchTerm"  />
+          <input type="text" class="form-control rounded search-input" [(ngModel)]="searchTerm"
+            placeholder="{{'wineries.search' | translate}}" (input)="search($event.target.value)" name="searchTerm" />
         </div>
       </div>
       <div *ngIf="wineriesList.length > 0" class="card-group">
@@ -37,16 +37,11 @@
           (onProductClick)="onProductClick($event)"></product-winery-selector>
       </div>
 
-    
-
       <div *ngIf="wineriesList.length === 0" class="empty-state-img">
         <div>
           <img src="/assets/images/winery-empty-state.png" alt="No wineries added yet">
-          {{'No wineries added yet'}} 
+          {{"wineries.empty-estate" | translate}}
+        </div>
       </div>
-
     </div>
-
-   
   </div>
-</div>

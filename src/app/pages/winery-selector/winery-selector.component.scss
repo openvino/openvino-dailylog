@@ -12,31 +12,42 @@
     top: 0;
     left: 0;
     padding: 20px 40px;
-    height: 110px;
+    height: auto;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: var(--background-gray);
+    border-bottom: 1px solid rgb(218, 218, 218);
+
     z-index: 2;
 
     @media (max-width: 575px) {
       padding: 20px 20px;
+    }
 
+    a{
+      cursor: pointer;
+    }
+    .nav-link {
+      font-size: 0.8rem;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+    }
+
+    .navbar-collapse {
+      width: 100%;
+      @media (max-width: 575px) {
+        padding-top: 15px;
+      }
     }
 
     & > ul {
       margin: 0px;
       & > li {
-        font-size: 0.8rem;
         padding: 0 20px;
-        text-transform: uppercase;
         list-style-type: none;
-        letter-spacing: 1px;
       }
-    }
-    & > picture {
-      cursor: pointer;
     }
 
     & > img {
@@ -119,9 +130,8 @@
 
     & > input {
       background-color: rgb(235, 235, 235);
-      border:none;
+      border: none;
       padding: 25px 40px;
-    
     }
   }
 }
@@ -137,49 +147,31 @@
   background: url(/assets/images/search.png) no-repeat 10px;
   background-size: 20px;
   background-color: #747474;
-  
 }
 
-.form-control:focus { 
+.form-control:focus {
   outline: none !important;
-  border-color: #7a7a7a!important;
-  box-shadow: 0 0 2px #b1b1b1!important;
-}
-
- .nav-link{
-font-size: 0.8rem;
-letter-spacing: 0.1rem;
-}
-
-.navbar-collapse {
-  width: 100%;
-  @media (max-width: 575px) {
-    padding-top: 15px;
-  }
-}
-
-.navbar {
-  height: auto;
-  background-color: var(--background-gray)!important;
-  border-bottom: 1px solid rgb(218, 218, 218)
+  border-color: #7a7a7a !important;
+  box-shadow: 0 0 2px #b1b1b1 !important;
 }
 
 .empty-state-img {
-height: 100%;
-width: 100%;
-& > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  opacity: 0.5;
-  position: absolute;
-  top: 50%; right: 50%;
-  transform: translate(50%,-50%);
+  height: 100%;
+  width: 100%;
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.5;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
 
-  text-align: center;
-}
+    text-align: center;
+  }
 
-img {
+  img {
     width: 11%;
     padding-bottom: 10px;
     @media (max-width: 1084px) {
