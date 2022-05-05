@@ -20,13 +20,12 @@ export class WinerySelectorComponent implements OnInit {
 
   constructor(
     public router: Router,
-    private route: ActivatedRoute,
     public coreService: CoreService,
     private productService: ProductService
   ) {}
 
   ngOnInit(): void {
-    this.comingSoonWineriesList = this.coreService.getComingSoonWineriesList()
+    this.comingSoonWineriesList = this.coreService.getComingSoonWineriesList();
     this.wineriesList = this.productService.getWineries();
     this.fetchWineries();
   }
