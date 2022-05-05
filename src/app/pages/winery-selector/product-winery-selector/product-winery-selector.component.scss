@@ -9,16 +9,13 @@
     cursor: pointer;
   }
 
-
-
   .card-body {
     padding: 8px;
     overflow: hidden;
 
     & > div {
       background: rgb(58, 58, 58);
-      border-radius: 5px;
-      width: fit-content;
+      width: 280px;
     }
     .card-img-top {
       height: 200px;
