@@ -18,4 +18,38 @@ export class CoreService {
         })
       );
   }
+
+  getComingSoonWineriesList() {
+    return [
+      {
+        ID: "3",
+        CreatedAt: "2022-03-25 12:00:56",
+        UpdatedAt: "2022-03-25 12:00:56",
+        DeletedAt: "2022-03-25 12:00:56",
+        name: "Maal",
+        website:"https://maalwines.com/",
+        image: "",
+        primary_color: ""
+      },
+      {
+        ID: "4",
+        CreatedAt: "2022-03-25 12:00:56",
+        UpdatedAt: "2022-03-25 12:00:56",
+        DeletedAt: "2022-03-25 12:00:56",
+        name: "Ricardo Santos",
+        website:"http://www.ricardosantos.com/",
+        image: "",
+        primary_color: ""
+      },
+      {
+        ID: "5",
+        CreatedAt: "2022-03-25 12:00:56",
+        UpdatedAt: "2022-03-25 12:00:56",
+        DeletedAt: "2022-03-25 12:00:56",
+        name: "Serrera",
+        website:"http://www.serrera.com.ar/",
+        image: "",
+        primary_color: ""
+      }
+    ]}
 }

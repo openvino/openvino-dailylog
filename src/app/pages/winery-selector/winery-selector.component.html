@@ -12,9 +12,10 @@
     </div>
     <div class="collapse navbar-collapse w-full justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link"
-          href="https://openvino.atlassian.net/wiki/spaces/OPENVINO/overview?mode=global">{{"wineries.openvino-wiki" | translate}}</a>
-        <a class="nav-item nav-link" href="https://openvino.org/es/">{{"wineries.contact" | translate}}</a>
+        <a class="nav-item nav-link" href="https://openvino.atlassian.net/wiki/spaces/OPENVINO/overview?mode=global"
+          target="blank">{{"wineries.openvino-wiki" | translate}}</a>
+        <a class="nav-item nav-link" href="https://openvino.org/es/"
+          target="blank">{{"wineries.contact" | translate}}</a>
       </div>
     </div>
   </nav>
@@ -33,14 +34,15 @@
         </div>
       </div>
       <div *ngIf="wineriesList.length > 0" class="card-group">
-        <product-winery-selector class="single-card" *ngFor="let winery of wineriesList " [product]="winery"
+        <product-winery-selector class="card-winery" *ngFor="let winery of wineriesList " [product]="winery"
           (onProductClick)="onProductClick($event)"></product-winery-selector>
+        <product-comingsoon-winery-selector class="card-winery" *ngFor="let winery of comingSoonWineriesList"
+          [product]="winery"></product-comingsoon-winery-selector>
       </div>
-
       <div *ngIf="wineriesList.length === 0" class="empty-state-img">
         <div>
           <img src="/assets/images/winery-empty-state.png" alt="No wineries added yet">
-          {{"wineries.empty-estate" | translate}}
+          {{"wineries.empty-state" | translate}}
         </div>
       </div>
     </div>
