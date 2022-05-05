@@ -1,20 +1,37 @@
-<div class="product-header">
+<div class="product-header" *ngIf="item.open">
   <div class="product-header-logo">
     <picture (click)="onLogoClick()">
-      <source media="(min-width: 576px)" srcset="assets/images/logo-costaflores.png" />
-      <img src="assets/images/logo-costaflores-reduced.png" alt="Costaflores" style="width: auto" />
+      <source
+        media="(min-width: 576px)"
+        srcset="assets/images/logo-costaflores.png"
+      />
+      <img
+        src="assets/images/logo-costaflores-reduced.png"
+        alt="Costaflores"
+        style="width: auto"
+      />
     </picture>
     <div class="product-header-change" (click)="back()">
       {{ "labels.change" | translate }}
     </div>
   </div>
   <div class="container">
-    <uniswap-enchainte *ngIf="item" title="Viniswap" [attr.providerUrl]="providerUrl" networkid="1"
-      [attr.mapsapikey]="mapsApiKey" shippingaccount="shippingAccount" [attr.crowdsaleaddress]="item.crow_sale_address"
-      [attr.tokenAddress]="item.token_address" [attr.tokenYear]="item.year" [attr.tokenName]="item.id"
-      [attr.redeemDate]="item.redeem_date" [attr.image]="item.bottle_image" [attr.tokenIcon]="item.token_icon"
-      [attr.apiUrl]="apiUrl"></uniswap-enchainte>
-
+    <uniswap-enchainte
+      *ngIf="item"
+      title="Viniswap"
+      [attr.providerUrl]="providerUrl"
+      networkid="1"
+      [attr.mapsapikey]="mapsApiKey"
+      shippingaccount="shippingAccount"
+      [attr.crowdsaleaddress]="item.crow_sale_address"
+      [attr.tokenAddress]="item.token_address"
+      [attr.tokenYear]="item.year"
+      [attr.tokenName]="item.id"
+      [attr.redeemDate]="item.redeem_date"
+      [attr.image]="item.bottle_image"
+      [attr.tokenIcon]="item.token_icon"
+      [attr.apiUrl]="apiUrl"
+    ></uniswap-enchainte>
   </div>
 </div>
 <div class="product-content">
