@@ -5,13 +5,15 @@ import { ProductWinerySelectorComponent } from './product-winery-selector/produc
 import { TranslateModule } from '@ngx-translate/core';
 import { WinerySelectorRoutingModule } from './winery-selector-routing.module';
 import { FormsModule } from '@angular/forms';
+import { ProductComingsoonWinerySelectorComponent } from './product-comingsoon-winery-selector/product-comingsoon-winery-selector.component';
 
 
 
 @NgModule({
   declarations: [
     WinerySelectorComponent,
-    ProductWinerySelectorComponent
+    ProductWinerySelectorComponent,
+    ProductComingsoonWinerySelectorComponent
   ],
   imports: [
     CommonModule,

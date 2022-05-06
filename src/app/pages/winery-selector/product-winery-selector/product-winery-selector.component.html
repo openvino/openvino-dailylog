@@ -1,9 +1,8 @@
   <div class="card" (click)="onClick()">
-
     <div class="card-body">
       <p class="card-img-link">{{"wineries.visit-winery" | translate}} ></p>
       <div>
-        <div *ngIf='product.image !== "" '>
+        <div *ngIf='product.image !== ""  '>
           <img class="card-img-top" src={{product.image}} [alt]="'Openvino Dailylog - ' + product.id">
         </div>
         <div *ngIf='product.image === "" '>
@@ -12,5 +11,4 @@
       </div>
       <h5 class="card-title">{{product.name}}</h5>
     </div>
-
   </div>

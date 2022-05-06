@@ -12,18 +12,20 @@ import { filter } from "rxjs/operators";
 export class WinerySelectorComponent implements OnInit {
   public productList = <any>[];
   public wineriesList = <any>[];
+  public comingSoonWineriesList = <any>[];
+
   public allWineries = <any>[];
   public searchTerm: string;
   public item;
 
   constructor(
     public router: Router,
-    private route: ActivatedRoute,
     public coreService: CoreService,
     private productService: ProductService
   ) {}
 
   ngOnInit(): void {
+    this.comingSoonWineriesList = this.coreService.getComingSoonWineriesList();
     this.wineriesList = this.productService.getWineries();
     this.fetchWineries();
   }
