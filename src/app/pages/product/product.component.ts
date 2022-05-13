@@ -38,7 +38,7 @@ export class ProductComponent {
   public tabActive;
   public categoryActive;
   public apiUrl;
-  public wineryId = "1";
+  public wineryId = "";
   public productList = <any>[];
   public sensorsData = <any>[];
 

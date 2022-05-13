@@ -1,18 +1,24 @@
-import { Component, OnInit, HostListener, ElementRef, ViewChild, Input } from '@angular/core';
-import { VerifierService } from '../verifier.service';
-import { TranslateService } from '@ngx-translate/core';
-import { Record } from '@bloock/sdk';
-import { EnchainteService } from 'src/app/services/enchainte.service';
-import { Router } from '@angular/router';
-import { Proof } from '@bloock/sdk/dist/types/proof/entity/proof.entity';
+import {
+  Component,
+  OnInit,
+  HostListener,
+  ElementRef,
+  ViewChild,
+  Input,
+} from "@angular/core";
+import { VerifierService } from "../verifier.service";
+import { TranslateService } from "@ngx-translate/core";
+import { Record } from "@bloock/sdk";
+import { EnchainteService } from "src/app/services/enchainte.service";
+import { Router } from "@angular/router";
+import { Proof } from "@bloock/sdk/dist/types/proof/entity/proof.entity";
 
 @Component({
-  selector: 'app-verifier-button',
-  templateUrl: './verifier-button.component.html',
-  styleUrls: ['./verifier-button.component.scss']
+  selector: "app-verifier-button",
+  templateUrl: "./verifier-button.component.html",
+  styleUrls: ["./verifier-button.component.scss"],
 })
 export class VerifierButtonComponent implements OnInit {
-
   @Input() public hashes: Record[];
   @Input() public proof: Proof;
 
@@ -21,19 +27,17 @@ export class VerifierButtonComponent implements OnInit {
 
   constructor(
     public enchainteService: EnchainteService,
-    public translate: TranslateService,
+    public translate: TranslateService
   ) {}
-  
+
   ngOnInit(): void {
-    console.log(this.hashes)
     this.proofVerified = null;
     this.proofLoading = false;
 
     if (!this.proof) {
-      this.enchainteService.getProof(this.hashes)
-        .subscribe(res => {
-          this.proof = res.proof;
-        })
+      this.enchainteService.getProof(this.hashes).subscribe((res) => {
+        this.proof = res.proof;
+      });
     }
   }
 
@@ -42,16 +46,14 @@ export class VerifierButtonComponent implements OnInit {
       this.proofLoading = true;
       setTimeout(async () => {
         try {
-          this.proofVerified = (await this.enchainteService.verify(this.proof)!=0)
+          this.proofVerified =
+            (await this.enchainteService.verify(this.proof)) != 0;
         } catch (err) {
-          console.error(err)
-          this.proofVerified = false
+          console.error(err);
+          this.proofVerified = false;
         }
         this.proofLoading = false;
-      }, 100)
+      }, 100);
     }
   }
-
 }
-
-
