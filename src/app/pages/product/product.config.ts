@@ -10,6 +10,10 @@ export const TABS = [
    {
     id: "BUSINESS",
      name:"product.tabs.business"
+   },
+   {
+     id: "EVIDENCES",
+    name: "product.tabs.evidences"
    }
 ];
 
