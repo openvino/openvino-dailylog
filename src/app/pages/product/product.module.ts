@@ -18,7 +18,7 @@ import "@enchainte-projects/enchainte-uniswap-component";
 import { DateSelectorComponent } from "./date-selector/date-selector.component";
 import { ProductRoutingModule } from "./product-routing.module";
 import { VerifierButtonComponent } from "./verifier/verifier-button/verifier-button.component";
-import { EvidencesComponent } from "./evidences/evidences";
+import { EvidencesComponent } from "./evidences/evidences.component";
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

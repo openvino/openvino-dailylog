@@ -7,7 +7,7 @@
 
     <div *ngIf="selectedMonth != null" class="date-selector">
         <select [(ngModel)]="selectedDay" (change)="onSelectChange()" [value]="selectedDay">
-            <option [ngValue]="null">{{ 'labels.none' | translate }}</option>
+            <option [ngValue]="">{{ 'labels.none' | translate }}</option>
             <option [value]="day" *ngFor="let day of days">{{ day }}</option>
         </select>
     </div>
