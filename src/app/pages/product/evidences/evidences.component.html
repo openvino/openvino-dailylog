@@ -8,87 +8,140 @@
     <div class="info-video col">
       <img src="../../../../assets/images/video-cover.png" alt="bg image" />
     </div>
-    <div class="info-text px-4 d-flex flex-column justify-content-center col py-4 py-lg-0">
+    <div
+      class="info-text px-4 d-flex flex-column justify-content-center col py-4 py-lg-0"
+    >
       <h3>Check the evidences that proof our wine is organic.</h3>
-      <p>Each token has its tag where the evidence of our product organic veracity is uploaded for everyone to see. If
-        you find anything that's not right you can easily create a challenge to contradict the proofs presented so far
-        by displying yours.</p>
+      <p>
+        Each token has its tag where the evidence of our product organic
+        veracity is uploaded for everyone to see. If you find anything that's
+        not right you can easily create a challenge to contradict the proofs
+        presented so far by displying yours.
+      </p>
     </div>
   </section>
 
   <section class="tag-detail">
     <h3 class="text-center mt-5 mb-4">Tag's details</h3>
-    <div class="tag-detail-container col">
+    <div class="tag-detail-container col" *ngFor="let tag of tagsDetails">
       <h4>State</h4>
-      <div class="tag-detail-container-data" style="margin-right: 10px">
+      <div class="tag-detail-container-data mr-4">
         <div class="tag-detail-container-data-unity">
-          <p>Submitted</p>
+          <p>{{ tag.state }}</p>
         </div>
         <div class="tag-detail-container-data-separator"></div>
         <div class="tag-detail-container-data-unity">
           <span> Request type </span>
-          <p> submission </p>
+          <p>{{ tag.request_type }}</p>
         </div>
         <div class="tag-detail-container-data-separator"></div>
         <div class="tag-detail-container-data-unity">
           <span>Bounty </span>
-          <p> 100000 DAI </p>
+          <p>{{ tag.bounty }}</p>
         </div>
         <div class="tag-detail-container-data-separator"></div>
         <div class="tag-detail-container-data-unity">
           <span>Requester</span>
-          <p>xx12333...342242 </p>
+          <p>{{ tag.requester }}</p>
         </div>
         <div class="tag-detail-container-data-separator"></div>
         <div class="tag-detail-container-data-unity">
           <span>Ending date</span>
-          <p>In 6 days </p>
+          <p>{{ tag.ending_date }}</p>
         </div>
       </div>
 
-
       <h4>Tag details</h4>
       <div class="tag-detail-container-data" style="margin-right: 10px">
-        <div class="tag-detail-container-data-unity">
-          <div>
+        <div class="tag-detail-container-data-unity py-1">
+          <div class="d-flex">
             <span>Public tag name</span>
-            <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
-              Info
-            </button>
+            <a data-toggle="tooltip" title="Hooray!">
+              <i class="eva eva-question-mark-circle-outline"></i
+            ></a>
           </div>
-          <p>Wintermute: Wintermute 1</p>
+          <p>{{ tag.public_tag }}</p>
         </div>
         <div class="tag-detail-container-data-separator"></div>
-        <div class="tag-detail-container-data-unity">
-          <span> Contract address </span>
-          <p> ETH: 1123cvx..bddd334 </p>
+        <div class="tag-detail-container-data-unity py-1">
+          <div class="d-flex">
+            <span> Contract address </span>
+            <a data-toggle="tooltip" title="Hooray!">
+              <i class="eva eva-question-mark-circle-outline"></i
+            ></a>
+          </div>
+          <p>{{ tag.contract_address }}</p>
         </div>
         <div class="tag-detail-container-data-separator"></div>
-        <div class="tag-detail-container-data-unity">
-          <span>UI/Website link </span>
-          <p> wwww.website.com </p>
+        <div class="tag-detail-container-data-unity py-1">
+          <div class="d-flex">
+            <span>UI/Website link </span>
+            <a data-toggle="tooltip" title="Hooray!">
+              <i class="eva eva-question-mark-circle-outline"></i
+            ></a>
+          </div>
+          <p>{{ tag.website }}</p>
         </div>
         <div class="tag-detail-container-data-separator"></div>
-        <div class="tag-detail-container-data-unity">
-          <span>Public note</span>
-          <p>Wintermute's token management </p>
+        <div class="tag-detail-container-data-unity py-1">
+          <div class="d-flex">
+            <span>Public note</span>
+            <a data-toggle="tooltip" title="Hooray!">
+              <i class="eva eva-question-mark-circle-outline"></i
+            ></a>
+          </div>
+          <p>{{ tag.public_note }}</p>
         </div>
       </div>
 
       <h4>Tag history</h4>
-      <div class="tag-detail-container-data" style="margin-right: 10px">
+      <div
+        class="tag-detail-container-data d-flex flex-column"
+        style="margin-right: 10px"
+      >
+        <div class="d-flex w-100">
+          <span>
+            <button
+              class="expandable-btn"
+              type="button"
+              data-toggle="collapse"
+              data-target="#collapseExample"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+            >
+              <i class="eva eva-arrow-ios-downward-outline pr-1"></i>
+              First request submission
+            </button>
+          </span>
+          <a class="d-flex" data-toggle="tooltip" title="Hooray!">
+            <i class="eva eva-question-mark-circle-outline"></i
+          ></a>
+        </div>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            <ul class="timeline" *ngIf="eventsList.length > 0">
+              <li
+                *ngFor="let event of eventsList"
+                class="timeline-item bg-white rounded ml-3 p-4 shadow"
+              >
+                <div class="timeline-arrow"></div>
+                <h4 class="h5 mb-0">{{ event.title }}</h4>
+                <p class="text-small mt-1 mb-2 font-weight-light">
+                  {{ event.body }}
+                </p>
+                <span class="small text-gray">{{ event.timestamp }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
 
-      <div class="d-flex flex-column flex-md-row justify-content-center pt-3">
-        <button class="primary-btn ">View evidence</button>
-        <button class="primary-btn ">Challenge submission</button>
+      <div
+        class="d-flex flex-column flex-md-row justify-content-center pt-3 pb-5"
+      >
+        <button class="primary-btn">View evidence</button>
+        <button class="primary-btn">Challenge submission</button>
       </div>
     </div>
-
-
-    <button type="button" class="btn btn-outline-secondary me-2" placement="top"
-    ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="Popover on top">
-Popover on top
-</button>
   </section>
 </div>

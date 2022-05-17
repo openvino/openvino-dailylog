@@ -16,7 +16,6 @@ import { SearchWineriesPipe } from './pages/winery-selector/search-wineries.pipe
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
-
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'https://costaflores.openvino.exchange/language/', '');
 }
@@ -43,6 +42,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     WinerySelectorModule,
     ProductModule,
     NgbModule,
+  
   
   ],
   providers: [

@@ -42,7 +42,7 @@ h3 {
 }
 
 h4 {
-  font-size: 18px;
+  font-size: 18px !important;
   color: var(--primary-color);
 }
 
@@ -68,5 +68,28 @@ p {
   }
 }
 
+.primary-btn:hover {
+  opacity: 0.9;
+}
+
+.expandable-btn {
+  padding: 0;
+  max-width: 100%;
+  width: 100%;
+  align-self: center;
+  border: none;
+  background-color: transparent;
+  font-size: 1rem;
+  text-align: center;
+  color: #1b1b1b;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.expandable-btn i {
+  padding: 0;
+}
+
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
