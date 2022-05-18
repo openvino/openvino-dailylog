@@ -19,10 +19,10 @@ export class EvidencesComponent {
   public providerUrl: string;
 
   public loading = true;
-
   public wineryId: string = "";
-
   public productList = <any>[];
+
+  public fileName = "";
 
   public apiUrl;
 
@@ -37,8 +37,16 @@ export class EvidencesComponent {
     this.apiUrl = environment.apiUrl;
     this.providerUrl = environment.providerUrl;
     this.eventsList = this.coreService.getEventsList();
-    this.tagsDetails = this.coreService.getTagsDetails()
+    this.tagsDetails = this.coreService.getTagsDetails();
 
     $('[data-toggle="tooltip"]').tooltip();
+  }
+
+  onFileSelected(event) {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.fileName = file.name;
+    }
   }
 }

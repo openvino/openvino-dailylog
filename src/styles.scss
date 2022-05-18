@@ -72,6 +72,29 @@ p {
   opacity: 0.9;
 }
 
+.secondary-btn {
+  margin: 8px;
+  padding: 8px;
+  max-width: 100%;
+  width: 200px;
+  align-self: center;
+  border: none;
+  border-radius: 5px;
+  background-color: transparent;
+  font-size: 1rem;
+  text-align: center;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  cursor: pointer;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.secondary-btn:hover {
+  opacity: 0.9;
+}
+
 .expandable-btn {
   padding: 0;
   max-width: 100%;

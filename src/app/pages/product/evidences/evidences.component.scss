@@ -14,7 +14,29 @@
 }
 
 .tag-detail {
+  p {
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+  }
+  span {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #747474;
+    letter-spacing: 0.05rem;
+  }
+  i {
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    color: #747474;
+  }
+
   &-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
     &-data {
       display: flex;
       flex-direction: row;
@@ -35,7 +57,7 @@
 
       &-unity {
         margin-right: 10px;
-        margin-left:  10px;
+        margin-left: 10px;
         @media (max-width: 991px) {
           width: auto;
           margin: 4px 12px;
@@ -49,25 +71,6 @@
         }
       }
 
-      p {
-        font-size: 1rem;
-        margin: 0;
-        padding: 0;
-        text-align: left;
-      }
-      span {
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        color: #747474;
-        letter-spacing: 0.05rem;
-      }
-      i {
-        display: flex;
-        align-items: center;
-        padding-left: 5px;
-        color: #747474;
-
-      }
     }
   }
 }
@@ -81,12 +84,12 @@ ul.timeline {
 
 /* Timeline vertical line */
 ul.timeline:before {
-  content: ' ';
-  background:var(--primary-color);;
+  content: " ";
+  background: var(--primary-color);
   display: inline-block;
   position: absolute;
   left: 16px;
-  top:15px;
+  top: 15px;
   width: 1px;
   height: 97%;
   z-index: 400;
@@ -109,7 +112,7 @@ li.timeline-item {
 
 /* Timeline item circle marker */
 li.timeline-item::before {
-  content: ' ';
+  content: " ";
   background: var(--primary-color);
   display: inline-block;
   position: absolute;
@@ -120,7 +123,52 @@ li.timeline-item::before {
   z-index: 400;
 }
 
-.card, .card-body{
+.card,
+.card-body {
   background-color: transparent;
-  border:none;
+  border: none;
+}
+
+.modal-dialog {
+  max-width: 650px;
+}
+
+.modal-content {
+  padding: 20px;
+}
+
+textarea {
+  border: none;
+  outline: none;
+}
+
+textarea::placeholder {
+  color: #b1b1b1 !important;
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-btn {
+  border: none;
+}
+
+.upload-btn > i {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+.upload-btn > i:hover {
+  opacity: 0.9;
+}
+
+.custom-checkbox {
+  accent-color: currentcolor;
+}
+
+.banner-bg {
+  background-color: rgb(241, 241, 241);
+  width: 100%;
+  height: auto;
+  border-radius: 1em;
 }
