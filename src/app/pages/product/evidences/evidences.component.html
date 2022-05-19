@@ -2,11 +2,10 @@
   <h2 class="text-center mt-5">{{ "evidences.title" | translate }}</h2>
   <section class="info d-flex mt-5 flex-column flex-lg-row row mb-0 mb-lg-5">
     <div class="info-video col">
-      <video poster="../../../../assets/images/bg-video.png" controls>
-        <source src="../../../../assets/images/OpenVINO- BIO DIGITAL CERTIFICATION.mp4" type="video/mp4">
+      <video poster="../../../../assets/images/bg-video.png" controls >
+        <source src="../../../../assets/images/OpenVINO- BIO DIGITAL CERTIFICATION.mp4" type="video/mp4" >
       Your browser does not support the video tag.
       </video>
-      <!-- <img src="../../../../assets/images/video-cover.png" alt="bg image" /> -->
     </div>
     <div
       class="info-text px-4 d-flex flex-column justify-content-center col py-4 py-lg-0"
@@ -31,7 +30,7 @@
         </div>
         <div class="tag-detail-container-data-separator"></div>
         <div class="tag-detail-container-data-unity">
-          <span>{{ "evidences.bounty" | translate }}/span>
+          <span>{{ "evidences.bounty" | translate }}</span>
           <p>{{ tag.bounty }}</p>
         </div>
         <div class="tag-detail-container-data-separator"></div>
@@ -234,7 +233,7 @@
                         <i class="eva eva-plus-circle"></i>
                       </button>
                       <span class="text-center">{{
-                        fileName || {{ "evidences.upload-file" | translate }}
+                        fileName || "evidences.upload-file" | translate 
                       }}</span>
                     </div>
                   </div>
@@ -270,5 +269,6 @@
       </div>
       <!-- End Modal -->
     </div>
+ 
   </section>
 </div>

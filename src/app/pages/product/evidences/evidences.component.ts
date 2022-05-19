@@ -1,8 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+import { Component } from "@angular/core";
 import { CoreService } from "src/app/services/core.service";
 import { ProductService } from "../product.service";
-import { TABS } from "../product.config";
-import { ActivatedRoute, Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 
 declare var $: any;
@@ -12,30 +10,19 @@ declare var $: any;
   templateUrl: "./evidences.component.html",
   styleUrls: ["./evidences.component.scss"],
 })
-
-
-
 export class EvidencesComponent {
-
-  
   public eventsList = <any>[];
   public tagsDetails = <any>[];
-  public item;
+
   public providerUrl: string;
+  public apiUrl;
 
   public loading = true;
-  public wineryId: string = "";
-  public productList = <any>[];
-
   public fileName = "";
-
-  public apiUrl;
 
   constructor(
     public coreService: CoreService,
-    public productService: ProductService,
-    private route: ActivatedRoute,
-    private router: Router
+    public productService: ProductService
   ) {}
 
   ngOnInit() {
@@ -47,7 +34,6 @@ export class EvidencesComponent {
 
   onFileSelected(event) {
     const file: File = event.target.files[0];
-
     if (file) {
       this.fileName = file.name;
     }
