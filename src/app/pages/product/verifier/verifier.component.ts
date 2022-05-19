@@ -9,7 +9,10 @@ import { VerifierService } from "./verifier.service";
 import { TranslateService } from "@ngx-translate/core";
 import { Record, Proof } from "@bloock/sdk";
 import { EnchainteService } from "src/app/services/enchainte.service";
-import { Router } from "@angular/router";
+import { ProductService } from "../../product/product.service";
+
+import { ActivatedRoute, Router } from "@angular/router";
+import { CoreService } from "src/app/services/core.service";
 
 @Component({
   selector: "app-verifier",
@@ -26,6 +29,9 @@ export class VerifierComponent implements OnInit {
   public value: string;
   public data = null;
   public hashes: Record[];
+
+  public wineryId;
+  public tokenId;
 
   public proof: Proof;
   public proofVerified: boolean;
@@ -55,10 +61,18 @@ export class VerifierComponent implements OnInit {
     public verifierService: VerifierService,
     public enchainteService: EnchainteService,
     public translate: TranslateService,
-    public router: Router
+    public router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      let id = params.get("wineryId");
+      let tokenId = params.get("tokenId");
+      this.tokenId = tokenId;
+      this.wineryId = id;
+    });
+
     this.verifierService
       .getOpenedObservable()
       .subscribe(({ open, x, y, date, isDay, value, data, hash }) => {
@@ -108,7 +122,7 @@ export class VerifierComponent implements OnInit {
   }
 
   public openLink() {
-    this.router.navigate(["/proof"], {
+    this.router.navigate([`${this.wineryId}/${this.tokenId}/proof`], {
       queryParams: { date: this.date.toISOString() },
     });
   }

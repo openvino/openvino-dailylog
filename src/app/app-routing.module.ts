@@ -25,7 +25,7 @@ const routes: Routes = [
       import("./pages/product/product.module").then((m) => m.ProductModule),
   },
   {
-    path: "proof",
+    path: ":wineryId/:tokenId/proof",
     loadChildren: () =>
       import("./pages/proof/proof.module").then((m) => m.ProofModule),
   },
