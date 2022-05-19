@@ -6,7 +6,7 @@
     }
   }
   &-video {
-    img {
+    video {
       width: inherit;
       border-radius: 10px !important;
     }
@@ -70,7 +70,6 @@
           display: none;
         }
       }
-
     }
   }
 }
@@ -152,12 +151,16 @@ textarea::placeholder {
 
 .upload-btn {
   border: none;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
 }
 
 .upload-btn > i {
   font-size: 2.5rem;
   color: var(--primary-color);
 }
+
 .upload-btn > i:hover {
   opacity: 0.9;
 }
@@ -171,4 +174,20 @@ textarea::placeholder {
   width: 100%;
   height: auto;
   border-radius: 1em;
+}
+
+.tooltip-inner {
+  font-size: 2.5rem !important;
+}
+
+.custom-tooltip {
+  font-size: 2.5rem !important;
+  padding: 20px;
+}
+
+.badge {
+  color: rgb(49, 72, 75);
+  font-size: 1rem;
+  font-weight: 400;
+  background-color: rgba(140, 203, 203, 0.479);
 }

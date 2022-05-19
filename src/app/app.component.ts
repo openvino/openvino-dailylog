@@ -7,6 +7,8 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  
   title = 'openvino-dailylog';
 
   constructor(translate: TranslateService) {
@@ -14,5 +16,6 @@ export class AppComponent {
     translate.setDefaultLang('en');
     translate.use(translate.getBrowserLang() || 'en');
   }
+  
 }
 

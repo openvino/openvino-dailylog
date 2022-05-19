@@ -12,7 +12,12 @@ declare var $: any;
   templateUrl: "./evidences.component.html",
   styleUrls: ["./evidences.component.scss"],
 })
+
+
+
 export class EvidencesComponent {
+
+  
   public eventsList = <any>[];
   public tagsDetails = <any>[];
   public item;
@@ -38,8 +43,6 @@ export class EvidencesComponent {
     this.providerUrl = environment.providerUrl;
     this.eventsList = this.coreService.getEventsList();
     this.tagsDetails = this.coreService.getTagsDetails();
-
-    $('[data-toggle="tooltip"]').tooltip();
   }
 
   onFileSelected(event) {

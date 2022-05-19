@@ -2,7 +2,11 @@
   <h2 class="text-center mt-5">Evidences</h2>
   <section class="info d-flex mt-5 flex-column flex-lg-row row mb-0 mb-lg-5">
     <div class="info-video col">
-      <img src="../../../../assets/images/video-cover.png" alt="bg image" />
+      <video poster="../../../../assets/images/bg-video.png" controls>
+        <source src="../../../../assets/images/OpenVINO- BIO DIGITAL CERTIFICATION.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+      </video>
+      <!-- <img src="../../../../assets/images/video-cover.png" alt="bg image" /> -->
     </div>
     <div
       class="info-text px-4 d-flex flex-column justify-content-center col py-4 py-lg-0"
@@ -20,10 +24,10 @@
   <section class="tag-detail pt-1">
     <h3 class="text-center mt-5 mb-4">Tag's details</h3>
     <div class="tag-detail-container col" *ngFor="let tag of tagsDetails">
-      <h4>State</h4>
+      <h4 >State</h4>
       <div class="tag-detail-container-data mr-4">
         <div class="tag-detail-container-data-unity">
-          <p>{{ tag.state }}</p>
+          <p class="badge rounded-pill py-1 px-2 ">{{ tag.state }}</p>
         </div>
         <div class="tag-detail-container-data-separator"></div>
         <div class="tag-detail-container-data-unity">
@@ -52,7 +56,7 @@
         <div class="tag-detail-container-data-unity py-1">
           <div class="d-flex">
             <span>Public tag name</span>
-            <a data-toggle="tooltip" title="Hooray!">
+            <a data-toggle="tooltip" title="Description here">
               <i class="eva eva-question-mark-circle-outline"></i
             ></a>
           </div>
@@ -62,7 +66,7 @@
         <div class="tag-detail-container-data-unity py-1">
           <div class="d-flex">
             <span> Contract address </span>
-            <a data-toggle="tooltip" title="Hooray!">
+            <a data-toggle="tooltip" title="Description here">
               <i class="eva eva-question-mark-circle-outline"></i
             ></a>
           </div>
@@ -72,7 +76,7 @@
         <div class="tag-detail-container-data-unity py-1">
           <div class="d-flex">
             <span>UI/Website link </span>
-            <a data-toggle="tooltip" title="Hooray!">
+            <a data-toggle="tooltip" title="Description here">
               <i class="eva eva-question-mark-circle-outline"></i
             ></a>
           </div>
@@ -82,7 +86,7 @@
         <div class="tag-detail-container-data-unity py-1">
           <div class="d-flex">
             <span>Public note</span>
-            <a data-toggle="tooltip" title="Hooray!">
+            <a data-toggle="tooltip" title="Description here">
               <i class="eva eva-question-mark-circle-outline"></i
             ></a>
           </div>
@@ -105,11 +109,12 @@
               aria-expanded="false"
               aria-controls="collapseEvents"
             >
+
               <i class="eva eva-arrow-ios-downward-outline pr-1"></i>
               First request submission
             </button>
           </span>
-          <a class="d-flex" data-toggle="tooltip" title="Hooray!">
+          <a class="d-flex" data-mdb-toggle="tooltip" data-placement="top" title="Description here">
             <i class="eva eva-question-mark-circle-outline"></i
           ></a>
         </div>
@@ -152,12 +157,12 @@
         id="challenge-modal"
         tabindex="-1"
         role="dialog"
-        aria-labelledby="challengeModalLabel"
+        aria-labelledby="ChallengeModalLabel"
         aria-hidden="true"
       >
         <form class="d-flex justify-content-center align-items-center h-100">
           <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div class="modal-content" style="max-height:95vh; overflow-y: scroll;" >
               <div class="modal-header pt-0 border-0 d-flex flex-column">
                 <div class="w-100 d-flex justify-content-end">
                   <button
@@ -193,7 +198,7 @@
                     should be rejected.
                   </p>
                   <textarea
-                    class="banner-bg my-2 py-4 px-4"
+                    class="banner-bg my-2 py-3 px-4"
                     id="challenge-description"
                     name="challenge-descriptio"
                     rows="4"
@@ -225,7 +230,7 @@
 
                     <div
                       class="file-upload banner-bg d-flex flex-column mb-2"
-                      style="padding: 40px 20px"
+                      style="padding: 30px 20px"
                     >
                       <button
                         mat-mini-fab
