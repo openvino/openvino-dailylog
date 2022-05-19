@@ -63,7 +63,6 @@ export class SensorsComponent {
         this.fetchRandomCycle();
         this.fetchLastUpdated();
         this.fetchDashboardData();
-        this.fetchData(this.wineryId, this.year, this.month, this.day);
         this.fetchProducts(this.wineryId);
 
         this.coreService.getProductList(this.wineryId).subscribe((data) => {
@@ -95,7 +94,6 @@ export class SensorsComponent {
       .getSensorsData(wineryId, year, month, date)
       .subscribe((data) => {
         this.filterType = date ? "day" : month ? "month" : "year";
-        this.wineryId = "1";
         this.heatmapData = data.soilHumidity;
         this.temperatureData = data.temperature;
         this.windSpeedData = data.windSpeed;
