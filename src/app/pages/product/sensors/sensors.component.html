@@ -1,11 +1,10 @@
 <div class="container">
-  <h2>{{ "sensors.title" | translate }}</h2>
+  <h2 class="text-center mt-5">{{ "sensors.title" | translate }}</h2>
 
   <div class="dashboard" *ngIf="isDashboardReady()">
     <div class="dashboard-header">
       <div class="dashboard-header-state">
         <h4>{{ randomCycle }}</h4>
-        <h4></h4>
         <div>
           <ul>
             <a
@@ -89,7 +88,7 @@
         class="dashboard-data-vr-group"
         style="width: 25%; margin-right: 10px"
       >
-        <h5>{{ "sensors.dashboard.inputMolecules" | translate }}</h5>
+        <h5 class="pl-1 pl-md-4">{{ "sensors.dashboard.inputMolecules" | translate }}</h5>
         <div class="dashboard-data-vr-group-unit">
           <span>{{ "sensors.dashboard.co" | translate }}</span>
           <div>
@@ -129,7 +128,7 @@
         style="width: 75%"
       >
         <div class="dashboard-data-vrandhz-group">
-          <h5>{{ "sensors.dashboard.grapeStatus" | translate }}</h5>
+          <h5 class="pl-1 pl-md-4">{{ "sensors.dashboard.grapeStatus" | translate }}</h5>
           <div class="dashboard-data-vrandhz-subgroup">
             <span>{{ "sensors.dashboard.mbo" | translate }}</span>
             <div class="dashboard-data-hz-group-unit">
@@ -250,7 +249,7 @@
     </div>
   </div>
 
-  <h3>{{ "sensors.subtitle" | translate }}</h3>
+  <h3 class="text-center mt-5 mb-4">{{ "sensors.subtitle" | translate }}</h3>
  <div *ngIf="item" class="bottle-img">
     <div class="bottle">
       <img
@@ -291,7 +290,7 @@
     </div>
   </div> 
 
-  <h3>{{ "product.tabs.sensoric" | translate }}</h3>
+  <h3 class="text-center mt-5 mb-4">{{ "product.tabs.sensoric" | translate }}</h3>
  <div *ngIf="item" class="product-date">
     <app-date-selector
       [year]="item.year"
