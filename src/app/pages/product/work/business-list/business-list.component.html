@@ -4,8 +4,8 @@
   </div>
 
   <div class="category-selector">
-    <select [(ngModel)]="selectedCategory" (ngModelChange)="fetchExpenses(item.year, wineryId, selectedCategory)"
-      style="border-bottom: 1px solid black; border-top: none; border-right: none; border-left: none; outline: none;">
+    <select [(ngModel)]="selectedCategory" (ngModelChange)="fetchExpenses(item.year, wineryId, selectedCategory)" 
+      style="border-bottom: 1px solid black; border-top: none; border-right: none; border-left: none; outline: none; background-color: transparent;">
       <option value="-1" >{{'expenses.all-categories' | translate}}</option>
       <option *ngFor="let category of categoriesLabels | keyvalue" [value]="category.key" >{{ category.value }}</option>
     </select>
