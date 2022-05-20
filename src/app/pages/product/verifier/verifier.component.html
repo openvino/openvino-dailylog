@@ -11,7 +11,7 @@
     <div class="verifier-content">
         {{ value }}
     </div>
-    <i class="eva eva-link-outline verifier-icon" (click)="openEtherscan()"></i>
-    <i class="eva eva-external-link-outline verifier-icon" (click)="openLink()"></i>
+    <i class="eva eva-external-link-outline verifier-icon" (click)="openEtherscan()"></i>
+    <i class="eva eva-shield-outline verifier-icon" (click)="openLink()"></i>
     <app-verifier-button *ngIf="hashes && hashes.length > 0" [hashes]="hashes"></app-verifier-button>
 </div>

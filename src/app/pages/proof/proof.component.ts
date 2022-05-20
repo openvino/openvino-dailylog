@@ -62,8 +62,8 @@ export class ProofComponent implements OnInit {
     this.proofLoading = true;
 
     setTimeout(async () => {
-      this.proofVerified =
-        (await this.enchainteService.verify(this.proof)) != 0;
+      let timestamp = await this.enchainteService.verify(this.proof)
+      this.proofVerified = timestamp != 0;
       this.proofLoading = false;
     }, 100);
   }
