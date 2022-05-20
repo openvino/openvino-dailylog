@@ -38,7 +38,7 @@ export class EnchainteService {
                   root: anchor.root,
                   txHash: anchor.networks.filter(
                     (network) => network.name === "ethereum_rinkeby"
-                  )[0].txHash,
+                  )[0]["tx_hash"],
                   hashes: hash,
                 };
               }
@@ -69,7 +69,8 @@ export class EnchainteService {
     }
   }
 
-  public verify(proof: Proof) {
-    return this.sdk.verifyProof(proof, Network.ETHEREUM_RINKEBY);
+  public async verify(proof: Proof) {
+    let root = await this.sdk.verifyProof(proof);
+    return await this.sdk.validateRoot(root, Network.ETHEREUM_RINKEBY)
   }
 }

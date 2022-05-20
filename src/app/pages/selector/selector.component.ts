@@ -28,6 +28,7 @@ export class SelectorComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       let id = params.get("wineryId");
+     
       if (id) {
         this.wineryId = id;
         this.fetchProducts(this.wineryId);
