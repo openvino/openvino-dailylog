@@ -1,7 +1,7 @@
 <div class="tasks-list-container">
 
   <div class="product-content-subtitle">
-    <h2>{{'tasks-app.home.title' | translate}}</h2>
+    <h2 class="text-center mt-5">{{'tasks-app.home.title' | translate}}</h2>
   </div>
 
   <div class="product-date">
@@ -23,7 +23,7 @@
         <div *ngFor="let value of date.value">
           <div class="task">
             <div class="task-description">
-              <h3>{{'tasks.types.' + value.typeId + '.name' | translate}}</h3>
+              <h4>{{'tasks.types.' + value.typeId + '.name' | translate}}</h4>
               <button type="button" class="task-details-btn" data-bs-toggle="collapse"
                 [attr.data-bs-target]="'#task-' + value.hash.hash" aria-expanded="false"
                 [attr.aria-controls]="'#task-' + value.hash.hash">

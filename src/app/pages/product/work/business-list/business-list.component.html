@@ -1,11 +1,11 @@
 <div class="expenses-list-container">
   <div class="product-content-subtitle">
-    <h2>{{'expenses.list' | translate}}</h2>
+    <h2 class="text-center mt-5">{{'expenses.list' | translate}}</h2>
   </div>
 
   <div class="category-selector">
-    <select [(ngModel)]="selectedCategory" (ngModelChange)="fetchExpenses(item.year, wineryId, selectedCategory)"
-      style="border-bottom: 1px solid black; border-top: none; border-right: none; border-left: none; outline: none;">
+    <select [(ngModel)]="selectedCategory" (ngModelChange)="fetchExpenses(item.year, wineryId, selectedCategory)" 
+      style="border-bottom: 1px solid black; border-top: none; border-right: none; border-left: none; outline: none; background-color: transparent;">
       <option value="-1" >{{'expenses.all-categories' | translate}}</option>
       <option *ngFor="let category of categoriesLabels | keyvalue" [value]="category.key" >{{ category.value }}</option>
     </select>
@@ -26,9 +26,9 @@
             <p class="expense-date">{{expense.timestamp | date:"d/M/yy, h:mm a"}}</p>
             <p *ngIf="expense.categories && expense.categories.length > 0">
               {{'expenses.categories' | translate}}</p>
-            <h3>{{'expenses.categories.' + expense.expense_id  | translate}}</h3>
+            <h4>{{'expenses.categories.' + expense.expense_id  | translate}}</h4>
             <p class="expense-description-text">{{expense.description}}</p>
-            <h5>{{expense.value + " $"}}</h5>
+            <p style="font-size: 16px; font-weight: bold;">{{expense.value + " $"}}</p>
           </div>
           <app-verifier-button [hashes]="[expense.hash]"></app-verifier-button>
         </div>

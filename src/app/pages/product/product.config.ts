@@ -9,8 +9,12 @@ export const TABS = [
   },
   {
     id: "BUSINESS",
-    name: "product.tabs.business",
-  },
+     name:"product.tabs.business"
+   },
+   {
+     id: "EVIDENCES",
+    name: "product.tabs.evidences"
+   }
 ];
 
 export const YEARS = [2019, 2020, 2021, 2022];

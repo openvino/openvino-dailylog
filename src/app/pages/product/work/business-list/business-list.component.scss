@@ -21,22 +21,10 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding-bottom: 30px;
+  padding-bottom: 80px;
 
   @media (max-width: 540px) {
     width: 85%;
-  }
-
-  h2 {
-    @media (max-width: 540px) {
-      font-size: 1.5rem;
-    }
-  }
-
-  h3 {
-    @media (max-width: 540px) {
-      font-size: 1.2rem;
-    }
   }
 
   .expense-date {
@@ -55,17 +43,9 @@
 
     &-description {
       width: 80%;
-     &-text {
-       font-weight: 400;
-       font-size: 14px;
-     }
-
-      & h3 {
-        color: var(--primary-color);
-        font-size: 1.2em;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+      &-text {
+        font-weight: 400;
+        font-size: 14px;
       }
     }
     &-box {
@@ -93,15 +73,6 @@
   }
 }
 
-h2,
-h4 {
-  text-align: center;
-  color: var(--primary-text-color);
-  margin-top: 20px;
-}
-
-
-
 .expenses-list {
   width: 70%;
   margin: 0 auto;
@@ -118,24 +89,6 @@ hr {
   margin: 20px 0;
 }
 
-.empty-state-img {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 0;
-  opacity: 0.5;
-
-  img {
-    width: 4%;
-    padding-bottom: 10px;
-    @media (max-width: 1084px) {
-      width: 6%;
-    }
-    @media (max-width: 496px) {
-      width: 10%;
-    }
-  }
-}
 .expense-detail-small {
   font-size: 14px;
   padding-top: 5px;
@@ -155,6 +108,5 @@ hr {
 
 .category-selector {
   margin: 0 auto;
-  padding: 30px  0 50px 0;
- 
+  padding: 30px 0 50px 0;
 }

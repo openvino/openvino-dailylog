@@ -1,0 +1,117 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="challenge-modal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="ChallengeModalLabel"
+  aria-hidden="true"
+>
+  <form class="d-flex justify-content-center align-items-center h-100">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header pt-0 border-0 d-flex flex-column">
+          <div class="w-100 d-flex justify-content-end">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <i class="eva eva-close-outline"></i>
+            </button>
+          </div>
+          <div class="w-100 d-flex flex-column justify-content-center">
+            <h3
+              class="modal-title text-center"
+              id="exampleModalLabel"
+              style="color: var(--primary-color)"
+            >
+              Challenge submission
+            </h3>
+            <p class="text-center mt-1">
+              Read the
+              <a href="" style="color: var(--primary-color)"
+                >listing criteria</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div class="modal-body border-0 mt-2 mb-1">
+          <div>
+            <p>
+              Explain to the jurors why you should think this submission should
+              be rejected.
+            </p>
+            <textarea
+              class="banner-bg my-2 py-4 px-4"
+              id="challenge-description"
+              name="challenge-descriptio"
+              rows="4"
+              cols="50"
+              placeholder="Write your description"
+            ></textarea>
+          </div>
+          <div>
+            <label class="checkbox-container mt-1 mb-1"
+              ><input
+                class="custom-checkbox"
+                type="checkbox"
+                data-toggle="collapse"
+                data-target="#collapseAttachment"
+                aria-expanded="false"
+                aria-controls="collapseAttachment"
+              />
+              Include attachment</label
+            >
+          </div>
+          <div class="collapse" id="collapseAttachment">
+            <div class="card card-body image-upload p-0">
+              <input
+                type="file"
+                class="file-input"
+                (change)="onFileSelected($event)"
+                #fileUpload
+              />
+
+              <div
+                class="file-upload banner-bg d-flex flex-column mb-2"
+                style="padding: 40px 20px"
+              >
+                <button
+                  mat-mini-fab
+                  class="upload-btn mb-1 d-flex justify-content-center"
+                  (click)="fileUpload.click()"
+                >
+                  <i class="eva eva-plus-circle"></i>
+                </button>
+                <span class="text-center">{{ fileName || "Upload file" }}</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 mb-1">
+            <p>
+              To challenge a submission, a deposit is required. This value will
+              be awarded to the party that wins the dispute.
+            </p>
+            <div class="banner-bg d-flex justify-content-between mt-2 mb-4 p-4">
+              <p>Total submitted</p>
+              <h4>450000</h4>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="modal-footer pt-0 mb-4 border-0 d-flex justify-content-center"
+        >
+          <button type="button" class="secondary-btn" data-dismiss="modal">
+            Cancel
+          </button>
+          <button type="button" class="primary-btn">Submit</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- End Modal -->

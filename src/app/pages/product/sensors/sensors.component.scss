@@ -183,19 +183,12 @@
     }
   }
 
-  h5 {
-    color: var(--primary-color);
-    font-size: 1rem;
-    padding: 5px 0 0 30px;
-    @media (max-width: 800px) {
-      padding: 0;
-    }
-  }
   hr {
     color: rgb(221, 221, 221) 1px solid;
     width: 80%;
     margin: 0 auto;
   }
+  
   p {
     font-size: 1.7rem;
     margin: 0;
@@ -279,24 +272,3 @@
   padding-bottom: 32px;
 }
 
-h2 {
-  color: black;
-  text-align: center;
-  @media (max-width: 540px) {
-    font-size: 1.5rem;
-  }
-}
-
-h3 {
-  text-align: center;
-  color: var(--primary-text-color);
-  margin-top: 50px;
-}
-
-h4 {
-  font-size: 22px;
-  color: var(--primary-color);
-  @media (max-width: 540px) {
-    font-size: 1.2rem;
-  }
-}

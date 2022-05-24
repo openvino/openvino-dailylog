@@ -21,22 +21,10 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding-bottom: 30px;
-
+  padding-bottom: 80px;
+  
   @media (max-width: 540px) {
     width: 85%;
-  }
-
-  h2 {
-    @media (max-width: 540px) {
-      font-size: 1.5rem;
-    }
-  }
-
-  h3 {
-    @media (max-width: 540px) {
-      font-size: 1.2rem;
-    }
   }
 
   .task-date {
@@ -55,14 +43,6 @@
 
     &-description {
       width: 80%;
-
-      & h3 {
-        color: var(--primary-color);
-        font-size: 1.2em;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
     }
 
     &-details-btn {
@@ -90,9 +70,6 @@
     border: none;
   }
 
-  & li {
-  }
-
   .card-body {
     border: none;
     margin: 20px 0;
@@ -104,13 +81,6 @@
   border: none;
   visibility: hidden;
   transition: 0.1ms;
-}
-
-h2,
-h4 {
-  text-align: center;
-  color: var(--primary-text-color);
-  margin-top: 20px;
 }
 
 .tasks-list {
@@ -129,25 +99,6 @@ h4 {
 
   .tasks-bottle-chart-name {
     width: 95%;
-  }
-}
-
-.empty-state-img {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 0;
-  opacity: 0.5;
-
-  img {
-    width: 4%;
-    padding-bottom: 10px;
-    @media (max-width: 1084px) {
-      width: 6%;
-    }
-    @media (max-width: 496px) {
-      width: 10%;
-    }
   }
 }
 
