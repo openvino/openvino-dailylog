@@ -1,5 +1,6 @@
 .info {
-  &-text {
+  &-text,
+  p {
     text-align: start;
     @media (max-width: 991px) {
       text-align: center;
@@ -13,19 +14,20 @@
   }
 }
 
+p {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+span {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: #747474;
+  letter-spacing: 0.05rem;
+}
+
 .tag-detail {
-  p {
-    font-size: 1rem;
-    margin: 0;
-    padding: 0;
-    text-align: left;
-  }
-  span {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    color: #747474;
-    letter-spacing: 0.05rem;
-  }
   i {
     display: flex;
     align-items: center;
@@ -181,4 +183,77 @@ textarea::placeholder {
   font-size: 1rem;
   font-weight: 400;
   background-color: rgba(140, 203, 203, 0.479);
+}
+
+.tag-date {
+  margin: 35px 0 20px 0;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.1rem;
+}
+
+.tag {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  &-description {
+    width: 80%;
+  }
+
+  &-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &-details-btn {
+    color: var(--primary-text-color);
+    background-color: transparent;
+    border: none;
+    padding: 0px;
+
+    &::after {
+      content: "▾";
+    }
+  }
+
+  &-verification {
+    width: 20%;
+  }
+}
+
+.tag-list {
+  width: 70%;
+  margin: 0 auto;
+
+  @media (max-width: 1084px) {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.collapse {
+  & ul {
+    padding: 0;
+    list-style-type: none;
+    color: var(--primary-text-color);
+    border: none;
+  }
+
+  .card-body {
+    border: none;
+    margin: 20px 0;
+    list-style-type: none;
+  }
+}
+
+.collapsing {
+  border: none;
+  visibility: hidden;
+  transition: 0.1ms;
 }
