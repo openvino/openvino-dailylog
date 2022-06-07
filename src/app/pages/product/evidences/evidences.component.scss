@@ -89,7 +89,7 @@ ul.timeline:before {
   background: var(--primary-color);
   display: inline-block;
   position: absolute;
-  left: 16px;
+  left: 3px;
   top: 15px;
   width: 1px;
   height: 97%;
@@ -118,7 +118,7 @@ li.timeline-item::before {
   display: inline-block;
   position: absolute;
   border-radius: 50%;
-  left: 13px;
+  left: 0;
   width: 7px;
   height: 7px;
   z-index: 400;

@@ -99,7 +99,6 @@ export class CoreService {
     return [
       {
         id: "1",
-
         tokenId: "MTB19",
         state: "submitted",
         request_type: "Submission",
@@ -126,7 +125,6 @@ export class CoreService {
       },
       {
         id: "3",
-
         tokenId: "MTB19",
         state: "submitted",
         request_type: "Submission",
