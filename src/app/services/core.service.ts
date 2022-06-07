@@ -27,9 +27,9 @@ export class CoreService {
         UpdatedAt: "2022-03-25 12:00:56",
         DeletedAt: "2022-03-25 12:00:56",
         name: "Maal",
-        website:"https://maalwines.com/",
+        website: "https://maalwines.com/",
         image: "",
-        primary_color: ""
+        primary_color: "",
       },
       {
         ID: "4",
@@ -37,9 +37,9 @@ export class CoreService {
         UpdatedAt: "2022-03-25 12:00:56",
         DeletedAt: "2022-03-25 12:00:56",
         name: "Ricardo Santos",
-        website:"http://www.ricardosantos.com/",
+        website: "http://www.ricardosantos.com/",
         image: "",
-        primary_color: ""
+        primary_color: "",
       },
       {
         ID: "5",
@@ -47,50 +47,95 @@ export class CoreService {
         UpdatedAt: "2022-03-25 12:00:56",
         DeletedAt: "2022-03-25 12:00:56",
         name: "Serrera",
-        website:"http://www.serrera.com.ar/",
+        website: "http://www.serrera.com.ar/",
         image: "",
-        primary_color: ""
-      }
-    ]}
+        primary_color: "",
+      },
+    ];
+  }
 
-    getEventsList() {
-      return [
-        {
-          id: "1",
-          title: "Story submitted",
-          body: "21/02/2020",
-          timestamp: "Submitted Tue, 14 Jul 2020 20:45:08 GMT by 0x34h..9A99"
-        },
-        {
-          id: "2",
-          title: "Title issue",
-          body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula.  Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula.  Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula.",
-          timestamp: "Submitted Tue, 14 Jul 2020 20:45:08 GMT by 0x34h..9A99"
-        },
-        {
-          id: "3",
-          title: "Challenge justification",
-          body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula",
-          timestamp: "Submitted Tue, 14 Jul 2020 20:45:08 GMT by 0x34h..9A99"
-        },
-      ]}
+  getEventsList() {
+    return [
+      {
+        id: "1",
+        title: "Story submitted",
+        body: "21/02/2020",
+        timestamp: "Submitted Tue, 14 Jul 2020 20:45:08 GMT by 0x34h..9A99",
+      },
+      {
+        id: "2",
+        title: "Title issue",
+        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula.  Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula.  Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula.",
+        timestamp: "Submitted Tue, 14 Jul 2020 20:45:08 GMT by 0x34h..9A99",
+      },
+      {
+        id: "3",
+        title: "Challenge justification",
+        body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque diam non nisi semper, et elementum lorem ornare. Maecenas placerat facilisis mollis. Duis sagittis ligula in sodales vehicula",
+        timestamp: "Submitted Tue, 14 Jul 2020 20:45:08 GMT by 0x34h..9A99",
+      },
+    ];
+  }
 
-      getTagsDetails() {
-        return [
-          {
-            id: "1",
-            tokenId: "MTB19",
-            state: "submitted",
-            request_type: "Submission",
-            bounty: "100000 DAI",
-            requester: "xx12344..234ddc",
-            ending_date: "In 6 days",
-            public_tag: "Wintermute: Wintermute 1",
-            contract_address: "ETH: 1234cdsdf..esfsfs23",
-            website:"wwww.website.com",
-            public_note:"Wintermute's token management"
-          }
-        ]}
+  getTagsDetails() {
+    return [
+      {
+        id: "1",
+        tokenId: "MTB19",
+        state: "submitted",
+        request_type: "Submission",
+        bounty: "100000 DAI",
+        requester: "xx12344..234ddc",
+        ending_date: "In 6 days",
+        public_tag: "Wintermute: Wintermute 1",
+        contract_address: "ETH: 1234cdsdf..esfsfs23",
+        website: "wwww.website.com",
+        public_note: "Wintermute's token management",
+      },
+    ];
+  }
+
+  getTagsList() {
+    return [
+      {
+        id: "1",
+        tokenId: "MTB19",
+        state: "submitted",
+        request_type: "Submission",
+        bounty: "100000 DAI",
+        requester: "xx12344..234ddc",
+        ending_date: "in 6 days",
+        public_tag: "Wintermute: Wintermute 1",
+        contract_address: "ETH: 1234cdsdf..esfsfs23",
+        website: "wwww.website.com",
+        public_note: "Wintermute's token management",
+      },
+      {
+        id: "2",
+        tokenId: "MTB19",
+        state: "Registered",
+        request_type: "Submission",
+        bounty: "100000 DAI",
+        requester: "xx12344..111fec",
+        ending_date: "in 6 days",
+        public_tag: "Summermute:Summermute 1",
+        contract_address: "ETH: 1234cdsdf..esfsfs24",
+        website: "wwww.website.com",
+        public_note: "Summermute's token management",
+      },
+      {
+        id: "3",
+        tokenId: "MTB19",
+        state: "submitted",
+        request_type: "Submission",
+        bounty: "100000 DAI",
+        requester: "xx12344..44rtbn",
+        ending_date: "in 6 days",
+        public_tag: "Springmute: Springmute 1",
+        contract_address: "ETH: 1234cdsdf..esfsfs25",
+        website: "wwww.website.com",
+        public_note: "Springmute's token management",
+      },
+    ];
+  }
 }
-
-

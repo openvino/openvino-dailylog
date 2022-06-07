@@ -25,7 +25,6 @@
     "@angular/router": "~11.1.0",
     "@bloock/sdk": "1.5.4",
     "@enchainte-projects/enchainte-uniswap-component": "^1.2.6",
-    "@ng-bootstrap/ng-bootstrap": "^9.1.3",
     "@ngx-translate/core": "^12.1.2",
     "@ngx-translate/http-loader": "^4.0.0",
     "@popperjs/core": "^2.11.5",
@@ -33,6 +32,7 @@
     "chart.js": "^2.9.3",
     "eva-icons": "^1.1.3",
     "moment": "^2.29.1",
+    "ngx-bootstrap": "^8.0.0",
     "rxjs": "^6.5.5",
     "tslib": "^1.13.0",
     "zone.js": "~0.10.2"

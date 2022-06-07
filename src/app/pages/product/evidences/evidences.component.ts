@@ -3,8 +3,6 @@ import { CoreService } from "src/app/services/core.service";
 import { ProductService } from "../product.service";
 import { environment } from "src/environments/environment";
 
-declare var $: any;
-
 @Component({
   selector: "app-evidences",
   templateUrl: "./evidences.component.html",
@@ -13,6 +11,9 @@ declare var $: any;
 export class EvidencesComponent {
   public eventsList = <any>[];
   public tagsDetails = <any>[];
+  public tagsList = <any>[];
+  public categoriesLabels = <any>[];
+  public selectedCategory: number = -1;
 
   public providerUrl: string;
   public apiUrl;
@@ -30,6 +31,7 @@ export class EvidencesComponent {
     this.providerUrl = environment.providerUrl;
     this.eventsList = this.coreService.getEventsList();
     this.tagsDetails = this.coreService.getTagsDetails();
+    this.tagsList = this.coreService.getTagsList();
   }
 
   onFileSelected(event) {

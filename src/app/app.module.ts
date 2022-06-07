@@ -13,7 +13,7 @@ import { EnchainteService } from './services/enchainte.service';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { SearchWineriesPipe } from './pages/winery-selector/search-wineries.pipe';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -24,6 +24,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     SearchWineriesPipe,
+
     
   ],
   imports: [
@@ -41,8 +42,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     SelectorModule,
     WinerySelectorModule,
     ProductModule,
-    NgbModule,
-  
   
   ],
   providers: [
