@@ -42,6 +42,7 @@ export class EnchainteService {
                   hashes: hash,
                 };
               }
+              return {};
             })
           );
         })
@@ -71,6 +72,6 @@ export class EnchainteService {
 
   public async verify(proof: Proof) {
     let root = await this.sdk.verifyProof(proof);
-    return await this.sdk.validateRoot(root, Network.ETHEREUM_RINKEBY)
+    return await this.sdk.validateRoot(root, Network.ETHEREUM_RINKEBY);
   }
 }

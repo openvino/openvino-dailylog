@@ -19,6 +19,7 @@ import { DateSelectorComponent } from "./date-selector/date-selector.component";
 import { ProductRoutingModule } from "./product-routing.module";
 import { VerifierButtonComponent } from "./verifier/verifier-button/verifier-button.component";
 import { EvidencesComponent } from "./evidences/evidences.component";
+import { GraphQLModule } from "src/app/graphql.module";
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -36,7 +37,13 @@ import { EvidencesComponent } from "./evidences/evidences.component";
     BusinessListComponent,
     DateSelectorComponent,
   ],
-  imports: [CommonModule, FormsModule, TranslateModule, ProductRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    TranslateModule,
+    GraphQLModule,
+    ProductRoutingModule,
+  ],
   providers: [ProductService, VerifierService],
 })
 export class ProductModule {}

@@ -9,7 +9,13 @@ export const environment = {
   mapsApiKey: "AIzaSyC6t7EuOhDJf_B8gpafWNUnqNqoLvZy0jI",
   shippingAccount: "0xe613FAF5fA44f019E3A3AF5927bAA6B13643BA53",
   apiUrl: "https://costaflores.openvino.exchange",
-  tcr_address: '0xba0304273a54dfec1fc7f4bccbf4b15519aecf15'
+  ipfsHost: "https://ipfs.kleros.io",
+  provider: "https://rpc.xdaichain.com/",
+  listAddress: "0x76944a2678A0954A610096Ee78E8CEB8d46d5922",
+  lgtcrViewAddress: "0xB32e38B08FcC7b7610490f764b0F9bFd754dCE53",
+  bountySymbol: "DAI",
+  graphHost:
+    "https://api.thegraph.com/subgraphs/name/eccentricexit/curate-xdai-ii",
 };
 
 /*

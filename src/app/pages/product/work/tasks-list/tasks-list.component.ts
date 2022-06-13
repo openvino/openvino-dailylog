@@ -11,14 +11,13 @@ import { CoreService } from "src/app/services/core.service";
   styleUrls: ["./tasks-list.component.scss"],
 })
 export class TasksListComponent implements OnInit {
-  public loadedTasks = <any>[];
+  public loadedTasks: any;
   public filterType = "month";
   public item;
   public loadedTasksKeys = <any>[];
   public taskKeyToDate;
   public wineryId;
   public productList = <any>[];
-
 
   constructor(
     public coreService: CoreService,
@@ -44,15 +43,15 @@ export class TasksListComponent implements OnInit {
             return;
           }
         });
-        return
+        return;
       }
 
       this.router.navigate(["/"]);
     });
   }
 
-  public onDateChange($event) { 
-    this.fetchTasks( this.wineryId, $event.year, $event.month, $event.day);
+  public onDateChange($event) {
+    this.fetchTasks(this.wineryId, $event.year, $event.month, $event.day);
   }
 
   public getDate(key) {
@@ -71,7 +70,7 @@ export class TasksListComponent implements OnInit {
 
   public fetchTasks(wineryId, year, month, date) {
     this.productService
-      .getTasks(wineryId,year, month, date)
+      .getTasks(wineryId, year, month, date)
 
       .subscribe((data) => {
         this.filterType = date ? "day" : month ? "month" : "year";

@@ -17,7 +17,17 @@
     "target": "es2017",
     "module": "es2020",
     "lib": ["es2020", "dom", "esnext.asynciterable"],
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "stream": ["./node_modules/stream-browserify"],
+      "crypto": ["./node_modules/crypto-browserify"],
+      "assert": ["./node_modules/assert"],
+      "http": ["./node_modules/stream-http"],
+      "https": ["./node_modules/https-browserify"],
+      "url": ["./node_modules/url"],
+      "os": ["./node_modules/os-browserify"],
+      "vm": ["./node_modules/vm-browserify"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

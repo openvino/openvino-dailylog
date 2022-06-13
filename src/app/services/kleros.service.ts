@@ -1,92 +1,203 @@
-import { Injectable } from '@angular/core';
-import * as ethers from 'ethers';
-import _gtcr from '@kleros/tcr/build/contracts/GeneralizedTCR.json';
+import { Injectable } from "@angular/core";
+import * as ethers from "ethers";
 import { environment } from "src/environments/environment";
-
+import { Apollo } from "apollo-angular";
+import gql from "graphql-tag";
+import { map, mergeMap, lastValueFrom } from "rxjs";
+import _GTCRView from "../../assets/abis/LightGeneralizedTCRView.json";
+import _gtcr from "@kleros/tcr/build/contracts/GeneralizedTCR.json";
+import {
+  STATUS_CODE,
+  STATUS_COLOR,
+  STATUS_TEXT,
+  SUBGRAPH_STATUS_TO_CODE,
+} from "../utils/kleros-item-status";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class KlerosService {
-  private TCR_ADDRESS = environment.tcr_address
-  private PROVIDER = environment.providerUrl
-    
-  constructor() {}
+  constructor(private apollo: Apollo) {}
 
-  async getMetadata() {
-    let library = this.getLibrary();
-    let contract = this.getGTCR(this.TCR_ADDRESS, library);
+  getItemList() {
+    let result = this.apollo
+      .query({
+        query: gql`
+          query lightItemsQuery(
+            $skip: Int
+            $first: Int
+            $orderDirection: OrderDirection
+            $where: LItem_filter
+          ) {
+            litems(
+              skip: $skip
+              first: $first
+              orderDirection: $orderDirection
+              orderBy: latestRequestSubmissionTime
+              where: $where
+            ) {
+              itemID
+              status
+              data
+              props {
+                value
+                type
+                label
+                description
+                isIdentifier
+              }
+              requests(
+                first: 1
+                orderBy: submissionTime
+                orderDirection: desc
+              ) {
+                disputed
+                disputeID
+                submissionTime
+                resolved
+                requester
+                challenger
+                resolutionTime
+                rounds(first: 1, orderBy: creationTime, orderDirection: desc) {
+                  appealPeriodStart
+                  appealPeriodEnd
+                  ruling
+                  hasPaidRequester
+                  hasPaidChallenger
+                  amountPaidRequester
+                  amountPaidChallenger
+                }
+              }
+            }
+          }
+        `,
+        variables: {
+          skip: (Number(1) - 1) * 100,
+          first: 100,
+          orderDirection: "desc",
+          where: {
+            registry: environment.listAddress.toLowerCase(),
+          },
+        },
+      })
+      .pipe(
+        map((res) => (res.data as any).litems),
+        mergeMap(async (data: any[]) => {
+          let baseDeposits = await this.getBaseDeposits();
 
-    let logs = await this.getLogs({
-      ...(contract.filters as any).MetaEvidence(),
-      fromBlock: 0,
-    }).then((logs) => {
-      return logs.map((log) => {
-        return {
-          value: contract.interface.parseLog(log),
-          blockNumber: log.blockNumber,
-        };
-      });
-    });
+          return {
+            data,
+            deposit: {
+              ...baseDeposits,
+            },
+          };
+        }),
+        map(({ data, deposit }) => {
+          return data.map(({ data, itemID, props, requests, status }) => {
+            let address = props.find(
+              (prop: any) => prop.type == "address"
+            ).value;
 
-    let results = [];
-    for (let log of logs) {
-      const { value, blockNumber } = log;
-      const { _evidence: metaEvidencePath } = value.args;
+            let statusCode: any = (SUBGRAPH_STATUS_TO_CODE as any)[status];
+            let bounty;
+            if (statusCode) {
+              if (statusCode === STATUS_CODE.SUBMITTED)
+                bounty = deposit.submissionBaseDeposit.div(
+                  ethers.BigNumber.from(10).pow(18)
+                );
+              else if (statusCode === STATUS_CODE.REMOVAL_REQUESTED)
+                bounty = deposit.removalBaseDeposit.div(
+                  ethers.BigNumber.from(10).pow(18)
+                );
+            }
 
-      const [response, block] = await Promise.all([
-        fetch('https://ipfs.kleros.io' + metaEvidencePath),
-        this.getLibrary().getBlock(blockNumber),
-      ]);
+            return {
+              itemID: itemID,
+              createdAt: new Date(requests[0].submissionTime * 1000),
+              endDate: new Date(requests[0].resolutionTime * 1000),
+              status,
+              statusLabel: STATUS_TEXT[statusCode],
+              statusColor: STATUS_COLOR[statusCode],
+              address: address,
+              bounty: bounty,
+              requester: requests[0].requester,
+              props,
+              tagHistory: [],
+              requestsFromSubgraph: requests,
+            };
+          });
+        }),
+        mergeMap(async (items) => {
+          let promises = [];
+          let i = 0;
+          for (let item of items) {
+            if (i == 0) {
+              promises.push(this.getItemRequests(item));
+            }
+            ++i;
+          }
 
-      const file = await response.json();
+          let results = await Promise.all(promises);
+          return items.map((item, i) => {
+            return {
+              ...item,
+              requests: results[i],
+            };
+          });
+        })
+      );
+    return lastValueFrom(result);
+  }
 
-      results.push({
-        ...file,
-        address: this.TCR_ADDRESS,
-        timestamp: block.timestamp,
-        blockNumber,
-      });
+  public async getItemRequests(item: any) {
+    try {
+      let contract: any = this.getGTCRView();
+
+      const requestStructs = await contract.getItemRequests(
+        environment.listAddress,
+        item.itemID
+      );
+
+      const { requestsFromSubgraph: requests } = item;
+
+      return requestStructs.map((request: any, i: number) => ({
+        ...request,
+        requestType: (SUBGRAPH_STATUS_TO_CODE as any)[requests[i].requestType],
+        evidenceGroupID: requests[i].evidenceGroupID,
+        creationTx: requests[i].creationTx,
+        resolutionTx: requests[i].resolutionTx,
+        resolutionTime: requests[i].resolutionTime,
+        submissionTime: requests[i].submissionTime,
+      }));
+    } catch (err) {
+      console.error("Error fetching item requests", err);
     }
-
-    return results;
   }
 
-  public async getMetadataEvidence(tcrAddress: string) {
-    let library = this.getLibrary();
-    let contract = this.getGTCR(tcrAddress, library);
-
-    let logs = await this.getLogs({
-      ...(contract.filters as any).MetaEvidence(),
-      fromBlock: 0,
-    }).then((logs) => {
-      return logs.map((log) => {
-        return {
-          value: contract.interface.parseLog(log),
-          blockNumber: log.blockNumber,
-        };
-      });
-    });
-
-    const log = logs[logs.length - 2];
-
-    const { _evidence: metaEvidencePath } = log.value.args;
-
-    const [response, block] = await Promise.all([
-      fetch('https://ipfs.kleros.io' + metaEvidencePath),
-      this.getLibrary().getBlock(log.blockNumber),
-    ]);
-
-    const file = await response.json();
-
-    return { ...file, address: tcrAddress };
+  public async getBaseDeposits() {
+    let contract: any = this.getGTCRView();
+    let arbitrableTcrData = await contract.fetchArbitrable(
+      environment.listAddress
+    );
+    return {
+      ...arbitrableTcrData,
+    };
   }
 
-  private getGTCR(
-    tcrAddress: string,
-    library: ethers.providers.Provider
-  ): ethers.Contract {
-    return new ethers.Contract(tcrAddress, _gtcr.abi, library);
+  public getGTCRView() {
+    return new ethers.Contract(
+      environment.lgtcrViewAddress,
+      _GTCRView,
+      this.getLibrary()
+    );
+  }
+
+  public getGTCR() {
+    return new ethers.Contract(
+      environment.listAddress,
+      _gtcr.abi,
+      this.getLibrary()
+    );
   }
 
   private async getLogs(query: any) {
@@ -94,6 +205,6 @@ export class KlerosService {
   }
 
   private getLibrary(): ethers.providers.Provider {
-    return new ethers.providers.JsonRpcProvider(this.PROVIDER);
+    return new ethers.providers.JsonRpcProvider(environment.provider);
   }
 }

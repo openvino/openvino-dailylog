@@ -30,9 +30,9 @@ export class WinerySelectorComponent implements OnInit {
     this.fetchWineries();
   }
 
-  search(value: string): void {
+  search(event: any): void {
     this.wineriesList = this.allWineries.filter((val) =>
-      val.name.toLowerCase().includes(value.toLowerCase())
+      val.name.toLowerCase().includes(event.target.value.toLowerCase())
     );
   }
 

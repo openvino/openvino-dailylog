@@ -88,7 +88,9 @@
         class="dashboard-data-vr-group"
         style="width: 25%; margin-right: 10px"
       >
-        <h5 class="pl-1 pl-md-4">{{ "sensors.dashboard.inputMolecules" | translate }}</h5>
+        <h5 class="pl-1 pl-md-4">
+          {{ "sensors.dashboard.inputMolecules" | translate }}
+        </h5>
         <div class="dashboard-data-vr-group-unit">
           <span>{{ "sensors.dashboard.co" | translate }}</span>
           <div>
@@ -128,7 +130,9 @@
         style="width: 75%"
       >
         <div class="dashboard-data-vrandhz-group">
-          <h5 class="pl-1 pl-md-4">{{ "sensors.dashboard.grapeStatus" | translate }}</h5>
+          <h5 class="pl-1 pl-md-4">
+            {{ "sensors.dashboard.grapeStatus" | translate }}
+          </h5>
           <div class="dashboard-data-vrandhz-subgroup">
             <span>{{ "sensors.dashboard.mbo" | translate }}</span>
             <div class="dashboard-data-hz-group-unit">
@@ -250,7 +254,7 @@
   </div>
 
   <h3 class="text-center mt-5 mb-4">{{ "sensors.subtitle" | translate }}</h3>
- <div *ngIf="item" class="bottle-img">
+  <div *ngIf="item" class="bottle-img">
     <div class="bottle">
       <img
         src="/assets/images/bottle-chart-dynamic.png"
@@ -259,39 +263,53 @@
       />
       <div class="bottle-metric bottle-metric-1">
         <span class="bottle-metric-percent"
-          >{{  item.metrics.grape_cultivation }}%</span
+          >{{ item.metrics.grape_cultivation }}%</span
         >
-        <span class="bottle-metric-label">{{'expenses.categories.0' | translate}}</span>
+        <span class="bottle-metric-label">{{
+          "expenses.categories.0" | translate
+        }}</span>
       </div>
       <div class="bottle-metric bottle-metric-2">
         <span class="bottle-metric-percent"
           >{{ item.metrics.wine_production }}%</span
         >
-        <span class="bottle-metric-label">{{'expenses.categories.1' | translate}}</span>
+        <span class="bottle-metric-label">{{
+          "expenses.categories.1" | translate
+        }}</span>
       </div>
       <div class="bottle-metric bottle-metric-3">
         <span class="bottle-metric-percent">{{ item.metrics.packaging }}%</span>
-        <span class="bottle-metric-label">{{'expenses.categories.2' | translate}}</span>
+        <span class="bottle-metric-label">{{
+          "expenses.categories.2" | translate
+        }}</span>
       </div>
       <div class="bottle-metric bottle-metric-4">
         <span class="bottle-metric-percent">{{ item.metrics.logistics }}%</span>
-        <span class="bottle-metric-label">{{'expenses.categories.3' | translate}}</span>
+        <span class="bottle-metric-label">{{
+          "expenses.categories.3" | translate
+        }}</span>
       </div>
       <div class="bottle-metric bottle-metric-5">
         <span class="bottle-metric-percent"
           >{{ item.metrics.administration }}%</span
         >
-        <span class="bottle-metric-label">{{'expenses.categories.4' | translate}}</span>
+        <span class="bottle-metric-label">{{
+          "expenses.categories.4" | translate
+        }}</span>
       </div>
       <div class="bottle-metric bottle-metric-6">
         <span class="bottle-metric-percent">{{ item.metrics.marketing }}%</span>
-        <span class="bottle-metric-label">{{'expenses.categories.5' | translate}}</span>
+        <span class="bottle-metric-label">{{
+          "expenses.categories.5" | translate
+        }}</span>
       </div>
     </div>
-  </div> 
+  </div>
 
-  <h3 class="text-center mt-5 mb-4">{{ "product.tabs.sensoric" | translate }}</h3>
- <div *ngIf="item" class="product-date">
+  <h3 class="text-center mt-5 mb-4">
+    {{ "product.tabs.sensoric" | translate }}
+  </h3>
+  <div *ngIf="item" class="product-date">
     <app-date-selector
       [year]="item.year"
       (onDateChange)="onDateChange($event)"
@@ -361,5 +379,5 @@
   <div class="product-content-title">
     {{ "product.irradiance-ir" | translate }}
   </div>
-  <app-linear-chart [data]="irradianceIRData"></app-linear-chart>  
+  <app-linear-chart [data]="irradianceIRData"></app-linear-chart>
 </div>

@@ -24,7 +24,7 @@ export class SensorsComponent {
   public irradianceUVData = [];
   public irradianceIRData = [];
   public irradianceVIData = [];
-  public filterType = "month";
+  public filterType: "day" | "month" | "year" = "month";
   public dashboardTaskData = <any>[];
   public dashboardAnalysisData = <any>[];
   public dashboardSensorData = <any>[];

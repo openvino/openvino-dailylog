@@ -1,33 +1,30 @@
-import { NgModule } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { NgModule } from "@angular/core";
+import { HttpClientModule, HttpClient } from "@angular/common/http";
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { CoreService } from './services/core.service';
-import { SelectorModule } from './pages/selector/selector.module';
-import { WinerySelectorModule } from "./pages/winery-selector/winery-selector.module"
-import { ProductModule } from './pages/product/product.module';
-import { EnchainteService } from './services/enchainte.service';
-import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { SearchWineriesPipe } from './pages/winery-selector/search-wineries.pipe';
-import { GraphQLModule } from './graphql.module';
-
-
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { CoreService } from "./services/core.service";
+import { SelectorModule } from "./pages/selector/selector.module";
+import { WinerySelectorModule } from "./pages/winery-selector/winery-selector.module";
+import { ProductModule } from "./pages/product/product.module";
+import { EnchainteService } from "./services/enchainte.service";
+import { CommonModule } from "@angular/common";
+import { BrowserModule } from "@angular/platform-browser";
+import { SearchWineriesPipe } from "./pages/winery-selector/search-wineries.pipe";
+import { GraphQLModule } from "./graphql.module";
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, 'https://costaflores.openvino.exchange/language/', '');
+  return new TranslateHttpLoader(
+    http,
+    "https://costaflores.openvino.exchange/language/",
+    ""
+  );
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SearchWineriesPipe,
-
-    
-  ],
+  declarations: [AppComponent, SearchWineriesPipe],
   imports: [
     BrowserModule,
     CommonModule,
@@ -36,20 +33,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     GraphQLModule,
     TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-      }
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
     }),
     SelectorModule,
     WinerySelectorModule,
     ProductModule,
-  
   ],
-  providers: [
-    CoreService,
-    EnchainteService
-  ],
-  bootstrap: [AppComponent]
+  providers: [CoreService, EnchainteService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
