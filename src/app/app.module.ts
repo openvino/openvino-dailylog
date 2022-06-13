@@ -13,6 +13,7 @@ import { EnchainteService } from './services/enchainte.service';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { SearchWineriesPipe } from './pages/winery-selector/search-wineries.pipe';
+import { GraphQLModule } from './graphql.module';
 
 
 
@@ -32,6 +33,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
+    GraphQLModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
