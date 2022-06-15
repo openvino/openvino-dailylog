@@ -10,19 +10,25 @@ import { KlerosService } from "../../../services/kleros.service";
   styleUrls: ["./evidences.component.scss"],
 })
 export class EvidencesComponent {
-  public eventsList = <any>[];
-  public tagsDetails = <any>[];
-  public tagsList = <any>[];
-  public categoriesLabels = <any>[];
-  public selectedCategory: number = -1;
+  public eventsList: any[] = [];
+  public tagsDetails: any[] = [];
+  public tagsList: any[] = [];
 
-  public items: any[] = [];
+  public selectedStatus: string = "All status";
 
   public providerUrl: any;
   public apiUrl: any;
 
   public loading = true;
+
   public fileName = "";
+
+  public statusLabels: any[] = [
+    { name: "All status", id: "1" },
+    { name: "Submitted", id: "2" },
+    { name: "Registered", id: "3" },
+    { name: "Rejected", id: "4" },
+  ];
 
   constructor(
     public coreService: CoreService,
@@ -35,14 +41,24 @@ export class EvidencesComponent {
     this.providerUrl = environment.providerUrl;
     this.eventsList = this.coreService.getEventsList();
     this.tagsDetails = this.coreService.getTagsDetails();
-    this.getItems();
+    this.getItems(this.selectedStatus);
   }
 
-  async getItems() {
-    this.klerosService.getItemList().then(console.log).catch(console.error);
+  async getItems(selectedStatus) {
+    this.loading = true;
+    let tags = await this.klerosService.getItemList();
+    this.loading = false;
+
+    if (this.selectedStatus == "All status") {
+      this.tagsList = tags;
+    } else {
+      this.tagsList = tags.filter((item) => {
+        return item.statusLabel === selectedStatus;
+      });
+    }
   }
 
-  onFileSelected(event: any) {
+  public onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
       this.fileName = file.name;

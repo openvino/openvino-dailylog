@@ -13,34 +13,17 @@
     </div>
   </section>
 
-
-  <section>
-    <div *ngFor="let item of items" style="margin-bottom: 16px">
-      <div style="display: flex; flex-direction: column">
-        {{ item.metadata.metadata.tcrTitle }}
-        <img
-          width="50"
-          [src]="'https://ipfs.kleros.io' + item.metadata.metadata.logoURI"
-        />
-      </div>
-    </div>
-  </section>
-
   <section class="pt-3 tag-list-section">
     <h3 class="text-center mt-5">{{ "evidences.tag-list.title" | translate }}</h3>
     <div class="d-flex justify-content-center align-items-center my-5">
-      <select
+      <select [(ngModel)]="selectedStatus" (ngModelChange)="getItems(selectedStatus)" value="selectedStatus"
         style="border-bottom: 1px solid black; border-top: none; border-right: none; border-left: none; outline: none; background-color: transparent;">
-        <option>{{ "evidences.submitted" | translate }}</option>
-        <option>{{ "evidences.registered" | translate }}</option>
-        <option>{{ "evidences.removing" | translate }}</option>
-        <option>{{ "evidences.challenging-submitted" | translate }}</option>
-        <option>{{ "evidences.challenging-removal" | translate }}</option>
+        <option *ngFor="let status of statusLabels">{{ status.name }}</option>
       </select>
     </div>
 
     <div>
-      <div *ngIf="tagsList.length === 0">
+      <div *ngIf="tagsList.length === 0 && loading === false">
         <div class="empty-state-img">
           <img src="/assets/images/list.png" alt="expenses">
           {{'evidences.empty-state' | translate}}
@@ -48,17 +31,24 @@
       </div>
     </div>
 
+    <div class="py-5">
+      <div *ngIf="tagsList.length === 0 && loading === true" class="text-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+
     <div *ngIf="tagsList.length > 0">
-      <div class=" pb-5 d-flex flex-row justify-content-between w-100" *ngFor="let tag of tagsList;  index as i">
+      <div class=" pb-4 d-flex flex-row justify-content-between w-100" *ngFor="let tag of tagsList;  index as i">
         <div class="d-flex flex-column w-100">
           <div class="d-flex justify-content-around">
             <div style="width: 80%;" class="">
-              <span class="d-flex flex-column">Ends {{tag.ending_date}}</span>
-              <p class="badge rounded-pill py-1 px-2 my-2">{{ tag.state }}</p>
-              <h4 class="mt-1">{{tag.contract_address}}</h4>
-              <p>{{tag.public_tag}}</p>
-
-
+              <span class="d-flex flex-column">Ends in {{tag.endDate | date:"shortDate"}}</span>
+              <p class="badge rounded-pill py-1 px-2 my-2" style="background-color: {{tag.statusColor}}; color: white">
+                {{ tag.statusLabel }}</p>
+              <h4 class="mt-1 text-break">{{tag.address}}</h4>
+              <p>{{tag.props[1].value}}</p>
 
               <button type="button" type="button" data-toggle="collapse" [attr.data-target]="'#collapseTags-' + tag.id"
                 aria-expanded="false" [attr.aria-controls]="'#collapseTags-' + tag.id" class="tag-details-btn py-3"
@@ -75,10 +65,10 @@
           <!-- {{Tag details}} -->
           <section class="tag-detail pt-1">
             <div class="tag-detail-container col collapse" [id]="'collapseTags-' + tag.id">
-              <h5 class="mt-3">{{ "evidences.state" | translate }}</h5>
+              <h5 class="mt-3">{{ "tag.estate" | translate }}</h5>
               <div class="tag-detail-container-data mr-4">
                 <div class="tag-detail-container-data-unity">
-                  <p class="badge rounded-pill py-1 px-2 ">{{ tag.state }}</p>
+                  <p class="badge rounded-pill py-1 px-2 ">{{ tag.estate }}</p>
                 </div>
                 <div class="tag-detail-container-data-separator"></div>
                 <div class="tag-detail-container-data-unity">
