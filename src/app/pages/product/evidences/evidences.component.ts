@@ -45,7 +45,6 @@ export class EvidencesComponent {
   }
 
   async getItems(selectedStatus) {
-    this.loading = true;
     let tags = await this.klerosService.getItemList();
     this.loading = false;
 
