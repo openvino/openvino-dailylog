@@ -22,20 +22,16 @@
       </select>
     </div>
 
-    <div>
-      <div *ngIf="tagsList.length === 0 && loading === false">
-        <div class="empty-state-img">
-          <img src="/assets/images/list.png" alt="expenses">
-          {{'evidences.empty-state' | translate}}
-        </div>
+    <div *ngIf="tagsList.length === 0 && loading === false">
+      <div class="empty-state-img">
+        <img src="/assets/images/list.png" alt="expenses">
+        {{'evidences.empty-state' | translate}}
       </div>
     </div>
 
-    <div class="py-5">
-      <div *ngIf="tagsList.length === 0 && loading === true" class="text-center">
-        <div class="spinner-border" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
+    <div *ngIf="tagsList.length === 0 && loading === true" class="text-center py-5">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
       </div>
     </div>
 
@@ -45,13 +41,17 @@
           <div class="d-flex justify-content-around">
             <div style="width: 80%;" class="">
               <span class="d-flex flex-column">Ends in {{tag.endDate | date:"shortDate"}}</span>
-              <p class="badge rounded-pill py-1 px-2 my-2" style="background-color: {{tag.statusColor}}; color: white">
+              <p class="badge rounded-pill py-1 px-2 my-2" style="background-color: {{tag.statusColor}}">
                 {{ tag.statusLabel }}</p>
-              <h4 class="mt-1 text-break">{{tag.address}}</h4>
+              <a href="https://etherscan.io/address/{{tag.address}}" target="_blank">
+                <h5 class="d-flex mt-1 text-break">{{ tag.address }} <i
+                    class="eva eva-external-link-outline verifier-icon ml-2 d-flex align-items-center"></i></h5>
+              </a>
               <p>{{tag.props[1].value}}</p>
 
-              <button type="button" type="button" data-toggle="collapse" [attr.data-target]="'#collapseTags-' + tag.id"
-                aria-expanded="false" [attr.aria-controls]="'#collapseTags-' + tag.id" class="tag-details-btn py-3"
+              <button type="button" type="button" data-toggle="collapse"
+                [attr.data-target]="'#collapseTags-' + tag.itemID" aria-expanded="false"
+                [attr.aria-controls]="'#collapseTags-' + tag.itemID" class="tag-details-btn py-3"
                 style="font-size: 14px">
                 {{'tags.see-details' | translate}}
               </button>
@@ -60,35 +60,33 @@
             </div>
           </div>
 
-
-
           <!-- {{Tag details}} -->
           <section class="tag-detail pt-1">
-            <div class="tag-detail-container col collapse" [id]="'collapseTags-' + tag.id">
-              <h5 class="mt-3">{{ "tag.estate" | translate }}</h5>
+            <div class="tag-detail-container col collapse" [id]="'collapseTags-' + tag.itemID">
+              <h5 class="mt-3">{{ "evidences.state" | translate }}</h5>
               <div class="tag-detail-container-data mr-4">
                 <div class="tag-detail-container-data-unity">
-                  <p class="badge rounded-pill py-1 px-2 ">{{ tag.estate }}</p>
-                </div>
-                <div class="tag-detail-container-data-separator"></div>
-                <div class="tag-detail-container-data-unity">
-                  <span>{{ "evidences.request-type" | translate }}</span>
-                  <p>{{ tag.request_type }}</p>
+                  <p class="badge rounded-pill py-1 px-2" style="background-color: {{tag.statusColor}}">
+                    {{ tag.statusLabel }}</p>
                 </div>
                 <div class="tag-detail-container-data-separator"></div>
                 <div class="tag-detail-container-data-unity">
                   <span>{{ "evidences.bounty" | translate }}</span>
-                  <p>{{ tag.bounty }}</p>
+                  <p>{{ tag.bounty }} DAI</p>
                 </div>
                 <div class="tag-detail-container-data-separator"></div>
                 <div class="tag-detail-container-data-unity">
                   <span>{{ "evidences.requester" | translate }}</span>
-                  <p>{{ tag.requester }}</p>
+                  <a href="https://etherscan.io/address/{{tag.requester}}" target="_blank">
+                    <p class="d-flex">{{(tag.requester | slice:0:6) + "..." + (tag.requester | slice:-4)}} <i
+                        class="eva eva-external-link-outline verifier-icon d-flex align-items-center"></i>
+                    </p>
+                  </a>
                 </div>
                 <div class="tag-detail-container-data-separator"></div>
                 <div class="tag-detail-container-data-unity">
                   <span>{{ "evidences.ending-date" | translate }}</span>
-                  <p>{{ tag.ending_date }}</p>
+                  <p>{{moment(tag.endDate).endOf('day').fromNow()}}</p>
                 </div>
               </div>
 
@@ -100,7 +98,7 @@
                     <a data-toggle="tooltip" title="{{'evidences.tooltip.public-name' | translate}}">
                       <i class="eva eva-question-mark-circle-outline"></i></a>
                   </div>
-                  <p>{{ tag.public_tag }}</p>
+                  <p>{{tag.props[1].value}}</p>
                 </div>
                 <div class="tag-detail-container-data-separator"></div>
                 <div class="tag-detail-container-data-unity py-1">
@@ -109,7 +107,10 @@
                     <a data-toggle="tooltip" title="{{'evidences.tooltip.contract-address' | translate}}">
                       <i class="eva eva-question-mark-circle-outline"></i></a>
                   </div>
-                  <p>{{ tag.contract_address }}</p>
+                  <a href="https://etherscan.io/address/{{tag.address}}" target="_blank">
+                    <p class="d-flex">{{(tag.address | slice:0:6) + "..." + (tag.address | slice:-4)}} <i
+                        class="eva eva-external-link-outline verifier-icon d-flex align-items-center"></i></p>
+                  </a>
                 </div>
                 <div class="tag-detail-container-data-separator"></div>
                 <div class="tag-detail-container-data-unity py-1">
@@ -118,7 +119,11 @@
                     <a data-toggle="tooltip" title="{{'evidences.tooltip.website' | translate}}">
                       <i class="eva eva-question-mark-circle-outline"></i></a>
                   </div>
-                  <p>{{ tag.website }}</p>
+                  <a href="{{tag.props[3].value}}" target="_blank">
+                    <p class="d-flex">{{ tag.props[3].value }} <i
+                        class="eva eva-external-link-outline verifier-icon d-flex align-items-center"></i>
+                    </p>
+                  </a>
                 </div>
                 <div class="tag-detail-container-data-separator"></div>
                 <div class="tag-detail-container-data-unity py-1">
@@ -127,7 +132,7 @@
                     <a data-toggle="tooltip" title="{{'evidences.tooltip.public-note' | translate}}">
                       <i class="eva eva-question-mark-circle-outline"></i></a>
                   </div>
-                  <p>{{ tag.public_note }}</p>
+                  <p>{{tag.props[2].value}}</p>
                 </div>
               </div>
 

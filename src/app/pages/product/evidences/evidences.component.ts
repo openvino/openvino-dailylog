@@ -3,6 +3,7 @@ import { CoreService } from "src/app/services/core.service";
 import { ProductService } from "../product.service";
 import { environment } from "src/environments/environment";
 import { KlerosService } from "../../../services/kleros.service";
+import moment from "moment";
 
 @Component({
   selector: "app-evidences",
@@ -13,7 +14,7 @@ export class EvidencesComponent {
   public eventsList: any[] = [];
   public tagsDetails: any[] = [];
   public tagsList: any[] = [];
-
+  public moment: any = moment;
   public selectedStatus: string = "All status";
 
   public providerUrl: any;
@@ -55,6 +56,7 @@ export class EvidencesComponent {
         return item.statusLabel === selectedStatus;
       });
     }
+    console.log(this.tagsList)
   }
 
   public onFileSelected(event: any) {
@@ -63,4 +65,5 @@ export class EvidencesComponent {
       this.fileName = file.name;
     }
   }
+  
 }
