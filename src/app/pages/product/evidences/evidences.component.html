@@ -167,7 +167,7 @@
                 </div>
               </div>
 
-              <div class="d-flex flex-column flex-md-row justify-content-center pt-3 pb-5">
+              <div *ngIf="tag.statusLabel === 'Submitted'" class="d-flex flex-column flex-md-row justify-content-center pt-3 pb-5">
                 <button type="button" class="primary-btn">{{ "evidences.view-evidence" | translate }}</button>
                 <button type="button" data-toggle="modal" data-target="#challenge-modal" class="primary-btn">
                   {{ "evidences.challenge-submission" | translate }}

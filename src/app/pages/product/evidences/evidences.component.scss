@@ -65,6 +65,7 @@ a {
       &-unity {
         margin-right: 10px;
         margin-left: 10px;
+        max-width: 25%;
         @media (max-width: 991px) {
           width: auto;
           margin: 4px 12px;

@@ -56,7 +56,6 @@ export class EvidencesComponent {
         return item.statusLabel === selectedStatus;
       });
     }
-    console.log(this.tagsList)
   }
 
   public onFileSelected(event: any) {
