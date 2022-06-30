@@ -3,6 +3,7 @@ import { CoreService } from "src/app/services/core.service";
 import { ProductService } from "../product.service";
 import { environment } from "src/environments/environment";
 import { KlerosService } from "../../../services/kleros.service";
+import * as ethers from "ethers";
 
 @Component({
   selector: "app-evidences",
@@ -15,13 +16,15 @@ export class EvidencesComponent {
   public tagsList: any[] = [];
 
   public selectedStatus: string = "All status";
+  public selectedTag = null;
 
   public providerUrl: any;
   public apiUrl: any;
 
   public loading = true;
 
-  public fileName = "";
+  public file: File;
+  public fileUploadRes: any;
 
   public statusLabels: any[] = [
     { name: "All status", id: "1" },
@@ -55,12 +58,34 @@ export class EvidencesComponent {
         return item.statusLabel === selectedStatus;
       });
     }
+
+    console.log(this.tagsList);
   }
 
   public onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {
-      this.fileName = file.name;
+      this.klerosService.publishIPFS(file).then((res) => {
+        this.file = file;
+        this.fileUploadRes = res;
+      });
     }
+  }
+
+  public setSelectedTag(tag: any) {
+    this.selectedTag = tag;
+  }
+
+  public async challengeRequest() {
+    this.klerosService
+      .submitChallenge(
+        this.selectedTag,
+        "title",
+        "description",
+        this.fileUploadRes,
+        this.selectedTag.submissionChallengeDeposit
+      )
+      .then(console.log)
+      .catch(console.error);
   }
 }
