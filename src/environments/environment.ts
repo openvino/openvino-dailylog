@@ -11,10 +11,18 @@ export const environment = {
   apiUrl: "https://costaflores.openvino.exchange",
   ipfsHost: "https://ipfs.kleros.io",
   graphIpfsEndpoint: "https://api.thegraph.com/ipfs",
-  provider: "https://kovan.infura.io/v3/cef28f8cc48644cdb133281c30a6d1d6",
+   provider: "https://kovan.infura.io/v3/cef28f8cc48644cdb133281c30a6d1d6",
   listAddress: "0x68eb06a88F2F19F29C1884aE065D2316ef27Ccd8",
   lgtcrViewAddress: "0x60631cf0bbBEFE7FdEfFE51F00Faa240b4349Fee",
-  bountySymbol: "KON",
+  bountySymbol: "KON", 
+
+/* 
+  provider: "https://rpc.gnosischain.com",
+  listAddress: "0x76944a2678A0954A610096Ee78E8CEB8d46d5922",
+  lgtcrViewAddress: "0xB32e38B08FcC7b7610490f764b0F9bFd754dCE53",
+  bountySymbol: "DAI", */
+
+
   graphHost:
     "https://api.thegraph.com/subgraphs/name/eccentricexit/light-curate-kovan-ii",
 };

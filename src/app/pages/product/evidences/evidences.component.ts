@@ -15,14 +15,12 @@ export class EvidencesComponent {
   public eventsList: any[] = [];
   public tagsDetails: any[] = [];
   public tagsList: any[] = [];
-
+  public moment: any = moment;
   public selectedStatus: string = "All status";
   public selectedTag = null;
 
   public providerUrl: any;
   public apiUrl: any;
-  public moment: any = moment;
-
 
   public loading = true;
 
@@ -48,12 +46,12 @@ export class EvidencesComponent {
     this.eventsList = this.coreService.getEventsList();
     this.tagsDetails = this.coreService.getTagsDetails();
     this.getItems(this.selectedStatus);
-    console.log(this.eventsList, "events")
+    console.log(this.eventsList, "events");
   }
 
   async getItems(selectedStatus) {
     let tags = await this.klerosService.getItemList();
-    console.log(tags, "tags")
+    console.log(tags, "tags");
     this.loading = false;
 
     if (this.selectedStatus == "All status") {
@@ -63,8 +61,6 @@ export class EvidencesComponent {
         return item.statusLabel === selectedStatus;
       });
     }
-
-    console.log(this.tagsList, "tag listttt");
   }
 
   public onFileSelected(event: any) {

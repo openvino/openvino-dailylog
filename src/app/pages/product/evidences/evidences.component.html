@@ -38,25 +38,23 @@
     <div *ngIf="tagsList.length > 0">
       <div class=" pb-4 d-flex flex-row justify-content-between w-100" *ngFor="let tag of tagsList;  index as i">
         <div class="d-flex flex-column w-100">
-          <div class="d-flex justify-content-around">
-            <div style="width: 80%;" class="">
+          <div>
+            <div>
               <span class="d-flex flex-column">Ends in {{tag.endDate | date:"shortDate"}}</span>
               <p class="badge rounded-pill py-1 px-2 my-2" style="background-color: {{tag.statusColor}}">
                 {{ tag.statusLabel }}</p>
               <a href="https://etherscan.io/address/{{tag.address}}" target="_blank">
-                <h5 class="d-flex mt-1 text-break">{{ tag.address }} <i
+                <h5 class="d-flex mt-1 text-break align-items-center">{{ tag.address }} <i
                     class="eva eva-external-link-outline verifier-icon ml-2 d-flex align-items-center"></i></h5>
               </a>
-              <p>{{tag.props[1].value}}</p>
+              <p>{{tag.props[2].value}}</p>
 
-              <button type="button" type="button" data-toggle="collapse"
+              <button type="button" (click)="setSelectedTag(tag)" data-toggle="collapse"
                 [attr.data-target]="'#collapseTags-' + tag.itemID" aria-expanded="false"
                 [attr.aria-controls]="'#collapseTags-' + tag.itemID" class="tag-details-btn py-3"
                 style="font-size: 14px">
-                {{'tags.see-details' | translate}}
+                {{'evidences.tag-list.see-details' | translate}}
               </button>
-            </div>
-            <div class=" d-flex justify-content-end align-items-center" style="width: 20%;">
             </div>
           </div>
 
@@ -92,87 +90,17 @@
 
               <h5>{{ "evidences.tag-details" | translate }}</h5>
               <div class="tag-detail-container-data" style="margin-right: 10px">
-                <div class="tag-detail-container-data-unity py-1">
+                <div *ngFor="let detail of tag.props" class="tag-detail-container-data-unity py-1">
                   <div class="d-flex">
-                    <span>{{ "evidences.public-name" | translate }}</span>
-                    <a data-toggle="tooltip" title="{{'evidences.tooltip.public-name' | translate}}">
-                      <i class="eva eva-question-mark-circle-outline"></i></a>
+                    <span>{{ detail.label }}</span>
                   </div>
-                  <p class="text-break">{{tag.props[1].value}}</p>
+                  <p class="d-flex">{{detail.value}} </p>
+                  <div class="tag-detail-container-data-separator"></div>
                 </div>
-                <div class="tag-detail-container-data-separator"></div>
-                <div class="tag-detail-container-data-unity py-1">
-                  <div class="d-flex">
-                    <span>{{ "evidences.contract-address" | translate }}</span>
-                    <a data-toggle="tooltip" title="{{'evidences.tooltip.contract-address' | translate}}">
-                      <i class="eva eva-question-mark-circle-outline"></i></a>
-                  </div>
-                  <a href="https://etherscan.io/address/{{tag.address}}" target="_blank">
-                    <p class="d-flex">{{(tag.address | slice:0:6) + "..." + (tag.address | slice:-4)}} <i
-                        class="eva eva-external-link-outline verifier-icon d-flex align-items-center"></i></p>
-                  </a>
-                </div>
-                <div class="tag-detail-container-data-separator"></div>
-                <div class="tag-detail-container-data-unity py-1">
-                  <div class="d-flex">
-                    <span>{{ "evidences.website" | translate }}</span>
-                    <a data-toggle="tooltip" title="{{'evidences.tooltip.website' | translate}}">
-                      <i class="eva eva-question-mark-circle-outline"></i></a>
-                  </div>
-                  <a href="{{tag.props[3].value}}" target="_blank">
-                    <p class="d-flex">{{ tag.props[3].value }} <i
-                        class="eva eva-external-link-outline verifier-icon d-flex align-items-center"></i>
-                    </p>
-                  </a>
-                </div>
-                <div class="tag-detail-container-data-separator"></div>
-            
-             
-
-
-                <div class="tag-detail-container-data-unity py-1">
-                  <div class="d-flex">
-                    <span>{{ "evidences.public-note" | translate }}</span>
-                    <a data-toggle="tooltip" title="{{'evidences.tooltip.public-name' | translate}}">
-                      <i class="eva eva-question-mark-circle-outline"></i></a>
-                  </div>
-                  <p class="text-break">{{tag.props[2].value}}</p>
-                </div>
-
               </div>
 
-            <!--   <h5>{{ "evidences.tag-history" | translate }}</h5>
-              <div class="tag-detail-container-data d-flex flex-column" style="margin-right: 10px">
-                <div class="d-flex w-100">
-                  <span>
-                    <button class="expandable-btn" type="button" data-toggle="collapse" data-target="#collapseEvents"
-                      aria-expanded="false" aria-controls="collapseEvents">
-
-                      <i class="eva eva-arrow-ios-downward-outline pr-1"></i>
-                      {{ "evidences.first-request" | translate }}
-                    </button>
-                  </span>
-                  <a class="d-flex" data-mdb-toggle="tooltip" data-placement="top"
-                    title="{{'evidences.tooltip.first-request' | translate}}">
-                    <i class="eva eva-question-mark-circle-outline"></i></a>
-                </div>
-                <div class="collapse" id="collapseEvents">
-                  <div class="card card-body my-0">
-                    <ul class="timeline" *ngIf="eventsList.length > 0">
-                      <li *ngFor="let event of eventsList" class="timeline-item bg-white rounded ml-3 p-4 shadow">
-                        <div class="timeline-arrow"></div>
-                        <h5 class="mb-0">{{ event.title }}</h5>
-                        <p class="text-small mt-1 mb-2 font-weight-light">
-                          {{ event.body }}
-                        </p>
-                        <span class="small text-gray">{{ event.timestamp }}</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div> -->
-
-              <div *ngIf="tag.statusLabel == 'Submitted'" class="d-flex flex-column flex-md-row justify-content-center pt-3 pb-5">
+              <div *ngIf="tag.statusLabel == 'Submitted'"
+                class="d-flex flex-column flex-md-row justify-content-center pt-3 pb-5">
                 <button type="button" class="primary-btn">{{ "evidences.view-evidence" | translate }}</button>
                 <button type="button" data-toggle="modal" data-target="#challenge-modal" class="primary-btn">
                   {{ "evidences.challenge-submission" | translate }}
@@ -180,48 +108,26 @@
               </div>
 
               <!-- {{challenge modal}} -->
-              <div
-                class="modal fade"
-                id="challenge-modal"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="ChallengeModalLabel"
-                aria-hidden="true"
-              >
-                <form
-                  class="d-flex justify-content-center align-items-center h-100"
-                >
+              <div class="modal fade" id="challenge-modal" tabindex="-1" role="dialog"
+                aria-labelledby="ChallengeModalLabel" aria-hidden="true">
+                <form (ngSubmit)="challengeRequest()" class="d-flex justify-content-center align-items-center h-100">
                   <div class="modal-dialog" role="document">
-                    <div
-                      class="modal-content"
-                      style="max-height: 95vh; overflow-y: scroll"
-                    >
-                      <div
-                        class="modal-header pt-0 border-0 d-flex flex-column"
-                      >
+                    <div class="modal-content" style="max-height: 95vh; overflow-y: scroll">
+                      <div class="modal-header pt-0 border-0 d-flex flex-column">
                         <div class="w-100 d-flex justify-content-end">
-                          <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                          >
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <i class="eva eva-close-outline"></i>
                           </button>
                         </div>
-                        <div
-                          class="w-100 d-flex flex-column justify-content-center"
-                        >
-                          <h3
-                            class="modal-title text-center"
-                            id="exampleModalLabel"
-                            style="color: var(--primary-color)"
-                          >
+                        <div class="w-100 d-flex flex-column justify-content-center">
+                          <h3 class="modal-title text-center" id="exampleModalLabel"
+                            style="color: var(--primary-color)">
                             {{ "evidences.challenge-submission" | translate }}
                           </h3>
                           <p class="text-center mt-1">
                             {{ "evidences.read" | translate }}
-                            <a href="" style="color: var(--primary-color)">{{
+                            <a href="https://ipfs.kleros.io/ipfs/QmRPW6hcV2qJxx6nuLPCBdK7oPMg75tw1YxXqNuq5bGt95/address-tags-list-guidelines.pdf"
+                              target="_blank" style="color: var(--primary-color)">{{
                               "evidences.listing-criteria" | translate
                             }}</a>
                           </p>
@@ -230,54 +136,31 @@
 
                       <div class="modal-body border-0 mt-2 mb-1">
                         <div>
-                          <p>
+                          <label>
                             {{ "evidences.challenge-motive" | translate }}
-                          </p>
-                          <textarea
-                            class="banner-bg my-2 py-3 px-4"
-                            id="challenge-description"
-                            name="challenge-descriptio"
-                            rows="4"
-                            cols="50"
-                            placeholder="{{
+                          </label>
+                          <textarea class="banner-bg my-2 py-3 px-4" id="description" name="description" rows="4"
+                            cols="50" placeholder="{{
                               'evidences.description' | translate
-                            }}"
-                          ></textarea>
+                            }}" required></textarea>
                         </div>
                         <div>
-                          <label class="checkbox-container mt-1 mb-1"
-                            ><input
-                              class="custom-checkbox"
-                              type="checkbox"
-                              data-toggle="collapse"
-                              data-target="#collapseAttachment"
-                              aria-expanded="false"
-                              aria-controls="collapseAttachment"
-                            />
-                            {{ "evidences.attachment" | translate }}</label
-                          >
+                          <label class="checkbox-container mt-1 mb-1"><input class="custom-checkbox" type="checkbox"
+                              data-toggle="collapse" data-target="#collapseAttachment" aria-expanded="false"
+                              aria-controls="collapseAttachment" />
+                            {{ "evidences.attachment" | translate }}</label>
                         </div>
                         <div class="collapse" id="collapseAttachment">
                           <div class="card card-body image-upload p-0">
-                            <input
-                              type="file"
-                              class="file-input"
-                              (change)="onFileSelected($event)"
-                              #fileUpload
-                            />
+                            <input type="file" name="file" class="file-input" (change)="onFileSelected($event)"
+                              #fileUpload required />
 
-                            <div
-                              class="file-upload banner-bg d-flex flex-column mb-2"
-                              style="padding: 30px 20px"
-                            >
-                              <button
-                                mat-mini-fab
-                                class="upload-btn mb-1 d-flex justify-content-center"
-                                (click)="fileUpload.click()"
-                              >
+                            <div class="file-upload banner-bg d-flex flex-column mb-2" style="padding: 30px 20px">
+                              <button mat-mini-fab class="upload-btn mb-1 d-flex justify-content-center"
+                                (click)="fileUpload.click()">
                                 <i class="eva eva-plus-circle"></i>
                               </button>
-                              <span claszs="text-center">{{
+                              <span class="text-center">{{
                                 file
                                   ? file.name
                                   : ("evidences.upload-file" | translate)
@@ -289,9 +172,7 @@
                           <p>
                             {{ "evidences.deposit" | translate }}
                           </p>
-                          <div
-                            class="banner-bg d-flex justify-content-between mt-2 mb-4 p-4"
-                          >
+                          <div class="banner-bg d-flex justify-content-between mt-2 mb-4 p-4">
                             <p>{{ "evidences.total" | translate }}</p>
                             <h4>
                               {{ selectedTag?.submissionChallengeDepositLabel }}
@@ -300,21 +181,11 @@
                         </div>
                       </div>
 
-                      <div
-                        class="modal-footer pt-0 mb-4 border-0 d-flex justify-content-center"
-                      >
-                        <button
-                          type="button"
-                          class="secondary-btn"
-                          data-dismiss="modal"
-                        >
+                      <div class="modal-footer pt-0 mb-4 border-0 d-flex justify-content-center">
+                        <button type="button" class="secondary-btn" data-dismiss="modal">
                           {{ "evidences.cancel" | translate }}
                         </button>
-                        <button
-                          type="button"
-                          class="primary-btn"
-                          (click)="challengeRequest()"
-                        >
+                        <button type="submit" class="primary-btn">
                           {{ "evidences.submit" | translate }}
                         </button>
                       </div>
@@ -326,7 +197,6 @@
             </div>
           </section>
           <!-- {{End tag details}} -->
-
           <hr class="w-100" />
         </div>
       </div>
