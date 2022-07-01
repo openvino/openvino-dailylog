@@ -4,6 +4,7 @@ import { ProductService } from "../product.service";
 import { environment } from "src/environments/environment";
 import { KlerosService } from "../../../services/kleros.service";
 import * as ethers from "ethers";
+import moment from "moment";
 
 @Component({
   selector: "app-evidences",
@@ -20,6 +21,8 @@ export class EvidencesComponent {
 
   public providerUrl: any;
   public apiUrl: any;
+  public moment: any = moment;
+
 
   public loading = true;
 
@@ -45,10 +48,12 @@ export class EvidencesComponent {
     this.eventsList = this.coreService.getEventsList();
     this.tagsDetails = this.coreService.getTagsDetails();
     this.getItems(this.selectedStatus);
+    console.log(this.eventsList, "events")
   }
 
   async getItems(selectedStatus) {
     let tags = await this.klerosService.getItemList();
+    console.log(tags, "tags")
     this.loading = false;
 
     if (this.selectedStatus == "All status") {
@@ -59,7 +64,7 @@ export class EvidencesComponent {
       });
     }
 
-    console.log(this.tagsList);
+    console.log(this.tagsList, "tag listttt");
   }
 
   public onFileSelected(event: any) {

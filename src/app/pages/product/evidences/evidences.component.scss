@@ -27,6 +27,11 @@ span {
   letter-spacing: 0.05rem;
 }
 
+a {
+  color:inherit;
+  text-decoration: none;
+}
+
 .tag-detail {
   i {
     display: flex;
@@ -60,10 +65,13 @@ span {
       &-unity {
         margin-right: 10px;
         margin-left: 10px;
+        max-width: 25%;
         @media (max-width: 991px) {
+          max-width: 100%;
           width: auto;
           margin: 4px 12px;
         }
+     
       }
       &-separator {
         border: 1px solid #dfdfdf;
