@@ -18,7 +18,7 @@ export class EvidencesComponent {
   public moment: any = moment;
   public selectedStatus: string = "All status";
   public selectedTag = null;
-
+  public challengeDescription: string = "";
   public providerUrl: any;
   public apiUrl: any;
 
@@ -46,12 +46,10 @@ export class EvidencesComponent {
     this.eventsList = this.coreService.getEventsList();
     this.tagsDetails = this.coreService.getTagsDetails();
     this.getItems(this.selectedStatus);
-    console.log(this.eventsList, "events");
   }
 
   async getItems(selectedStatus) {
     let tags = await this.klerosService.getItemList();
-    console.log(tags, "tags");
     this.loading = false;
 
     if (this.selectedStatus == "All status") {
@@ -77,12 +75,16 @@ export class EvidencesComponent {
     this.selectedTag = tag;
   }
 
+  public getDescriptionValue($event): any {
+    this.challengeDescription = $event.target.value;
+  }
+
   public async challengeRequest() {
     this.klerosService
       .submitChallenge(
         this.selectedTag,
         "title",
-        "description",
+        this.challengeDescription,
         this.fileUploadRes,
         this.selectedTag.submissionChallengeDeposit
       )

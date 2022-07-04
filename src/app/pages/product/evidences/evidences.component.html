@@ -94,13 +94,34 @@
                   <div class="d-flex">
                     <span>{{ detail.label }}</span>
                   </div>
-                  <p class="d-flex">{{detail.value}} </p>
+
+                  <div *ngIf="detail.label === 'Address' ; else withoutSlice">
+                    <a href="https://etherscan.io/address/{{tag.requester}}" target="_blank">
+                      <p class="d-flex">{{(detail.value | slice:0:6) + "..." + (detail.value | slice:-4)}} <i
+                          class="eva eva-external-link-outline verifier-icon d-flex align-items-center"></i>
+                      </p>
+                    </a>
+                  </div>
+                  <ng-template #withoutSlice>
+                    <div *ngIf="detail.label !==  'Link'">
+                      <p class="text-break">{{detail.value}} </p>
+                    </div>
+                  </ng-template>
+
+                  <div *ngIf="detail.label === 'Link' ">
+                    <a href="{{detail.value}}" target="_blank">
+                      <p class="d-flex">{{detail.value}} <i
+                          class="eva eva-external-link-outline verifier-icon d-flex align-items-center"></i>
+                      </p>
+                    </a>
+                  </div>
+
                   <div class="tag-detail-container-data-separator"></div>
                 </div>
               </div>
-
-              <div *ngIf="tag.statusLabel == 'Submitted'"
-                class="d-flex flex-column flex-md-row justify-content-center pt-3 pb-5">
+              <!--               *ngIf="tag.statusLabel == 'Submitted'"
+ -->
+              <div class="d-flex flex-column flex-md-row justify-content-center pt-3 pb-5">
                 <button type="button" class="primary-btn">{{ "evidences.view-evidence" | translate }}</button>
                 <button type="button" data-toggle="modal" data-target="#challenge-modal" class="primary-btn">
                   {{ "evidences.challenge-submission" | translate }}
@@ -139,10 +160,12 @@
                           <label>
                             {{ "evidences.challenge-motive" | translate }}
                           </label>
-                          <textarea class="banner-bg my-2 py-3 px-4" id="description" name="description" rows="4"
-                            cols="50" placeholder="{{
-                              'evidences.description' | translate
-                            }}" required></textarea>
+
+                          <textarea class="banner-bg my-2 py-3 px-4" id="challengeDescription"
+                            name="challengeDescription" rows="4" cols="50"
+                            placeholder="{{'evidences.description' | translate }}" [(ngModel)]="challengeDescription"
+                            (input)="getDescriptionValue($event)"></textarea>
+
                         </div>
                         <div>
                           <label class="checkbox-container mt-1 mb-1"><input class="custom-checkbox" type="checkbox"
@@ -153,7 +176,7 @@
                         <div class="collapse" id="collapseAttachment">
                           <div class="card card-body image-upload p-0">
                             <input type="file" name="file" class="file-input" (change)="onFileSelected($event)"
-                              #fileUpload required />
+                              #fileUpload />
 
                             <div class="file-upload banner-bg d-flex flex-column mb-2" style="padding: 30px 20px">
                               <button mat-mini-fab class="upload-btn mb-1 d-flex justify-content-center"
