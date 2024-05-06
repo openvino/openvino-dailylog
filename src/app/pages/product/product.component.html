@@ -19,8 +19,8 @@
     <uniswap-enchainte
       *ngIf="item"
       title="Viniswap"
-      [attr.providerUrl]="providerUrl"
-      networkid="1"
+      [attr.networkid]="item.networkId"
+      [attr.providerUrl]="item.provide_url"
       [attr.mapsapikey]="mapsApiKey"
       [attr.shippingaccount]="shippingAccount"
       [attr.crowdsaleaddress]="item.crow_sale_address"
@@ -31,6 +31,8 @@
       [attr.image]="item.bottle_image"
       [attr.tokenIcon]="item.token_icon"
       [attr.apiUrl]="apiUrl"
+      [attr.winerie_id]="item.WinerieID"
+
     ></uniswap-enchainte>
   </div>
 </div>
