@@ -81,6 +81,16 @@ export class CoreService {
         image: "../../../../assets/images/winery/tequendama.jpeg",
         primary_color: "",
       },
+      {
+        ID: "7",
+        CreatedAt: "2022-03-25 12:00:56",
+        UpdatedAt: "2022-03-25 12:00:56",
+        DeletedAt: "2022-03-25 12:00:56",
+        name: "Auxor Cellars",
+        website: "https://AuxorCellars.com/",
+        image: "../../../../assets/images/winery/auxor.jpg",
+        primary_color: "",
+      },
     ];
   }
 
